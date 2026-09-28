@@ -34,25 +34,30 @@
       - Hybrid
 
 
-## dataset: list of projects (14)
+## dataset: list of projects (12)
 
-the dataset is composed of 14 forks from the GitHub repositories below:
+the dataset is composed of 12 forks from the GitHub repositories below:
 
 - aeon-toolkit/aeon - https://github.com/aeon-toolkit/aeon
-- ansible/ansible-lint - https://github.com/ansible/ansible-lint
 - agronholm/apscheduler - https://github.com/agronholm/apscheduler
 - dask/dask - https://github.com/dask/dask
 - iterative/dvc - https://github.com/iterative/dvc
 - ipython/ipython - https://github.com/ipython/ipython
 - librosa/librosa - https://github.com/librosa/librosa
-- ansible/molecule - https://github.com/ansible/molecule
-- networkx/networkx - https://github.com/networkx/networkx
+z- networkx/networkx - https://github.com/networkx/networkx
 - pytest-dev/pytest-django - https://github.com/pytest-dev/pytest-django
 - pytest-dev/pytest-xdist - https://github.com/pytest-dev/pytest-xdist
 - Lightning-AI/pytorch-lightning - https://github.com/Lightning-AI/pytorch-lightning
 - mikedh/trimesh - https://github.com/mikedh/trimesh
 - ultralytics/ultralytics - https://github.com/ultralytics/ultralytics
 
+> Removed from scope (og dataset): `ansible/molecule` and `ansible/ansible-lint` because of their test workflow structure. They run tests via tox, reusing another repo from the same org - so i can't simply inject pytest-ranking/regsmart testing flags in the command.
+>
+
+
+## Scripts on this repo
+- [identify_test_workflows.py](./identify_test_workflows.py) - mapeia os workflows de teste dos repositórios
+- [last_commit.py](./last_commit.py) - pega o último commit de atuação do fork em relação ao repositório upstream
 
 ## Tables
 
