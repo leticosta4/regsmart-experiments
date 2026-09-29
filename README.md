@@ -58,6 +58,7 @@ z- networkx/networkx - https://github.com/networkx/networkx
 ## Scripts on this repo
 - [identify_test_workflows.py](./identify_test_workflows.py) - mapeia os workflows de teste dos repositórios
 - [last_commit.py](./last_commit.py) - pega o último commit de atuação do fork em relação ao repositório upstream
+- [track_flaky_attempt.py](./track_flaky_attempt.py) - tentativa de rastrear testes flaky no CI subindo uma mudança simples de comentário em algum arquivo python e abrindo um PR para melhor visibilidade
 
 ## Tables
 
