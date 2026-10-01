@@ -1,0 +1,100 @@
+{
+  "created_utc": "2026-10-01T00:45:05.940172+00:00",
+  "runs": [
+    {
+      "task": "dask#r01",
+      "repo": "dask",
+      "rep": 1,
+      "ref": "flaky-r01",
+      "workflow_file": "tests.yml",
+      "branch": "track-flaky",
+      "sha": "7ed1e1d40db612bb6868701b6605bc7e7caf68d1",
+      "jobs_expected": 1,
+      "dispatched_at_utc": "2026-10-01T00:45:20.293854+00:00",
+      "dispatch_window_start_utc": "2026-10-01T00:45:13.832942+00:00",
+      "run_id": 36797741813,
+      "correlation_method": "head_branch_match",
+      "html_url": "https://github.com/leticosta4/dask/actions/runs/36797741813",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-01T01:05:46Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "ubuntu-latest py312 test-ci",
+          "conclusion": "success",
+          "started_at": "2026-10-01T00:45:26Z",
+          "completed_at": "2026-10-01T01:05:45Z"
+        }
+      ]
+    },
+    {
+      "task": "dask#r02",
+      "repo": "dask",
+      "rep": 2,
+      "ref": "flaky-r02",
+      "workflow_file": "tests.yml",
+      "branch": "track-flaky",
+      "sha": "7ed1e1d40db612bb6868701b6605bc7e7caf68d1",
+      "jobs_expected": 1,
+      "dispatched_at_utc": "2026-10-01T00:45:28.911944+00:00",
+      "dispatch_window_start_utc": "2026-10-01T00:45:24.400901+00:00",
+      "run_id": 36797754541,
+      "correlation_method": "head_branch_match",
+      "html_url": "https://github.com/leticosta4/dask/actions/runs/36797754541",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-01T01:04:34Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "ubuntu-latest py312 test-ci",
+          "conclusion": "success",
+          "started_at": "2026-10-01T00:47:02Z",
+          "completed_at": "2026-10-01T01:04:34Z"
+        }
+      ]
+    }
+  ],
+  "wall_clock": {
+    "started_utc": "2026-10-01T00:45:46.995498+00:00",
+    "updated_utc": "2026-10-01T00:45:47.877258+00:00",
+    "elapsed_seconds": 0.9,
+    "jobs_per_rep_total": 1,
+    "finished_utc": "2026-10-01T00:45:47.428240+00:00",
+    "total_seconds": 0.4
+  },
+  "rate_limit": {
+    "initial": {
+      "limit": 5000,
+      "remaining": 4753,
+      "used": 247,
+      "reset_utc": "2026-10-01T01:22:33+00:00"
+    },
+    "final": {
+      "limit": 5000,
+      "remaining": 4753,
+      "used": 247,
+      "reset_utc": "2026-10-01T01:22:33+00:00"
+    }
+  },
+  "slots": {
+    "budget": 20,
+    "samples": [],
+    "admissions_blocked": 0,
+    "admissions_wait_seconds": 0,
+    "peak_occupied": 0
+  },
+  "counters": {
+    "get": 5,
+    "post": 0,
+    "http_403": 0,
+    "http_429": 0,
+    "http_5xx": 0,
+    "retries": 0,
+    "backoff_seconds": 0.0,
+    "rate_limit": 2
+  }
+}

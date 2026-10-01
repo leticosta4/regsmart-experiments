@@ -60,6 +60,60 @@ z- networkx/networkx - https://github.com/networkx/networkx
 - [last_commit.py](./last_commit.py) - pega o último commit de atuação do fork em relação ao repositório upstream
 - [track_flaky_attempt.py](./track_flaky_attempt.py) - sobe uma mudança simples de comentário em algum arquivo python e abre um PR para melhor visibilidade; usei como base para fazer a limpeza dos workflows
 
+## Detectando flaky tests: `flaky_runner.py`
+
+Dispara N repetições do workflow de testes de cada fork sobre o **mesmo SHA** da
+branch `track-flaky` e usa o resultado pra medir flakiness, respeitando o teto de
+jobs simultâneos da conta (Free = 20).
+
+O isolamento por repetição é feito com **uma branch por repetição**
+(`flaky-r01`..`flaky-r10`), todas apontando pro mesmo commit. Isso dá um
+`github.ref` distinto por repetição, então os runs não se cancelam pelo
+`concurrency` dos próprios workflows — sem editar nenhum workflow.
+
+Branches e não tags porque `dask` e `pytest-django` declaram `push.tags: ["*"]`:
+criar uma tag dispara um workflow extra via `push`, poluindo a contagem. Nenhum
+dos 12 workflows dispara `push` para `flaky-r01`.
+
+As branches são criadas pela API (`POST /git/refs`), sem clone local: apontar
+uma ref num commit que já existe não precisa montar blob/tree/commit. Mover uma
+branch existente é `DELETE` + `POST`, e por isso exige `--repoint` — criar branch
+nova não toca em nada e segue sem a flag.
+
+```bash
+# pré-flight: confere que cada workflow aceita workflow_dispatch
+python3 flaky_runner.py verify
+
+# roda (sem --no-wait ele espera tudo terminar)
+python3 flaky_runner.py run --repo dask --reps 10
+
+# depois, a qualquer momento:
+python3 flaky_runner.py status   # relê status/conclusão de cada run
+python3 flaky_runner.py report   # gera data/flaky/flaky_report.md
+```
+
+Opções do `run`:
+- `--budget N` teto de jobs simultâneos (default 20)
+- `--no-wait` despacha e sai; o `status`/`report` reconciliam depois
+- `--repoint` move branches que apontam para outro SHA
+- `--restart` redespacha tudo do zero
+- `--dry-run` mostra o plano sem criar branch nem disparar nada
+
+Arquivos em `data/flaky/`:
+- `flaky_plan.json` — repos, workflow, branch, número de repetições
+- `flaky_runs.json` — manifesto de execução (uma linha por repetição)
+- `flaky_report.md` — relatório de custo e saúde da execução
+
+**Custo é medido, não estimado.** Sai dos `started_at`/`completed_at` reais de
+cada job: minutos de runner somados, makespan por repo e pico de concorrência
+medido. A trava de orçamento aprende o tamanho de cada repo na primeira
+repetição em vez de estimar pelo YAML.
+
+> **Pendente:** a seção "Testes flaky" do relatório ainda sai vazia. Falta a
+> análise de logs (`nodeid` → outcome por repetição), que é a parte que responde
+> *quais* testes são flaky. Também falta `-rA` em 7 dos 12 workflows — só
+> `dask`, `pytorch-lightning` e `apscheduler` emitem resultado por teste hoje.
+
 ## Tables
 
 - Result table example: https://dl.acm.org/doi/pdf/10.1145/3696630.3728587 (pytest-ranking paper)
