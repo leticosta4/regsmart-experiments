@@ -1,41 +1,57 @@
 """
-Flaky suite
+Flaky runner: dispara N repetições do workflow de teste de cada fork e acha
+quais testes falham de forma intermitente.
+
+Uso (todos aceitam --repo, repetível, e --reps):
+    python flaky_runner.py verify   # 1x: confere workflow_dispatch e concurrency
+    python flaky_runner.py run      # cria branches flaky-rNN, dispara e espera
+    python flaky_runner.py flaky    # baixa os logs e acha os testes flaky
+    python flaky_runner.py report   # gera data/flaky/flaky_report.md
+
+Por que uma branch por repetição: o `concurrency` dos workflows costuma agrupar
+por github.ref. Com uma branch distinta por rep, cada uma cai num grupo próprio
+e nenhuma cancela a outra, sem editar workflow. Branch e não tag porque dask e
+pytest-django têm `push: tags: ["*"]`.
+
+Acima de 20 jobs simultâneos (plano Free) o GitHub enfileira sozinho, então o
+script não controla orçamento: o pico medido vai saturar em 20 e o makespan
+inclui o tempo de fila.
 """
 
 import argparse
+import base64
+import collections
 import json
 import os
+import re
 import subprocess
 import sys
 import time
 import urllib.error
 import urllib.parse
 import urllib.request
+import zipfile
 from datetime import datetime, timezone
 from pathlib import Path
-
-try:
-    import yaml
-except ImportError:
-    sys.exit("precisa de PyYAML: pip install pyyaml")
-
 
 OWNER = "leticosta4"
 API = "https://api.github.com"
 ROOT = Path(__file__).resolve().parent
 DATA = ROOT / "data" / "flaky"
+RAW = DATA / "raw"
 
 PLAN_PATH = DATA / "flaky_plan.json"
 MANIFEST_PATH = DATA / "flaky_runs.json"
 REPORT_PATH = DATA / "flaky_report.md"
 FLAKY_PATH = DATA / "flaky_tests.json"
 
+PREFIX = "flaky-r"
+FREE_PLAN_JOBS = 20
 ACTIVE = {"in_progress", "queued", "waiting", "pending", "requested"}
-DONE = {"completed"}
 
 
 def _gh_token() -> str | None:
-    """Fallback pro token do gh CLI, pra nao depender de env var."""
+    """Fallback pro token do gh CLI, pra não depender de env var."""
     try:
         out = subprocess.run(
             ["gh", "auth", "token"], capture_output=True, text=True, timeout=15
@@ -55,6 +71,10 @@ TOKEN = (
 
 def now() -> str:
     return datetime.now(timezone.utc).isoformat()
+
+
+def parse_ts(s: str) -> datetime:
+    return datetime.fromisoformat(s.replace("Z", "+00:00"))
 
 
 # ---------------------------------------------------------------- API client
@@ -79,15 +99,8 @@ class Api:
             h["Authorization"] = f"Bearer {self.token}"
         return h
 
-    def request(
-        self,
-        method: str,
-        path: str,
-        body: dict | None = None,
-        raw: bool = False,
-        absolute: bool = False,
-    ):
-        url = path if absolute else f"{API}{path}"
+    def request(self, method: str, path: str, body: dict | None = None):
+        url = f"{API}{path}"
         data = json.dumps(body).encode() if body is not None else None
         self.counters["get" if method == "GET" else "post"] += 1
         delay = 2.0
@@ -98,26 +111,20 @@ class Api:
             try:
                 with urllib.request.urlopen(req, timeout=30) as resp:
                     payload = resp.read().decode()
-                    return payload if raw else (json.loads(payload) if payload else {})
+                    return json.loads(payload) if payload else {}
             except urllib.error.HTTPError as exc:
                 detail = exc.read().decode()[:200]
-                if exc.code in (403, 429):
-                    # Rate limit global vs. limite secundario: so espera no 429
-                    # e no 403 que veio com Retry-After.
-                    retry_after = exc.headers.get("Retry-After")
-                    if exc.code == 403 and not retry_after:
-                        raise
-                    wait = float(retry_after) if retry_after else delay
-                elif exc.code >= 500:
-                    wait = delay
-                else:
+                retry_after = exc.headers.get("Retry-After")
+                retryable = (
+                    exc.code == 429
+                    or exc.code >= 500
+                    or (exc.code == 403 and (retry_after or "rate limit" in detail.lower()))
+                )
+                if not retryable or attempt == self.max_retries:
                     raise RuntimeError(
                         f"{method} {url} -> HTTP {exc.code}: {detail}"
                     ) from exc
-                if attempt == self.max_retries:
-                    raise RuntimeError(
-                        f"{method} {url} -> desistindo após {attempt + 1} tentativas"
-                    ) from exc
+                wait = float(retry_after) if retry_after else delay
                 self.counters["retries"] += 1
                 print(f"   ! HTTP {exc.code}, esperando {wait:.0f}s ({attempt + 1})")
                 time.sleep(wait)
@@ -129,11 +136,11 @@ class Api:
                 time.sleep(delay)
                 delay = min(delay * 2, 60)
 
-    def get(self, path: str, **kw):
-        return self.request("GET", path, **kw)
+    def get(self, path: str):
+        return self.request("GET", path)
 
-    def post(self, path: str, body: dict | None = None, **kw):
-        return self.request("POST", path, body=body, **kw)
+    def post(self, path: str, body: dict | None = None):
+        return self.request("POST", path, body=body)
 
     def rate_limit(self) -> dict:
         self.counters["rate_limit"] += 1
@@ -150,57 +157,32 @@ class Api:
             ).isoformat(),
         }
 
-    def paginate(self, path: str, per_page: int = 100, max_pages: int = 10) -> list:
-        out = []
-        for page in range(1, max_pages + 1):
-            sep = "&" if "?" in path else "?"
-            chunk = self.get(f"{path}{sep}per_page={per_page}&page={page}")
-            if not isinstance(chunk, list) or not chunk:
-                break
-            out.extend(chunk)
-            if len(chunk) < per_page:
-                break
-        return out
-
-
-# ---------------------------------------------------------------- job counting
-
 
 # ---------------------------------------------------------------- plan / state
 
 
-def load_plan(path: Path, only: list[str] | None, reps_override: int | None):
-    entries = json.loads(path.read_text(encoding="utf-8"))
+def load_plan(only: list[str] | None, reps_override: int | None) -> list[dict]:
+    entries = json.loads(PLAN_PATH.read_text(encoding="utf-8"))
     if only:
-        wanted = set(only)
-        unknown = wanted - {e["repo"] for e in entries}
+        unknown = set(only) - {e["repo"] for e in entries}
         if unknown:
             sys.exit(f"--repo desconhecido no plan: {', '.join(sorted(unknown))}")
-        entries = [e for e in entries if e["repo"] in wanted]
+        entries = [e for e in entries if e["repo"] in set(only)]
     entries = [e for e in entries if e.get("enabled", True)]
-    if reps_override is not None:
-        for e in entries:
-            e["reps"] = reps_override
     for e in entries:
         e.setdefault("branch", "track-flaky")
-        e.setdefault("reps", 10)
+        e["reps"] = reps_override if reps_override is not None else e.get("reps", 10)
     return entries
 
 
 def save_json(path: Path, payload) -> None:
-    """Escrita atômica: tmp + rename, pra não corromper o manifest com Ctrl-C."""
+    """Escrita atômica: tmp + rename, pra não corromper com Ctrl-C."""
+    path.parent.mkdir(parents=True, exist_ok=True)
     tmp = path.with_suffix(path.suffix + ".tmp")
     tmp.write_text(
         json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
     )
     tmp.replace(path)
-
-
-def load_flaky() -> dict | None:
-    """Resultado da análise de logs, se ela já tiver sido rodada."""
-    if not FLAKY_PATH.exists():
-        return None
-    return json.loads(FLAKY_PATH.read_text(encoding="utf-8"))
 
 
 def load_manifest() -> dict:
@@ -209,13 +191,14 @@ def load_manifest() -> dict:
     return {"created_utc": now(), "runs": []}
 
 
-def ref_name(rep: int, prefix: str) -> str:
-    """Monta o nome da ref da repetição: prefixo `flaky-r` + rep 1 -> `flaky-r01`.
+def load_flaky() -> dict | None:
+    if not FLAKY_PATH.exists():
+        return None
+    return json.loads(FLAKY_PATH.read_text(encoding="utf-8"))
 
-    O prefixo entra como está (o default já traz o `-r`), então o número é só
-    concatenado com zero à esquerda.
-    """
-    return f"{prefix}{rep:02d}"
+
+def ref_name(rep: int) -> str:
+    return f"{PREFIX}{rep:02d}"
 
 
 def task_key(repo: str, rep: int) -> str:
@@ -223,64 +206,22 @@ def task_key(repo: str, rep: int) -> str:
 
 
 def build_tasks(plan: list[dict]) -> list[dict]:
-    tasks = []
-    for entry in plan:
-        for rep in range(1, entry["reps"] + 1):
-            tasks.append({**entry, "rep": rep, "task": task_key(entry["repo"], rep)})
-    return tasks
+    return [
+        {**e, "rep": rep, "task": task_key(e["repo"], rep)}
+        for e in plan
+        for rep in range(1, e["reps"] + 1)
+    ]
 
 
-# ---------------------------------------------------------------- polling
+def flush_counters(api: Api, manifest: dict) -> None:
+    """Soma os contadores desta execução no manifest (acumula entre execuções)."""
+    total = manifest.setdefault("counters", {})
+    for key, value in api.counters.items():
+        total[key] = total.get(key, 0) + value
+        api.counters[key] = 0
 
 
-class Poller:
-    """Cache de runs e contagem de jobs em uso.
-
-    `GET /actions/jobs` retorna 404, então a contagem de slots ocupados sai
-    de `GET /actions/runs?status=in_progress` + um `/runs/{id}/jobs` por run
-    ainda não visto (a contagem de jobs de um run não muda, então cacheia).
-    """
-
-    def __init__(self, api: Api, repos: list[str]):
-        self.api = api
-        self.repos = repos
-        self.runs_by_repo: dict[str, dict[int, dict]] = {}
-        self.job_count: dict[tuple[str, int], int] = {}
-        self.occupied = 0
-        self.peak = 0
-
-    def poll(self) -> None:
-        occupied = 0
-        for repo in self.repos:
-            runs = self.api.get(
-                f"/repos/{OWNER}/{repo}/actions/runs?per_page=100"
-            ).get("workflow_runs", [])
-            index = {r["id"]: r for r in runs}
-            self.runs_by_repo[repo] = index
-            for run in runs:
-                if run["status"] not in ACTIVE:
-                    continue
-                key = (repo, run["id"])
-                if key not in self.job_count:
-                    self.job_count[key] = self.api.get(
-                        f"/repos/{OWNER}/{repo}/actions/runs/{run['id']}/jobs?per_page=100"
-                    ).get("total_count", 0)
-                occupied += self.job_count[key]
-        self.occupied = occupied
-        self.peak = max(self.peak, occupied)
-
-    def run(self, repo: str, run_id: int) -> dict | None:
-        return self.runs_by_repo.get(repo, {}).get(run_id)
-
-    def runs_for_ref(self, repo: str, ref: str) -> list[dict]:
-        return [
-            r
-            for r in self.runs_by_repo.get(repo, {}).values()
-            if r.get("head_branch") == ref
-        ]
-
-
-# ---------------------------------------------------------------- medição
+# ---------------------------------------------------------------- GitHub helpers
 
 
 def resolve_sha(api: Api, repo: str, branch: str) -> str:
@@ -288,192 +229,117 @@ def resolve_sha(api: Api, repo: str, branch: str) -> str:
     return data["commit"]["sha"]
 
 
-def fetch_workflow(api: Api, repo: str, workflow_file: str, ref: str):
-    """YAML do workflow em `ref`.
-
-    O endpoint `/contents/` com `?ref=` retorna um objeto JSON com o conteúdo
-    base64 quando usado com o header padrão. Com `Accept: application/vnd.github.raw`
-    ele deveria retornar o arquivo cru; em alguns casos, no entanto, ainda devolve
-    JSON. Aqui tratamos os dois formatos.
-    """
-    path = urllib.parse.quote(workflow_file)
-    try:
-        raw_body = api.get(
-            f"/repos/{OWNER}/{repo}/contents/.github/workflows/{path}"
-            f"?ref={urllib.parse.quote(ref)}",
-            raw=True,
-        )
-    except RuntimeError:
-        raise
-
-    # Se for JSON, extrai o 'content' base64
-    try:
-        obj = json.loads(raw_body)
-    except json.JSONDecodeError:
-        # corpo já é YAML
-        yaml_doc = yaml.safe_load(raw_body)
-        return raw_body, yaml_doc
-
-    if isinstance(obj, dict) and "content" in obj and "encoding" in obj:
-        import base64
-
-        body = base64.b64decode(obj["content"]).decode(
-            errors="replace"
-        )
-        return body, yaml.safe_load(body)
-
-    if isinstance(obj, list):
-        raise RuntimeError(f"esperava arquivo único para {workflow_file}")
-
-    raise RuntimeError(f"formato inesperado ao ler workflow {workflow_file}")
+def list_runs(api: Api, repo: str) -> list[dict]:
+    return api.get(
+        f"/repos/{OWNER}/{repo}/actions/runs?event=workflow_dispatch&per_page=100"
+    ).get("workflow_runs", [])
 
 
-def read_workflow(api: Api, plan: list[dict]) -> dict:
-    """Confere que cada workflow pode ser disparado por `workflow_dispatch`.
-
-    Só isso: lê o YAML e reporta os gatilhos e o bloco `concurrency`. A contagem
-    de jobs por repetição foi removida de propósito — ela era uma estimativa
-    estática que já divergiu do real (22 previstos, e a conta de jobs em
-    andamento medida pelo `Poller` é a fonte de verdade). Custo de execução
-    sai dos `started_at`/`completed_at` reais de cada job.
-    """
-    info = {}
-    for entry in plan:
-        repo, wf, branch = entry["repo"], entry["workflow_file"], entry["branch"]
-        key = f"{repo}/{wf}@{branch}"
-        try:
-            _, doc = fetch_workflow(api, repo, wf, resolve_sha(api, repo, branch))
-        except Exception as exc:
-            print(f"   !! {key}: não li o workflow ({exc})")
-            info[key] = {"error": str(exc), "has_workflow_dispatch": False}
-            continue
-
-        on = (doc or {}).get("on", (doc or {}).get(True))
-        triggers = sorted(on) if isinstance(on, dict) else list(on or [])
-        info[key] = {
-            "sha": entry.get("sha"),
-            "triggers": triggers,
-            "has_workflow_dispatch": "workflow_dispatch" in triggers,
-            "concurrency": (doc or {}).get("concurrency"),
-        }
-    return info
-
-
-# ---------------------------------------------------------------- refs
-
-
-def prep_refs(api: Api, plan: list[dict], prefix: str, repoint: bool) -> dict:
-    """Cria/move uma branch `flaky-rNN` por repetição, todas no mesmo SHA.
-
-    Branch e não tag de propósito: `dask` e `pytest-django` declaram
-    `push: tags: ["*"]`, então criar uma tag dispara um workflow extra via
-    `push` (o GitHub trata tag como push). Nenhum dos 12 dispara `push` em
-    branch fora da default, então a branch isola a repetição sem ruído.
-
-    O isolamento também vem de `github.ref`, que entra no nome do grupo de
-    `concurrency`: cada repetição cai num grupo diferente, então elas não se
-    cancelam entre si — e `cancel-in-progress` continua valendo para push/PR
-    de verdade, sem precisar mexer no bloco `concurrency` de nenhum workflow.
-    """
-    result = {}
-    for entry in plan:
-        repo, branch, sha = entry["repo"], entry["branch"], entry["sha"]
-        wanted = {ref_name(r, prefix): sha for r in range(1, entry["reps"] + 1)}
+def prep_refs(api: Api, plan: list[dict], repoint: bool) -> None:
+    """Cria uma branch `flaky-rNN` por repetição, todas no SHA da `track-flaky`."""
+    for e in plan:
+        repo, sha = e["repo"], e["sha"]
+        wanted = [ref_name(r) for r in range(1, e["reps"] + 1)]
         existing = {
-            b["name"]: b["commit"]["sha"]
-            for b in api.paginate(f"/repos/{OWNER}/{repo}/branches")
+            x["ref"].removeprefix("refs/heads/"): x["object"]["sha"]
+            for x in api.get(f"/repos/{OWNER}/{repo}/git/matching-refs/heads/{PREFIX}")
         }
-        stale = {
-            name: target
-            for name, target in wanted.items()
-            if existing.get(name) not in (None, target)
-        }
-        to_create = [n for n in wanted if n not in existing]
-        entry["refs_created"] = len(to_create)
-        entry["refs_moved"] = len(stale)
-        entry["refs"] = wanted
-        result[repo] = {"created": len(to_create), "moved": len(stale), "sha": sha}
-        if not to_create and not stale:
-            print(f"   {repo:18} {len(wanted)} branches já no lugar ({sha[:8]})")
-            continue
-        # Só mover uma branch que já existe é destrutivo e por isso exige
-        # --repoint. Criar branch nova não toca em nada existente, então segue
-        # sem a flag. Antes as duas coisas eram tratadas igual, o que fazia um
-        # `run` limpo (sem branches) pedir --repoint à toa.
+        stale = [n for n in wanted if n in existing and existing[n] != sha]
+        missing = [n for n in wanted if n not in existing]
         if stale and not repoint:
             sys.exit(
-                f"{repo}: as branches {sorted(stale)} apontam para outro SHA que "
-                f"{sha[:8]}. Rode com --repoint pra mover."
+                f"{repo}: {stale} apontam para outro SHA que {sha[:8]}. "
+                f"Rode com --repoint pra mover."
             )
-        # apontar uma ref num commit que já existe é só POST /git/refs — não
-        # precisa montar blob/tree/commit, então nenhum clone é necessário.
-        # Mover é DELETE + POST; não é atômico, mas recriar é idempotente e
-        # barato, então basta rodar de novo se o processo morrer no meio.
-        for name in stale:
+        for name in stale:  # PATCH com force: move a ref de forma atômica
             api.request(
-                "DELETE", f"/repos/{OWNER}/{repo}/git/refs/heads/{name}"
+                "PATCH",
+                f"/repos/{OWNER}/{repo}/git/refs/heads/{name}",
+                {"sha": sha, "force": True},
             )
-        for name in list(stale) + to_create:
+        for name in missing:
             api.post(
                 f"/repos/{OWNER}/{repo}/git/refs",
                 {"ref": f"refs/heads/{name}", "sha": sha},
             )
         print(
-            f"   {repo:18} {len(to_create)} branches criadas, "
-            f"{len(stale)} movidas -> {sha[:8]}"
+            f"   {repo:18} {len(missing)} criadas, {len(stale)} movidas, "
+            f"{len(wanted) - len(missing) - len(stale)} já ok -> {sha[:8]}"
         )
-    return result
-
-
-# ---------------------------------------------------------------- dispatch
 
 
 def dispatch(api: Api, repo: str, workflow_file: str, ref: str) -> None:
     path = urllib.parse.quote(workflow_file)
-    api.post(
-        f"/repos/{OWNER}/{repo}/actions/workflows/{path}/dispatches", {"ref": ref}
-    )
+    api.post(f"/repos/{OWNER}/{repo}/actions/workflows/{path}/dispatches", {"ref": ref})
 
 
-def correlate(
-    poller: Poller,
-    repo: str,
-    ref: str,
-    since: str,
-    wait_seconds: float = 0.0,
-) -> tuple[int | None, str]:
-    """Acha o run_id da repetição disparada em `ref`.
+def correlate_all(api: Api, manifest: dict, attempts: int = 8, wait: float = 15.0) -> None:
+    """Acha o run_id de cada repetição despachada, numa passada por repo.
 
-    O nome da branch já é único por repetição, então casar `head_branch == ref`
-    basta — não precisa de fallback por `head_sha`.
-
-    Dois filtros são obrigatórios, ambos vindos de bugs reais do teste no dask:
-      - `event == workflow_dispatch`: a API lista também runs de `push`/`schedule`
-        na mesma branch, e sem isso o run escolhido era o errado.
-      - `created_at >= since`: a mesma ref pode ter runs antigos de uma execução
-        anterior (`--restart`, ou branch reaproveitada); sem esse corte o "mais
-        antigo" seria sempre o run velho.
-
-    O GitHub leva ~10-20s pra materializar o run depois do 204 do dispatch, então
-    com `wait_seconds` > 0 isso tenta algumas vezes antes de desistir.
+    O GitHub leva ~10-20s pra criar o run depois do dispatch. Como a branch é
+    única por repetição, casar `head_branch == ref` basta. O corte por
+    `created_at` evita pegar run antigo da mesma branch de uma execução anterior.
     """
-    deadline = time.monotonic() + max(0.0, wait_seconds)
-    while True:
-        poller.poll()
-        hits = [
-            r
-            for r in poller.runs_for_ref(repo, ref)
-            if r.get("event") == "workflow_dispatch" and r["created_at"] >= since
+    for _ in range(attempts):
+        pending = [
+            r for r in manifest["runs"]
+            if r.get("dispatched_at_utc") and not r.get("run_id")
         ]
-        if hits:
-            hits.sort(key=lambda r: r["created_at"], reverse=True)
-            method = "head_branch_match" if len(hits) == 1 else "head_branch_match_multi"
-            return hits[0]["id"], method
+        if not pending:
+            return
+        time.sleep(wait)
+        by_repo = {repo: list_runs(api, repo) for repo in {r["repo"] for r in pending}}
+        for r in pending:
+            since = parse_ts(r["dispatch_window_start_utc"]).timestamp() - 2
+            hits = sorted(
+                (
+                    x for x in by_repo[r["repo"]]
+                    if x["head_branch"] == r["ref"]
+                    and parse_ts(x["created_at"]).timestamp() >= since
+                ),
+                key=lambda x: x["created_at"],
+            )
+            if hits:
+                r["run_id"] = hits[0]["id"]
+                r["html_url"] = hits[0]["html_url"]
+    left = [r["task"] for r in manifest["runs"] if r.get("dispatched_at_utc") and not r.get("run_id")]
+    if left:
+        print(f"   ! sem run_id: {', '.join(left)} (rode `flaky` depois pra tentar de novo)")
 
-        remaining = deadline - time.monotonic()
-        if remaining <= 0:
-            return None, "unmatched"
-        time.sleep(min(10, remaining))
+
+def refresh_status(api: Api, manifest: dict) -> None:
+    """Atualiza status/conclusão dos runs. Jobs só são buscados uma vez, quando o run termina."""
+    rows = [r for r in manifest["runs"] if r.get("run_id")]
+    for repo in sorted({r["repo"] for r in rows}):
+        listed = {x["id"]: x for x in list_runs(api, repo)}
+        for r in (r for r in rows if r["repo"] == repo):
+            if r.get("status") == "completed" and "jobs" in r:
+                continue
+            run = listed.get(r["run_id"]) or api.get(
+                f"/repos/{OWNER}/{repo}/actions/runs/{r['run_id']}"
+            )
+            r["status"] = run["status"]
+            r["conclusion"] = run["conclusion"]
+            r["run_attempt"] = run["run_attempt"]
+            r["conclusion_at_utc"] = run["updated_at"]
+            r["html_url"] = run["html_url"]
+            if run["status"] == "completed" and "jobs" not in r:
+                jobs = api.get(
+                    f"/repos/{OWNER}/{repo}/actions/runs/{r['run_id']}/jobs?per_page=100"
+                )
+                r["jobs_total"] = jobs.get("total_count", 0)
+                r["jobs"] = [
+                    {
+                        "name": j["name"],
+                        "conclusion": j["conclusion"],
+                        "started_at": j["started_at"],
+                        "completed_at": j["completed_at"],
+                    }
+                    for j in jobs.get("jobs", [])
+                ]
+
+
+# ---------------------------------------------------------------- custo
 
 
 def fmt_hms(seconds: float | None) -> str:
@@ -486,11 +352,7 @@ def fmt_hms(seconds: float | None) -> str:
 
 
 def job_intervals(runs: list[dict]) -> list[tuple[float, float]]:
-    """Intervalos (início, fim) de cada job que de fato rodou.
-
-    Base das métricas de custo/concorrência do relatório: em vez de estimar
-    pelo YAML, usa os `started_at`/`completed_at` reais de cada job.
-    """
+    """Intervalos (início, fim) reais de cada job que rodou."""
     out = []
     for r in runs:
         for job in r.get("jobs") or []:
@@ -498,8 +360,7 @@ def job_intervals(runs: list[dict]) -> list[tuple[float, float]]:
             if not start or not end:
                 continue
             try:
-                out.append((datetime.fromisoformat(start).timestamp(),
-                            datetime.fromisoformat(end).timestamp()))
+                out.append((parse_ts(start).timestamp(), parse_ts(end).timestamp()))
             except ValueError:
                 continue
     return out
@@ -525,28 +386,17 @@ def runner_minutes(intervals: list[tuple[float, float]]) -> float:
 
 
 def build_report(manifest: dict, plan: list[dict], flaky: dict | None = None) -> str:
-    """Relatório Markdown: custo da execução + testes flaky por repo.
-
-    Custo vem dos `started_at`/`completed_at` reais de cada job, não de
-    estimativa de YAML. Flaky vem de `flaky` (nodeid -> contagem por outcome),
-    preenchido na fase de análise de logs.
-    """
     runs = manifest["runs"]
     by_task = {r["task"]: r for r in runs}
     counters = manifest.get("counters", {})
     wall = manifest.get("wall_clock", {})
-    slots = manifest.get("slots", {})
 
     intervals = job_intervals(runs)
-    minutes = runner_minutes(intervals)
-
     dispatched = sorted(r["dispatched_at_utc"] for r in runs if r.get("dispatched_at_utc"))
     concluded = sorted(r["conclusion_at_utc"] for r in runs if r.get("conclusion_at_utc"))
     makespan = None
     if dispatched and concluded:
-        makespan = (
-            datetime.fromisoformat(concluded[-1]) - datetime.fromisoformat(dispatched[0])
-        ).total_seconds()
+        makespan = (parse_ts(concluded[-1]) - parse_ts(dispatched[0])).total_seconds()
 
     L = [
         "# Flaky runner — relatório",
@@ -555,15 +405,15 @@ def build_report(manifest: dict, plan: list[dict], flaky: dict | None = None) ->
         "",
         f"- Início: `{wall.get('started_utc', '-')}`",
         f"- Fim: `{wall.get('finished_utc', '-')}`",
-        f"- Wall-clock do processo: **{fmt_hms(wall.get('total_seconds'))}**",
-        f"- Janela real dos runs (1º dispatch → última conclusão): **{fmt_hms(makespan)}**",
-        f"- Minutos de runner somados: **{minutes} min**",
-        f"- Pico de concorrência medido: **{peak_concurrency(intervals)}** jobs",
-        f"- Teto configurado: {slots.get('budget', '-')} slots",
+        f"- Tempo ativo do script: **{fmt_hms(wall.get('total_seconds'))}**",
+        f"- Janela real dos runs (1º dispatch → última conclusão): **{fmt_hms(makespan)}** (inclui fila)",
+        f"- Minutos de runner somados: **{runner_minutes(intervals)} min**",
+        f"- Pico de concorrência medido: **{peak_concurrency(intervals)}** jobs "
+        f"(teto do plano Free: {FREE_PLAN_JOBS})",
         "",
         "## API / rate limit",
         "",
-        f"- Requisições: {counters.get('get', 0)} GET, {counters.get('post', 0)} POST",
+        f"- Requisições: {counters.get('get', 0)} GET, {counters.get('post', 0)} POST/PATCH",
         f"- Retries: {counters.get('retries', 0)}",
     ]
     rl = (manifest.get("rate_limit") or {}).get("final") or {}
@@ -595,22 +445,25 @@ def build_report(manifest: dict, plan: list[dict], flaky: dict | None = None) ->
         "|---|---|---|---|---|---|---|---|",
     ]
 
-    for entry in plan:
-        repo = entry["repo"]
-        rows = [by_task[task_key(repo, r)] for r in range(1, entry["reps"] + 1)
-                if task_key(repo, r) in by_task]
+    for e in plan:
+        repo = e["repo"]
+        rows = [
+            by_task[task_key(repo, r)]
+            for r in range(1, e["reps"] + 1)
+            if task_key(repo, r) in by_task
+        ]
         if not rows:
             continue
         fin = [r["conclusion_at_utc"] for r in rows if r.get("conclusion_at_utc")]
         sta = [r["dispatched_at_utc"] for r in rows if r.get("dispatched_at_utc")]
         repo_ms = (
-            (datetime.fromisoformat(max(fin)) - datetime.fromisoformat(min(sta))).total_seconds()
+            (parse_ts(max(fin)) - parse_ts(min(sta))).total_seconds()
             if fin and sta
             else None
         )
         L.append("| " + " | ".join([
             repo,
-            str(entry["reps"]),
+            str(e["reps"]),
             str(sum(1 for r in rows if r.get("conclusion") == "success")),
             str(sum(1 for r in rows if r.get("conclusion") == "failure")),
             str(sum(1 for r in rows if r.get("conclusion") == "cancelled")),
@@ -623,46 +476,28 @@ def build_report(manifest: dict, plan: list[dict], flaky: dict | None = None) ->
     if not flaky:
         L.append("_Análise de logs ainda não rodada. Use `flaky_runner.py flaky`._")
     else:
-        L += [
-            "| repo | testes | flaky | taxa |",
-            "|---|---|---|---|",
-        ]
-        for entry in plan:
-            rows = (flaky.get(entry["repo"]) or {}).get("tests") or {}
-            total = (flaky.get(entry["repo"]) or {}).get("total_seen") or 0
-            if not total:
-                continue
-            n = len(rows)
-            L.append(
-                f"| {entry['repo']} | {total} | {n} | "
-                f"{(100.0 * n / total):.1f}% |"
-            )
+        L += ["| repo | testes | flaky | taxa |", "|---|---|---|---|"]
+        for e in plan:
+            info = flaky.get(e["repo"]) or {}
+            total = info.get("total_seen") or 0
+            n = len(info.get("tests") or {})
+            if total:
+                L.append(f"| {e['repo']} | {total} | {n} | {100.0 * n / total:.1f}% |")
         L.append("")
-        for entry in plan:
-            rows = (flaky.get(entry["repo"]) or {}).get("tests") or {}
+        for e in plan:
+            rows = (flaky.get(e["repo"]) or {}).get("tests") or {}
             if not rows:
                 continue
-            L += [
-                f"### {entry['repo']}",
-                "",
-                "| teste | reps | falhou | passou |",
-                "|---|---|---|---|",
-            ]
-            for nodeid, counts in sorted(rows.items(), key=lambda kv: -kv[1]["failed"]):
-                L.append(
-                    f"| `{nodeid}` | {counts['reps']} | {counts['failed']} | "
-                    f"{counts['passed']} |"
-                )
+            L += [f"### {e['repo']}", "", "| teste | reps | falhou | passou |", "|---|---|---|---|"]
+            for nodeid, c in sorted(rows.items(), key=lambda kv: -kv[1]["failed"]):
+                L.append(f"| `{nodeid}` | {c['reps']} | {c['failed']} | {c['passed']} |")
             L.append("")
 
     bad = [r for r in runs if r.get("conclusion") == "cancelled"]
     if bad:
-        L += ["## Canceladas (investigar)", "",
-              "| repo | rep | ref | run_id |", "|---|---|---|---|"]
+        L += ["## Canceladas (investigar)", "", "| repo | rep | ref | run_id |", "|---|---|---|---|"]
         for r in bad:
-            L.append(
-                f"| {r['repo']} | r{r['rep']:02d} | `{r['ref']}` | {r.get('run_id', '-')} |"
-            )
+            L.append(f"| {r['repo']} | r{r['rep']:02d} | `{r['ref']}` | {r.get('run_id', '-')} |")
         L.append("")
 
     unmatched = [r for r in runs if not r.get("run_id")]
@@ -671,353 +506,263 @@ def build_report(manifest: dict, plan: list[dict], flaky: dict | None = None) ->
             "## Sem run_id localizado",
             "",
             "Repetição despachada cujo run não foi encontrado: a análise de flaky "
-            "abaixo fica **incompleta** para esses repos.",
+            "fica **incompleta** para esses repos.",
             "",
             "| repo | rep | ref | despachado_em |",
             "|---|---|---|---|",
         ]
         for r in unmatched:
-            L.append(
-                f"| {r['repo']} | r{r['rep']:02d} | `{r['ref']}` | {r['dispatched_at_utc']} |"
-            )
+            L.append(f"| {r['repo']} | r{r['rep']:02d} | `{r['ref']}` | {r.get('dispatched_at_utc', '-')} |")
         L.append("")
 
     return "\n".join(L) + "\n"
 
 
+# ---------------------------------------------------------------- flaky (logs)
+
+ANSI = re.compile(r"\x1b\[[0-9;]*m")
+TS = re.compile(r"^\d{4}-\d\d-\d\dT[\d:.]+Z ")
+FAILED = re.compile(r"^(?:FAILED|ERROR) (.+?)(?: - .*)?$")
+SUMMARY = re.compile(r"\d+ (?:failed|passed|errors?).* in [\d.:]+s")
+COUNT = re.compile(r"(\d+) (?:failed|passed|errors?)")
+
+
+def parse_run(repo: str, run_id: int) -> list[tuple[str, set, int]]:
+    """Por job: (nome do job, nodeids que falharam, total de testes).
+
+    Usa só o que o pytest imprime por padrão: as linhas `FAILED <nodeid>` do
+    resumo final e a linha de contagem (`3 failed, 1200 passed in 90s`).
+    """
+    zpath = RAW / repo / f"{run_id}.zip"
+    if not zpath.exists():
+        zpath.parent.mkdir(parents=True, exist_ok=True)
+        res = subprocess.run(
+            ["gh", "api", f"repos/{OWNER}/{repo}/actions/runs/{run_id}/logs"],
+            capture_output=True,
+        )
+        if res.returncode:
+            print(f"   ! {repo} run {run_id}: falha ao baixar log")
+            return []
+        zpath.write_bytes(res.stdout)
+
+    out = []
+    with zipfile.ZipFile(zpath) as z:
+        for name in z.namelist():
+            if "/" in name:  # só o log completo de cada job (arquivo na raiz do zip)
+                continue
+            job = re.sub(r"^\d+_", "", name).removesuffix(".txt")
+            failed, total, seen = set(), 0, False
+            for line in z.read(name).decode(errors="replace").splitlines():
+                line = ANSI.sub("", TS.sub("", line.lstrip("\ufeff"))).strip()
+                m = FAILED.match(line)
+                if m:
+                    failed.add(m.group(1))
+                elif SUMMARY.search(line):
+                    seen = True
+                    total += sum(int(n) for n in COUNT.findall(line))
+            if seen:  # job sem resumo do pytest (lint, infra quebrou) não conta
+                out.append((job, failed, total))
+    return out
+
+
+def analyze_flaky(manifest: dict, plan: list[dict]) -> dict:
+    out = {}
+    for e in plan:
+        repo = e["repo"]
+        legs = collections.defaultdict(list)  # job -> [(falhas, total), ...]
+        for r in manifest["runs"]:
+            if r["repo"] == repo and r.get("run_id") and r.get("status") == "completed":
+                for job, failed, total in parse_run(repo, r["run_id"]):
+                    legs[job].append((failed, total))
+
+        tests, total_seen = {}, 0
+        for job, reps in legs.items():
+            n = len(reps)
+            total_seen += max(t for _, t in reps)
+            counts = collections.Counter(nid for failed, _ in reps for nid in failed)
+            for nid, k in counts.items():
+                if k < n:  # falhou em algumas reps e passou em outras = flaky
+                    tests[f"{nid} [{job}]"] = {"reps": n, "failed": k, "passed": n - k}
+        out[repo] = {"total_seen": total_seen, "tests": tests}
+        status = (
+            f"{len(tests)} flaky / {total_seen} testes"
+            if total_seen
+            else "SEM resumo do pytest no log"
+        )
+        print(f"   {repo:18} {status}")
+    return out
+
+
 # ---------------------------------------------------------------- commands
 
 
-def cmd_verify(api: Api, args) -> int:
-    """Pré-flight: confere que cada workflow aceita `workflow_dispatch`."""
-    plan = load_plan(PLAN_PATH, args.repo, args.reps)
-    print(f"Plano: {len(plan)} repos, {sum(e['reps'] for e in plan)} repetições\n")
+def fetch_workflow(api: Api, repo: str, workflow_file: str, ref: str) -> dict:
+    try:
+        import yaml
+    except ImportError:
+        sys.exit("verify precisa de PyYAML: pip install pyyaml")
+    d = api.get(
+        f"/repos/{OWNER}/{repo}/contents/.github/workflows/"
+        f"{urllib.parse.quote(workflow_file)}?ref={urllib.parse.quote(ref)}"
+    )
+    return yaml.safe_load(base64.b64decode(d["content"]).decode(errors="replace")) or {}
 
-    print("Rate limit inicial:", api.rate_limit())
-    print("\nPré-requisitos:")
-    info = read_workflow(api, plan)
+
+def cmd_verify(api: Api, args) -> int:
+    """Confere workflow_dispatch e mostra o `concurrency` de cada workflow."""
+    plan = load_plan(args.repo, args.reps)
+    print(f"Plano: {len(plan)} repos, {sum(e['reps'] for e in plan)} repetições\n")
     blockers = 0
-    for entry in plan:
-        key = f"{entry['repo']}/{entry['workflow_file']}@{entry['branch']}"
-        wf = info.get(key) or {}
-        if wf.get("error"):
-            print(f"   {key:46} FALHOU ao ler o workflow: {wf['error']}")
+    for e in plan:
+        key = f"{e['repo']}/{e['workflow_file']}@{e['branch']}"
+        try:
+            doc = fetch_workflow(api, e["repo"], e["workflow_file"], e["branch"])
+        except Exception as exc:
+            print(f"   {key:46} FALHOU ao ler: {exc}")
             blockers += 1
             continue
-        if not wf["has_workflow_dispatch"]:
+        on = doc.get("on", doc.get(True))  # PyYAML lê `on:` como True
+        triggers = sorted(on) if isinstance(on, dict) else list(on or [])
+        if "workflow_dispatch" not in triggers:
             print(f"   {key:46} FALTA 'workflow_dispatch:' no on:")
             blockers += 1
             continue
-        conc = wf.get("concurrency")
+        conc = doc.get("concurrency")
         group = conc.get("group") if isinstance(conc, dict) else conc
-        print(f"   {key:46} ok  group={str(group)[:40]}")
-
+        print(f"   {key:46} ok  concurrency={str(group)[:50]}")
     if blockers:
-        print(f"\n{blockers} repo(s) bloqueado(s): sem workflow_dispatch não dá "
-              f"para disparar.")
+        print(f"\n{blockers} repo(s) bloqueado(s).")
         return 1
-
-    print("\nTudo pronto para rodar.")
+    print("\nTudo pronto. Se nenhum workflow tem concurrency por github.ref, "
+          "as branches flaky-rNN seriam dispensáveis.")
     return 0
 
 
-def refresh_status(poller: Poller, manifest: dict) -> list[dict]:
-    """Relê o estado de cada run do manifest (status/conclusion/attempts).
-
-    Usado tanto pelo drain do `run` quanto por `status`/`report`, pra que rodar
-    com `--no-wait` não deixe as conclusões permanentemente vazias.
-    """
-    poller.poll()
-    rows = [r for r in manifest["runs"] if r.get("run_id")]
-    for r in rows:
-        run = poller.run(r["repo"], r["run_id"])
-        if not run:
-            continue
-        r["status"] = run["status"]
-        r["conclusion"] = run["conclusion"]
-        r["run_attempt"] = run["run_attempt"]
-        r["conclusion_at_utc"] = run["updated_at"]
-        r["html_url"] = run["html_url"]
-        jobs = poller.api.get(
-            f"/repos/{OWNER}/{r['repo']}/actions/runs/{r['run_id']}/jobs?per_page=100"
-        )
-        r["jobs_total"] = jobs.get("total_count", 0)
-        r["jobs"] = [
-            {"name": j["name"], "conclusion": j["conclusion"],
-             "started_at": j["started_at"], "completed_at": j["completed_at"]}
-            for j in jobs.get("jobs", [])
-        ]
-    return rows
-
-
-def cmd_status(api: Api, args) -> int:
-    manifest = load_manifest()
-    runs = manifest["runs"]
-    if not runs:
-        print("manifest vazio")
+def cmd_run(api: Api, args) -> int:
+    plan = load_plan(args.repo, args.reps)
+    for e in plan:
+        e["sha"] = resolve_sha(api, e["repo"], e["branch"])
+    if args.dry_run:
+        for e in plan:
+            print(f"   {e['repo']:18} {e['sha'][:8]}  {e['reps']} reps")
+        print(f"\nDRY RUN: {sum(e['reps'] for e in plan)} execuções")
         return 0
-    poller = Poller(api, sorted({r["repo"] for r in runs}))
-    refresh_status(poller, manifest)
-    save_json(MANIFEST_PATH, manifest)
-    by_conclusion: dict[str, int] = {}
-    for r in runs:
-        key = r.get("conclusion") or r.get("status") or "desconhecido"
-        by_conclusion[key] = by_conclusion.get(key, 0) + 1
-    print(f"repetições no manifest: {len(runs)}")
-    for key, count in sorted(by_conclusion.items()):
-        print(f"   {key:12} {count}")
-    print(f"slots ocupados agora: {poller.occupied} (pico {poller.peak})")
 
-    unmatched = [r for r in runs if not r.get("run_id")]
-    if unmatched:
-        print(f"\n{len(unmatched)} sem run_id (reconciliar com --repoint + run):")
-        for r in unmatched:
-            print(f"   {r['task']} ref={r['ref']} despachado={r.get('dispatched_at_utc')}")
+    manifest = load_manifest()
+    started = time.time()
+    wall = manifest.setdefault("wall_clock", {})
+    wall.setdefault("started_utc", now())
+    manifest.setdefault("rate_limit", {}).setdefault("initial", api.rate_limit())
+
+    print("\nPreparando branches das repetições:")
+    prep_refs(api, plan, args.repoint)
+
+    rows = {r["task"]: r for r in manifest["runs"]}
+    todo = [t for t in build_tasks(plan) if not (rows.get(t["task"]) or {}).get("dispatched_at_utc")]
+    skipped = len(build_tasks(plan)) - len(todo)
+    if skipped:
+        print(f"\n{skipped} repetição(ões) já despachada(s), pulando "
+              f"(apague {MANIFEST_PATH.name} pra recomeçar do zero)")
+
+    print(f"\nDespachando {len(todo)} repetições...\n")
+    for i, t in enumerate(todo, 1):
+        ref = ref_name(t["rep"])
+        row = rows.get(t["task"])
+        if row is None:
+            row = rows[t["task"]] = {
+                "task": t["task"], "repo": t["repo"], "rep": t["rep"], "ref": ref,
+                "workflow_file": t["workflow_file"], "branch": t["branch"], "sha": t["sha"],
+            }
+            manifest["runs"].append(row)
+        row["dispatch_window_start_utc"] = now()
+        try:
+            dispatch(api, t["repo"], t["workflow_file"], ref)
+            row["dispatched_at_utc"] = now()
+            row.pop("dispatch_error", None)
+            print(f"   [{i}/{len(todo)}] {t['repo']:18} {ref}")
+        except Exception as exc:
+            row["dispatch_error"] = str(exc)
+            print(f"   [{i}/{len(todo)}] {t['repo']:18} {ref} FALHOU: {exc}")
+        save_json(MANIFEST_PATH, manifest)
+        time.sleep(1)  # evita o limite secundário de requisições
+
+    print("\nLocalizando run_ids...")
+    correlate_all(api, manifest)
+    save_json(MANIFEST_PATH, manifest)
+
+    if not args.no_wait:
+        print("\nAguardando os runs terminarem (Ctrl-C para sair; `flaky` retoma depois)...")
+        while True:
+            refresh_status(api, manifest)
+            save_json(MANIFEST_PATH, manifest)
+            rows_ = [r for r in manifest["runs"] if r.get("run_id")]
+            pending = [r for r in rows_ if r.get("status") != "completed"]
+            print(f"   {len(rows_) - len(pending)}/{len(rows_)} concluídas", end="\r")
+            if not pending:
+                break
+            time.sleep(args.poll_interval)
+        print()
+
+    wall["finished_utc"] = now()
+    wall["total_seconds"] = round(wall.get("total_seconds", 0) + time.time() - started, 1)
+    manifest["rate_limit"]["final"] = api.rate_limit()
+    flush_counters(api, manifest)
+    save_json(MANIFEST_PATH, manifest)
+    print(f"\nManifesto: {MANIFEST_PATH}\nPróximo: python flaky_runner.py flaky")
+    return 0
+
+
+def cmd_flaky(api: Api, args) -> int:
+    """Atualiza o status dos runs, baixa os logs e acha os testes flaky."""
+    manifest = load_manifest()
+    plan = load_plan(args.repo, args.reps)
+    correlate_all(api, manifest, attempts=1, wait=0)
+    refresh_status(api, manifest)
+
+    pending = [r for r in manifest["runs"] if r.get("status") != "completed"]
+    if pending:
+        print(f"   {len(pending)} run(s) não concluído(s): a análise fica parcial.\n")
+
+    save_json(FLAKY_PATH, analyze_flaky(manifest, plan))
+    manifest.setdefault("rate_limit", {})["final"] = api.rate_limit()
+    flush_counters(api, manifest)
+    save_json(MANIFEST_PATH, manifest)
+    print(f"\nSalvo em {FLAKY_PATH}. Rode `report` pra incluir no relatório.")
     return 0
 
 
 def cmd_report(api: Api, args) -> int:
-    manifest = load_manifest()
-    if manifest["runs"] and not args.no_refresh:
-        poller = Poller(api, sorted({r["repo"] for r in manifest["runs"]}))
-        refresh_status(poller, manifest)
-        save_json(MANIFEST_PATH, manifest)
-    plan = load_plan(PLAN_PATH, args.repo, args.reps)
-    text = build_report(manifest, plan, load_flaky())
+    plan = load_plan(args.repo, args.reps)
+    text = build_report(load_manifest(), plan, load_flaky())
     REPORT_PATH.write_text(text, encoding="utf-8")
-    save_json(DATA / "flaky_report.json", manifest)
     print(text)
     print(f"\nSalvo em {REPORT_PATH}")
     return 0
 
 
-def cmd_run(api: Api, args) -> int:
-    plan = load_plan(PLAN_PATH, args.repo, args.reps)
-    manifest = load_manifest()
-
-    # pré-requisitos
-    wf_info = read_workflow(api, plan)
-    blocked = []
-    for entry in plan:
-        key = f"{entry['repo']}/{entry['workflow_file']}@{entry['branch']}"
-        info = wf_info.get(key) or {}
-        if not info.get("has_workflow_dispatch"):
-            blocked.append(entry["repo"])
-    if blocked and not args.force:
-        sys.exit(
-            "workflow_dispatch ausente em: "
-            + ", ".join(blocked)
-            + "\nRode `flaky_runner.py verify` e aplique os patches, ou use --force."
-        )
-
-    # SHA fixo + uma branch por repetição
-    for entry in plan:
-        entry["sha"] = args.sha or resolve_sha(api, entry["repo"], entry["branch"])
-    if args.dry_run:
-        for entry in plan:
-            print(
-                f"   {entry['repo']:18} {entry['sha'][:8]}  "
-                f"{entry['reps']} reps -> {ref_name(1, args.prefix)}.."
-                f"{ref_name(entry['reps'], args.prefix)}"
-            )
-        total = sum(e["reps"] for e in plan)
-        print(f"\nDRY RUN: {total} execuções de workflow, {args.budget} slots")
-        return 0
-
-    print("\nPreparando branches das repetições:")
-    prep_refs(api, plan, args.prefix, args.repoint)
-
-    tasks = build_tasks(plan)
-    by_task = {r["task"]: r for r in manifest["runs"]}
-    todo = list(tasks)
-    if not args.restart:
-        already = {
-            key for key, row in by_task.items() if row.get("dispatched_at_utc")
-        }
-        skipped = [t for t in todo if t["task"] in already]
-        if skipped:
-            print(f"\n--resume: {len(skipped)} repetição(ões) já despachada(s), pulando")
-        todo = [t for t in todo if t["task"] not in already]
-
-    started = time.time()
-    manifest.setdefault("wall_clock", {})["started_utc"] = now()
-    manifest["rate_limit"] = {"initial": api.rate_limit()}
-    manifest.setdefault("slots", {})["budget"] = args.budget
-    poller = Poller(api, [e["repo"] for e in plan])
-
-    def persist() -> None:
-        manifest["runs"] = sorted(
-            manifest["runs"], key=lambda r: r["task"]
-        )
-        manifest["counters"] = api.counters
-        wall = manifest["wall_clock"]
-        wall["updated_utc"] = now()
-        wall["elapsed_seconds"] = round(time.time() - started, 1)
-        save_json(MANIFEST_PATH, manifest)
-
-    def estimate_jobs(repo: str) -> int:
-        """Maior nº de jobs já observado nesse repo; 1 enquanto não se sabe.
-
-        A estimativa estática do YAML foi removida. Em vez de adivinhar antes,
-        a trava de orçamento aprende com o que o GitHub de fato criou: depois
-        da primeira repetição de cada repo o número já é exato.
-        """
-        seen = [r.get("jobs_total") or 0 for r in manifest["runs"] if r["repo"] == repo]
-        return max(seen) or 1
-
-    print(f"\nDespachando {len(todo)} repetições (budget={args.budget})...\n")
-    for i, task in enumerate(todo, 1):
-        repo, ref = task["repo"], ref_name(task["rep"], args.prefix)
-        jobs_needed = estimate_jobs(repo)
-        since = now()
-        row = by_task.get(task["task"]) or {
-            "task": task["task"],
-            "repo": repo,
-            "rep": task["rep"],
-            "ref": ref,
-            "workflow_file": task["workflow_file"],
-            "branch": task["branch"],
-            "sha": task["sha"],
-            "jobs_expected": jobs_needed,
-        }
-        by_task[task["task"]] = row
-        if row not in manifest["runs"]:
-            manifest["runs"].append(row)
-
-        if args.budget:
-            waited = 0.0
-            while True:
-                poller.poll()
-                free = args.budget - poller.occupied
-                if free >= jobs_needed:
-                    break
-                wait = min(args.poll_interval, max(5, (jobs_needed - free) * 15))
-                waited += wait
-                print(
-                    f"   ⏳ {ref:<14} ocupado={poller.occupied}/{args.budget} "
-                    f"preciso={jobs_needed} → espero {wait:.0f}s"
-                )
-                time.sleep(wait)
-                persist()
-
-        try:
-            dispatch(api, repo, task["workflow_file"], ref)
-            row["dispatched_at_utc"] = now()
-            row["dispatch_window_start_utc"] = since
-            print(
-                f"   [{i}/{len(todo)}] {repo:18} {ref:<14} "
-                f"{jobs_needed:>2} jobs (ocupado={poller.occupied})"
-            )
-        except Exception as exc:
-            row["dispatch_error"] = str(exc)
-            print(f"   [{i}/{len(todo)}] {repo:18} {ref:<14} FALHOU: {exc}")
-
-        # localiza o run_id, tolerando a demora do GitHub pra criar o run
-        try:
-            run_id, method = correlate(
-                poller, repo, ref, since, wait_seconds=args.correlate_wait
-            )
-            row["run_id"] = run_id
-            row["correlation_method"] = method
-            row["html_url"] = (
-                f"https://github.com/{OWNER}/{repo}/actions/runs/{run_id}"
-                if run_id
-                else None
-            )
-            if run_id is None:
-                print(
-                    f"       ! run_id não localizado para {ref}; "
-                    f"rode `status`/`report` depois pra reconciliar"
-                )
-        except Exception as exc:
-            row["correlation_error"] = str(exc)
-        persist()
-
-    # drain: espera as repetições já despachadas terminarem
-    if not args.no_wait:
-        print("\nAguardando as repetições já despachadas terminarem (Ctrl-C para sair)...")
-        while True:
-            pending = refresh_status(poller, manifest)
-            done = sum(1 for r in pending if r.get("status") in DONE)
-            print(
-                f"   {done}/{len(pending)} concluídas, "
-                f"{poller.occupied} slots ocupados",
-                end="\r",
-            )
-            persist()
-            outstanding = [r for r in manifest["runs"] if r.get("status") not in DONE]
-            if not outstanding:
-                break
-            time.sleep(args.poll_interval)
-        print()
-
-    manifest["wall_clock"]["finished_utc"] = now()
-    manifest["wall_clock"]["total_seconds"] = round(time.time() - started, 1)
-    manifest["rate_limit"]["final"] = api.rate_limit()
-    persist()
-    print(f"\nManifesto: {MANIFEST_PATH}")
-    print("Relatório:  python flaky_runner.py report")
-    return 0
-
-
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description=(
-            "Dispara N repetições do workflow de teste de cada fork, uma branch "
-            "por repetição, respeitando o teto de jobs simultâneos da conta."
-        )
+        description="Dispara N repetições do workflow de cada fork e acha testes flaky."
     )
-    # Flags aceitos antes ou depois do subcomando: definimos no parser principal
-    # e replicamos nos subparsers com default SUPPRESS, para o default do
-    # subparser não sobrescrever o valor já parseado.
-    flags = [
-        ("--repo", dict(action="append", help="restringe a um repo (repetível)")),
-        ("--reps", dict(type=int, help="sobrescreve o número de repetições")),
-        ("--sha", dict(help="fixa o SHA em vez de resolver a branch")),
-        ("--budget", dict(type=int, default=20, help="máx de jobs simultâneos")),
-        ("--prefix", dict(default="flaky-r", help="prefixo das branches")),
-        ("--poll-interval", dict(type=float, default=60.0)),
-        ("--correlate-wait", dict(
-            type=float, default=60.0,
-            help="espera até N s pelo run_id aparecer após o dispatch")),
-        ("--repoint", dict(action="store_true", help="move branches divergentes")),
-        ("--restart", dict(action="store_true", help="redespacha tudo")),
-        ("--no-wait", dict(action="store_true", help="sai sem aguardar o drain")),
-        ("--dry-run", dict(action="store_true")),
-        ("--force", dict(action="store_true", help="ignora pré-requisitos")),
-        ("--no-refresh", dict(
-            action="store_true",
-            help="report: não relê o estado dos runs antes de gerar")),
-    ]
-    for name, opts in flags:
-        parser.add_argument(name, **opts)
+    common = argparse.ArgumentParser(add_help=False)
+    common.add_argument("--repo", action="append", help="restringe a um repo (repetível)")
+    common.add_argument("--reps", type=int, help="sobrescreve o número de repetições")
 
     sub = parser.add_subparsers(dest="cmd", required=True)
-    for name, fn, help_ in (
-        ("verify", cmd_verify, "confere que cada workflow aceita workflow_dispatch"),
-        ("run", cmd_run, "cria as branches e despacha as repetições"),
-        ("status", cmd_status, "mostra o estado do manifest"),
-        ("report", cmd_report, "gera o relatório markdown"),
-    ):
-        p = sub.add_parser(name, help=help_)
-        for flag, opts in flags:
-            sub_opts = dict(opts)
-            if flag in ("--budget", "--prefix", "--poll-interval", "--correlate-wait"):
-                sub_opts.pop("default")
-            p.add_argument(flag, default=argparse.SUPPRESS, **sub_opts)
-        p.set_defaults(func=fn)
+    sub.add_parser("verify", parents=[common], help="confere workflow_dispatch/concurrency").set_defaults(func=cmd_verify)
+    p = sub.add_parser("run", parents=[common], help="cria branches, dispara e espera")
+    p.add_argument("--repoint", action="store_true", help="move branches que apontam pra outro SHA")
+    p.add_argument("--no-wait", action="store_true", help="sai sem esperar os runs terminarem")
+    p.add_argument("--dry-run", action="store_true")
+    p.add_argument("--poll-interval", type=float, default=60.0)
+    p.set_defaults(func=cmd_run)
+    sub.add_parser("flaky", parents=[common], help="analisa os logs e acha testes flaky").set_defaults(func=cmd_flaky)
+    sub.add_parser("report", parents=[common], help="gera o relatório markdown").set_defaults(func=cmd_report)
+
     args = parser.parse_args()
-
-    if not TOKEN:
-        print(
-            "AVISO: sem token. Defina GITHUB_TOKEN_REGSMART (ou rode gh auth login).",
-            file=sys.stderr,
-        )
-    if args.cmd != "verify" and not TOKEN:
-        sys.exit("token obrigatório para criar branches e despachar")
-
-    api = Api(TOKEN)
-    sys.exit(args.func(api, args))
+    if args.cmd != "report" and not TOKEN:
+        sys.exit("token obrigatório: defina GITHUB_TOKEN_REGSMART ou rode `gh auth login`")
+    sys.exit(args.func(Api(TOKEN), args))
 
 
 if __name__ == "__main__":
