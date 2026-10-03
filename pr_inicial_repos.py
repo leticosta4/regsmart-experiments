@@ -15,6 +15,10 @@ Para cada repo:
     4. adiciona um comentário no fim do arquivo
     5. commita e dá push --force-with-lease
     6. abre PR (não-draft) via gh, ou avisa que já existe
+
+OBS.: esse script teve melhor uso para buscar testes flaky depois da limpeza de workflow dos projetos,
+já que a conta free do github só permite 20 jobs simultaneos no GActions
+
 """
  
 import random
@@ -24,11 +28,10 @@ from datetime import date
 from pathlib import Path
  
 REPOS = [
-    "dask", "dvc", "ipython", "librosa", "networkx",
-    "pytest-django", "pytest-xdist", "pytorch-lightning",
-    "trimesh", "ultralytics", "apscheduler",
+    "aeon", "librosa", "trimesh", "apscheduler",
+    "ultralytics", "ipython", "dask", "dvc",
+    "networkx", "pytest-xdist", "pytest-django", "pytorch-lightning",
 ]
-# (aeon fica de fora, já feito manualmente)
  
 EXCLUDE_PATTERNS = (
     "test", "tests", "doc", "docs", "example", "examples",
