@@ -13,11 +13,11 @@ uma branch/commit.
 Uso:
     pip install "mutmut==2.5.1"
     python mutation_gen.py gen                       # todos os repos do plano
-    python mutation_gen.py gen --repo dask --n 30    # um repo
+    python mutation_gen.py gen --repo dask --n 15    # um repo
     python mutation_gen.py list                      # resumo do que foi gerado
 
 Entradas:
-    data/mutmut/mutation_plan.json (opcional): [{"repo": "dask", "src": "dask/", "n": 25}]
+    data/mutmut/mutation_plan.json (opcional): [{"repo": "dask", "src": "dask/", "n": 15}]
         - src: caminho(s) a mutar (string ou lista); sem ele o mutmut tenta descobrir
         - n:   nº de mutantes amostrados; sem ele usa --n
     Sem esse arquivo, usa os repos de data/flaky/flaky_plan.json.
@@ -299,7 +299,7 @@ def main() -> None:
     sub = parser.add_subparsers(dest="cmd", required=True)
     g = sub.add_parser("gen", help="gera os mutantes e salva um patch por mutante")
     g.add_argument("--repo", action="append", help="restringe a um repo (repetível)")
-    g.add_argument("--n", type=int, default=25, help="mutantes amostrados por repo (default 25)")
+    g.add_argument("--n", type=int, default=15, help="mutantes amostrados por repo (default 15)")
     g.add_argument("--seed", default="42", help="semente da amostragem (reprodutível)")
     g.add_argument("--branch", default="insert-mutations", help="branch base de cada fork")
     g.add_argument("--workdir", default=str(ROOT / "work"), help="onde clonar os forks")
