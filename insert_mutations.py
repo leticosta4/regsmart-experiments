@@ -1,5 +1,5 @@
 """
-insert-mutations.py
+insert_mutations.py
 
 FASE 1 (padrão): cria a branch `insert-mutations` em cada fork da lista,
 **baseada no default branch do próprio fork** (main/master/etc. -- resolvido por
@@ -10,7 +10,7 @@ FASE 1 (padrão): cria a branch `insert-mutations` em cada fork da lista,
 FASE 2 (`--mutants`): lê os patches gerados por `mutation_gen.py`
 (`data/mutmut/mutants.json`) e cria **uma branch por mutante**,
 `mut-<repo>-mNNNN`, com **um commit** que aplica só aquele patch sobre a
-`origin/insert-mutations`. Cada commit vira um `head_sha` (para o faults.yaml),
+`origin/insert_mutations`. Cada commit vira um `head_sha` (para o faults.yaml),
 gravado em `data/mutmut/mutant_branches.json`.
 
 A fase 2 não mexe no seu working tree nem cria branches locais: monta o commit
@@ -21,14 +21,14 @@ então rodar de novo é idempotente.
 Não abre PR. Nada é publicado sem `--push`.
 
 USO:
-    python insert-mutations.py --dry-run                     # fase 1: mostra o plano
-    python insert-mutations.py --push                        # fase 1: cria e publica a base
-    python insert-mutations.py --repo trimesh --reset --push # reaponta a base (ex.: após atualizar workflows)
+    python insert_mutations.py --dry-run                     # fase 1: mostra o plano
+    python insert_mutations.py --push                        # fase 1: cria e publica a base
+    python insert_mutations.py --repo trimesh --reset --push # reaponta a base (ex.: após atualizar workflows)
 
-    python insert-mutations.py --mutants --dry-run           # fase 2: mostra o plano
-    python insert-mutations.py --mutants --repo pytest-xdist --limit 3 --push   # teste pequeno
-    python insert-mutations.py --mutants --push              # todos
-    python insert-mutations.py --mutants --reset --push      # refaz (ex.: base mudou)
+    python insert_mutations.py --mutants --dry-run           # fase 2: mostra o plano
+    python insert_mutations.py --mutants --repo pytest-xdist --limit 3 --push   # teste pequeno
+    python insert_mutations.py --mutants --push              # todos
+    python insert_mutations.py --mutants --reset --push      # refaz (ex.: base mudou)
 
 ATENÇÃO: os workflows na `insert-mutations` precisam excluir `mut-*` do gatilho
 `push` (`branches: ['**', '!mut-*']`), senão cada branch de mutante publicada
@@ -396,7 +396,7 @@ def main() -> None:
     touched = sum(1 for row in rows if row["changed"])
     print(f"\n{len(rows)} repo(s) no padrão, {touched} alterado(s) nesta execução."
           + ("" if args.dry_run else f" Bases em {RECORD_PATH}.")
-          + "  Próximo passo: python insert-mutations.py --mutants --push")
+          + "  Próximo passo: python insert_mutations.py --mutants --push")
 
 
 if __name__ == "__main__":

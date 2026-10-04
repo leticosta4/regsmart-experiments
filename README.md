@@ -61,7 +61,7 @@ the dataset is composed of 12 forks from the GitHub repositories below:
 - [track_flaky_attempt.py](./track_flaky_attempt.py) - sobe uma mudança simples de comentário em algum arquivo python e abre um PR para melhor visibilidade; usei como base para fazer a limpeza dos workflows
 - [flaky_runner.py](./flaky_runner.py) - dispara N repetições do workflow de cada fork e detecta os testes flaky (detalhes abaixo)
 - [mutation_gen.py](./mutation_gen.py) - **apenas como gerador**: enumera N mutantes (15 por padrão), extrai um *patch* por mutante e salva em disco.
-- [insert-mutations.py](./insert-mutations.py) - cria (a) a branch base `insert-mutations` em cada fork e (b) **uma branch `mut-<repo>-mNNNN` por mutante**, com **um commit** que aplica aquele patch sobre `origin/insert-mutations` (é divididas em 2 fases).
+- [insert_mutations.py](./insert_mutations.py) - cria (a) a branch base `insert-mutations` em cada fork e (b) **uma branch `mut-<repo>-mNNNN` por mutante**, com **um commit** que aplica aquele patch sobre `origin/insert-mutations` (é divididas em 2 fases).
 
 ### Detectando flaky tests: `flaky_runner.py`
 
@@ -234,7 +234,7 @@ Detalhes importantes:
 - Reprodutibilidade. A amostragem é feita com random.Random(f"{seed}:{repo}") (padrão seed=42), então é reprodutível por repositório.
 - Robusto a estruturas diferentes. Caso o repositório não tenha tests/ nem test/ na raiz, o script cria uma pasta tests/ vazia temporariamente (não versionada) — necessário para o mutmut 2 não falhar na descoberta.
 
-#### 2) Criando as branches por mutante: insert-mutations.py
+#### 2) Criando as branches por mutante: insert_mutations.py
 Este script tem duas fases. Ele não abre PRs, não mexe no working tree na fase 2 e publica branches diretamente no fork via API/git push.
 
 **Fase 1 — cria a branch base insert-mutations**
@@ -243,13 +243,13 @@ Grava/atualiza o registro em data/mutmut/insert_mutations_bases.csv.
 
 ```bash
 # Mostra o plano (sem alterações)
-python insert-mutations.py --dry-run
+python insert_mutations.py --dry-run
 
 # Cria/publica a branch insert-mutations em todos os repos
-python insert-mutations.py --push
+python insert_mutations.py --push
 
 # Reaponta a base de um repo específico (útil se atualizaram o default branch/workflows)
-python insert-mutations.py --repo trimesh --reset --push
+python insert_mutations.py --repo trimesh --reset --push
 ```
 
 **Fase 2 — cria uma branch por mutante (mut-*)**
@@ -258,16 +258,16 @@ Os head_sha de cada mutante são gravados em `data/mutmut/mutant_branches.json.`
 
 ```bash
 # Mostra o plano (sem criar branches)
-python insert-mutations.py --mutants --dry-run
+python insert_mutations.py --mutants --dry-run
 
 # Cria e publica TODAS as branches de mutante
-python insert-mutations.py --mutants --push
+python insert_mutations.py --mutants --push
 
 # Teste pequeno (só 3 mutantes de pytest-xdist)
-python insert-mutations.py --mutants --repo pytest-xdist --limit 3 --push
+python insert_mutations.py --mutants --repo pytest-xdist --limit 3 --push
 
 # Sobrescreve branches mut-* existentes (útil se a base insert-mutations mudou)
-python insert-mutations.py --mutants --reset --push
+python insert_mutations.py --mutants --reset --push
 ```
 
 #### ATENÇÃO — gatilho de CI (muito importante):
