@@ -1,0 +1,24 @@
+{
+  "ipython": {
+    "base_branch": "insert-mutations",
+    "base_sha": "534dfe4a1468c121ce3cad35ca5192dc125b3eea",
+    "mutants": {
+      "ipython-m1288": {
+        "branch": "mut-ipython-m1288",
+        "head_sha": "8dd6e9f72eb22d4a53636b925fd7906f21b3e6b1",
+        "file": "IPython/core/completer.py",
+        "line": 1787,
+        "patch": "data/mutmut/patches/ipython/ipython-m1288.patch",
+        "published": true
+      },
+      "ipython-m17283": {
+        "branch": "mut-ipython-m17283",
+        "head_sha": "4b7faeb2205bf0cc444f5415e7d8927b3da5f9b2",
+        "file": "IPython/core/ultratb.py",
+        "line": 194,
+        "patch": "data/mutmut/patches/ipython/ipython-m17283.patch",
+        "published": true
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+diff --git a/IPython/core/ultratb.py b/IPython/core/ultratb.py
+index 1207692e7..7c81ce9f5 100644
+--- a/IPython/core/ultratb.py
++++ b/IPython/core/ultratb.py
+@@ -194,7 +194,7 @@ def structured_traceback(
+             elist = self._extract_tb(etb)  # type: ignore[assignment]
+         else:
+             elist = []
+-        tb_offset = self.tb_offset if tb_offset is None else tb_offset
++        tb_offset = None
+         assert isinstance(tb_offset, int)
+         out_list: list[str] = []
+         if elist:

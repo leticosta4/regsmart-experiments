@@ -1,0 +1,30 @@
+{
+  "ipython": {
+    "base_branch": "insert-mutations",
+    "base_sha": "534dfe4a1468c121ce3cad35ca5192dc125b3eea",
+    "mutmut_version": "2.5.1",
+    "seed": "42",
+    "total_generated": 25368,
+    "source_files": 154,
+    "skipped_files": [
+      "IPython/utils/path.py"
+    ],
+    "generated_utc": "2026-10-04T01:28:55.625829+00:00",
+    "mutants": [
+      {
+        "key": "ipython-m1288",
+        "mutmut_id": 1288,
+        "file": "IPython/core/completer.py",
+        "line": 1787,
+        "patch": "data/mutmut/patches/ipython/ipython-m1288.patch"
+      },
+      {
+        "key": "ipython-m17283",
+        "mutmut_id": 17283,
+        "file": "IPython/core/ultratb.py",
+        "line": 194,
+        "patch": "data/mutmut/patches/ipython/ipython-m17283.patch"
+      }
+    ]
+  }
+}
