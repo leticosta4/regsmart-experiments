@@ -60,6 +60,8 @@ the dataset is composed of 12 forks from the GitHub repositories below:
 - [last_commit.py](./last_commit.py) - pega o último commit de atuação do fork em relação ao repositório upstream
 - [track_flaky_attempt.py](./track_flaky_attempt.py) - sobe uma mudança simples de comentário em algum arquivo python e abre um PR para melhor visibilidade; usei como base para fazer a limpeza dos workflows
 - [flaky_runner.py](./flaky_runner.py) - dispara N repetições do workflow de cada fork e detecta os testes flaky (detalhes abaixo)
+- [mutation_gen.py](./mutation_gen.py) - **apenas como gerador**: enumera N mutantes (15 por padrão), extrai um *patch* por mutante e salva em disco.
+- [insert-mutations.py](./insert-mutations.py) - cria (a) a branch base `insert-mutations` em cada fork e (b) **uma branch `mut-<repo>-mNNNN` por mutante**, com **um commit** que aplica aquele patch sobre `origin/insert-mutations` (é divididas em 2 fases).
 
 ### Detectando flaky tests: `flaky_runner.py`
 
@@ -67,7 +69,7 @@ Dispara N repetições do workflow de testes de cada fork sobre o **mesmo SHA** 
 branch `track-flaky`, mede o custo da execução e descobre **quais testes são
 flaky** a partir dos logs dos runs.
 
-### Pré-requisitos
+#### Pré-requisitos
 
 - Python 3.10+
 - [`gh` CLI](https://cli.github.com/) instalado e autenticado (`gh auth login`). O
@@ -76,7 +78,7 @@ flaky** a partir dos logs dos runs.
   workflows nos 12 forks
 - `pip install pyyaml` (só o `verify` usa)
 
-### Fluxo
+#### Fluxo
 
 ```bash
 # 1x: confere workflow_dispatch e mostra o concurrency de cada workflow
@@ -114,7 +116,7 @@ Opções do `run`:
 Rodar o `run` de novo **pula** as repetições já despachadas (útil se o processo
 cair no meio). Para recomeçar do zero, apague `data/flaky/flaky_runs.json`.
 
-### Como o isolamento por repetição funciona
+#### Como o isolamento por repetição funciona
 
 Cada repetição roda numa **branch própria** (`flaky-r01`..`flaky-r10`), todas
 criadas a partir do SHA atual da `track-flaky`. Isso dá um `github.ref` distinto
@@ -132,7 +134,7 @@ branch nova não toca em nada e segue sem a flag.
 > O `verify` imprime o `concurrency` de cada workflow. Se nenhum agrupar por
 > `github.ref`, as branches por repetição passam a ser dispensáveis.
 
-### Concorrência e limite de jobs
+#### Concorrência e limite de jobs
 
 O script **não controla orçamento de jobs**: acima do teto de 20 jobs
 simultâneos do plano Free, o próprio GitHub enfileira o que sobra. Duas
@@ -145,7 +147,7 @@ consequências para a análise de custo:
 Os dispatches saem com 1 s de intervalo para não esbarrar no limite secundário
 de requisições da API.
 
-### Como os testes flaky são detectados
+#### Como os testes flaky são detectados
 
 O `flaky` baixa o log de cada run concluído (`gh api .../actions/runs/{id}/logs`,
 com cache em `data/flaky/raw/`) e usa só o que o pytest imprime por padrão:
@@ -172,7 +174,7 @@ Decisões que valem citar na monografia (ameaças à validade):
 - testes que falham por dependência não fixada ou serviço externo aparecem como
   flaky e podem exigir checagem manual.
 
-### Arquivos em `data/flaky/`
+#### Arquivos em `data/flaky/`
 
 | arquivo | quem cria | conteúdo |
 |---|---|---|
@@ -182,7 +184,7 @@ Decisões que valem citar na monografia (ameaças à validade):
 | `flaky_tests.json` | `flaky` | por repo: `total_seen` e os testes flaky com `reps`/`failed`/`passed` |
 | `flaky_report.md` | `report` | relatório: custo, API/rate limit, saúde da execução, por repo e testes flaky |
 
-### Métricas de custo
+#### Métricas de custo
 
 **Custo é medido, não estimado.** Sai dos `started_at`/`completed_at` reais de
 cada job: minutos de runner somados, makespan por repo e pico de concorrência
@@ -192,6 +194,94 @@ execuções.
 
 Para economizar rate limit, os jobs de cada run são buscados **uma única vez**,
 quando o run termina; enquanto espera, cada checagem custa 1 GET por repo.
+
+### Gerando e inserindo mutantes nos repos
+
+O fluxo de mutações serve para **semear falhas** (mutantes) em cada fork e criar, por mutante, uma branch independente com um único commit aplicando aquele patch. Isso permite rodar a suíte de testes na CI **por mutante** (um mutante por branch), sem precisar aplicar/desaplicar mutações localmente.
+
+#### 1) Gerando os patches: `mutation_gen.py`
+
+**Pré-requisitos:**
+
+- Python 3.10+
+- `pip install "mutmut==2.5.1"`
+
+O mutmut **não executa a suíte de testes** nesta etapa (usa `--runner true`, no-op). O objetivo é apenas gerar e amostrar mutantes.
+
+**Fluxo:**
+
+```bash
+# Gera mutantes para todos os repositórios do plano
+python mutation_gen.py gen
+
+# Gera mutantes para um único repositório (amostrando 15)
+python mutation_gen.py gen --repo dask --n 15
+
+# Lista o que já foi gerado
+python mutation_gen.py list
+```
+
+
+Entradas:
+- data/mutmut/mutation_plan.json (opcional). Formato: [{"repo": "dask", "src": "dask/", "n": 15}]
+- src: caminho(s) do código-fonte a mutar (str ou list[str]). Obrigatório se o arquivo existir.
+- n: número de mutantes a amostrar por repositório.
+- Se mutation_plan.json não existir, o script usa data/flaky/flaky_plan.json (apenas repositórios com enabled: true).
+
+Detalhes importantes:
+- Ignora arquivos de teste. São excluídos: arquivos test_*.py, *_test.py, conftest.py, setup.py e qualquer arquivo cujo caminho contenha tests/, test/, testing/ ou __pycache__/ (isso evita mutar testes, o que não é útil para o experimento).
+- Filtra arquivos não parseáveis (mutmut 2 + parso). O mutmut 2 (usado com Python 3.12) pode abortar no primeiro arquivo com sintaxe não suportada. O script testa cada arquivo com o próprio parser do mutmut antes de rodar e move os não-mutáveis para skipped_files. Se algum arquivo ainda fizer o mutmut run falhar durante a enumeração, ele é removido da lista e a execução continua.
+- Reprodutibilidade. A amostragem é feita com random.Random(f"{seed}:{repo}") (padrão seed=42), então é reprodutível por repositório.
+- Robusto a estruturas diferentes. Caso o repositório não tenha tests/ nem test/ na raiz, o script cria uma pasta tests/ vazia temporariamente (não versionada) — necessário para o mutmut 2 não falhar na descoberta.
+
+#### 2) Criando as branches por mutante: insert-mutations.py
+Este script tem duas fases. Ele não abre PRs, não mexe no working tree na fase 2 e publica branches diretamente no fork via API/git push.
+
+**Fase 1 — cria a branch base insert-mutations**
+Cria (ou reaponta) a branch insert-mutations em cada fork, baseada no default branch do próprio fork (detectado via origin/HEAD; fallback origin/main/origin/master). Nunca assume "main" fixo (ex.: apscheduler, pytest-xdist e pytorch-lightning usam master).
+Grava/atualiza o registro em data/mutmut/insert_mutations_bases.csv.
+
+```bash
+# Mostra o plano (sem alterações)
+python insert-mutations.py --dry-run
+
+# Cria/publica a branch insert-mutations em todos os repos
+python insert-mutations.py --push
+
+# Reaponta a base de um repo específico (útil se atualizaram o default branch/workflows)
+python insert-mutations.py --repo trimesh --reset --push
+```
+
+**Fase 2 — cria uma branch por mutante (mut-*)**
+Lê data/mutmut/mutants.json e, para cada mutante, cria a branch mut-<repo>-mNNNN com exatamente 1 commit que aplica o patch daquele mutante sobre origin/insert-mutations. O commit é construído com comandos de baixo nível do Git (git read-tree + git apply --cached + git write-tree + git commit-tree), usando índice temporário e com autor/committer/datas fixos (baseados no último commit de insert-mutations). Com isso o SHA do commit é determinístico: mesma base + mesmo patch = mesmo head_sha. Rodar de novo com os mesmos patches é idempotente.
+Os head_sha de cada mutante são gravados em `data/mutmut/mutant_branches.json.`
+
+```bash
+# Mostra o plano (sem criar branches)
+python insert-mutations.py --mutants --dry-run
+
+# Cria e publica TODAS as branches de mutante
+python insert-mutations.py --mutants --push
+
+# Teste pequeno (só 3 mutantes de pytest-xdist)
+python insert-mutations.py --mutants --repo pytest-xdist --limit 3 --push
+
+# Sobrescreve branches mut-* existentes (útil se a base insert-mutations mudou)
+python insert-mutations.py --mutants --reset --push
+```
+
+#### ATENÇÃO — gatilho de CI (muito importante):
+As branches `mut-<repo>-mNNNN` são criadas apenas para rodar testes daquele mutante. Para não disparar workflows de teste toda vez que uma branch de mutante for publicada (e também para evitar que o push nessas branches interfira no experimento), os workflows na branch `insert-mutations` precisam excluir `mut-*` no gatilho on.push.
+Exemplo recomendado nos workflows YAML:
+```yaml
+on:
+  push:
+    branches:
+      - '**'
+      - '!mut-*'
+  workflow_dispatch:
+```
+Sem essa exclusão, cada uma das branches publicadas dispara um run de CI automaticamente, o que poluiria a coleta e consumiria runners desnecessariamente.
 
 ## Tables
 
