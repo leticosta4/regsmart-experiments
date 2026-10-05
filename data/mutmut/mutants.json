@@ -389,5 +389,52 @@
         "patch": "data/mutmut/patches/pytest-xdist/pytest-xdist-m1537.patch"
       }
     ]
+  },
+  "pytest-django": {
+    "base_branch": "insert-mutations",
+    "base_sha": "01f739da6f7e336c518dd9111e9ceb0709f27bd6",
+    "mutmut_version": "2.5.1",
+    "seed": "42",
+    "total_generated": 728,
+    "source_files": 8,
+    "skipped_files": [],
+    "generated_utc": "2026-10-05T23:29:40.314982+00:00",
+    "mutants": [
+      {
+        "key": "pytest-django-m0376",
+        "mutmut_id": 376,
+        "file": "pytest_django/plugin.py",
+        "line": 153,
+        "patch": "data/mutmut/patches/pytest-django/pytest-django-m0376.patch"
+      },
+      {
+        "key": "pytest-django-m0491",
+        "mutmut_id": 491,
+        "file": "pytest_django/plugin.py",
+        "line": 399,
+        "patch": "data/mutmut/patches/pytest-django/pytest-django-m0491.patch"
+      },
+      {
+        "key": "pytest-django-m0604",
+        "mutmut_id": 604,
+        "file": "pytest_django/plugin.py",
+        "line": 679,
+        "patch": "data/mutmut/patches/pytest-django/pytest-django-m0604.patch"
+      },
+      {
+        "key": "pytest-django-m0049",
+        "mutmut_id": 49,
+        "file": "pytest_django/fixtures.py",
+        "line": 105,
+        "patch": "data/mutmut/patches/pytest-django/pytest-django-m0049.patch"
+      },
+      {
+        "key": "pytest-django-m0192",
+        "mutmut_id": 192,
+        "file": "pytest_django/fixtures.py",
+        "line": 505,
+        "patch": "data/mutmut/patches/pytest-django/pytest-django-m0192.patch"
+      }
+    ]
   }
 }
