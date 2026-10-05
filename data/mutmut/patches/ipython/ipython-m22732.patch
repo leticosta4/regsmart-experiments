@@ -1,0 +1,13 @@
+diff --git a/IPython/terminal/pt_inputhooks/osx.py b/IPython/terminal/pt_inputhooks/osx.py
+index 31bbf926f..5f05d2304 100644
+--- a/IPython/terminal/pt_inputhooks/osx.py
++++ b/IPython/terminal/pt_inputhooks/osx.py
+@@ -38,7 +38,7 @@ def C(classname):
+ # CoreFoundation C-API calls we will use:
+ CoreFoundation = ctypes.cdll.LoadLibrary(ctypes.util.find_library("CoreFoundation"))  # type: ignore
+ 
+-CFFileDescriptorCreate = CoreFoundation.CFFileDescriptorCreate
++CFFileDescriptorCreate = None
+ CFFileDescriptorCreate.restype = void_p
+ CFFileDescriptorCreate.argtypes = [void_p, ctypes.c_int, ctypes.c_bool, void_p, void_p]
+ 

@@ -1,7 +1,7 @@
 {
   "ipython": {
     "base_branch": "insert-mutations",
-    "base_sha": "534dfe4a1468c121ce3cad35ca5192dc125b3eea",
+    "base_sha": "342d8986b1891d07a8c1239d785800dc7eb5d9c6",
     "mutmut_version": "2.5.1",
     "seed": "42",
     "total_generated": 25368,
@@ -9,7 +9,7 @@
     "skipped_files": [
       "IPython/utils/path.py"
     ],
-    "generated_utc": "2026-10-04T01:28:55.625829+00:00",
+    "generated_utc": "2026-10-05T17:49:28.434591+00:00",
     "mutants": [
       {
         "key": "ipython-m1288",
@@ -24,6 +24,27 @@
         "file": "IPython/core/ultratb.py",
         "line": 194,
         "patch": "data/mutmut/patches/ipython/ipython-m17283.patch"
+      },
+      {
+        "key": "ipython-m4267",
+        "mutmut_id": 4267,
+        "file": "IPython/core/displayhook.py",
+        "line": 327,
+        "patch": "data/mutmut/patches/ipython/ipython-m4267.patch"
+      },
+      {
+        "key": "ipython-m22732",
+        "mutmut_id": 22732,
+        "file": "IPython/terminal/pt_inputhooks/osx.py",
+        "line": 38,
+        "patch": "data/mutmut/patches/ipython/ipython-m22732.patch"
+      },
+      {
+        "key": "ipython-m22324",
+        "mutmut_id": 22324,
+        "file": "IPython/terminal/ipapp.py",
+        "line": 168,
+        "patch": "data/mutmut/patches/ipython/ipython-m22324.patch"
       }
     ]
   },

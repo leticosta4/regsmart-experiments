@@ -1,0 +1,13 @@
+diff --git a/IPython/core/displayhook.py b/IPython/core/displayhook.py
+index 6b9bab3d5..fd9b16fec 100644
+--- a/IPython/core/displayhook.py
++++ b/IPython/core/displayhook.py
+@@ -327,7 +327,7 @@ def flush(self):
+         import gc
+         # TODO: Is this really needed?
+         # IronPython blocks here forever
+-        if sys.platform != "cli":
++        if sys.platform != "XXcliXX":
+             gc.collect()
+ 
+ 

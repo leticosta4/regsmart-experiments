@@ -1,22 +1,46 @@
 {
   "ipython": {
     "base_branch": "insert-mutations",
-    "base_sha": "534dfe4a1468c121ce3cad35ca5192dc125b3eea",
+    "base_sha": "342d8986b1891d07a8c1239d785800dc7eb5d9c6",
     "mutants": {
       "ipython-m1288": {
         "branch": "mut-ipython-m1288",
-        "head_sha": "8dd6e9f72eb22d4a53636b925fd7906f21b3e6b1",
+        "head_sha": "a65daee35a638527e8be8733dda2bd9ecf966da2",
         "file": "IPython/core/completer.py",
         "line": 1787,
         "patch": "data/mutmut/patches/ipython/ipython-m1288.patch",
-        "published": true
+        "published": false
       },
       "ipython-m17283": {
         "branch": "mut-ipython-m17283",
-        "head_sha": "4b7faeb2205bf0cc444f5415e7d8927b3da5f9b2",
+        "head_sha": "eb6c943b9ab1b5a241fcafe1d35153adbd01615f",
         "file": "IPython/core/ultratb.py",
         "line": 194,
         "patch": "data/mutmut/patches/ipython/ipython-m17283.patch",
+        "published": false
+      },
+      "ipython-m4267": {
+        "branch": "mut-ipython-m4267",
+        "head_sha": "dfc73e5c0e1feed313185a27e932111b595bc16d",
+        "file": "IPython/core/displayhook.py",
+        "line": 327,
+        "patch": "data/mutmut/patches/ipython/ipython-m4267.patch",
+        "published": true
+      },
+      "ipython-m22732": {
+        "branch": "mut-ipython-m22732",
+        "head_sha": "2541564352cd592407be326b76f62087c0543a70",
+        "file": "IPython/terminal/pt_inputhooks/osx.py",
+        "line": 38,
+        "patch": "data/mutmut/patches/ipython/ipython-m22732.patch",
+        "published": true
+      },
+      "ipython-m22324": {
+        "branch": "mut-ipython-m22324",
+        "head_sha": "3e876b03ba422035ef05a2138486e791768ee8bf",
+        "file": "IPython/terminal/ipapp.py",
+        "line": 168,
+        "patch": "data/mutmut/patches/ipython/ipython-m22324.patch",
         "published": true
       }
     }
