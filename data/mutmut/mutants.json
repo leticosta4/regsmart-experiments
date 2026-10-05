@@ -100,5 +100,101 @@
         "patch": "data/mutmut/patches/librosa/librosa-m0035.patch"
       }
     ]
+  },
+  "pytorch-lightning": {
+    "base_branch": "insert-mutations",
+    "base_sha": "8d2a1fff21d782cda2dc802ae724d7aa3e14dcee",
+    "mutmut_version": "2.5.1",
+    "seed": "42",
+    "total_generated": 20818,
+    "source_files": 261,
+    "skipped_files": [
+      "src/lightning/pytorch/profilers/advanced.py"
+    ],
+    "generated_utc": "2026-10-05T18:15:52.945526+00:00",
+    "mutants": [
+      {
+        "key": "pytorch-lightning-m14490",
+        "mutmut_id": 14490,
+        "file": "src/lightning/pytorch/serve/servable_module.py",
+        "line": 89,
+        "patch": "data/mutmut/patches/pytorch-lightning/pytorch-lightning-m14490.patch"
+      },
+      {
+        "key": "pytorch-lightning-m15854",
+        "mutmut_id": 15854,
+        "file": "src/lightning/pytorch/strategies/single_device.py",
+        "line": 64,
+        "patch": "data/mutmut/patches/pytorch-lightning/pytorch-lightning-m15854.patch"
+      },
+      {
+        "key": "pytorch-lightning-m0766",
+        "mutmut_id": 766,
+        "file": "src/lightning/fabric/connector.py",
+        "line": 280,
+        "patch": "data/mutmut/patches/pytorch-lightning/pytorch-lightning-m0766.patch"
+      },
+      {
+        "key": "pytorch-lightning-m20410",
+        "mutmut_id": 20410,
+        "file": "src/lightning/pytorch/utilities/model_summary/model_summary.py",
+        "line": 454,
+        "patch": "data/mutmut/patches/pytorch-lightning/pytorch-lightning-m20410.patch"
+      },
+      {
+        "key": "pytorch-lightning-m9476",
+        "mutmut_id": 9476,
+        "file": "src/lightning/pytorch/cli.py",
+        "line": 225,
+        "patch": "data/mutmut/patches/pytorch-lightning/pytorch-lightning-m9476.patch"
+      }
+    ]
+  },
+  "networkx": {
+    "base_branch": "insert-mutations",
+    "base_sha": "caf65bab9c3b4c028c8a1b80a088444d244cdfdd",
+    "mutmut_version": "2.5.1",
+    "seed": "42",
+    "total_generated": 39429,
+    "source_files": 288,
+    "skipped_files": [],
+    "generated_utc": "2026-10-05T19:14:08.853803+00:00",
+    "mutants": [
+      {
+        "key": "networkx-m6449",
+        "mutmut_id": 6449,
+        "file": "networkx/algorithms/community/label_propagation.py",
+        "line": 193,
+        "patch": "data/mutmut/patches/networkx/networkx-m6449.patch"
+      },
+      {
+        "key": "networkx-m1096",
+        "mutmut_id": 1096,
+        "file": "networkx/algorithms/approximation/traveling_salesman.py",
+        "line": 1246,
+        "patch": "data/mutmut/patches/networkx/networkx-m1096.patch"
+      },
+      {
+        "key": "networkx-m14277",
+        "mutmut_id": 14277,
+        "file": "networkx/algorithms/isomorphism/vf2pp.py",
+        "line": 475,
+        "patch": "data/mutmut/patches/networkx/networkx-m14277.patch"
+      },
+      {
+        "key": "networkx-m17565",
+        "mutmut_id": 17565,
+        "file": "networkx/algorithms/shortest_paths/dense.py",
+        "line": 267,
+        "patch": "data/mutmut/patches/networkx/networkx-m17565.patch"
+      },
+      {
+        "key": "networkx-m25405",
+        "mutmut_id": 25405,
+        "file": "networkx/drawing/nx_agraph.py",
+        "line": 209,
+        "patch": "data/mutmut/patches/networkx/networkx-m25405.patch"
+      }
+    ]
   }
 }

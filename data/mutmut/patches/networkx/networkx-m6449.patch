@@ -1,0 +1,13 @@
+diff --git a/networkx/algorithms/community/label_propagation.py b/networkx/algorithms/community/label_propagation.py
+index 748802865..12f981820 100644
+--- a/networkx/algorithms/community/label_propagation.py
++++ b/networkx/algorithms/community/label_propagation.py
+@@ -193,7 +193,7 @@ def asyn_lpa_communities(G, weight=None, seed=None):
+     cont = True
+ 
+     while cont:
+-        cont = False
++        cont = True
+         nodes = list(G)
+         seed.shuffle(nodes)
+ 

@@ -1,0 +1,13 @@
+diff --git a/networkx/drawing/nx_agraph.py b/networkx/drawing/nx_agraph.py
+index a6975d406..68be932ff 100644
+--- a/networkx/drawing/nx_agraph.py
++++ b/networkx/drawing/nx_agraph.py
+@@ -209,8 +209,6 @@ def write_dot(G, path):
+     A.clear()
+     return
+ 
+-
+-@nx._dispatchable(name="agraph_read_dot", graphs=None, returns_graph=True)
+ def read_dot(path):
+     """Returns a NetworkX graph from a dot file on path.
+ 

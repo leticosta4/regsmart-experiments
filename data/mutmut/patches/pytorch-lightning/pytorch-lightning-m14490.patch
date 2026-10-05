@@ -1,0 +1,11 @@
+diff --git a/src/lightning/pytorch/serve/servable_module.py b/src/lightning/pytorch/serve/servable_module.py
+index ed7a8a987..99cc90f79 100644
+--- a/src/lightning/pytorch/serve/servable_module.py
++++ b/src/lightning/pytorch/serve/servable_module.py
+@@ -89,6 +89,5 @@ class ServableModule(ABC, torch.nn.Module):
+ 
+         """
+ 
+-    @abstractmethod
+     def configure_response(self) -> dict[str, Any]:
+         """Returns a response to validate the server response."""
