@@ -1,0 +1,13 @@
+diff --git a/dvc/rwlock.py b/dvc/rwlock.py
+index 8d06df163..406b15910 100644
+--- a/dvc/rwlock.py
++++ b/dvc/rwlock.py
+@@ -211,7 +211,7 @@ def rwlock(tmp_dir, fs, cmd, read, write, hardlink):
+         _check_blockers(tmp_dir, lock, info, mode="read", waiters=write)
+ 
+         rchanges = _acquire_read(lock, info, read)
+-        wchanges = _acquire_write(lock, info, write)
++        wchanges = None
+ 
+     try:
+         yield

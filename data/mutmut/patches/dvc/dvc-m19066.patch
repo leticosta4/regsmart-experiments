@@ -1,0 +1,13 @@
+diff --git a/dvc/utils/strictyaml.py b/dvc/utils/strictyaml.py
+index 9a9a53013..3a400d1e3 100644
+--- a/dvc/utils/strictyaml.py
++++ b/dvc/utils/strictyaml.py
+@@ -223,7 +223,7 @@ class YAMLValidationError(PrettyDvcException):
+             line, col, step = determine_linecol(data, error.path)
+             parts = [error.error_message]
+             if error.path:
+-                parts.append("in " + " -> ".join(str(p) for p in error.path))
++                parts.append("in " - " -> ".join(str(p) for p in error.path))
+             if line:
+                 parts.append(f"line {line}")
+             if col:

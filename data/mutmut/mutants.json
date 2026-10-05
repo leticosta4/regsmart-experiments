@@ -196,5 +196,102 @@
         "patch": "data/mutmut/patches/networkx/networkx-m25405.patch"
       }
     ]
+  },
+  "dask": {
+    "base_branch": "insert-mutations",
+    "base_sha": "ba2e48d6239b6ccdf315c5e16dc1c82943d234be",
+    "mutmut_version": "2.5.1",
+    "seed": "42",
+    "total_generated": 44244,
+    "source_files": 181,
+    "skipped_files": [],
+    "generated_utc": "2026-10-05T20:06:47.560591+00:00",
+    "mutants": [
+      {
+        "key": "dask-m1940",
+        "mutmut_id": 1940,
+        "file": "dask/array/_array_expr/_creation.py",
+        "line": 24,
+        "patch": "data/mutmut/patches/dask/dask-m1940.patch"
+      },
+      {
+        "key": "dask-m11282",
+        "mutmut_id": 11282,
+        "file": "dask/array/overlap.py",
+        "line": 491,
+        "patch": "data/mutmut/patches/dask/dask-m11282.patch"
+      },
+      {
+        "key": "dask-m28832",
+        "mutmut_id": 28832,
+        "file": "dask/dataframe/dask_expr/_merge.py",
+        "line": 737,
+        "patch": "data/mutmut/patches/dask/dask-m28832.patch"
+      },
+      {
+        "key": "dask-m12753",
+        "mutmut_id": 12753,
+        "file": "dask/array/rechunk.py",
+        "line": 857,
+        "patch": "data/mutmut/patches/dask/dask-m12753.patch"
+      },
+      {
+        "key": "dask-m37146",
+        "mutmut_id": 37146,
+        "file": "dask/dataframe/io/parquet/core.py",
+        "line": 294,
+        "patch": "data/mutmut/patches/dask/dask-m37146.patch"
+      }
+    ]
+  },
+  "dvc": {
+    "base_branch": "insert-mutations",
+    "base_sha": "c6eecb50962259c13bac3c8ce9c2d8a2887f716f",
+    "mutmut_version": "2.5.1",
+    "seed": "42",
+    "total_generated": 19261,
+    "source_files": 257,
+    "skipped_files": [
+      "dvc/dependency/db.py",
+      "dvc/repo/experiments/executor/base.py"
+    ],
+    "generated_utc": "2026-10-05T20:42:49.906830+00:00",
+    "mutants": [
+      {
+        "key": "dvc-m11576",
+        "mutmut_id": 11576,
+        "file": "dvc/repo/experiments/queue/base.py",
+        "line": 428,
+        "patch": "data/mutmut/patches/dvc/dvc-m11576.patch"
+      },
+      {
+        "key": "dvc-m12545",
+        "mutmut_id": 12545,
+        "file": "dvc/repo/experiments/stash.py",
+        "line": 42,
+        "patch": "data/mutmut/patches/dvc/dvc-m12545.patch"
+      },
+      {
+        "key": "dvc-m19066",
+        "mutmut_id": 19066,
+        "file": "dvc/utils/strictyaml.py",
+        "line": 223,
+        "patch": "data/mutmut/patches/dvc/dvc-m19066.patch"
+      },
+      {
+        "key": "dvc-m16845",
+        "mutmut_id": 16845,
+        "file": "dvc/rwlock.py",
+        "line": 211,
+        "patch": "data/mutmut/patches/dvc/dvc-m16845.patch"
+      },
+      {
+        "key": "dvc-m6852",
+        "mutmut_id": 6852,
+        "file": "dvc/fs/callbacks.py",
+        "line": 58,
+        "patch": "data/mutmut/patches/dvc/dvc-m6852.patch"
+      }
+    ]
   }
 }
