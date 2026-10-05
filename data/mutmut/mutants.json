@@ -342,5 +342,52 @@
         "patch": "data/mutmut/patches/trimesh/trimesh-m13478.patch"
       }
     ]
+  },
+  "pytest-xdist": {
+    "base_branch": "insert-mutations",
+    "base_sha": "82b0dbc7ba31d0359c8f7a0de3aa2eea691faeae",
+    "mutmut_version": "2.5.1",
+    "seed": "42",
+    "total_generated": 1680,
+    "source_files": 17,
+    "skipped_files": [],
+    "generated_utc": "2026-10-05T23:27:12.639516+00:00",
+    "mutants": [
+      {
+        "key": "pytest-xdist-m1214",
+        "mutmut_id": 1214,
+        "file": "src/xdist/scheduler/loadscope.py",
+        "line": 249,
+        "patch": "data/mutmut/patches/pytest-xdist/pytest-xdist-m1214.patch"
+      },
+      {
+        "key": "pytest-xdist-m1461",
+        "mutmut_id": 1461,
+        "file": "src/xdist/workermanage.py",
+        "line": 168,
+        "patch": "data/mutmut/patches/pytest-xdist/pytest-xdist-m1461.patch"
+      },
+      {
+        "key": "pytest-xdist-m1049",
+        "mutmut_id": 1049,
+        "file": "src/xdist/scheduler/load.py",
+        "line": 61,
+        "patch": "data/mutmut/patches/pytest-xdist/pytest-xdist-m1049.patch"
+      },
+      {
+        "key": "pytest-xdist-m0722",
+        "mutmut_id": 722,
+        "file": "src/xdist/plugin.py",
+        "line": 425,
+        "patch": "data/mutmut/patches/pytest-xdist/pytest-xdist-m0722.patch"
+      },
+      {
+        "key": "pytest-xdist-m1537",
+        "mutmut_id": 1537,
+        "file": "src/xdist/workermanage.py",
+        "line": 316,
+        "patch": "data/mutmut/patches/pytest-xdist/pytest-xdist-m1537.patch"
+      }
+    ]
   }
 }

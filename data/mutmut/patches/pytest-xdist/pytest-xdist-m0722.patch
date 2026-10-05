@@ -1,0 +1,13 @@
+diff --git a/src/xdist/plugin.py b/src/xdist/plugin.py
+index 7dcdcdb..f662002 100644
+--- a/src/xdist/plugin.py
++++ b/src/xdist/plugin.py
+@@ -425,7 +425,7 @@ def pytest_cmdline_main(config: pytest.Config) -> None:
+         config.option.dist = "load"
+ 
+     usepdb = config.getoption("usepdb", False)  # a core option
+-    if config.option.numprocesses in ("auto", "logical"):
++    if config.option.numprocesses not in ("auto", "logical"):
+         if usepdb:
+             config.option.numprocesses = 0
+             config.option.dist = "no"
