@@ -1,0 +1,13 @@
+diff --git a/dask/dataframe/io/parquet/core.py b/dask/dataframe/io/parquet/core.py
+index 20fcba6b8..27e69f3e5 100644
+--- a/dask/dataframe/io/parquet/core.py
++++ b/dask/dataframe/io/parquet/core.py
+@@ -294,7 +294,7 @@ def create_metadata_file(
+     out_dir = root_dir if out_dir is None else out_dir
+ 
+     # Start constructing a raw graph
+-    dsk = {}
++    dsk = None
+     token = tokenize(paths, fs)
+     name = f"gen-metadata-{token}"
+     collect_name = f"collect-{name}"

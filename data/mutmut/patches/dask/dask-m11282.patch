@@ -1,0 +1,13 @@
+diff --git a/dask/array/overlap.py b/dask/array/overlap.py
+index 5dab82b00..e97e35aac 100644
+--- a/dask/array/overlap.py
++++ b/dask/array/overlap.py
+@@ -491,7 +491,7 @@ def add_dummy_padding(x, depth, boundary):
+             ax_chunks = list(out_chunks[k])
+             ax_chunks[0] += d
+             ax_chunks[-1] += d
+-            out_chunks[k] = tuple(ax_chunks)
++            out_chunks[k] = None
+ 
+             x = concatenate([empty, x, empty], axis=k)
+             x = x.rechunk(out_chunks)

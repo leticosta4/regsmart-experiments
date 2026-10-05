@@ -1,0 +1,13 @@
+diff --git a/dask/array/_array_expr/_creation.py b/dask/array/_array_expr/_creation.py
+index 2e8bc48f7..911b97f48 100644
+--- a/dask/array/_array_expr/_creation.py
++++ b/dask/array/_array_expr/_creation.py
+@@ -24,7 +24,7 @@ from dask.utils import cached_cumsum, derived_from
+ 
+ class Arange(ArrayExpr):
+     _parameters = ["start", "stop", "step", "chunks", "like", "dtype", "kwargs"]
+-    _defaults = {"chunks": "auto", "like": None, "dtype": None, "kwargs": None}
++    _defaults = {"chunks": "auto", "XXlikeXX": None, "dtype": None, "kwargs": None}
+ 
+     @functools.cached_property
+     def num_rows(self):
