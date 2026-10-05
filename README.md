@@ -217,22 +217,74 @@ python mutation_gen.py gen
 # Gera mutantes para um único repositório (amostrando 15)
 python mutation_gen.py gen --repo dask --n 15
 
+# COMPLEMENTA o que já existe em vez de regerar (preserva os mutantes atuais)
+python mutation_gen.py gen --repo ipython --append
+
+# Mesmo, mas subindo o alvo: completa até 8 no total (já tinha 2)
+python mutation_gen.py gen --repo ipython --append --n 8
+
+# Sem barra de progresso (a barra do mutmut também some)
+python mutation_gen.py gen --repo dask --no-progress
+
 # Lista o que já foi gerado
 python mutation_gen.py list
 ```
 
+> ⚠️ **Sem `--append` o run é destrutivo**: apaga `data/mutmut/patches/<repo>/` inteiro
+> e reescreve o bloco do repo em `mutants.json`. Use `--append` sempre que quiser
+> acrescentar mutantes a um repo que já tem.
 
 Entradas:
 - data/mutmut/mutation_plan.json (opcional). Formato: [{"repo": "dask", "src": "dask/", "n": 15}]
 - src: caminho(s) do código-fonte a mutar (str ou list[str]). Obrigatório se o arquivo existir.
-- n: número de mutantes a amostrar por repositório.
+- n: número de mutantes a amostrar por repositório (é o **total alvo**, não quantos adicionar).
 - Se mutation_plan.json não existir, o script usa data/flaky/flaky_plan.json (apenas repositórios com enabled: true).
+
+Flags:
+- `--n N`: mutantes por repo. **Ganha do `mutation_plan.json`** quando informado na linha de comando; se omitido, vale o `n` do plano (ou 15).
+- `--append`: preserva os mutantes já registrados e completa só até o `n` alvo. Os `mutmut_id` já usados são pulados sem gastar tentativa, então rodar duas vezes com `--append --n 5` e depois `--append --n 8` acumula em vez de sortear outro conjunto do zero.
+- `--max-attempts N` (default 5000): teto de tentativas de amostragem por repo. Antes esse teto era `min(n*30, n+3000)`, ou seja 150 para `n=5` — gastava 0,6% do pool e o run terminava com 2 de 5 sem explicar por quê. Se o run acabar com menos que o `n`, o script avisa e sugere aumentar o teto.
+- `--reuse-cache` / `--no-reuse-cache` (ligado por padrão): reaproveita o `.mutmut-cache`.
+- `--no-progress`: desliga os heartbeats e a barra do mutmut.
+- `--seed` (default 42), `--branch`, `--workdir`, `--url-template`, `--mutmut`.
 
 Detalhes importantes:
 - Ignora arquivos de teste. São excluídos: arquivos test_*.py, *_test.py, conftest.py, setup.py e qualquer arquivo cujo caminho contenha tests/, test/, testing/ ou __pycache__/ (isso evita mutar testes, o que não é útil para o experimento).
 - Filtra arquivos não parseáveis (mutmut 2 + parso). O mutmut 2 (usado com Python 3.12) pode abortar no primeiro arquivo com sintaxe não suportada. O script testa cada arquivo com o próprio parser do mutmut antes de rodar e move os não-mutáveis para skipped_files. Se algum arquivo ainda fizer o mutmut run falhar durante a enumeração, ele é removido da lista e a execução continua.
-- Reprodutibilidade. A amostragem é feita com random.Random(f"{seed}:{repo}") (padrão seed=42), então é reprodutível por repositório.
+- Reprodutibilidade. A amostragem é feita com random.Random(f"{seed}:{repo}") (padrão seed=42), então é reprodutível por repositório. No `--append`, a seed é a mesma e os ids já usados é que são pulados, então o resultado continua reprodutível.
 - Robusto a estruturas diferentes. Caso o repositório não tenha tests/ nem test/ na raiz, o script cria uma pasta tests/ vazia temporariamente (não versionada) — necessário para o mutmut 2 não falhar na descoberta.
+- Avisa se um patch referenciado em `mutants.json` não existir mais em disco, e avisa se o `base_sha` mudou durante um `--append` (os mutantes preservados vêm da base anterior).
+
+##### Fases e o custo de cada uma
+
+O run reporta 6 fases, com tempo e progresso. Os números abaixo foram medidos nesta máquina (librosa, Python 3.11):
+
+| Fase | O que faz | Custo |
+|---|---|---|
+| 1/6 clone | `fetch` + `reset --hard` + `clean` | ~1s (minutes num clone novo) |
+| 2/6 selecionar arquivos | lista os `.py`, fora testes | instantâneo |
+| 3/6 parseabilidade | 1 parse do parso por arquivo, ~0,15s cada | ~55s no dask (360 arquivos) |
+| 4/6 `mutmut run` | enumera e "testa" cada mutante com `--runner true` | **a parte lenta: ~8 mutantes/s** |
+| 5/6 amostrar | até `n` patches, aplicando e validando com `git apply --check` | segundos |
+| 6/6 resumo | total do repo | — |
+
+**A fase 4 domina o tempo.** Medido: 1 arquivo do librosa → 783 mutantes em 82s; 8 arquivos → 2.438 mutantes em 5min. No ipython são ~25.400 mutantes, então a primeira enumeração leva perto de **1 hora**.
+
+Para não pagar isso de novo a cada run, o `.mutmut-cache` é salvo em
+`data/mutmut/mutcache/<repo>-<base_sha>.cache` antes do `git clean -fdxq` (que o
+apagaria) e reposto no clone quando o `base_sha` bate. Com o cache reusado o
+mutmut só *replaya* o status dos mutantes em vez de testar de novo — medido
+**84s → 2,5s (34x)**, com os mesmos ids de mutante.
+
+> A chave é o `base_sha` de propósito: o mutmut **não** valida o código-fonte antes
+> de reaproveitar o cache (só a versão do schema, em `cache.py`), e os ids de
+> mutante são posicionais — um cache de outro commit associaria status aos mutantes
+> errados. Base diferente = cache não casa = reenumerationa.
+
+Com `--append`, as branches já publicadas continuam válidas: como a fase 2 do
+`insert_mutations.py` monta commits determinísticos (mesma base + mesmo patch =
+mesmo head_sha), ela reconhece as existentes como `published: true` e só publica as
+novas.
 
 #### 2) Criando as branches por mutante: insert_mutations.py
 Este script tem duas fases. Ele não abre PRs, não mexe no working tree na fase 2 e publica branches diretamente no fork via API/git push.
