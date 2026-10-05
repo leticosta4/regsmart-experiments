@@ -20,5 +20,51 @@
         "published": true
       }
     }
+  },
+  "librosa": {
+    "base_branch": "insert-mutations",
+    "base_sha": "e226696dba3c280cee72334aba57bdd8311d5317",
+    "mutants": {
+      "librosa-m7678": {
+        "branch": "mut-librosa-m7678",
+        "head_sha": "3e1887b8e94c0d994137c8bbfe0ecd513ee721ff",
+        "file": "librosa/feature/spectral.py",
+        "line": 1704,
+        "patch": "data/mutmut/patches/librosa/librosa-m7678.patch",
+        "published": true
+      },
+      "librosa-m2885": {
+        "branch": "mut-librosa-m2885",
+        "head_sha": "5b8603273d475b307115a4ef71a6a914d02cbd99",
+        "file": "librosa/core/notation.py",
+        "line": 423,
+        "patch": "data/mutmut/patches/librosa/librosa-m2885.patch",
+        "published": true
+      },
+      "librosa-m4950": {
+        "branch": "mut-librosa-m4950",
+        "head_sha": "b90d24634da9873a0cc4287fa8456fa368650269",
+        "file": "librosa/core/spectrum.py",
+        "line": 2681,
+        "patch": "data/mutmut/patches/librosa/librosa-m4950.patch",
+        "published": true
+      },
+      "librosa-m0265": {
+        "branch": "mut-librosa-m0265",
+        "head_sha": "e5458b8f6162cac6f0ab21338ee3cb37b45c4798",
+        "file": "librosa/core/audio.py",
+        "line": 708,
+        "patch": "data/mutmut/patches/librosa/librosa-m0265.patch",
+        "published": true
+      },
+      "librosa-m0035": {
+        "branch": "mut-librosa-m0035",
+        "head_sha": "d4dd4b7eff1865536a073fc188373db382594da8",
+        "file": "librosa/core/audio.py",
+        "line": 160,
+        "patch": "data/mutmut/patches/librosa/librosa-m0035.patch",
+        "published": true
+      }
+    }
   }
 }

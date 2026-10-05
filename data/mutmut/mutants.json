@@ -26,5 +26,58 @@
         "patch": "data/mutmut/patches/ipython/ipython-m17283.patch"
       }
     ]
+  },
+  "librosa": {
+    "base_branch": "insert-mutations",
+    "base_sha": "e226696dba3c280cee72334aba57bdd8311d5317",
+    "mutmut_version": "2.5.1",
+    "seed": "42",
+    "total_generated": 10069,
+    "source_files": 35,
+    "skipped_files": [
+      "librosa/_typing.py",
+      "librosa/beat.py",
+      "librosa/segment.py",
+      "librosa/util/decorators.py",
+      "librosa/util/utils.py"
+    ],
+    "generated_utc": "2026-10-05T03:23:28.225353+00:00",
+    "mutants": [
+      {
+        "key": "librosa-m7678",
+        "mutmut_id": 7678,
+        "file": "librosa/feature/spectral.py",
+        "line": 1704,
+        "patch": "data/mutmut/patches/librosa/librosa-m7678.patch"
+      },
+      {
+        "key": "librosa-m2885",
+        "mutmut_id": 2885,
+        "file": "librosa/core/notation.py",
+        "line": 423,
+        "patch": "data/mutmut/patches/librosa/librosa-m2885.patch"
+      },
+      {
+        "key": "librosa-m4950",
+        "mutmut_id": 4950,
+        "file": "librosa/core/spectrum.py",
+        "line": 2681,
+        "patch": "data/mutmut/patches/librosa/librosa-m4950.patch"
+      },
+      {
+        "key": "librosa-m0265",
+        "mutmut_id": 265,
+        "file": "librosa/core/audio.py",
+        "line": 708,
+        "patch": "data/mutmut/patches/librosa/librosa-m0265.patch"
+      },
+      {
+        "key": "librosa-m0035",
+        "mutmut_id": 35,
+        "file": "librosa/core/audio.py",
+        "line": 160,
+        "patch": "data/mutmut/patches/librosa/librosa-m0035.patch"
+      }
+    ]
   }
 }

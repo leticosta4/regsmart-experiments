@@ -1,4 +1,4 @@
-# regsmart-metrics 
+# regsmart-experiments 
 
 > script to collect metrics from CI workflows runs (pytest, ranking, regsmart)
 > 

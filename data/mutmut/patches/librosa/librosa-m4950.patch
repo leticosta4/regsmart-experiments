@@ -1,0 +1,13 @@
+diff --git a/librosa/core/spectrum.py b/librosa/core/spectrum.py
+index 9aad7b84..cdddb752 100644
+--- a/librosa/core/spectrum.py
++++ b/librosa/core/spectrum.py
+@@ -2681,7 +2681,7 @@ def griffinlim(
+     length: int | None = None,
+     pad_mode: _PadModeSTFT = "constant",
+     momentum: float = 0.99,
+-    init: str | None = "random",
++    init: str | None = "XXrandomXX",
+     rng: RNGLike | SeedLike | None = None,
+     random_state: int | np.random.RandomState | np.random.Generator | Deprecated | None = Deprecated(),
+ ) -> np.ndarray:

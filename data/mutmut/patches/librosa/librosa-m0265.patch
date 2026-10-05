@@ -1,0 +1,13 @@
+diff --git a/librosa/core/audio.py b/librosa/core/audio.py
+index fabc688e..b7e45102 100644
+--- a/librosa/core/audio.py
++++ b/librosa/core/audio.py
+@@ -708,7 +708,7 @@ def to_mono(
+     if not signals:
+         raise ParameterError("At least one signal must be provided to `to_mono`.")
+     n_min, n_max = signals[0].shape[-1], signals[0].shape[-1]
+-    dtype = signals[0].dtype
++    dtype = None
+     for y in signals:
+         util.valid_audio(y)
+         n_min = min(n_min, y.shape[-1])
