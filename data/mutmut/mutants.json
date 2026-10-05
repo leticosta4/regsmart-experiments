@@ -293,5 +293,54 @@
         "patch": "data/mutmut/patches/dvc/dvc-m6852.patch"
       }
     ]
+  },
+  "trimesh": {
+    "base_branch": "insert-mutations",
+    "base_sha": "a838af774addb363a9b136a563c75d00843c968a",
+    "mutmut_version": "2.5.1",
+    "seed": "42",
+    "total_generated": 27027,
+    "source_files": 114,
+    "skipped_files": [
+      "trimesh/exchange/threemf.py"
+    ],
+    "generated_utc": "2026-10-05T22:07:00.368487+00:00",
+    "mutants": [
+      {
+        "key": "trimesh-m1825",
+        "mutmut_id": 1825,
+        "file": "trimesh/convex.py",
+        "line": 208,
+        "patch": "data/mutmut/patches/trimesh/trimesh-m1825.patch"
+      },
+      {
+        "key": "trimesh-m25103",
+        "mutmut_id": 25103,
+        "file": "trimesh/visual/material.py",
+        "line": 500,
+        "patch": "data/mutmut/patches/trimesh/trimesh-m25103.patch"
+      },
+      {
+        "key": "trimesh-m3147",
+        "mutmut_id": 3147,
+        "file": "trimesh/exchange/binvox.py",
+        "line": 295,
+        "patch": "data/mutmut/patches/trimesh/trimesh-m3147.patch"
+      },
+      {
+        "key": "trimesh-m21160",
+        "mutmut_id": 21160,
+        "file": "trimesh/transformations.py",
+        "line": 1983,
+        "patch": "data/mutmut/patches/trimesh/trimesh-m21160.patch"
+      },
+      {
+        "key": "trimesh-m13478",
+        "mutmut_id": 13478,
+        "file": "trimesh/path/polygons.py",
+        "line": 952,
+        "patch": "data/mutmut/patches/trimesh/trimesh-m13478.patch"
+      }
+    ]
   }
 }
