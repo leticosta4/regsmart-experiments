@@ -90,5 +90,56 @@
         "published": true
       }
     }
+  },
+  "pytorch-lightning": {
+    "base_branch": "insert-mutations",
+    "base_sha": "8d2a1fff21d782cda2dc802ae724d7aa3e14dcee",
+    "mutants": {
+      "pytorch-lightning-m14490": {
+        "branch": "mut-pytorch-lightning-m14490",
+        "head_sha": "ae6d32357314c8f3a94ba0e9e681cf5359fa48e8",
+        "file": "src/lightning/pytorch/serve/servable_module.py",
+        "line": 89,
+        "patch": "data/mutmut/patches/pytorch-lightning/pytorch-lightning-m14490.patch",
+        "published": true,
+        "pr": "https://github.com/leticosta4/pytorch-lightning/pull/3"
+      },
+      "pytorch-lightning-m15854": {
+        "branch": "mut-pytorch-lightning-m15854",
+        "head_sha": "3be797caffdf7eef8ed521a88d4c76adcf748ebb",
+        "file": "src/lightning/pytorch/strategies/single_device.py",
+        "line": 64,
+        "patch": "data/mutmut/patches/pytorch-lightning/pytorch-lightning-m15854.patch",
+        "published": true,
+        "pr": "https://github.com/leticosta4/pytorch-lightning/pull/4"
+      },
+      "pytorch-lightning-m0766": {
+        "branch": "mut-pytorch-lightning-m0766",
+        "head_sha": "c1158b27650a56176d6fad0e9a29684aeb66680d",
+        "file": "src/lightning/fabric/connector.py",
+        "line": 280,
+        "patch": "data/mutmut/patches/pytorch-lightning/pytorch-lightning-m0766.patch",
+        "published": true,
+        "pr": "https://github.com/leticosta4/pytorch-lightning/pull/5"
+      },
+      "pytorch-lightning-m20410": {
+        "branch": "mut-pytorch-lightning-m20410",
+        "head_sha": "9a174a18a57fa39c22840daaa76549e63b44a6d8",
+        "file": "src/lightning/pytorch/utilities/model_summary/model_summary.py",
+        "line": 454,
+        "patch": "data/mutmut/patches/pytorch-lightning/pytorch-lightning-m20410.patch",
+        "published": true,
+        "pr": "https://github.com/leticosta4/pytorch-lightning/pull/6"
+      },
+      "pytorch-lightning-m9476": {
+        "branch": "mut-pytorch-lightning-m9476",
+        "head_sha": "ca8994bbb0ea81e16fdb91d1866132084c2ac734",
+        "file": "src/lightning/pytorch/cli.py",
+        "line": 225,
+        "patch": "data/mutmut/patches/pytorch-lightning/pytorch-lightning-m9476.patch",
+        "published": true,
+        "pr": "https://github.com/leticosta4/pytorch-lightning/pull/7"
+      }
+    }
   }
 }

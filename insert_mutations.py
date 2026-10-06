@@ -27,8 +27,8 @@ USO:
 
     python insert_mutations.py --mutants --dry-run           # fase 2: mostra o plano
     python insert_mutations.py --mutants --repo pytest-xdist --limit 3 --push   # teste pequeno
-    python insert_mutations.py --mutants --push              # todos
-    python insert_mutations.py --mutants --reset --push      # refaz (ex.: base mudou)
+    python insert_mutations.py --mutants --push --pr         # todos (e abre draft)
+    python insert_mutations.py --mutants --reset --push     # refaz (ex.: base mudou)
 
 ATENÇÃO: os workflows na `insert-mutations` precisam excluir `mut-*` do gatilho
 `push` (`branches: ['**', '!mut-*']`), senão cada branch de mutante publicada
@@ -42,6 +42,8 @@ import os
 import subprocess
 import sys
 import tempfile
+import re
+import time
 from datetime import date
 from pathlib import Path
 
@@ -73,6 +75,29 @@ def err(exc: Exception) -> str:
     if isinstance(exc, subprocess.CalledProcessError):
         return (exc.stderr or exc.stdout or str(exc)).strip().splitlines()[-1][:200]
     return str(exc)
+
+def fork_slug(repo_dir: Path) -> str:
+    """owner/repo do `origin`. Não usa `gh repo view`: num fork ele pode resolver
+    para o repo upstream e abrir o PR no lugar errado."""
+    url = run(["git", "remote", "get-url", "origin"], repo_dir)
+    m = re.search(r"github\.com[:/]([^/]+)/(.+?)(?:\.git)?$", url)
+    if not m:
+        raise RuntimeError(f"não consegui extrair owner/repo de {url}")
+    return f"{m.group(1)}/{m.group(2)}"
+
+
+def ensure_draft_pr(repo_dir: Path, slug: str, head: str, base: str,
+                    title: str, body: str) -> tuple[str, bool]:
+    """Devolve (url, criado). Se já existe PR (aberto, fechado ou mergeado) dessa
+    head, reaproveita: rodar de novo é idempotente."""
+    found = json.loads(run(["gh", "pr", "list", "--repo", slug, "--head", head,
+                            "--base", base, "--state", "all",
+                            "--json", "url", "--limit", "1"], repo_dir))
+    if found:
+        return found[0]["url"], False
+    out = run(["gh", "pr", "create", "--repo", slug, "--draft", "--head", head,
+               "--base", base, "--title", title, "--body", body], repo_dir)
+    return out.splitlines()[-1], True
 
 
 def save_json(path: Path, payload) -> None:
@@ -240,7 +265,7 @@ def build_mutant_commit(repo_dir: Path, base_sha: str, patch: Path, message: str
 
 
 def prepare_mutants(name: str, all_meta: dict, reset: bool, dry_run: bool,
-                    push: bool, limit: int | None) -> dict | None:
+                    push: bool, limit: int | None, pr: bool = False) -> dict | None:
     repo_dir = CLONES / name
     if not (repo_dir / ".git").is_dir():
         print(f"!! {name}: clone não encontrado em {repo_dir} -- pulando", file=sys.stderr)
@@ -308,9 +333,33 @@ def prepare_mutants(name: str, all_meta: dict, reset: bool, dry_run: bool,
             if e["branch"] in todo:
                 e["published"] = True
 
+    prs_new = prs_failed = 0
+    if pr:
+        slug = fork_slug(repo_dir)
+        pr_base = origin_default_ref(repo_dir).removeprefix("origin/")
+        for key, e in entries.items():
+            if not e["published"]:
+                continue
+            m = next(x for x in items if x["key"] == key)
+            body = (f"Mutante `{key}` (mutmut id {m['mutmut_id']})\n\n"
+                    f"- arquivo: `{m['file']}:{m.get('line')}`\n"
+                    f"- commit sobre: `{BRANCH}@{base_sha}`\n"
+                    f"- patch: `{m['patch']}`")
+            try:
+                url, created = ensure_draft_pr(repo_dir, slug, e["branch"], pr_base,
+                                               f"mutante {key}", body)
+                e["pr"] = url
+                if created:
+                    prs_new += 1
+                    time.sleep(1)  # evita o rate limit secundário do GitHub
+            except Exception as exc:
+                prs_failed += 1
+                print(f"   ! {key}: PR não criado ({err(exc)})", file=sys.stderr)
+
     state = f"{pushed} publicada(s)" if push else f"{len(todo)} a publicar (use --push)"
     print(f"== {name}: {len(entries)}/{len(items)} commits prontos sobre "
-          f"{BRANCH}@{base_sha[:7]} -> {state}, {ok} já ok, {conflicts} conflito(s), {len(failed)} falha(s)")
+          f"{BRANCH}@{base_sha[:7]} -> {state}, {ok} já ok, {conflicts} conflito(s), {len(failed)} falha(s)"
+          + (f", {prs_new} PR(s) criados, {prs_failed} falha(s)" if pr else ""))
     return {"repo": name, "base_sha": base_sha, "entries": entries,
             "partial": bool(limit), "failed": failed, "conflicts": conflicts}
 
@@ -348,7 +397,11 @@ def main() -> None:
     parser.add_argument("--clones", type=Path, default=CLONES,
                         help=f"pasta dos clones (default: {CLONES})")
     parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument("--pr", action="store_true",
+                        help="fase 2: abre um PR draft por mutante (head mut-*, base insert-mutations); exige --push e `gh` autenticado")
     args = parser.parse_args()
+    if args.pr and not (args.mutants and args.push):
+        sys.exit("--pr só vale com --mutants --push")
 
     BRANCH, CLONES = args.branch, args.clones
 
@@ -366,7 +419,7 @@ def main() -> None:
         results = []
         for name in selected:
             try:
-                res = prepare_mutants(name, all_meta, args.reset, args.dry_run, args.push, args.limit)
+                res = prepare_mutants(name, all_meta, args.reset, args.dry_run, args.push, args.limit, args.pr)
             except Exception as exc:
                 print(f"!! {name}: {err(exc)}", file=sys.stderr)
                 continue
@@ -378,7 +431,7 @@ def main() -> None:
             if args.push:
                 print("Confira que o `on.push` dos workflows exclui `mut-*`, "
                       "senão cada branch publicada dispara um run.")
-        sys.exit(1 if any(r["failed"] or r["conflicts"] for r in results) else 0)
+            sys.exit(1 if any(r["failed"] or r["conflicts"] or r.get("pr_failed") for r in results) else 0)
 
     rows = []
     for name in selected:
