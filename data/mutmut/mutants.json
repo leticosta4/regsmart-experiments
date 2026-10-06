@@ -530,5 +530,54 @@
         "patch": "data/mutmut/patches/ultralytics/ultralytics-m2383.patch"
       }
     ]
+  },
+  "apscheduler": {
+    "base_branch": "insert-mutations",
+    "base_sha": "8fd8b8190e8b5f79156ad4f34a4a9b5dec42dc78",
+    "mutmut_version": "2.5.1",
+    "seed": "42",
+    "total_generated": 2840,
+    "source_files": 45,
+    "skipped_files": [
+      "src/apscheduler/datastores/mongodb.py"
+    ],
+    "generated_utc": "2026-10-06T03:22:35.624873+00:00",
+    "mutants": [
+      {
+        "key": "apscheduler-m2144",
+        "mutmut_id": 2144,
+        "file": "src/apscheduler/triggers/calendarinterval.py",
+        "line": 104,
+        "patch": "data/mutmut/patches/apscheduler/apscheduler-m2144.patch"
+      },
+      {
+        "key": "apscheduler-m1399",
+        "mutmut_id": 1399,
+        "file": "src/apscheduler/datastores/sqlalchemy.py",
+        "line": 367,
+        "patch": "data/mutmut/patches/apscheduler/apscheduler-m1399.patch"
+      },
+      {
+        "key": "apscheduler-m2213",
+        "mutmut_id": 2213,
+        "file": "src/apscheduler/triggers/combining.py",
+        "line": 67,
+        "patch": "data/mutmut/patches/apscheduler/apscheduler-m2213.patch"
+      },
+      {
+        "key": "apscheduler-m0316",
+        "mutmut_id": 316,
+        "file": "src/apscheduler/_schedulers/async_.py",
+        "line": 214,
+        "patch": "data/mutmut/patches/apscheduler/apscheduler-m0316.patch"
+      },
+      {
+        "key": "apscheduler-m0753",
+        "mutmut_id": 753,
+        "file": "src/apscheduler/_structures.py",
+        "line": 61,
+        "patch": "data/mutmut/patches/apscheduler/apscheduler-m0753.patch"
+      }
+    ]
   }
 }

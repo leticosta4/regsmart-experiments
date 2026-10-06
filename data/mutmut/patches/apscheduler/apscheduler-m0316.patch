@@ -1,0 +1,13 @@
+diff --git a/src/apscheduler/_schedulers/async_.py b/src/apscheduler/_schedulers/async_.py
+index fb5cb54..0798098 100644
+--- a/src/apscheduler/_schedulers/async_.py
++++ b/src/apscheduler/_schedulers/async_.py
+@@ -214,7 +214,7 @@ class AsyncScheduler:
+             )
+ 
+     async def _cleanup_loop(self) -> None:
+-        delay = self.cleanup_interval.total_seconds()
++        delay = None
+         assert delay > 0
+         while self._state in (RunState.starting, RunState.started):
+             await self.cleanup()
