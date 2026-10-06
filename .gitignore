@@ -216,3 +216,8 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+
+# Mutation testing scripts
+work/
+data/mutmut/mutcache/

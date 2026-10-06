@@ -1,0 +1,13 @@
+diff --git a/src/xdist/workermanage.py b/src/xdist/workermanage.py
+index c54b18f..ad07710 100644
+--- a/src/xdist/workermanage.py
++++ b/src/xdist/workermanage.py
+@@ -316,7 +316,7 @@ class WorkerController:
+         self.workerinput = {
+             "workerid": gateway.id,
+             "workercount": workercount,
+-            "testrunuid": nodemanager.testrunuid,
++            "XXtestrunuidXX": nodemanager.testrunuid,
+             "mainargv": sys.argv,
+             "rampdelay": rampdelay,
+         }

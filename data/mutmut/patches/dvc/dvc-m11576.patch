@@ -1,0 +1,13 @@
+diff --git a/dvc/repo/experiments/queue/base.py b/dvc/repo/experiments/queue/base.py
+index 96f19e53f..999180c5d 100644
+--- a/dvc/repo/experiments/queue/base.py
++++ b/dvc/repo/experiments/queue/base.py
+@@ -428,7 +428,7 @@ class BaseStashQueue(ABC):
+                     data = {}
+             extra = int(data.get("extra", 0)) + 1
+         else:
+-            extra = None
++            extra = ""
+         BaseExecutor.pack_repro_args(self.args_file, *args, extra=extra, **kwargs)
+         self.scm.add(self.args_file, force=True)
+ 

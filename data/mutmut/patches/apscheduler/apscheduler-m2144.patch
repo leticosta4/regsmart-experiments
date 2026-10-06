@@ -1,0 +1,13 @@
+diff --git a/src/apscheduler/triggers/calendarinterval.py b/src/apscheduler/triggers/calendarinterval.py
+index 357e6a0..20d95d6 100644
+--- a/src/apscheduler/triggers/calendarinterval.py
++++ b/src/apscheduler/triggers/calendarinterval.py
+@@ -104,7 +104,7 @@ class CalendarIntervalTrigger(Trigger):
+                     except ValueError:
+                         pass  # Nonexistent date
+                     else:
+-                        next_date += timedelta(self.days + self.weeks * 7)
++                        next_date += timedelta(self.days - self.weeks * 7)
+                         break
+             else:
+                 next_date = self.start_date

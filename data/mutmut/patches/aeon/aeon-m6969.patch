@@ -1,0 +1,13 @@
+diff --git a/aeon/classification/deep_learning/_inception_time.py b/aeon/classification/deep_learning/_inception_time.py
+index 110c142d..44d94bbf 100644
+--- a/aeon/classification/deep_learning/_inception_time.py
++++ b/aeon/classification/deep_learning/_inception_time.py
+@@ -249,7 +249,7 @@ class InceptionTimeClassifier(BaseClassifier):
+         self.metrics = metrics
+         self.optimizer = optimizer
+ 
+-        self.classifiers_ = []
++        self.classifiers_ = None
+ 
+         super().__init__()
+ 

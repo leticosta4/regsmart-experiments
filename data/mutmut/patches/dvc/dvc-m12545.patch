@@ -1,0 +1,12 @@
+diff --git a/dvc/repo/experiments/stash.py b/dvc/repo/experiments/stash.py
+index 54504cd5a..3e08161cc 100644
+--- a/dvc/repo/experiments/stash.py
++++ b/dvc/repo/experiments/stash.py
+@@ -42,7 +42,6 @@ class ExpStash(Stash):
+         r"(:(?P<branch>.+))?$"
+     )
+ 
+-    @property
+     def stash_revs(self) -> dict[str, ExpStashEntry]:
+         revs = {}
+         for i, entry in enumerate(self):

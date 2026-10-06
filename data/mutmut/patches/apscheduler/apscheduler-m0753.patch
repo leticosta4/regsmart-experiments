@@ -1,0 +1,13 @@
+diff --git a/src/apscheduler/_structures.py b/src/apscheduler/_structures.py
+index 6993990..0874d53 100644
+--- a/src/apscheduler/_structures.py
++++ b/src/apscheduler/_structures.py
+@@ -61,7 +61,7 @@ class Task:
+         validator=optional(instance_of(timedelta)),
+         on_setattr=frozen,
+     )
+-    metadata: MetadataType = attrs.field(validator=valid_metadata, factory=dict)
++    metadata: MetadataType = None
+     running_jobs: int = attrs.field(default=0)
+ 
+     def marshal(self, serializer: Serializer) -> dict[str, Any]:

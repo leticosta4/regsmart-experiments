@@ -196,5 +196,388 @@
         "patch": "data/mutmut/patches/networkx/networkx-m25405.patch"
       }
     ]
+  },
+  "dask": {
+    "base_branch": "insert-mutations",
+    "base_sha": "ba2e48d6239b6ccdf315c5e16dc1c82943d234be",
+    "mutmut_version": "2.5.1",
+    "seed": "42",
+    "total_generated": 44244,
+    "source_files": 181,
+    "skipped_files": [],
+    "generated_utc": "2026-10-05T20:06:47.560591+00:00",
+    "mutants": [
+      {
+        "key": "dask-m1940",
+        "mutmut_id": 1940,
+        "file": "dask/array/_array_expr/_creation.py",
+        "line": 24,
+        "patch": "data/mutmut/patches/dask/dask-m1940.patch"
+      },
+      {
+        "key": "dask-m11282",
+        "mutmut_id": 11282,
+        "file": "dask/array/overlap.py",
+        "line": 491,
+        "patch": "data/mutmut/patches/dask/dask-m11282.patch"
+      },
+      {
+        "key": "dask-m28832",
+        "mutmut_id": 28832,
+        "file": "dask/dataframe/dask_expr/_merge.py",
+        "line": 737,
+        "patch": "data/mutmut/patches/dask/dask-m28832.patch"
+      },
+      {
+        "key": "dask-m12753",
+        "mutmut_id": 12753,
+        "file": "dask/array/rechunk.py",
+        "line": 857,
+        "patch": "data/mutmut/patches/dask/dask-m12753.patch"
+      },
+      {
+        "key": "dask-m37146",
+        "mutmut_id": 37146,
+        "file": "dask/dataframe/io/parquet/core.py",
+        "line": 294,
+        "patch": "data/mutmut/patches/dask/dask-m37146.patch"
+      }
+    ]
+  },
+  "dvc": {
+    "base_branch": "insert-mutations",
+    "base_sha": "c6eecb50962259c13bac3c8ce9c2d8a2887f716f",
+    "mutmut_version": "2.5.1",
+    "seed": "42",
+    "total_generated": 19261,
+    "source_files": 257,
+    "skipped_files": [
+      "dvc/dependency/db.py",
+      "dvc/repo/experiments/executor/base.py"
+    ],
+    "generated_utc": "2026-10-05T20:42:49.906830+00:00",
+    "mutants": [
+      {
+        "key": "dvc-m11576",
+        "mutmut_id": 11576,
+        "file": "dvc/repo/experiments/queue/base.py",
+        "line": 428,
+        "patch": "data/mutmut/patches/dvc/dvc-m11576.patch"
+      },
+      {
+        "key": "dvc-m12545",
+        "mutmut_id": 12545,
+        "file": "dvc/repo/experiments/stash.py",
+        "line": 42,
+        "patch": "data/mutmut/patches/dvc/dvc-m12545.patch"
+      },
+      {
+        "key": "dvc-m19066",
+        "mutmut_id": 19066,
+        "file": "dvc/utils/strictyaml.py",
+        "line": 223,
+        "patch": "data/mutmut/patches/dvc/dvc-m19066.patch"
+      },
+      {
+        "key": "dvc-m16845",
+        "mutmut_id": 16845,
+        "file": "dvc/rwlock.py",
+        "line": 211,
+        "patch": "data/mutmut/patches/dvc/dvc-m16845.patch"
+      },
+      {
+        "key": "dvc-m6852",
+        "mutmut_id": 6852,
+        "file": "dvc/fs/callbacks.py",
+        "line": 58,
+        "patch": "data/mutmut/patches/dvc/dvc-m6852.patch"
+      }
+    ]
+  },
+  "trimesh": {
+    "base_branch": "insert-mutations",
+    "base_sha": "a838af774addb363a9b136a563c75d00843c968a",
+    "mutmut_version": "2.5.1",
+    "seed": "42",
+    "total_generated": 27027,
+    "source_files": 114,
+    "skipped_files": [
+      "trimesh/exchange/threemf.py"
+    ],
+    "generated_utc": "2026-10-05T22:07:00.368487+00:00",
+    "mutants": [
+      {
+        "key": "trimesh-m1825",
+        "mutmut_id": 1825,
+        "file": "trimesh/convex.py",
+        "line": 208,
+        "patch": "data/mutmut/patches/trimesh/trimesh-m1825.patch"
+      },
+      {
+        "key": "trimesh-m25103",
+        "mutmut_id": 25103,
+        "file": "trimesh/visual/material.py",
+        "line": 500,
+        "patch": "data/mutmut/patches/trimesh/trimesh-m25103.patch"
+      },
+      {
+        "key": "trimesh-m3147",
+        "mutmut_id": 3147,
+        "file": "trimesh/exchange/binvox.py",
+        "line": 295,
+        "patch": "data/mutmut/patches/trimesh/trimesh-m3147.patch"
+      },
+      {
+        "key": "trimesh-m21160",
+        "mutmut_id": 21160,
+        "file": "trimesh/transformations.py",
+        "line": 1983,
+        "patch": "data/mutmut/patches/trimesh/trimesh-m21160.patch"
+      },
+      {
+        "key": "trimesh-m13478",
+        "mutmut_id": 13478,
+        "file": "trimesh/path/polygons.py",
+        "line": 952,
+        "patch": "data/mutmut/patches/trimesh/trimesh-m13478.patch"
+      }
+    ]
+  },
+  "pytest-xdist": {
+    "base_branch": "insert-mutations",
+    "base_sha": "82b0dbc7ba31d0359c8f7a0de3aa2eea691faeae",
+    "mutmut_version": "2.5.1",
+    "seed": "42",
+    "total_generated": 1680,
+    "source_files": 17,
+    "skipped_files": [],
+    "generated_utc": "2026-10-05T23:27:12.639516+00:00",
+    "mutants": [
+      {
+        "key": "pytest-xdist-m1214",
+        "mutmut_id": 1214,
+        "file": "src/xdist/scheduler/loadscope.py",
+        "line": 249,
+        "patch": "data/mutmut/patches/pytest-xdist/pytest-xdist-m1214.patch"
+      },
+      {
+        "key": "pytest-xdist-m1461",
+        "mutmut_id": 1461,
+        "file": "src/xdist/workermanage.py",
+        "line": 168,
+        "patch": "data/mutmut/patches/pytest-xdist/pytest-xdist-m1461.patch"
+      },
+      {
+        "key": "pytest-xdist-m1049",
+        "mutmut_id": 1049,
+        "file": "src/xdist/scheduler/load.py",
+        "line": 61,
+        "patch": "data/mutmut/patches/pytest-xdist/pytest-xdist-m1049.patch"
+      },
+      {
+        "key": "pytest-xdist-m0722",
+        "mutmut_id": 722,
+        "file": "src/xdist/plugin.py",
+        "line": 425,
+        "patch": "data/mutmut/patches/pytest-xdist/pytest-xdist-m0722.patch"
+      },
+      {
+        "key": "pytest-xdist-m1537",
+        "mutmut_id": 1537,
+        "file": "src/xdist/workermanage.py",
+        "line": 316,
+        "patch": "data/mutmut/patches/pytest-xdist/pytest-xdist-m1537.patch"
+      }
+    ]
+  },
+  "pytest-django": {
+    "base_branch": "insert-mutations",
+    "base_sha": "01f739da6f7e336c518dd9111e9ceb0709f27bd6",
+    "mutmut_version": "2.5.1",
+    "seed": "42",
+    "total_generated": 728,
+    "source_files": 8,
+    "skipped_files": [],
+    "generated_utc": "2026-10-05T23:29:40.314982+00:00",
+    "mutants": [
+      {
+        "key": "pytest-django-m0376",
+        "mutmut_id": 376,
+        "file": "pytest_django/plugin.py",
+        "line": 153,
+        "patch": "data/mutmut/patches/pytest-django/pytest-django-m0376.patch"
+      },
+      {
+        "key": "pytest-django-m0491",
+        "mutmut_id": 491,
+        "file": "pytest_django/plugin.py",
+        "line": 399,
+        "patch": "data/mutmut/patches/pytest-django/pytest-django-m0491.patch"
+      },
+      {
+        "key": "pytest-django-m0604",
+        "mutmut_id": 604,
+        "file": "pytest_django/plugin.py",
+        "line": 679,
+        "patch": "data/mutmut/patches/pytest-django/pytest-django-m0604.patch"
+      },
+      {
+        "key": "pytest-django-m0049",
+        "mutmut_id": 49,
+        "file": "pytest_django/fixtures.py",
+        "line": 105,
+        "patch": "data/mutmut/patches/pytest-django/pytest-django-m0049.patch"
+      },
+      {
+        "key": "pytest-django-m0192",
+        "mutmut_id": 192,
+        "file": "pytest_django/fixtures.py",
+        "line": 505,
+        "patch": "data/mutmut/patches/pytest-django/pytest-django-m0192.patch"
+      }
+    ]
+  },
+  "aeon": {
+    "base_branch": "insert-mutations",
+    "base_sha": "222367a04a004cbe5544a28a3780b30ab1e27afd",
+    "mutmut_version": "2.5.1",
+    "seed": "42",
+    "total_generated": 63139,
+    "source_files": 500,
+    "skipped_files": [],
+    "generated_utc": "2026-10-06T00:41:33.420061+00:00",
+    "mutants": [
+      {
+        "key": "aeon-m6601",
+        "mutmut_id": 6601,
+        "file": "aeon/classification/deep_learning/_disjoint_cnn.py",
+        "line": 311,
+        "patch": "data/mutmut/patches/aeon/aeon-m6601.patch"
+      },
+      {
+        "key": "aeon-m24470",
+        "mutmut_id": 24470,
+        "file": "aeon/distances/elastic/_erp.py",
+        "line": 208,
+        "patch": "data/mutmut/patches/aeon/aeon-m24470.patch"
+      },
+      {
+        "key": "aeon-m22318",
+        "mutmut_id": 22318,
+        "file": "aeon/datasets/tser_datasets.py",
+        "line": 224,
+        "patch": "data/mutmut/patches/aeon/aeon-m22318.patch"
+      },
+      {
+        "key": "aeon-m6969",
+        "mutmut_id": 6969,
+        "file": "aeon/classification/deep_learning/_inception_time.py",
+        "line": 249,
+        "patch": "data/mutmut/patches/aeon/aeon-m6969.patch"
+      },
+      {
+        "key": "aeon-m30584",
+        "mutmut_id": 30584,
+        "file": "aeon/forecasting/stats/_dotm.py",
+        "line": 611,
+        "patch": "data/mutmut/patches/aeon/aeon-m30584.patch"
+      }
+    ]
+  },
+  "ultralytics": {
+    "base_branch": "insert-mutations",
+    "base_sha": "a87f087c046dd2dcee3b4ef2a787fcc8360e85d9",
+    "mutmut_version": "2.5.1",
+    "seed": "42",
+    "total_generated": 53477,
+    "source_files": 230,
+    "skipped_files": [],
+    "generated_utc": "2026-10-05T22:03:38.114927+00:00",
+    "mutants": [
+      {
+        "key": "ultralytics-m36889",
+        "mutmut_id": 36889,
+        "file": "ultralytics/trackers/track_tracker.py",
+        "line": 439,
+        "patch": "data/mutmut/patches/ultralytics/ultralytics-m36889.patch"
+      },
+      {
+        "key": "ultralytics-m23817",
+        "mutmut_id": 23817,
+        "file": "ultralytics/models/yolo/detect/train.py",
+        "line": 122,
+        "patch": "data/mutmut/patches/ultralytics/ultralytics-m23817.patch"
+      },
+      {
+        "key": "ultralytics-m34570",
+        "mutmut_id": 34570,
+        "file": "ultralytics/solutions/similarity_search.py",
+        "line": 160,
+        "patch": "data/mutmut/patches/ultralytics/ultralytics-m34570.patch"
+      },
+      {
+        "key": "ultralytics-m5380",
+        "mutmut_id": 5380,
+        "file": "ultralytics/data/dataset.py",
+        "line": 466,
+        "patch": "data/mutmut/patches/ultralytics/ultralytics-m5380.patch"
+      },
+      {
+        "key": "ultralytics-m2383",
+        "mutmut_id": 2383,
+        "file": "ultralytics/data/augment.py",
+        "line": 1841,
+        "patch": "data/mutmut/patches/ultralytics/ultralytics-m2383.patch"
+      }
+    ]
+  },
+  "apscheduler": {
+    "base_branch": "insert-mutations",
+    "base_sha": "8fd8b8190e8b5f79156ad4f34a4a9b5dec42dc78",
+    "mutmut_version": "2.5.1",
+    "seed": "42",
+    "total_generated": 2840,
+    "source_files": 45,
+    "skipped_files": [
+      "src/apscheduler/datastores/mongodb.py"
+    ],
+    "generated_utc": "2026-10-06T03:22:35.624873+00:00",
+    "mutants": [
+      {
+        "key": "apscheduler-m2144",
+        "mutmut_id": 2144,
+        "file": "src/apscheduler/triggers/calendarinterval.py",
+        "line": 104,
+        "patch": "data/mutmut/patches/apscheduler/apscheduler-m2144.patch"
+      },
+      {
+        "key": "apscheduler-m1399",
+        "mutmut_id": 1399,
+        "file": "src/apscheduler/datastores/sqlalchemy.py",
+        "line": 367,
+        "patch": "data/mutmut/patches/apscheduler/apscheduler-m1399.patch"
+      },
+      {
+        "key": "apscheduler-m2213",
+        "mutmut_id": 2213,
+        "file": "src/apscheduler/triggers/combining.py",
+        "line": 67,
+        "patch": "data/mutmut/patches/apscheduler/apscheduler-m2213.patch"
+      },
+      {
+        "key": "apscheduler-m0316",
+        "mutmut_id": 316,
+        "file": "src/apscheduler/_schedulers/async_.py",
+        "line": 214,
+        "patch": "data/mutmut/patches/apscheduler/apscheduler-m0316.patch"
+      },
+      {
+        "key": "apscheduler-m0753",
+        "mutmut_id": 753,
+        "file": "src/apscheduler/_structures.py",
+        "line": 61,
+        "patch": "data/mutmut/patches/apscheduler/apscheduler-m0753.patch"
+      }
+    ]
   }
 }

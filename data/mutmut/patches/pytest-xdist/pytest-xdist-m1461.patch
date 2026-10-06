@@ -1,0 +1,13 @@
+diff --git a/src/xdist/workermanage.py b/src/xdist/workermanage.py
+index c54b18f..7f8257c 100644
+--- a/src/xdist/workermanage.py
++++ b/src/xdist/workermanage.py
+@@ -168,7 +168,7 @@ class NodeManager:
+ 
+         return {
+             "ignores": ignores,
+-            "verbose": getattr(self.config.option, "verbose", 0),
++            "XXverboseXX": getattr(self.config.option, "verbose", 0),
+         }
+ 
+     def rsync(
