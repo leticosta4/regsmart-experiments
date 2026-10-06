@@ -241,6 +241,23 @@ def stash_cache(clone: Path, repo: str, base_sha: str) -> Path | None:
     return dst
 
 
+def hide_pyproject(clone: Path) -> Path | None:
+    """O mutmut 2.x lê o pyproject.toml com a lib `toml` (parser antigo) no import e
+    quebra com TOML válido que ela não entende (ex.: strings multilinha com `\\`).
+    Toda a config vai por CLI, então o arquivo é escondido enquanto o mutmut roda."""
+    src = clone / "pyproject.toml"
+    if not src.is_file():
+        return None
+    bak = clone / "pyproject.toml.mutgen-bak"
+    src.rename(bak)
+    return bak
+
+
+def unhide_pyproject(clone: Path, bak: Path | None) -> None:
+    if bak is not None and bak.exists():
+        bak.rename(clone / "pyproject.toml")
+
+
 def restore_cache(clone: Path, repo: str, base_sha: str) -> Path | None:
     """Repõe no clone o cache stashed da MESMA base. Base diferente não casa de
     propósito: o mutmut só valida a versão do schema do cache (cache.py), não o
@@ -388,18 +405,20 @@ def harvest(clone: Path, args, repo: str, mid: int, ids: dict[int, str], out_dir
     """Tenta materializar o mutante `mid` como patch. Devolve (registro, "") ou
     (None, motivo) com motivo em FAIL_REASONS. Deixa a árvore do clone limpa."""
     key = f"{repo}-m{mid:04d}"
+    mfile = ids.get(mid)
     try:
         run([args.mutmut, "apply", str(mid)], cwd=clone)
     except Exception:
-        run(["git", "checkout", "--quiet", "--", "."], cwd=clone)
+        if mfile:
+            run(["git", "checkout", "--quiet", "--", mfile], cwd=clone)
         return None, "apply"
     try:
-        mfile = ids.get(mid)
         if mfile is None:
             return None, "sem_arquivo"
         patch = run(["git", "diff", "--", mfile], cwd=clone)
     finally:
-        run(["git", "checkout", "--quiet", "--", "."], cwd=clone)
+        if mfile:
+            run(["git", "checkout", "--quiet", "--", mfile], cwd=clone)
     if not patch.strip():
         return None, "vazio"
     patch_path = out_dir / f"{key}.patch"
@@ -420,7 +439,7 @@ def harvest(clone: Path, args, repo: str, mid: int, ids: dict[int, str], out_dir
     }, ""
 
 
-def generate(entry: dict, args, existing: list[dict] | None = None) -> dict:
+def _generate(entry: dict, args, existing: list[dict] | None = None) -> dict:
     existing = list(existing or [])
     repo = entry["repo"]
     t_repo = time.monotonic()
@@ -464,6 +483,8 @@ def generate(entry: dict, args, existing: list[dict] | None = None) -> dict:
                 prog.update(done, extra=f"ok={ok_n} skip={len(skipped)}")
             files = [f for f in files if f not in set(skipped)]
             ph.end(f"{ok_n} mutável(is), {len(skipped)} ignorado(s) (parso não lê)")
+
+    bak = hide_pyproject(clone)
 
     # o mutmut exige uma pasta tests/ ou test/ na raiz; em vários forks os testes
     # ficam dentro do pacote, então cria uma vazia (não versionada)
@@ -595,6 +616,8 @@ def generate(entry: dict, args, existing: list[dict] | None = None) -> dict:
           f"{rel(out_dir)} | {(time.monotonic() - t_repo) / 60:.1f} min no total",
           flush=True)
 
+    unhide_pyproject(clone, bak)
+
     return {
         "base_branch": args.branch,
         "base_sha": base_sha,
@@ -606,6 +629,14 @@ def generate(entry: dict, args, existing: list[dict] | None = None) -> dict:
         "generated_utc": datetime.now(timezone.utc).isoformat(),
         "mutants": mutants[:target_n],
     }
+
+
+def generate(entry: dict, args, existing: list[dict] | None = None) -> dict:
+    clone = Path(args.workdir) / entry["repo"]
+    try:
+        return _generate(entry, args, existing)
+    finally:
+        unhide_pyproject(clone, clone / "pyproject.toml.mutgen-bak")
 
 
 def cmd_gen(args) -> int:
