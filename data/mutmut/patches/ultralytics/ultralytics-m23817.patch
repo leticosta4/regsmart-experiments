@@ -1,0 +1,13 @@
+diff --git a/ultralytics/models/yolo/detect/train.py b/ultralytics/models/yolo/detect/train.py
+index 5e6d0e9e3..109d4e153 100644
+--- a/ultralytics/models/yolo/detect/train.py
++++ b/ultralytics/models/yolo/detect/train.py
+@@ -122,7 +122,7 @@ class DetectionTrainer(BaseTrainer):
+             sz = (
+                 random.randrange(
+                     max(self.stride, int(self.args.imgsz * (1.0 - self.args.multi_scale))),  # min imgsz
+-                    int(self.args.imgsz * (1.0 + self.args.multi_scale) + self.stride),  # max imgsz
++                    int(self.args.imgsz / (1.0 + self.args.multi_scale) + self.stride),  # max imgsz
+                 )
+                 // self.stride
+                 * self.stride

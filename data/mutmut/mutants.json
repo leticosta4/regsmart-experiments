@@ -436,5 +436,99 @@
         "patch": "data/mutmut/patches/pytest-django/pytest-django-m0192.patch"
       }
     ]
+  },
+  "aeon": {
+    "base_branch": "insert-mutations",
+    "base_sha": "222367a04a004cbe5544a28a3780b30ab1e27afd",
+    "mutmut_version": "2.5.1",
+    "seed": "42",
+    "total_generated": 63139,
+    "source_files": 500,
+    "skipped_files": [],
+    "generated_utc": "2026-10-06T00:41:33.420061+00:00",
+    "mutants": [
+      {
+        "key": "aeon-m6601",
+        "mutmut_id": 6601,
+        "file": "aeon/classification/deep_learning/_disjoint_cnn.py",
+        "line": 311,
+        "patch": "data/mutmut/patches/aeon/aeon-m6601.patch"
+      },
+      {
+        "key": "aeon-m24470",
+        "mutmut_id": 24470,
+        "file": "aeon/distances/elastic/_erp.py",
+        "line": 208,
+        "patch": "data/mutmut/patches/aeon/aeon-m24470.patch"
+      },
+      {
+        "key": "aeon-m22318",
+        "mutmut_id": 22318,
+        "file": "aeon/datasets/tser_datasets.py",
+        "line": 224,
+        "patch": "data/mutmut/patches/aeon/aeon-m22318.patch"
+      },
+      {
+        "key": "aeon-m6969",
+        "mutmut_id": 6969,
+        "file": "aeon/classification/deep_learning/_inception_time.py",
+        "line": 249,
+        "patch": "data/mutmut/patches/aeon/aeon-m6969.patch"
+      },
+      {
+        "key": "aeon-m30584",
+        "mutmut_id": 30584,
+        "file": "aeon/forecasting/stats/_dotm.py",
+        "line": 611,
+        "patch": "data/mutmut/patches/aeon/aeon-m30584.patch"
+      }
+    ]
+  },
+  "ultralytics": {
+    "base_branch": "insert-mutations",
+    "base_sha": "a87f087c046dd2dcee3b4ef2a787fcc8360e85d9",
+    "mutmut_version": "2.5.1",
+    "seed": "42",
+    "total_generated": 53477,
+    "source_files": 230,
+    "skipped_files": [],
+    "generated_utc": "2026-10-05T22:03:38.114927+00:00",
+    "mutants": [
+      {
+        "key": "ultralytics-m36889",
+        "mutmut_id": 36889,
+        "file": "ultralytics/trackers/track_tracker.py",
+        "line": 439,
+        "patch": "data/mutmut/patches/ultralytics/ultralytics-m36889.patch"
+      },
+      {
+        "key": "ultralytics-m23817",
+        "mutmut_id": 23817,
+        "file": "ultralytics/models/yolo/detect/train.py",
+        "line": 122,
+        "patch": "data/mutmut/patches/ultralytics/ultralytics-m23817.patch"
+      },
+      {
+        "key": "ultralytics-m34570",
+        "mutmut_id": 34570,
+        "file": "ultralytics/solutions/similarity_search.py",
+        "line": 160,
+        "patch": "data/mutmut/patches/ultralytics/ultralytics-m34570.patch"
+      },
+      {
+        "key": "ultralytics-m5380",
+        "mutmut_id": 5380,
+        "file": "ultralytics/data/dataset.py",
+        "line": 466,
+        "patch": "data/mutmut/patches/ultralytics/ultralytics-m5380.patch"
+      },
+      {
+        "key": "ultralytics-m2383",
+        "mutmut_id": 2383,
+        "file": "ultralytics/data/augment.py",
+        "line": 1841,
+        "patch": "data/mutmut/patches/ultralytics/ultralytics-m2383.patch"
+      }
+    ]
   }
 }

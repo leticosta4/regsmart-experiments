@@ -1,0 +1,13 @@
+diff --git a/aeon/datasets/tser_datasets.py b/aeon/datasets/tser_datasets.py
+index 057eec54..5d9531a3 100644
+--- a/aeon/datasets/tser_datasets.py
++++ b/aeon/datasets/tser_datasets.py
+@@ -224,7 +224,7 @@ tser_soton_clean = [
+     "FloodModeling2",
+     "FloodModeling3",
+     "GasSensorArrayAcetone",
+-    "GasSensorArrayEthanol",
++    "XXGasSensorArrayEthanolXX",
+     "HotwaterPredictor",
+     "HouseholdPowerConsumption1_nmv",
+     "HouseholdPowerConsumption2_nmv",
