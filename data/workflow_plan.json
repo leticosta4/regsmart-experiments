@@ -1,0 +1,95 @@
+{
+  "warmup_ref": "mutant",
+  "overrides": {
+    "apscheduler": {
+      "baseline": {
+        "file": "test.yml",
+        "warmup": false
+        },
+      "ranking": {
+            "file": "test-ranking.yml",
+            "warmup": true
+        },
+      "regsmart": {
+            "file": "test-regsmart.yml",
+            "warmup": true
+        },
+      "regsmart-no-rank": {
+            "file": "test-regsmart-nr.yml",
+            "warmup": false
+        }
+    },
+    "ipython": {
+      "baseline": {
+        "file": "test.yml",
+        "warmup": false
+        },
+      "ranking": {
+            "file": "test-ranking.yml",
+            "warmup": true
+        },
+      "regsmart": {
+            "file": "test-regsmart.yml",
+            "warmup": true
+        },
+      "regsmart-no-rank": {
+            "file": "test-regsmart-nr.yml",
+            "warmup": false
+        }
+    },
+    "dvc": {
+      "baseline": {
+        "file": "tests.yml",
+        "warmup": false
+        },
+      "ranking": {
+            "file": "tests-ranking.yml",
+            "warmup": true
+        },
+      "regsmart": {
+            "file": "tests-regsmart.yml",
+            "warmup": true
+        },
+      "regsmart-no-rank": {
+            "file": "tests-regsmart-nr.yml",
+            "warmup": false
+        }
+    },
+    "librosa": {
+      "baseline": {
+        "file": "ci.yml",
+        "warmup": false
+        },
+      "ranking": {
+            "file": "ci-ranking.yml",
+            "warmup": true
+        },
+      "regsmart": {
+            "file": "ci-regsmart.yml",
+            "warmup": true
+        },
+      "regsmart-no-rank": {
+            "file": "ci-regsmart-nr.yml",
+            "warmup": false
+        }
+    },
+    "pytorch-lightning": {
+      "baseline": {
+        "file": "ci-tests-pytorch.yml",
+        "warmup": false
+        },
+      "ranking": {
+            "file": "ci-tests-ranking.yml",
+            "warmup": true
+        },
+      "regsmart": {
+            "file": "ci-tests-regsmart.yml",
+            "warmup": true
+        },
+      "regsmart-no-rank": {
+            "file": "ci-tests-regsmart-nr.yml",
+            "warmup": false
+        }
+    }
+  }
+}
