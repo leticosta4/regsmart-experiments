@@ -501,7 +501,73 @@ def span(rows: list[dict]) -> float | None:
     return (parse_ts(max(fin)) - parse_ts(min(sta))).total_seconds()
 
 
-def build_report(c: Campaign, manifest: dict, flaky: dict | None) -> str:
+WF_ORDER = ["baseline", "ranking", "regsmart", "regsmart-no-rank"]
+MAX_ROWS = 40  # linhas de detalhe por mutante; o resto fica no flaky_tests.json
+LEGEND = [
+    ("flaky", "falha em algumas execuções do baseline e passa em outras"),
+    ("só no plugin (flaky)", "baseline nunca falhou; falha às vezes sob plugin (provável dependência de ordem exposta pelo reordenamento)"),
+    ("só no plugin (fixa)", "baseline nunca falhou; falha em todas as execuções de algum plugin (investigar o plugin)"),
+    ("esperada, diverge", "falha sempre no baseline, mas não em todos os workflows (RTS não selecionou ou a ordem mudou o resultado)"),
+    ("esperada", "falha sempre em todos os workflows: efeito do mutante (ou falha pré-existente); só contada"),
+    ("indeterminado / sem baseline", "poucas execuções ou baseline ausente"),
+]
+
+
+def flaky_section(flaky: dict, show_expected: bool) -> list[str]:
+    if not flaky:
+        return ["_Análise de logs ainda não rodada. Use `flaky`._"]
+    L = ["Cada teste que falhou é classificado comparando o **baseline** com os workflows de "
+         "plugin, no mesmo SHA do mutante. Células = falhas/execuções (do job que mais falhou).",
+         "", "| classe | significado |", "|---|---|"]
+    L += [f"| {k} | {v} |" for k, v in LEGEND]
+    L += ["", "### Resumo", "",
+          "| repo | mutante | flaky | só plugin (flaky) | só plugin (fixa) | esperada, diverge | esperada | outros |",
+          "|---|---|---|---|---|---|---|---|"]
+    for repo, muts in sorted(flaky.items()):
+        for mut, info in sorted(muts.items()):
+            k = collections.Counter(t["class"] for t in info["tests"].values())
+            L.append(f"| {repo} | {mut} | {k['flaky']} | {k['só no plugin (flaky)']} | "
+                     f"{k['só no plugin (fixa)']} | {k['esperada, diverge']} | {k['esperada']} | "
+                     f"{k['indeterminado'] + k['sem baseline']} |")
+    combos = sorted({k for muts in flaky.values() for info in muts.values()
+                     for k in plugin_breakdown(info["tests"])}, key=_combo_key)
+    if combos:
+        L += ["", "### Só no plugin: em quais workflows falhou", "",
+              "Testes que nunca falharam no baseline (flaky + fixa), cada um contado uma vez, "
+              "na combinação exata de workflows em que falhou. `ranking+regsmart` = falhou nos dois.", "",
+              "| repo | mutante | " + " | ".join(combos) + " | total |",
+              "|---|---|" + "---|" * (len(combos) + 1)]
+        for repo, muts in sorted(flaky.items()):
+            for mut, info in sorted(muts.items()):
+                bd = plugin_breakdown(info["tests"])
+                L.append(f"| {repo} | {mut} | " + " | ".join(str(bd[k]) for k in combos)
+                         + f" | {sum(bd.values())} |")
+    for repo, muts in sorted(flaky.items()):
+        blocks = []
+        for mut, info in sorted(muts.items()):
+            rows = [(t["class"], nid, t) for nid, t in info["tests"].items()
+                    if show_expected or t["class"] != "esperada"]
+            if not rows:
+                continue
+            rows.sort(key=lambda r: (CLASS_ORDER.index(r[0]), r[1]))
+            cols = [w for w in WF_ORDER if w in info["runs"]] + \
+                   sorted(w for w in info["runs"] if w not in WF_ORDER)
+            blocks += [f"#### {mut}", "", "| teste | " + " | ".join(cols) + " | classe |",
+                       "|---|" + "---|" * (len(cols) + 1)]
+            for cls, nid, t in rows[:MAX_ROWS]:
+                cells = [f"{t['wf'][w]['failed']}/{t['wf'][w]['runs']}" if w in t["wf"]
+                         else f"0/{info['runs'][w]}" for w in cols]
+                blocks.append(f"| `{nid.replace('|', chr(92) + '|')}` | " + " | ".join(cells) + f" | {cls} |")
+            if len(rows) > MAX_ROWS:
+                blocks.append(f"| _+{len(rows) - MAX_ROWS} teste(s), ver flaky_tests.json_ |" + " |" * (len(cols) + 1))
+            blocks.append("")
+        if blocks:
+            L += ["", f"### {repo}", ""] + blocks
+    return L
+
+
+def build_report(c: Campaign, manifest: dict, flaky: dict | None,
+                 show_expected: bool = False) -> str:
     runs = manifest["runs"]
     sent = [r for r in runs if r.get("dispatched_at_utc")]
     counters = manifest.get("counters", {})
@@ -574,36 +640,8 @@ def build_report(c: Campaign, manifest: dict, flaky: dict | None) -> str:
         L.append(f"| {w} | {len(rows)} | {runner_minutes(job_intervals(rows))} |")
 
     L += ["", "## Testes flaky", ""]
-    if not flaky:
-        L.append("_Análise de logs ainda não rodada. Use `flaky`._")
-    else:
-        L += ["| repo | mutantes | workflow | flaky (distintos) | falham em todas as reps |",
-              "|---|---|---|---|---|"]
-        detail: dict[str, dict] = {}
-        for repo, muts in flaky.items():
-            by_wf = collections.defaultdict(lambda: {"muts": 0, "flaky": set(), "always": set()})
-            for mut, wfs in muts.items():
-                for wf, info in wfs.items():
-                    agg = by_wf[wf]
-                    agg["muts"] += 1
-                    agg["flaky"].update(info["flaky"])
-                    agg["always"].update(info["failing_all"])
-                    for nid, cnt in info["flaky"].items():
-                        d = detail.setdefault(repo, {}).setdefault((wf, nid), [])
-                        d.append((mut, cnt["failed"], cnt["reps"]))
-            for wf, agg in sorted(by_wf.items()):
-                L.append(f"| {repo} | {agg['muts']} | {wf} | {len(agg['flaky'])} | {len(agg['always'])} |")
-        L.append("")
-        L.append("`falham em todas as reps` inclui falhas pré-existentes (que já falham sem o "
-                 "mutante). Teste que falha em todos os mutantes do repo é candidato a isso.")
-        L.append("")
-        for repo, rows in detail.items():
-            L += [f"### {repo}", "", "| workflow | teste | mutantes afetados (falhou/reps) |", "|---|---|---|"]
-            for (wf, nid), ms in sorted(rows.items()):
-                shown = ", ".join(f"{m} ({f}/{r})" for m, f, r in ms[:4])
-                more = f" +{len(ms) - 4}" if len(ms) > 4 else ""
-                L.append(f"| {wf} | `{nid}` | {shown}{more} |")
-            L.append("")
+    L += flaky_section(flaky, show_expected)
+    L.append("")
 
     bad = [r for r in runs if r.get("conclusion") == "cancelled"]
     if bad:
@@ -673,17 +711,70 @@ def parse_run(c: Campaign, repo: str, run_id: int) -> list[tuple[str, set, int]]
     return out
 
 
+CLASS_ORDER = ["flaky", "só no plugin (flaky)", "só no plugin (fixa)", "esperada, diverge",
+               "indeterminado", "sem baseline", "esperada"]
+
+
+def classify(cells: dict, runs: dict) -> tuple[str, str]:
+    """Classifica um teste que falhou em algum workflow, usando o baseline de referência.
+
+    cells = {workflow: {failed, runs, jobs, intermittent}} só dos workflows em que
+    o teste falhou; runs = {workflow: nº de execuções analisadas}.
+    """
+    base = cells.get("baseline")
+    plug = {w: c for w, c in cells.items() if w != "baseline"}
+    if "baseline" not in runs:
+        if any(c["intermittent"] for c in cells.values()):
+            return "flaky", "intermitente, mas sem baseline pra comparar"
+        return "sem baseline", "baseline não rodou/analisado neste mutante"
+    if base and base["intermittent"]:
+        return "flaky", "falha em algumas execuções do baseline e passa em outras"
+    if base:  # falhou em todas as execuções do baseline
+        if runs["baseline"] < 2:
+            return "indeterminado", "baseline com 1 execução só"
+        diverge = [w for w in runs if w != "baseline"
+                   and not (w in plug and plug[w]["failed"] == plug[w]["runs"])]
+        if not diverge:
+            return "esperada", "falha sempre, em todos os workflows"
+        return "esperada, diverge", "não falhou sempre em: " + ", ".join(sorted(diverge))
+    onde = ", ".join(sorted(plug))
+    if any(c["intermittent"] for c in plug.values()):
+        return "só no plugin (flaky)", f"baseline nunca falhou; intermitente sob plugin, em: {onde}"
+    return "só no plugin (fixa)", f"baseline nunca falhou; falha em todas as execuções em: {onde}"
+
+
+def plugin_breakdown(tests: dict) -> collections.Counter:
+    """Testes `só no plugin` por combinação EXATA de workflows em que falharam.
+
+    É uma partição: cada teste conta uma vez (ex.: `ranking`, `regsmart`,
+    `ranking+regsmart`), então a soma bate com flaky + fixa.
+    """
+    out: collections.Counter = collections.Counter()
+    for t in tests.values():
+        if t["class"].startswith("só no plugin"):
+            out["+".join(sorted(w for w in t["wf"] if w != "baseline"))] += 1
+    return out
+
+
+def _combo_key(combo: str):
+    ws = combo.split("+")
+    return (len(ws), [WF_ORDER.index(w) if w in WF_ORDER else 99 for w in ws], combo)
+
+
 def analyze_flaky(c: Campaign, manifest: dict, exclude_warmup: bool,
                   only: dict) -> dict:
-    """{repo: {mutante: {workflow: {runs, total_seen, flaky, failing_all}}}}.
+    """{repo: {mutante: {runs, total_seen, tests: {nodeid: {class, why, wf}}}}}.
 
-    Flaky = falhou em pelo menos uma execução e passou em outra, no MESMO SHA
-    (o do mutante), comparando por (job, nodeid): o nome do job inclui a perna da
-    matriz, então um modo/SO que falha sozinho não vira flaky de outro.
-    `failing_all` = falhou em todas (>= 2) as execuções: o mapa de falhas esperadas
-    do mutante, junto com eventuais falhas pré-existentes.
+    Dentro de cada workflow, a unidade é (job, nodeid): o nome do job inclui a
+    perna da matriz, então um modo/SO que falha sozinho não vira flaky de outro.
+    Por workflow o teste ganha uma célula (falhas/execuções do job que mais falhou,
+    `intermittent` se algum job falhou em umas execuções e passou em outras).
+    A classe vem de comparar o baseline com os plugins (ver `classify`).
+    `runs` = execuções analisadas por workflow (o warm-up conta, a menos que
+    --exclude-warmup); no plugin o teste pode não ter sido selecionado, e o log não
+    distingue "passou" de "não rodou".
     """
-    groups = collections.defaultdict(list)
+    groups = collections.defaultdict(lambda: collections.defaultdict(list))
     for r in manifest["runs"]:
         if not (r.get("mutant") and r.get("run_id") and r.get("status") == "completed"):
             continue
@@ -695,30 +786,44 @@ def analyze_flaky(c: Campaign, manifest: dict, exclude_warmup: bool,
             continue
         if only["workflow"] and r["workflow"] not in only["workflow"]:
             continue
-        groups[(r["repo"], r["mutant"], r["workflow"])].append(r)
+        groups[(r["repo"], r["mutant"])][r["workflow"]].append(r)
 
     out: dict = {}
-    for (repo, mut, wf), rs in sorted(groups.items()):
-        legs = collections.defaultdict(list)  # job -> [(falhas, total), ...]
-        for r in rs:
-            for job, failed, total in parse_run(c, repo, r["run_id"]):
-                legs[job].append((failed, total))
-        flaky, always, total_seen = {}, [], 0
-        for job, reps in legs.items():
-            n = len(reps)
-            total_seen += max(t for _, t in reps)
-            counts = collections.Counter(nid for failed, _ in reps for nid in failed)
-            for nid, k in counts.items():
-                if k < n:
-                    flaky[f"{nid} [{job}]"] = {"reps": n, "failed": k, "passed": n - k}
-                elif n >= 2:
-                    always.append(f"{nid} [{job}]")
-        out.setdefault(repo, {}).setdefault(mut, {})[wf] = {
-            "runs": len(rs), "total_seen": total_seen, "flaky": flaky,
-            "failing_all": sorted(always),
-        }
-        print(f"  {repo:18} {mut:24} {wf:18} {len(rs)} runs: "
-              f"{len(flaky)} flaky, {len(always)} falham sempre")
+    for (repo, mut), wfs in sorted(groups.items()):
+        runs, total_seen = {}, {}
+        cells: dict = collections.defaultdict(dict)  # nodeid -> workflow -> célula
+        for wf, rs in sorted(wfs.items()):
+            legs = collections.defaultdict(list)  # job -> [(falhas, total), ...]
+            for r in rs:
+                for job, failed, total in parse_run(c, repo, r["run_id"]):
+                    legs[job].append((failed, total))
+            if not legs:  # nenhum log com resumo do pytest
+                continue
+            runs[wf] = max(len(v) for v in legs.values())
+            total_seen[wf] = sum(max(t for _, t in v) for v in legs.values())
+            for job, reps in sorted(legs.items()):
+                n = len(reps)
+                for nid, k in collections.Counter(nid for failed, _ in reps for nid in failed).items():
+                    cur = cells[nid].get(wf)
+                    if cur is None:
+                        cells[nid][wf] = {"failed": k, "runs": n, "jobs": 1, "intermittent": k < n}
+                        continue
+                    cur["jobs"] += 1
+                    cur["intermittent"] = cur["intermittent"] or k < n
+                    if (k / n, n) > (cur["failed"] / cur["runs"], cur["runs"]):
+                        cur["failed"], cur["runs"] = k, n
+        tests = {}
+        for nid, cs in sorted(cells.items()):
+            cls, why = classify(cs, runs)
+            tests[nid] = {"class": cls, "why": why, "wf": cs}
+        out.setdefault(repo, {})[mut] = {"runs": runs, "total_seen": total_seen, "tests": tests}
+        counts = collections.Counter(t["class"] for t in tests.values())
+        resumo = ", ".join(f"{counts[k]} {k}" for k in CLASS_ORDER if counts[k]) or "nenhuma falha"
+        onde = plugin_breakdown(tests)
+        if onde:
+            resumo += "  [só no plugin, por onde falhou: " + ", ".join(
+                f"{k} {n}" for k, n in sorted(onde.items(), key=lambda kv: _combo_key(kv[0]))) + "]"
+        print(f"  {repo:18} {mut:24} {sum(runs.values())} runs: {resumo}")
     return out
 
 
@@ -834,8 +939,9 @@ def check_refs(api: Api, rows: dict, todo: list[dict]) -> None:
             problems.append(f"{t['repo']}/{t['ref']}: esperado {row['sha'][:8]}, está em {seen[k][:8]}")
         row["sha"] = row.get("sha") or seen[k]
     if problems:
-        sys.exit("branches mudaram desde o insert_mutations.py (rode-o de novo ou "
-                 "atualize o registro):\n  " + "\n  ".join(sorted(set(problems))))
+        sys.exit("branches mudaram desde o registro (mutante trocado na mão?): rode "
+                 "`python sync_mutant_branches.py --write` pra atualizar o "
+                 "mutant_branches.json:\n  " + "\n  ".join(sorted(set(problems))))
 
 
 def cmd_run(api: Api, args) -> int:
@@ -986,7 +1092,7 @@ def cmd_flaky(api: Api, args) -> int:
 def cmd_report(api: Api, args) -> int:
     c: Campaign = args.campaign_obj
     flaky = json.loads(c.flaky_path.read_text(encoding="utf-8")) if c.flaky_path.exists() else None
-    text = build_report(c, load_manifest(c), flaky)
+    text = build_report(c, load_manifest(c), flaky, getattr(args, "show_expected", False))
     c.report_path.write_text(text, encoding="utf-8")
     print(text)
     print(f"\nSalvo em {c.report_path}")
@@ -1032,7 +1138,9 @@ def main(campaign: str = "flaky") -> None:
     p = sub.add_parser("flaky", parents=[common], help="analisa os logs e acha testes flaky")
     p.add_argument("--exclude-warmup", action="store_true", help="não conta o warm-up como execução")
     p.set_defaults(func=cmd_flaky)
-    sub.add_parser("report", parents=[common], help="gera o relatório markdown").set_defaults(func=cmd_report)
+    p = sub.add_parser("report", parents=[common], help="gera o relatório markdown")
+    p.add_argument("--show-expected", action="store_true", help="lista também as falhas esperadas")
+    p.set_defaults(func=cmd_report)
 
     args = parser.parse_args()
     args.campaign_obj = c

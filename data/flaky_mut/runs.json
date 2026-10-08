@@ -2207,15 +2207,15 @@
     },
     "final": {
       "limit": 5000,
-      "remaining": 5000,
-      "used": 0,
-      "reset_utc": "2026-10-08T21:32:15+00:00"
+      "remaining": 4991,
+      "used": 9,
+      "reset_utc": "2026-10-08T21:49:13+00:00"
     }
   },
   "counters": {
-    "get": 106,
+    "get": 109,
     "post": 60,
     "retries": 0,
-    "rate_limit": 4
+    "rate_limit": 7
   }
 }
