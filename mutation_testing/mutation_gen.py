@@ -12,10 +12,10 @@ uma branch/commit.
 
 Uso:
     pip install "mutmut==2.5.1"
-    python mutation_testing/mutation_gen.py gen                       # todos os repos do plano
-    python mutation_testing/mutation_gen.py gen --repo dask --n 15    # um repo
-    python mutation_testing/mutation_gen.py gen --repo dask --append  # completa o que já existe
-    python mutation_testing/mutation_gen.py list                      # resumo do que foi gerado
+    python -m mutation_testing.mutation_gen gen                       # todos os repos do plano
+    python -m mutation_testing.mutation_gen gen --repo dask --n 15    # um repo
+    python -m mutation_testing.mutation_gen gen --repo dask --append  # completa o que já existe
+    python -m mutation_testing.mutation_gen list                      # resumo do que foi gerado
 
 Sem `--append`, `gen` é destrutivo no repo: apaga data/mutmut/patches/<repo>/ e
 reescreve o bloco do repo em mutants.json. Com `--append`, os mutantes já

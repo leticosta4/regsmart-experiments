@@ -21,14 +21,14 @@ então rodar de novo é idempotente.
 Não abre PR. Nada é publicado sem `--push`.
 
 USO:
-    python mutation_testing/insert_mutations.py --dry-run                     # fase 1: mostra o plano
-    python mutation_testing/insert_mutations.py --push                        # fase 1: cria e publica a base
-    python mutation_testing/insert_mutations.py --repo trimesh --reset --push # reaponta a base (ex.: após atualizar workflows)
+    python -m mutation_testing.insert_mutations --dry-run                     # fase 1: mostra o plano
+    python -m mutation_testing.insert_mutations --push                        # fase 1: cria e publica a base
+    python -m mutation_testing.insert_mutations --repo trimesh --reset --push # reaponta a base (ex.: após atualizar workflows)
 
-    python mutation_testing/insert_mutations.py --mutants --dry-run           # fase 2: mostra o plano
-    python mutation_testing/insert_mutations.py --mutants --repo pytest-xdist --limit 3 --push   # teste pequeno
-    python mutation_testing/insert_mutations.py --mutants --push --pr         # todos (e abre draft)
-    python mutation_testing/insert_mutations.py --mutants --reset --push     # refaz (ex.: base mudou)
+    python -m mutation_testing.insert_mutations --mutants --dry-run           # fase 2: mostra o plano
+    python -m mutation_testing.insert_mutations --mutants --repo pytest-xdist --limit 3 --push   # teste pequeno
+    python -m mutation_testing.insert_mutations --mutants --push --pr         # todos (e abre draft)
+    python -m mutation_testing.insert_mutations --mutants --reset --push     # refaz (ex.: base mudou)
 
 ATENÇÃO: os workflows na `insert-mutations` precisam excluir `mut-*` do gatilho
 `push` (`branches: ['**', '!mut-*']`), senão cada branch de mutante publicada

@@ -7,7 +7,7 @@ suíte de testes de verdade (pra você confirmar manualmente antes de simplifica
 
 USO:
     export GITHUB_TOKEN_REGSMART=ghp_xxx   # token pessoal, escopo "repo" (ou "public_repo") já basta
-    python identify_test_workflows.py
+    python -m get_info.identify_test_workflows
 
 Sem GITHUB_TOKEN_REGSMART, o script ainda funciona, mas usa a API não-autenticada do
 GitHub (60 requisições/hora) -- com 14 repositórios e vários arquivos cada,
