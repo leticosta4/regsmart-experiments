@@ -5,63 +5,43 @@
     "mutants": {
       "ipython-m1288": {
         "branch": "mut-ipython-m1288",
-        "head_sha": "7210d236a25a5a5dc0d76716b1d30e33dcaee031",
+        "head_sha": "a65daee35a638527e8be8733dda2bd9ecf966da2",
         "file": "IPython/core/completer.py",
         "line": 1787,
         "patch": "data/mutmut/patches/ipython/ipython-m1288.patch",
-        "published": true,
-        "original_head_sha": "a65daee35a638527e8be8733dda2bd9ecf966da2",
-        "altered": true,
-        "ahead_base": 10,
-        "behind_base": 0
+        "published": false
       },
       "ipython-m17283": {
         "branch": "mut-ipython-m17283",
-        "head_sha": "08f97debae590a4e13c751d1fa5b6c52e524d710",
+        "head_sha": "eb6c943b9ab1b5a241fcafe1d35153adbd01615f",
         "file": "IPython/core/ultratb.py",
         "line": 194,
         "patch": "data/mutmut/patches/ipython/ipython-m17283.patch",
-        "published": true,
-        "original_head_sha": "eb6c943b9ab1b5a241fcafe1d35153adbd01615f",
-        "altered": true,
-        "ahead_base": 9,
-        "behind_base": 0
+        "published": false
       },
       "ipython-m4267": {
         "branch": "mut-ipython-m4267",
-        "head_sha": "7ff21fcc84e73705cf537b12fc6f5b80b54f4c8d",
+        "head_sha": "dfc73e5c0e1feed313185a27e932111b595bc16d",
         "file": "IPython/core/displayhook.py",
         "line": 327,
         "patch": "data/mutmut/patches/ipython/ipython-m4267.patch",
-        "published": true,
-        "original_head_sha": "dfc73e5c0e1feed313185a27e932111b595bc16d",
-        "altered": true,
-        "ahead_base": 5,
-        "behind_base": 0
+        "published": true
       },
       "ipython-m22732": {
         "branch": "mut-ipython-m22732",
-        "head_sha": "9c31a5f59bd6f5213a35eb10c269726dceb7e1c2",
+        "head_sha": "2541564352cd592407be326b76f62087c0543a70",
         "file": "IPython/terminal/pt_inputhooks/osx.py",
         "line": 38,
         "patch": "data/mutmut/patches/ipython/ipython-m22732.patch",
-        "published": true,
-        "original_head_sha": "2541564352cd592407be326b76f62087c0543a70",
-        "altered": true,
-        "ahead_base": 5,
-        "behind_base": 0
+        "published": true
       },
       "ipython-m22324": {
         "branch": "mut-ipython-m22324",
-        "head_sha": "6fc215fc4bc014b144c61e97dcd212e83c13dd8b",
+        "head_sha": "3e876b03ba422035ef05a2138486e791768ee8bf",
         "file": "IPython/terminal/ipapp.py",
         "line": 168,
         "patch": "data/mutmut/patches/ipython/ipython-m22324.patch",
-        "published": true,
-        "original_head_sha": "3e876b03ba422035ef05a2138486e791768ee8bf",
-        "altered": true,
-        "ahead_base": 4,
-        "behind_base": 0
+        "published": true
       }
     }
   },
