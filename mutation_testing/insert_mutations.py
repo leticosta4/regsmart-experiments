@@ -1,16 +1,16 @@
 """
-insert_mutations.py
+mutation_testing/insert_mutations.py
 
 FASE 1 (padrão): cria a branch `insert-mutations` em cada fork da lista,
 **baseada no default branch do próprio fork** (main/master/etc. -- resolvido por
 `origin/HEAD`, nunca escrito "main" no código, porque `apscheduler`,
 `pytest-xdist` e `pytorch-lightning` usam `master`). Grava o SHA-base em
-`data/mutmut/insert_mutations_bases.csv` (mescla com o que já existe).
+`data/mutmut/mutation_testing/insert_mutations_bases.csv` (mescla com o que já existe).
 
 FASE 2 (`--mutants`): lê os patches gerados por `mutation_gen.py`
 (`data/mutmut/mutants.json`) e cria **uma branch por mutante**,
 `mut-<repo>-mNNNN`, com **um commit** que aplica só aquele patch sobre a
-`origin/insert_mutations`. Cada commit vira um `head_sha` (para o faults.yaml),
+`origin/mutation_testing/insert_mutations`. Cada commit vira um `head_sha` (para o faults.yaml),
 gravado em `data/mutmut/mutant_branches.json`.
 
 A fase 2 não mexe no seu working tree nem cria branches locais: monta o commit
@@ -21,14 +21,14 @@ então rodar de novo é idempotente.
 Não abre PR. Nada é publicado sem `--push`.
 
 USO:
-    python insert_mutations.py --dry-run                     # fase 1: mostra o plano
-    python insert_mutations.py --push                        # fase 1: cria e publica a base
-    python insert_mutations.py --repo trimesh --reset --push # reaponta a base (ex.: após atualizar workflows)
+    python mutation_testing/insert_mutations.py --dry-run                     # fase 1: mostra o plano
+    python mutation_testing/insert_mutations.py --push                        # fase 1: cria e publica a base
+    python mutation_testing/insert_mutations.py --repo trimesh --reset --push # reaponta a base (ex.: após atualizar workflows)
 
-    python insert_mutations.py --mutants --dry-run           # fase 2: mostra o plano
-    python insert_mutations.py --mutants --repo pytest-xdist --limit 3 --push   # teste pequeno
-    python insert_mutations.py --mutants --push --pr         # todos (e abre draft)
-    python insert_mutations.py --mutants --reset --push     # refaz (ex.: base mudou)
+    python mutation_testing/insert_mutations.py --mutants --dry-run           # fase 2: mostra o plano
+    python mutation_testing/insert_mutations.py --mutants --repo pytest-xdist --limit 3 --push   # teste pequeno
+    python mutation_testing/insert_mutations.py --mutants --push --pr         # todos (e abre draft)
+    python mutation_testing/insert_mutations.py --mutants --reset --push     # refaz (ex.: base mudou)
 
 ATENÇÃO: os workflows na `insert-mutations` precisam excluir `mut-*` do gatilho
 `push` (`branches: ['**', '!mut-*']`), senão cada branch de mutante publicada
@@ -58,7 +58,7 @@ CLONES = Path("/home/Letícia/Projetos/tcc-experiments/effective-validation")
 
 ROOT = Path(__file__).resolve().parent
 DATA = ROOT / "data" / "mutmut"
-RECORD_PATH = DATA / "insert_mutations_bases.csv"
+RECORD_PATH = DATA / "mutation_testing/insert_mutations_bases.csv"
 MUTANTS_PATH = DATA / "mutants.json"            # gerado por mutation_gen.py
 BRANCHES_PATH = DATA / "mutant_branches.json"   # head_sha de cada mutante
 CSV_FIELDS = ["repo", "base_branch", "base_sha", "branch", "branch_sha", "data"]
@@ -449,7 +449,7 @@ def main() -> None:
     touched = sum(1 for row in rows if row["changed"])
     print(f"\n{len(rows)} repo(s) no padrão, {touched} alterado(s) nesta execução."
           + ("" if args.dry_run else f" Bases em {RECORD_PATH}.")
-          + "  Próximo passo: python insert_mutations.py --mutants --push")
+          + "  Próximo passo: python mutation_testing/insert_mutations.py --mutants --push")
 
 
 if __name__ == "__main__":

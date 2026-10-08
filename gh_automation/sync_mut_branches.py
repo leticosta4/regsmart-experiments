@@ -23,10 +23,10 @@ Sem --push só mostra o plano (nada é escrito, commitado ou publicado). O regis
 de disparar os runs: runs já feitos ficam com o SHA antigo no manifesto.
 
 Uso:
-  python sync_mut_branches.py --repo ipython              # dry-run (padrão)
-  python sync_mut_branches.py --repo ipython --push
-  python sync_mut_branches.py --push --mutant ipython-m4267
-  python sync_mut_branches.py --push --regsmart-sha <sha>  # fixa um commit específico
+  python gh_automation/sync_mut_branches.py --repo ipython              # dry-run (padrão)
+  python gh_automation/sync_mut_branches.py --repo ipython --push
+  python gh_automation/sync_mut_branches.py --push --mutant ipython-m4267
+  python gh_automation/sync_mut_branches.py --push --regsmart-sha <sha>  # fixa um commit específico
 
 Não confundir com fetch_mut_branches.py, que só realinha o registro com o
 remoto. Rode fetch_mut_branches.py --write` antes se você trocou mutantes na

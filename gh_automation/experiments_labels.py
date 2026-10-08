@@ -2,7 +2,7 @@ import subprocess
 
 """
 - gh auth status
-- python3 experiments_labels.py
+- python3 gh_automation/experiments_labels.py
 """
 
 
