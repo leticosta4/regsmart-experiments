@@ -3,27 +3,27 @@
 ## Custo
 
 - Início: `2026-10-08T19:07:56.558771+00:00`
-- Fim: `2026-10-08T19:29:25.172847+00:00`
-- Tempo ativo do script: **21m28s**
-- Janela real dos runs (1º dispatch → última conclusão): **20m55s** (inclui fila)
-- Minutos de runner somados: **375.6 min**
+- Fim: `2026-10-08T23:03:06.418363+00:00`
+- Tempo ativo do script: **58m24s**
+- Janela real dos runs (1º dispatch → última conclusão): **3h54m38s** (inclui fila)
+- Minutos de runner somados: **1021.6 min**
 - Pico de concorrência medido: **20** jobs (teto do plano Free: 20)
 
 ## API / rate limit
 
-- Requisições: 109 GET, 60 POST
+- Requisições: 241 GET, 120 POST
 - Retries: 0
-- Rate limit (final): 9/5000 consumidos, reseta em `2026-10-08T21:49:13+00:00`
+- Rate limit (final): 47/5000 consumidos, reseta em `2026-10-08T23:51:24+00:00`
 
 ## Saúde da execução
 
 | Métrica | warm-up | repetições |
 |---|---|---|
-| Tarefas no plano | 0 | 60 |
-| Despachadas | 0 | 60 |
-| Com run_id | 0 | 60 |
-| Sucesso | 0 | 0 |
-| Falha (testes falharam) | 0 | 60 |
+| Tarefas no plano | 0 | 120 |
+| Despachadas | 0 | 120 |
+| Com run_id | 0 | 120 |
+| Sucesso | 0 | 12 |
+| Falha (testes falharam) | 0 | 108 |
 | Canceladas | 0 | 0 |
 | Em andamento | 0 | 0 |
 | Dispatch falhou / run perdido | 0 | 0 |
@@ -33,15 +33,16 @@
 | repo | runs | success | failure | cancelled | em andamento | makespan | min runner |
 |---|---|---|---|---|---|---|---|
 | ipython | 60 | 0 | 60 | 0 | 0 | 20m55s | 375.6 |
+| trimesh | 60 | 12 | 48 | 0 | 0 | 36m25s | 646.0 |
 
 ## Por workflow
 
 | workflow | runs | min runner |
 |---|---|---|
-| baseline | 15 | 50.8 |
-| ranking | 15 | 205.0 |
-| regsmart | 15 | 89.8 |
-| regsmart-no-rank | 15 | 30.1 |
+| baseline | 30 | 129.7 |
+| ranking | 30 | 528.5 |
+| regsmart | 30 | 273.4 |
+| regsmart-no-rank | 30 | 90.1 |
 
 ## Testes flaky
 
@@ -65,6 +66,11 @@ Cada teste que falhou é classificado comparando o **baseline** com os workflows
 | ipython | ipython-m22324 | 0 | 57 | 8 | 0 | 1 | 0 |
 | ipython | ipython-m22732 | 0 | 39 | 8 | 0 | 1 | 0 |
 | ipython | ipython-m4267 | 0 | 45 | 9 | 0 | 1 | 0 |
+| trimesh | trimesh-m13478 | 0 | 0 | 0 | 0 | 1 | 0 |
+| trimesh | trimesh-m1825 | 0 | 0 | 0 | 0 | 1 | 0 |
+| trimesh | trimesh-m21160 | 0 | 0 | 0 | 0 | 2 | 0 |
+| trimesh | trimesh-m25103 | 0 | 0 | 0 | 0 | 7 | 0 |
+| trimesh | trimesh-m3147 | 0 | 0 | 0 | 0 | 0 | 0 |
 
 ### Só no plugin: em quais workflows falhou
 
@@ -77,6 +83,11 @@ Testes que nunca falharam no baseline (flaky + fixa), cada um contado uma vez, n
 | ipython | ipython-m22324 | 58 | 0 | 7 | 0 | 65 |
 | ipython | ipython-m22732 | 14 | 3 | 29 | 1 | 47 |
 | ipython | ipython-m4267 | 47 | 0 | 7 | 0 | 54 |
+| trimesh | trimesh-m13478 | 0 | 0 | 0 | 0 | 0 |
+| trimesh | trimesh-m1825 | 0 | 0 | 0 | 0 | 0 |
+| trimesh | trimesh-m21160 | 0 | 0 | 0 | 0 | 0 |
+| trimesh | trimesh-m25103 | 0 | 0 | 0 | 0 | 0 |
+| trimesh | trimesh-m3147 | 0 | 0 | 0 | 0 | 0 |
 
 ### ipython
 

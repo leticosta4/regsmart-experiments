@@ -4586,5 +4586,416 @@
         }
       }
     }
+  },
+  "trimesh": {
+    "trimesh-m13478": {
+      "runs": {
+        "baseline": 3,
+        "ranking": 3,
+        "regsmart": 3,
+        "regsmart-no-rank": 3
+      },
+      "total_seen": {
+        "baseline": 754,
+        "ranking": 3016,
+        "regsmart": 3,
+        "regsmart-no-rank": 1
+      },
+      "tests": {
+        "tests/test_polygons.py::test_second_moment": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        }
+      }
+    },
+    "trimesh-m1825": {
+      "runs": {
+        "baseline": 3,
+        "ranking": 3,
+        "regsmart": 3,
+        "regsmart-no-rank": 3
+      },
+      "total_seen": {
+        "baseline": 754,
+        "ranking": 3016,
+        "regsmart": 2262,
+        "regsmart-no-rank": 754
+      },
+      "tests": {
+        "tests/test_gltf.py::GLTFTest::test_bulk": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        }
+      }
+    },
+    "trimesh-m21160": {
+      "runs": {
+        "baseline": 3,
+        "ranking": 3,
+        "regsmart": 3,
+        "regsmart-no-rank": 3
+      },
+      "total_seen": {
+        "baseline": 754,
+        "ranking": 3016,
+        "regsmart": 2262,
+        "regsmart-no-rank": 754
+      },
+      "tests": {
+        "tests/test_transformations.py::TransformTest::test_angle": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_transformations.py::TransformTest::test_doctest": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        }
+      }
+    },
+    "trimesh-m25103": {
+      "runs": {
+        "baseline": 3,
+        "ranking": 3,
+        "regsmart": 3,
+        "regsmart-no-rank": 3
+      },
+      "total_seen": {
+        "baseline": 754,
+        "ranking": 3016,
+        "regsmart": 2262,
+        "regsmart-no-rank": 754
+      },
+      "tests": {
+        "tests/test_dae.py::DAETest::test_invalid_shininess": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_dae.py::DAETest::test_material_round": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_gltf.py::GLTFTest::test_spec_gloss_factors_only": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_gltf.py::GLTFTest::test_specular_glossiness": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_pbr.py::PBRTest::test_storage": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_pbr_concatenate.py::PBRConcatenateTest::test_pbr_identical_materials": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_texture.py::TextureTest::test_pbr_nouv_export": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        }
+      }
+    },
+    "trimesh-m3147": {
+      "runs": {
+        "baseline": 3,
+        "ranking": 3,
+        "regsmart": 3,
+        "regsmart-no-rank": 3
+      },
+      "total_seen": {
+        "baseline": 754,
+        "ranking": 3016,
+        "regsmart": 3,
+        "regsmart-no-rank": 1
+      },
+      "tests": {}
+    }
   }
 }

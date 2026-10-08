@@ -5,43 +5,63 @@
     "mutants": {
       "ipython-m1288": {
         "branch": "mut-ipython-m1288",
-        "head_sha": "a65daee35a638527e8be8733dda2bd9ecf966da2",
+        "head_sha": "7210d236a25a5a5dc0d76716b1d30e33dcaee031",
         "file": "IPython/core/completer.py",
         "line": 1787,
         "patch": "data/mutmut/patches/ipython/ipython-m1288.patch",
-        "published": false
+        "published": true,
+        "original_head_sha": "a65daee35a638527e8be8733dda2bd9ecf966da2",
+        "altered": true,
+        "ahead_base": 10,
+        "behind_base": 0
       },
       "ipython-m17283": {
         "branch": "mut-ipython-m17283",
-        "head_sha": "eb6c943b9ab1b5a241fcafe1d35153adbd01615f",
+        "head_sha": "08f97debae590a4e13c751d1fa5b6c52e524d710",
         "file": "IPython/core/ultratb.py",
         "line": 194,
         "patch": "data/mutmut/patches/ipython/ipython-m17283.patch",
-        "published": false
+        "published": true,
+        "original_head_sha": "eb6c943b9ab1b5a241fcafe1d35153adbd01615f",
+        "altered": true,
+        "ahead_base": 9,
+        "behind_base": 0
       },
       "ipython-m4267": {
         "branch": "mut-ipython-m4267",
-        "head_sha": "dfc73e5c0e1feed313185a27e932111b595bc16d",
+        "head_sha": "7ff21fcc84e73705cf537b12fc6f5b80b54f4c8d",
         "file": "IPython/core/displayhook.py",
         "line": 327,
         "patch": "data/mutmut/patches/ipython/ipython-m4267.patch",
-        "published": true
+        "published": true,
+        "original_head_sha": "dfc73e5c0e1feed313185a27e932111b595bc16d",
+        "altered": true,
+        "ahead_base": 5,
+        "behind_base": 0
       },
       "ipython-m22732": {
         "branch": "mut-ipython-m22732",
-        "head_sha": "2541564352cd592407be326b76f62087c0543a70",
+        "head_sha": "9c31a5f59bd6f5213a35eb10c269726dceb7e1c2",
         "file": "IPython/terminal/pt_inputhooks/osx.py",
         "line": 38,
         "patch": "data/mutmut/patches/ipython/ipython-m22732.patch",
-        "published": true
+        "published": true,
+        "original_head_sha": "2541564352cd592407be326b76f62087c0543a70",
+        "altered": true,
+        "ahead_base": 5,
+        "behind_base": 0
       },
       "ipython-m22324": {
         "branch": "mut-ipython-m22324",
-        "head_sha": "3e876b03ba422035ef05a2138486e791768ee8bf",
+        "head_sha": "6fc215fc4bc014b144c61e97dcd212e83c13dd8b",
         "file": "IPython/terminal/ipapp.py",
         "line": 168,
         "patch": "data/mutmut/patches/ipython/ipython-m22324.patch",
-        "published": true
+        "published": true,
+        "original_head_sha": "3e876b03ba422035ef05a2138486e791768ee8bf",
+        "altered": true,
+        "ahead_base": 4,
+        "behind_base": 0
       }
     }
   },
@@ -250,48 +270,68 @@
     "mutants": {
       "trimesh-m1825": {
         "branch": "mut-trimesh-m1825",
-        "head_sha": "93f8bb8cdb0cb66bf3dd5787ad42a05abef147ac",
+        "head_sha": "3555e6528a98026871080f5cd893916e3818f7e3",
         "file": "trimesh/convex.py",
         "line": 208,
         "patch": "data/mutmut/patches/trimesh/trimesh-m1825.patch",
         "published": true,
-        "pr": "https://github.com/leticosta4/trimesh/pull/2"
+        "pr": "https://github.com/leticosta4/trimesh/pull/2",
+        "original_head_sha": "93f8bb8cdb0cb66bf3dd5787ad42a05abef147ac",
+        "altered": true,
+        "ahead_base": 4,
+        "behind_base": 0
       },
       "trimesh-m25103": {
         "branch": "mut-trimesh-m25103",
-        "head_sha": "4d5d739f8c624e8e6f181792f7b578b456ecb7c8",
+        "head_sha": "4676cc7e0a95847bb27bc919d06054da6c65ee69",
         "file": "trimesh/visual/material.py",
         "line": 500,
         "patch": "data/mutmut/patches/trimesh/trimesh-m25103.patch",
         "published": true,
-        "pr": "https://github.com/leticosta4/trimesh/pull/3"
+        "pr": "https://github.com/leticosta4/trimesh/pull/3",
+        "original_head_sha": "4d5d739f8c624e8e6f181792f7b578b456ecb7c8",
+        "altered": true,
+        "ahead_base": 4,
+        "behind_base": 0
       },
       "trimesh-m3147": {
         "branch": "mut-trimesh-m3147",
-        "head_sha": "2c4f501278ed7ed43ced3c7b3ca4dd5d6da3aded",
+        "head_sha": "89b740ab7130fe05ad6fb45bdbb1870941cb9a7b",
         "file": "trimesh/exchange/binvox.py",
         "line": 295,
         "patch": "data/mutmut/patches/trimesh/trimesh-m3147.patch",
         "published": true,
-        "pr": "https://github.com/leticosta4/trimesh/pull/4"
+        "pr": "https://github.com/leticosta4/trimesh/pull/4",
+        "original_head_sha": "2c4f501278ed7ed43ced3c7b3ca4dd5d6da3aded",
+        "altered": true,
+        "ahead_base": 4,
+        "behind_base": 0
       },
       "trimesh-m21160": {
         "branch": "mut-trimesh-m21160",
-        "head_sha": "13c7a7f45418029dae46d49cdd2a127ad5ad5990",
+        "head_sha": "7e750b6910506649726bccbc026d8ca8f7056b96",
         "file": "trimesh/transformations.py",
         "line": 1983,
         "patch": "data/mutmut/patches/trimesh/trimesh-m21160.patch",
         "published": true,
-        "pr": "https://github.com/leticosta4/trimesh/pull/5"
+        "pr": "https://github.com/leticosta4/trimesh/pull/5",
+        "original_head_sha": "13c7a7f45418029dae46d49cdd2a127ad5ad5990",
+        "altered": true,
+        "ahead_base": 4,
+        "behind_base": 0
       },
       "trimesh-m13478": {
         "branch": "mut-trimesh-m13478",
-        "head_sha": "28b48c7a3b423e058eea580cc45e1004ebf22f0c",
+        "head_sha": "eced742f591a04b2898559f6075845176cad21e4",
         "file": "trimesh/path/polygons.py",
         "line": 952,
         "patch": "data/mutmut/patches/trimesh/trimesh-m13478.patch",
         "published": true,
-        "pr": "https://github.com/leticosta4/trimesh/pull/6"
+        "pr": "https://github.com/leticosta4/trimesh/pull/6",
+        "original_head_sha": "28b48c7a3b423e058eea580cc45e1004ebf22f0c",
+        "altered": true,
+        "ahead_base": 4,
+        "behind_base": 0
       }
     }
   }

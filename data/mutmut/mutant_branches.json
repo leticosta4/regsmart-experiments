@@ -270,48 +270,68 @@
     "mutants": {
       "trimesh-m1825": {
         "branch": "mut-trimesh-m1825",
-        "head_sha": "93f8bb8cdb0cb66bf3dd5787ad42a05abef147ac",
+        "head_sha": "1e6bae8b88849c1508b4796a72eab8d318ae3182",
         "file": "trimesh/convex.py",
         "line": 208,
         "patch": "data/mutmut/patches/trimesh/trimesh-m1825.patch",
         "published": true,
-        "pr": "https://github.com/leticosta4/trimesh/pull/2"
+        "pr": "https://github.com/leticosta4/trimesh/pull/2",
+        "original_head_sha": "93f8bb8cdb0cb66bf3dd5787ad42a05abef147ac",
+        "altered": true,
+        "ahead_base": 3,
+        "behind_base": 0
       },
       "trimesh-m25103": {
         "branch": "mut-trimesh-m25103",
-        "head_sha": "4d5d739f8c624e8e6f181792f7b578b456ecb7c8",
+        "head_sha": "349028d554ebe11eb6ccdf28f5b729fab6c80c18",
         "file": "trimesh/visual/material.py",
         "line": 500,
         "patch": "data/mutmut/patches/trimesh/trimesh-m25103.patch",
         "published": true,
-        "pr": "https://github.com/leticosta4/trimesh/pull/3"
+        "pr": "https://github.com/leticosta4/trimesh/pull/3",
+        "original_head_sha": "4d5d739f8c624e8e6f181792f7b578b456ecb7c8",
+        "altered": true,
+        "ahead_base": 3,
+        "behind_base": 0
       },
       "trimesh-m3147": {
         "branch": "mut-trimesh-m3147",
-        "head_sha": "2c4f501278ed7ed43ced3c7b3ca4dd5d6da3aded",
+        "head_sha": "bc3f22bf4f5f114efae410adbf89868f8644d7b2",
         "file": "trimesh/exchange/binvox.py",
         "line": 295,
         "patch": "data/mutmut/patches/trimesh/trimesh-m3147.patch",
         "published": true,
-        "pr": "https://github.com/leticosta4/trimesh/pull/4"
+        "pr": "https://github.com/leticosta4/trimesh/pull/4",
+        "original_head_sha": "2c4f501278ed7ed43ced3c7b3ca4dd5d6da3aded",
+        "altered": true,
+        "ahead_base": 3,
+        "behind_base": 0
       },
       "trimesh-m21160": {
         "branch": "mut-trimesh-m21160",
-        "head_sha": "13c7a7f45418029dae46d49cdd2a127ad5ad5990",
+        "head_sha": "805b2f54529d8624998844b75388b3b7ce6cc612",
         "file": "trimesh/transformations.py",
         "line": 1983,
         "patch": "data/mutmut/patches/trimesh/trimesh-m21160.patch",
         "published": true,
-        "pr": "https://github.com/leticosta4/trimesh/pull/5"
+        "pr": "https://github.com/leticosta4/trimesh/pull/5",
+        "original_head_sha": "13c7a7f45418029dae46d49cdd2a127ad5ad5990",
+        "altered": true,
+        "ahead_base": 3,
+        "behind_base": 0
       },
       "trimesh-m13478": {
         "branch": "mut-trimesh-m13478",
-        "head_sha": "28b48c7a3b423e058eea580cc45e1004ebf22f0c",
+        "head_sha": "7df9c5c01e1c1f7b92b3af140853ef467911756c",
         "file": "trimesh/path/polygons.py",
         "line": 952,
         "patch": "data/mutmut/patches/trimesh/trimesh-m13478.patch",
         "published": true,
-        "pr": "https://github.com/leticosta4/trimesh/pull/6"
+        "pr": "https://github.com/leticosta4/trimesh/pull/6",
+        "original_head_sha": "28b48c7a3b423e058eea580cc45e1004ebf22f0c",
+        "altered": true,
+        "ahead_base": 3,
+        "behind_base": 0
       }
     }
   }

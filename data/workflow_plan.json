@@ -90,6 +90,24 @@
             "file": "ci-tests-regsmart-nr.yml",
             "warmup": false
         }
+    },
+    "trimesh": {
+      "baseline": {
+        "file": "test.yml",
+        "warmup": false
+        },
+      "ranking": {
+            "file": "test-ranking.yml",
+            "warmup": true
+        },
+      "regsmart": {
+            "file": "test-regsmart.yml",
+            "warmup": true
+        },
+      "regsmart-no-rank": {
+            "file": "test-regsmart-nr.yml",
+            "warmup": false
+        }
     }
   }
 }
