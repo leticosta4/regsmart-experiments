@@ -155,7 +155,10 @@ class Api:
                     payload = resp.read().decode()
                     return json.loads(payload) if payload else {}
             except urllib.error.HTTPError as exc:
-                detail = exc.read().decode()[:200]
+                # detail = exc.read().decode()[:200]
+                detail = exc.read().decode(errors="replace")
+                print(f"\n[ERRO API GitHub] {method} {url}")
+                print(f"HTTP {exc.code}: {detail[:1000]}")
                 retry_after = exc.headers.get("Retry-After")
                 retryable = (
                     exc.code == 429
