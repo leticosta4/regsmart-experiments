@@ -221,3 +221,4 @@ __marimo__/
 # Mutation testing scripts
 work/
 data/mutmut/mutcache/
+data/flaky_mut/raw/
