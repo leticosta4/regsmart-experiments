@@ -51,7 +51,7 @@ OWNER = "leticosta4"
 API = "https://api.github.com"
 ROOT = Path(__file__).resolve().parent
 DATA = ROOT / "data"
-REPO_PLAN_PATH = DATA / "flaky" / "flaky_plan.json"  # repos + workflow baseline (já existe)
+REPO_PLAN_PATH = DATA / "flaky_mut" / "flaky_plan.json"  # repos + workflow baseline (já existe)
 WORKFLOW_PLAN_PATH = DATA / "workflow_plan.json"  # opcional: arquivos dos workflows por modo
 BRANCHES_PATH = DATA / "mutmut" / "mutant_branches.json"  # gerado pelo insert_mutations.py
 
