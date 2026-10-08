@@ -1,0 +1,2174 @@
+{
+  "ipython": {
+    "ipython-m1288": {
+      "baseline": {
+        "runs": 3,
+        "total_seen": 2850,
+        "flaky": {},
+        "failing_all": [
+          "tests/test_completer.py::test_back_unicode_completion [test (ubuntu-latest, 3.12, test_extra)]"
+        ]
+      },
+      "ranking": {
+        "runs": 3,
+        "total_seen": 11401,
+        "flaky": {
+          "tests/test_magic.py::test_cell_magic_class [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_mix_terms [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_magic.py::test_cell_magic_class2 [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_cell_magic_reg [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_profile.py::test_profile_app_list_subcommand [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_application.py::test_initialize_stops_at_subapp [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_magic.py::test_multiline_time [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_cell_magic_func_deco [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_run.py::test_run_tb [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_config_available_configs [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_historyapp.py::test_history_app_trim_subcommand [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_undefined_variables[t = []\\nif condition_1:\\n    t = 'string'\\nelif condition_2:\\n    t = 1\\nelif condition_3:\\n    t = {}\\nt.-insert_text29-False-limited] [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_magic_completion_shadowing [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_run.py::test_builtins_id [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_interactiveshell.py::test_naked_string_cells [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_completer.py::test_func_kw_completions [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_ipapp.py::test_locate_subcommand [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_dict_key_completion_bytes [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_undefined_variables_without_jedi[t: int | str\\nt.-insert_text3] [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_storemagic.py::test_store_restore [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_dataframe_key_completion [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_magic_completion_order [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magics_pylab.py::test_matplotlib_no_arg_prints_backend [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_dirops [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_history.py::test_histmanager_memory_fallback_reopens_db [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_cell_magic_class2 [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_cell_magic_class [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_cell_magic_func_deco [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_displayhook.py::test_underscore_no_overwrite_builtins [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "   ProfileLocate:history.py:793 Failed to create history session in /tmp/pytest-of-runner/pytest-0/test_histmanager_memory_fallba0/history.sqlite. History will not be saved. [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_cell_magic_reg [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_multiline_time [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_interactiveshell.py::test_naked_string_cells [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_undefined_variables[t = []\\nif some_condition:\\n    t.-append-False-limited] [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::tests.test_magic.doctest_hist_op [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_interactiveshell.py::test_run_cell_asyncio_run [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_undefined_variables[a = []\\nwhile condition:\\n    a.-append-False-limited] [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_interactiveshell.py::test_run_cell_await [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_misc_no_jedi_completions[a=\"str\"; b=1-(a, b).-expected1-not_expected1] [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_displayhook.py::test_underscore_no_overwrite_user [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_magic.py::test_time_raise_on_interrupt [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_timeit_raise_on_interrupt [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          }
+        },
+        "failing_all": [
+          "IPython/core/magics/config.py::IPython.core.magics.config.ConfigMagics.config [ranking (rkn_qtf)]",
+          "IPython/testing/plugin/dtexample.py::IPython.testing.plugin.dtexample.ipos [ranking (rkn_qtf)]",
+          "tests/test_completer.py::test_back_unicode_completion [ranking (rkn_hybrid)]",
+          "tests/test_completer.py::test_back_unicode_completion [ranking (rkn_qtf)]",
+          "tests/test_completer.py::test_back_unicode_completion [ranking (rkn_recentfail)]",
+          "tests/test_completer.py::test_back_unicode_completion [ranking (rkn_simchgpath)]",
+          "tests/test_completer.py::test_dict_key_completion_string [ranking (rkn_qtf)]",
+          "tests/test_completer.py::test_dict_key_completion_unicode_py3 [ranking (rkn_qtf)]",
+          "tests/test_display_2.py::test_matplotlib_positioning [ranking (rkn_qtf)]",
+          "tests/test_displayhook.py::test_underscore_no_overwrite_user [ranking (rkn_qtf)]",
+          "tests/test_editorhooks.py::test_install_editor [ranking (rkn_qtf)]",
+          "tests/test_editorhooks.py::test_line_none_defaults_to_zero [ranking (rkn_qtf)]",
+          "tests/test_interactiveshell.py::test_run_cell_asyncio_run [ranking (rkn_qtf)]",
+          "tests/test_interactiveshell.py::test_run_cell_await [ranking (rkn_qtf)]",
+          "tests/test_magic.py::test_reset_in [ranking (rkn_hybrid)]",
+          "tests/test_magic.py::test_reset_in [ranking (rkn_qtf)]",
+          "tests/test_magic.py::tests.test_magic.test_debug_magic [ranking (rkn_qtf)]",
+          "tests/test_magic.py::tests.test_magic.test_debug_magic_locals [ranking (rkn_qtf)]"
+        ]
+      },
+      "regsmart": {
+        "runs": 3,
+        "total_seen": 1671,
+        "flaky": {
+          "tests/test_application.py::test_initialize_stops_at_subapp [regsmart (rgsm_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_mix_terms [regsmart (rgsm_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_dict_key_restrict_to_dicts [regsmart (rgsm_qtf)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_completer.py::test_dict_key_completion_string [regsmart (rgsm_qtf)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_completer.py::test_func_kw_completions [regsmart (rgsm_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          }
+        },
+        "failing_all": [
+          "tests/test_completer.py::test_back_unicode_completion [regsmart (rgsm_hybrid)]",
+          "tests/test_completer.py::test_back_unicode_completion [regsmart (rgsm_qtf)]",
+          "tests/test_completer.py::test_back_unicode_completion [regsmart (rgsm_recentfail)]",
+          "tests/test_display_2.py::test_matplotlib_positioning [regsmart (rgsm_qtf)]",
+          "tests/test_editorhooks.py::test_install_editor [regsmart (rgsm_qtf)]",
+          "tests/test_editorhooks.py::test_line_none_defaults_to_zero [regsmart (rgsm_qtf)]"
+        ]
+      },
+      "regsmart-no-rank": {
+        "runs": 3,
+        "total_seen": 557,
+        "flaky": {},
+        "failing_all": [
+          "tests/test_completer.py::test_back_unicode_completion [test-regsmart-nr (test_extra)]"
+        ]
+      }
+    },
+    "ipython-m17283": {
+      "baseline": {
+        "runs": 3,
+        "total_seen": 2850,
+        "flaky": {},
+        "failing_all": [
+          "tests/test_async_helpers.py::test_in_func_no_error [test (ubuntu-latest, 3.12, test_extra)]",
+          "tests/test_async_helpers.py::test_nonlocal [test (ubuntu-latest, 3.12, test_extra)]",
+          "tests/test_async_helpers.py::test_top_level_return_error [test (ubuntu-latest, 3.12, test_extra)]",
+          "tests/test_interactiveshell.py::test_silent_postexec [test (ubuntu-latest, 3.12, test_extra)]",
+          "tests/test_interactiveshell.py::test_syntax_error [test (ubuntu-latest, 3.12, test_extra)]",
+          "tests/test_interactiveshell.py::test_syntaxerror_input_transformer [test (ubuntu-latest, 3.12, test_extra)]",
+          "tests/test_interactiveshell.py::test_user_expression [test (ubuntu-latest, 3.12, test_extra)]",
+          "tests/test_interactiveshell.py::test_user_variables [test (ubuntu-latest, 3.12, test_extra)]",
+          "tests/test_interactivshell.py::test_inputtransformer_syntaxerror [test (ubuntu-latest, 3.12, test_extra)]",
+          "tests/test_interactivshell.py::test_repl_not_plain_text [test (ubuntu-latest, 3.12, test_extra)]",
+          "tests/test_iplib.py::tests.test_iplib.doctest_tb_plain [test (ubuntu-latest, 3.12, test_extra)]",
+          "tests/test_iplib.py::tests.test_iplib.doctest_tb_sysexit [test (ubuntu-latest, 3.12, test_extra)]",
+          "tests/test_magic.py::test_notebook_export_json_with_output [test (ubuntu-latest, 3.12, test_extra)]",
+          "tests/test_magic.py::test_tb_syntaxerror [test (ubuntu-latest, 3.12, test_extra)]",
+          "tests/test_run.py::test_ignore_sys_exit [test (ubuntu-latest, 3.12, test_extra)]",
+          "tests/test_ultratb.py::testSyntaxError [test (ubuntu-latest, 3.12, test_extra)]",
+          "tests/test_ultratb.py::test_direct_cause_error [test (ubuntu-latest, 3.12, test_extra)]",
+          "tests/test_ultratb.py::test_dynamic_code [test (ubuntu-latest, 3.12, test_extra)]",
+          "tests/test_ultratb.py::test_exception_during_handling_error [test (ubuntu-latest, 3.12, test_extra)]",
+          "tests/test_ultratb.py::test_handlers [test (ubuntu-latest, 3.12, test_extra)]",
+          "tests/test_ultratb.py::test_indentationerror_shows_line [test (ubuntu-latest, 3.12, test_extra)]",
+          "tests/test_ultratb.py::test_jsondecodeerror_message [test (ubuntu-latest, 3.12, test_extra)]",
+          "tests/test_ultratb.py::test_nested_genexpr [test (ubuntu-latest, 3.12, test_extra)]",
+          "tests/test_ultratb.py::test_non_syntaxerror [test (ubuntu-latest, 3.12, test_extra)]",
+          "tests/test_ultratb.py::test_nonascii_msg[minimal-Exception: \\xe9] [test (ubuntu-latest, 3.12, test_extra)]",
+          "tests/test_ultratb.py::test_nonascii_msg[plain-Exception('\\xe9')] [test (ubuntu-latest, 3.12, test_extra)]",
+          "tests/test_ultratb.py::test_plain_direct_cause_error [test (ubuntu-latest, 3.12, test_extra)]",
+          "tests/test_ultratb.py::test_plain_exception_during_handling_error [test (ubuntu-latest, 3.12, test_extra)]",
+          "tests/test_ultratb.py::test_plain_reports_notes [test (ubuntu-latest, 3.12, test_extra)]",
+          "tests/test_ultratb.py::test_plain_suppress_exception_chaining [test (ubuntu-latest, 3.12, test_extra)]",
+          "tests/test_ultratb.py::test_suppress_exception_chaining [test (ubuntu-latest, 3.12, test_extra)]",
+          "tests/test_ultratb.py::test_syntax_error_changing_py_file [test (ubuntu-latest, 3.12, test_extra)]",
+          "tests/test_ultratb.py::test_syntaxerror_no_stacktrace_at_compile_time [test (ubuntu-latest, 3.12, test_extra)]",
+          "tests/test_ultratb.py::test_syntaxerror_stacktrace_when_running_compiled_code [test (ubuntu-latest, 3.12, test_extra)]",
+          "tests/test_ultratb.py::test_sysexit_while_handling_error [test (ubuntu-latest, 3.12, test_extra)]"
+        ]
+      },
+      "ranking": {
+        "runs": 3,
+        "total_seen": 11401,
+        "flaky": {
+          "tests/test_formatters.py::test_warn_error_for_type [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_cell_magic_class [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_completer.py::test_mix_terms [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_magic.py::test_cell_magic_class2 [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_ultratb.py::test_dynamic_code [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_cell_magic_reg [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_profile.py::test_profile_app_list_subcommand [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_application.py::test_initialize_stops_at_subapp [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_magic.py::test_multiline_time [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_magic.py::test_cell_magic_func_deco [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_ultratb.py::test_iso8859_5 [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic_terminal.py::test_cpaste [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_run.py::test_multiprocessing_run [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_ultratb.py::test_recursion_three_frames [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_run.py::test_run_tb [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_ultratb.py::test_recursion_one_frame [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_interactiveshell.py::test_input_rejection [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_run.py::test_debug_run_submodule[absolute] [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_ultratb.py::test_changing_py_file [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_ultratb.py::test_exception_during_handling_error [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_notebook_export_json_with_output [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_history.py::test_histmanager_memory_fallback_reopens_db [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_ipapp.py::test_locate_subcommand [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_interactiveshell.py::test_multiline_string_cells [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_dirops [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_historyapp.py::test_history_app_trim_subcommand [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "   ProfileLocate:history.py:793 Failed to create history session in /tmp/pytest-of-runner/pytest-0/test_histmanager_memory_fallba0/history.sqlite. History will not be saved. [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_undefined_variables[t = []\\nif condition_1:\\n    t = 'string'\\nelif condition_2:\\n    t = 1\\nelif condition_3:\\n    t = {}\\nt.-insert_text29-False-limited] [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_ultratb.py::test_suppress_exception_chaining [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_completer.py::test_magic_completion_shadowing [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_storemagic.py::test_store_restore [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_run.py::test_builtins_id [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_dict_key_restrict_to_dicts [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_completer.py::test_func_kw_completions [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_ultratb.py::test_direct_cause_error [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_ultratb.py::test_nonascii_path [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_undefined_variables[a = []\\nwhile condition:\\n    a.-append-False-limited] [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_ultratb.py::test_verbose_reports_notes [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_undefined_variables[t = []\\nif some_condition:\\n    t = 'string'\\nelse:\\n    t = 1\\nt.-insert_text27-False-limited] [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_ultratb.py::test_syntaxerror_no_stacktrace_at_compile_time [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_magic_completion_order [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_interactiveshell.py::test_naked_string_cells [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magics_pylab.py::test_matplotlib_no_arg_prints_backend [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_quoted_file_completions [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_cell_magic_class [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_magic.py::test_dirops [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_dict_key_completion_string [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_magic.py::test_cell_magic_class2 [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_ultratb.py::test_syntaxerror_no_stacktrace_at_compile_time [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_run.py::test_debug_run_submodule[relative] [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_magic.py::test_cell_magic_reg [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_storemagic.py::test_store_restore [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_run.py::test_run_tb [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_run.py::test_debug_run_submodule[absolute] [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_magic.py::test_notebook_export_json_with_output [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "IPython/core/magics/config.py::IPython.core.magics.config.ConfigMagics.config [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_magic.py::tests.test_magic.test_debug_magic_locals [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_cd_force_quiet [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_interactivshell.py::test_repl_not_plain_text [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_magic.py::tests.test_magic.test_debug_magic [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::tests.test_magic.doctest_hist_f [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_ipapp.py::test_locate_subcommand [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_script_do_not_raise_on_interrupt [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_timeit_raise_on_interrupt [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_line_cell_info [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_config_available_configs [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_script_raise_on_interrupt [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_time_raise_on_interrupt [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_formatters.py::test_warn_error_for_type [ranking (rkn_recentfail)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_formatters.py::test_bad_repr_traceback [ranking (rkn_recentfail)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_backgroundjobs.py::test_traceback [ranking (rkn_recentfail)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_formatters.py::test_error_pretty_method [ranking (rkn_recentfail)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_backgroundjobs.py::test_dead_job_attributes [ranking (rkn_recentfail)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_displayhook.py::test_underscore_no_overwrite_user [ranking (rkn_recentfail)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_formatters.py::test_error_method [ranking (rkn_recentfail)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_interactiveshell.py::test_input_rejection [ranking (rkn_recentfail)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_displayhook.py::test_underscore_no_overwrite_builtins [ranking (rkn_recentfail)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_interactiveshell.py::test_run_cell_asyncio_run [ranking (rkn_recentfail)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_interactiveshell.py::test_naked_string_cells [ranking (rkn_recentfail)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_interactiveshell.py::test_run_cell_await [ranking (rkn_recentfail)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          }
+        },
+        "failing_all": [
+          "IPython/core/magics/config.py::IPython.core.magics.config.ConfigMagics.config [ranking (rkn_qtf)]",
+          "IPython/testing/plugin/dtexample.py::IPython.testing.plugin.dtexample.ipos [ranking (rkn_qtf)]",
+          "tests/test_async_helpers.py::test_in_func_no_error [ranking (rkn_hybrid)]",
+          "tests/test_async_helpers.py::test_in_func_no_error [ranking (rkn_qtf)]",
+          "tests/test_async_helpers.py::test_in_func_no_error [ranking (rkn_recentfail)]",
+          "tests/test_async_helpers.py::test_in_func_no_error [ranking (rkn_simchgpath)]",
+          "tests/test_async_helpers.py::test_nonlocal [ranking (rkn_hybrid)]",
+          "tests/test_async_helpers.py::test_nonlocal [ranking (rkn_qtf)]",
+          "tests/test_async_helpers.py::test_nonlocal [ranking (rkn_recentfail)]",
+          "tests/test_async_helpers.py::test_nonlocal [ranking (rkn_simchgpath)]",
+          "tests/test_async_helpers.py::test_top_level_return_error [ranking (rkn_hybrid)]",
+          "tests/test_async_helpers.py::test_top_level_return_error [ranking (rkn_qtf)]",
+          "tests/test_async_helpers.py::test_top_level_return_error [ranking (rkn_recentfail)]",
+          "tests/test_async_helpers.py::test_top_level_return_error [ranking (rkn_simchgpath)]",
+          "tests/test_completer.py::test_dict_key_completion_string [ranking (rkn_qtf)]",
+          "tests/test_completer.py::test_dict_key_completion_unicode_py3 [ranking (rkn_qtf)]",
+          "tests/test_display_2.py::test_matplotlib_positioning [ranking (rkn_qtf)]",
+          "tests/test_displayhook.py::test_underscore_no_overwrite_user [ranking (rkn_hybrid)]",
+          "tests/test_displayhook.py::test_underscore_no_overwrite_user [ranking (rkn_qtf)]",
+          "tests/test_editorhooks.py::test_install_editor [ranking (rkn_qtf)]",
+          "tests/test_editorhooks.py::test_line_none_defaults_to_zero [ranking (rkn_qtf)]",
+          "tests/test_interactiveshell.py::test_run_cell_asyncio_run [ranking (rkn_hybrid)]",
+          "tests/test_interactiveshell.py::test_run_cell_asyncio_run [ranking (rkn_qtf)]",
+          "tests/test_interactiveshell.py::test_run_cell_await [ranking (rkn_hybrid)]",
+          "tests/test_interactiveshell.py::test_run_cell_await [ranking (rkn_qtf)]",
+          "tests/test_interactiveshell.py::test_silent_postexec [ranking (rkn_hybrid)]",
+          "tests/test_interactiveshell.py::test_silent_postexec [ranking (rkn_qtf)]",
+          "tests/test_interactiveshell.py::test_silent_postexec [ranking (rkn_recentfail)]",
+          "tests/test_interactiveshell.py::test_silent_postexec [ranking (rkn_simchgpath)]",
+          "tests/test_interactiveshell.py::test_syntax_error [ranking (rkn_hybrid)]",
+          "tests/test_interactiveshell.py::test_syntax_error [ranking (rkn_qtf)]",
+          "tests/test_interactiveshell.py::test_syntax_error [ranking (rkn_recentfail)]",
+          "tests/test_interactiveshell.py::test_syntax_error [ranking (rkn_simchgpath)]",
+          "tests/test_interactiveshell.py::test_syntaxerror_input_transformer [ranking (rkn_hybrid)]",
+          "tests/test_interactiveshell.py::test_syntaxerror_input_transformer [ranking (rkn_qtf)]",
+          "tests/test_interactiveshell.py::test_syntaxerror_input_transformer [ranking (rkn_recentfail)]",
+          "tests/test_interactiveshell.py::test_syntaxerror_input_transformer [ranking (rkn_simchgpath)]",
+          "tests/test_interactiveshell.py::test_user_expression [ranking (rkn_hybrid)]",
+          "tests/test_interactiveshell.py::test_user_expression [ranking (rkn_qtf)]",
+          "tests/test_interactiveshell.py::test_user_expression [ranking (rkn_recentfail)]",
+          "tests/test_interactiveshell.py::test_user_expression [ranking (rkn_simchgpath)]",
+          "tests/test_interactiveshell.py::test_user_variables [ranking (rkn_hybrid)]",
+          "tests/test_interactiveshell.py::test_user_variables [ranking (rkn_qtf)]",
+          "tests/test_interactiveshell.py::test_user_variables [ranking (rkn_recentfail)]",
+          "tests/test_interactiveshell.py::test_user_variables [ranking (rkn_simchgpath)]",
+          "tests/test_interactivshell.py::test_inputtransformer_syntaxerror [ranking (rkn_hybrid)]",
+          "tests/test_interactivshell.py::test_inputtransformer_syntaxerror [ranking (rkn_qtf)]",
+          "tests/test_interactivshell.py::test_inputtransformer_syntaxerror [ranking (rkn_recentfail)]",
+          "tests/test_interactivshell.py::test_inputtransformer_syntaxerror [ranking (rkn_simchgpath)]",
+          "tests/test_interactivshell.py::test_repl_not_plain_text [ranking (rkn_qtf)]",
+          "tests/test_interactivshell.py::test_repl_not_plain_text [ranking (rkn_recentfail)]",
+          "tests/test_interactivshell.py::test_repl_not_plain_text [ranking (rkn_simchgpath)]",
+          "tests/test_iplib.py::tests.test_iplib.doctest_tb_plain [ranking (rkn_hybrid)]",
+          "tests/test_iplib.py::tests.test_iplib.doctest_tb_plain [ranking (rkn_qtf)]",
+          "tests/test_iplib.py::tests.test_iplib.doctest_tb_plain [ranking (rkn_recentfail)]",
+          "tests/test_iplib.py::tests.test_iplib.doctest_tb_plain [ranking (rkn_simchgpath)]",
+          "tests/test_iplib.py::tests.test_iplib.doctest_tb_sysexit [ranking (rkn_hybrid)]",
+          "tests/test_iplib.py::tests.test_iplib.doctest_tb_sysexit [ranking (rkn_qtf)]",
+          "tests/test_iplib.py::tests.test_iplib.doctest_tb_sysexit [ranking (rkn_recentfail)]",
+          "tests/test_iplib.py::tests.test_iplib.doctest_tb_sysexit [ranking (rkn_simchgpath)]",
+          "tests/test_magic.py::test_config_available_configs [ranking (rkn_qtf)]",
+          "tests/test_magic.py::test_notebook_export_json_with_output [ranking (rkn_recentfail)]",
+          "tests/test_magic.py::test_notebook_export_json_with_output [ranking (rkn_simchgpath)]",
+          "tests/test_magic.py::test_reset_in [ranking (rkn_hybrid)]",
+          "tests/test_magic.py::test_reset_in [ranking (rkn_qtf)]",
+          "tests/test_magic.py::test_tb_syntaxerror [ranking (rkn_hybrid)]",
+          "tests/test_magic.py::test_tb_syntaxerror [ranking (rkn_qtf)]",
+          "tests/test_magic.py::test_tb_syntaxerror [ranking (rkn_recentfail)]",
+          "tests/test_magic.py::test_tb_syntaxerror [ranking (rkn_simchgpath)]",
+          "tests/test_magic.py::tests.test_magic.test_debug_magic [ranking (rkn_qtf)]",
+          "tests/test_magic.py::tests.test_magic.test_debug_magic_locals [ranking (rkn_qtf)]",
+          "tests/test_run.py::test_ignore_sys_exit [ranking (rkn_hybrid)]",
+          "tests/test_run.py::test_ignore_sys_exit [ranking (rkn_qtf)]",
+          "tests/test_run.py::test_ignore_sys_exit [ranking (rkn_recentfail)]",
+          "tests/test_run.py::test_ignore_sys_exit [ranking (rkn_simchgpath)]",
+          "tests/test_ultratb.py::testSyntaxError [ranking (rkn_hybrid)]",
+          "tests/test_ultratb.py::testSyntaxError [ranking (rkn_qtf)]",
+          "tests/test_ultratb.py::testSyntaxError [ranking (rkn_recentfail)]",
+          "tests/test_ultratb.py::testSyntaxError [ranking (rkn_simchgpath)]",
+          "tests/test_ultratb.py::test_direct_cause_error [ranking (rkn_recentfail)]",
+          "tests/test_ultratb.py::test_direct_cause_error [ranking (rkn_simchgpath)]",
+          "tests/test_ultratb.py::test_dynamic_code [ranking (rkn_recentfail)]",
+          "tests/test_ultratb.py::test_dynamic_code [ranking (rkn_simchgpath)]",
+          "tests/test_ultratb.py::test_exception_during_handling_error [ranking (rkn_recentfail)]",
+          "tests/test_ultratb.py::test_exception_during_handling_error [ranking (rkn_simchgpath)]",
+          "tests/test_ultratb.py::test_handlers [ranking (rkn_hybrid)]",
+          "tests/test_ultratb.py::test_handlers [ranking (rkn_qtf)]",
+          "tests/test_ultratb.py::test_handlers [ranking (rkn_recentfail)]",
+          "tests/test_ultratb.py::test_handlers [ranking (rkn_simchgpath)]",
+          "tests/test_ultratb.py::test_indentationerror_shows_line [ranking (rkn_hybrid)]",
+          "tests/test_ultratb.py::test_indentationerror_shows_line [ranking (rkn_qtf)]",
+          "tests/test_ultratb.py::test_indentationerror_shows_line [ranking (rkn_recentfail)]",
+          "tests/test_ultratb.py::test_indentationerror_shows_line [ranking (rkn_simchgpath)]",
+          "tests/test_ultratb.py::test_jsondecodeerror_message [ranking (rkn_hybrid)]",
+          "tests/test_ultratb.py::test_jsondecodeerror_message [ranking (rkn_qtf)]",
+          "tests/test_ultratb.py::test_jsondecodeerror_message [ranking (rkn_recentfail)]",
+          "tests/test_ultratb.py::test_jsondecodeerror_message [ranking (rkn_simchgpath)]",
+          "tests/test_ultratb.py::test_nested_genexpr [ranking (rkn_qtf)]",
+          "tests/test_ultratb.py::test_nested_genexpr [ranking (rkn_recentfail)]",
+          "tests/test_ultratb.py::test_nested_genexpr [ranking (rkn_simchgpath)]",
+          "tests/test_ultratb.py::test_non_syntaxerror [ranking (rkn_hybrid)]",
+          "tests/test_ultratb.py::test_non_syntaxerror [ranking (rkn_qtf)]",
+          "tests/test_ultratb.py::test_non_syntaxerror [ranking (rkn_recentfail)]",
+          "tests/test_ultratb.py::test_non_syntaxerror [ranking (rkn_simchgpath)]",
+          "tests/test_ultratb.py::test_nonascii_msg[minimal-Exception: \\xe9] [ranking (rkn_hybrid)]",
+          "tests/test_ultratb.py::test_nonascii_msg[minimal-Exception: \\xe9] [ranking (rkn_qtf)]",
+          "tests/test_ultratb.py::test_nonascii_msg[minimal-Exception: \\xe9] [ranking (rkn_recentfail)]",
+          "tests/test_ultratb.py::test_nonascii_msg[minimal-Exception: \\xe9] [ranking (rkn_simchgpath)]",
+          "tests/test_ultratb.py::test_nonascii_msg[plain-Exception('\\xe9')] [ranking (rkn_hybrid)]",
+          "tests/test_ultratb.py::test_nonascii_msg[plain-Exception('\\xe9')] [ranking (rkn_qtf)]",
+          "tests/test_ultratb.py::test_nonascii_msg[plain-Exception('\\xe9')] [ranking (rkn_recentfail)]",
+          "tests/test_ultratb.py::test_nonascii_msg[plain-Exception('\\xe9')] [ranking (rkn_simchgpath)]",
+          "tests/test_ultratb.py::test_plain_direct_cause_error [ranking (rkn_hybrid)]",
+          "tests/test_ultratb.py::test_plain_direct_cause_error [ranking (rkn_qtf)]",
+          "tests/test_ultratb.py::test_plain_direct_cause_error [ranking (rkn_recentfail)]",
+          "tests/test_ultratb.py::test_plain_direct_cause_error [ranking (rkn_simchgpath)]",
+          "tests/test_ultratb.py::test_plain_exception_during_handling_error [ranking (rkn_hybrid)]",
+          "tests/test_ultratb.py::test_plain_exception_during_handling_error [ranking (rkn_qtf)]",
+          "tests/test_ultratb.py::test_plain_exception_during_handling_error [ranking (rkn_recentfail)]",
+          "tests/test_ultratb.py::test_plain_exception_during_handling_error [ranking (rkn_simchgpath)]",
+          "tests/test_ultratb.py::test_plain_reports_notes [ranking (rkn_hybrid)]",
+          "tests/test_ultratb.py::test_plain_reports_notes [ranking (rkn_qtf)]",
+          "tests/test_ultratb.py::test_plain_reports_notes [ranking (rkn_recentfail)]",
+          "tests/test_ultratb.py::test_plain_reports_notes [ranking (rkn_simchgpath)]",
+          "tests/test_ultratb.py::test_plain_suppress_exception_chaining [ranking (rkn_hybrid)]",
+          "tests/test_ultratb.py::test_plain_suppress_exception_chaining [ranking (rkn_qtf)]",
+          "tests/test_ultratb.py::test_plain_suppress_exception_chaining [ranking (rkn_recentfail)]",
+          "tests/test_ultratb.py::test_plain_suppress_exception_chaining [ranking (rkn_simchgpath)]",
+          "tests/test_ultratb.py::test_suppress_exception_chaining [ranking (rkn_recentfail)]",
+          "tests/test_ultratb.py::test_suppress_exception_chaining [ranking (rkn_simchgpath)]",
+          "tests/test_ultratb.py::test_syntax_error_changing_py_file [ranking (rkn_hybrid)]",
+          "tests/test_ultratb.py::test_syntax_error_changing_py_file [ranking (rkn_qtf)]",
+          "tests/test_ultratb.py::test_syntax_error_changing_py_file [ranking (rkn_recentfail)]",
+          "tests/test_ultratb.py::test_syntax_error_changing_py_file [ranking (rkn_simchgpath)]",
+          "tests/test_ultratb.py::test_syntaxerror_no_stacktrace_at_compile_time [ranking (rkn_recentfail)]",
+          "tests/test_ultratb.py::test_syntaxerror_no_stacktrace_at_compile_time [ranking (rkn_simchgpath)]",
+          "tests/test_ultratb.py::test_syntaxerror_stacktrace_when_running_compiled_code [ranking (rkn_qtf)]",
+          "tests/test_ultratb.py::test_syntaxerror_stacktrace_when_running_compiled_code [ranking (rkn_recentfail)]",
+          "tests/test_ultratb.py::test_syntaxerror_stacktrace_when_running_compiled_code [ranking (rkn_simchgpath)]",
+          "tests/test_ultratb.py::test_sysexit_while_handling_error [ranking (rkn_hybrid)]",
+          "tests/test_ultratb.py::test_sysexit_while_handling_error [ranking (rkn_qtf)]",
+          "tests/test_ultratb.py::test_sysexit_while_handling_error [ranking (rkn_recentfail)]",
+          "tests/test_ultratb.py::test_sysexit_while_handling_error [ranking (rkn_simchgpath)]"
+        ]
+      },
+      "regsmart": {
+        "runs": 3,
+        "total_seen": 1671,
+        "flaky": {
+          "tests/test_completer.py::test_mix_terms [regsmart (rgsm_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_dict_key_restrict_to_dicts [regsmart (rgsm_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_func_kw_completions [regsmart (rgsm_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_dict_key_completion_string [regsmart (rgsm_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_interactivshell.py::test_repl_not_plain_text [regsmart (rgsm_hybrid)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          }
+        },
+        "failing_all": [
+          "tests/test_display_2.py::test_matplotlib_positioning [regsmart (rgsm_qtf)]",
+          "tests/test_editorhooks.py::test_install_editor [regsmart (rgsm_qtf)]",
+          "tests/test_editorhooks.py::test_line_none_defaults_to_zero [regsmart (rgsm_qtf)]",
+          "tests/test_interactiveshell.py::test_user_expression [regsmart (rgsm_hybrid)]",
+          "tests/test_interactiveshell.py::test_user_expression [regsmart (rgsm_qtf)]",
+          "tests/test_interactiveshell.py::test_user_expression [regsmart (rgsm_recentfail)]",
+          "tests/test_interactivshell.py::test_inputtransformer_syntaxerror [regsmart (rgsm_hybrid)]",
+          "tests/test_interactivshell.py::test_inputtransformer_syntaxerror [regsmart (rgsm_qtf)]",
+          "tests/test_interactivshell.py::test_inputtransformer_syntaxerror [regsmart (rgsm_recentfail)]",
+          "tests/test_interactivshell.py::test_repl_not_plain_text [regsmart (rgsm_recentfail)]",
+          "tests/test_magic.py::test_tb_syntaxerror [regsmart (rgsm_hybrid)]",
+          "tests/test_magic.py::test_tb_syntaxerror [regsmart (rgsm_qtf)]",
+          "tests/test_magic.py::test_tb_syntaxerror [regsmart (rgsm_recentfail)]",
+          "tests/test_ultratb.py::test_handlers [regsmart (rgsm_hybrid)]",
+          "tests/test_ultratb.py::test_handlers [regsmart (rgsm_qtf)]",
+          "tests/test_ultratb.py::test_handlers [regsmart (rgsm_recentfail)]"
+        ]
+      },
+      "regsmart-no-rank": {
+        "runs": 3,
+        "total_seen": 557,
+        "flaky": {},
+        "failing_all": [
+          "tests/test_interactiveshell.py::test_user_expression [test-regsmart-nr (test_extra)]",
+          "tests/test_interactivshell.py::test_inputtransformer_syntaxerror [test-regsmart-nr (test_extra)]",
+          "tests/test_interactivshell.py::test_repl_not_plain_text [test-regsmart-nr (test_extra)]",
+          "tests/test_magic.py::test_tb_syntaxerror [test-regsmart-nr (test_extra)]",
+          "tests/test_ultratb.py::test_handlers [test-regsmart-nr (test_extra)]"
+        ]
+      }
+    },
+    "ipython-m22324": {
+      "baseline": {
+        "runs": 3,
+        "total_seen": 2850,
+        "flaky": {},
+        "failing_all": [
+          "tests/test_ipapp.py::test_locate_profile_subcommand [test (ubuntu-latest, 3.12, test_extra)]"
+        ]
+      },
+      "ranking": {
+        "runs": 3,
+        "total_seen": 11402,
+        "flaky": {
+          "tests/test_historyapp.py::test_history_app_trim_subcommand [ranking (rkn_simchgpath)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_application.py::test_initialize_stops_at_subapp [ranking (rkn_simchgpath)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_profile.py::test_profile_app_list_subcommand [ranking (rkn_simchgpath)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_dict_key_completion_string [ranking (rkn_simchgpath)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_displayhook.py::test_underscore_no_overwrite_user [ranking (rkn_simchgpath)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_history.py::test_histmanager_memory_fallback_reopens_db [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_interactiveshell.py::test_extraneous_loads [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_tools.py::test_ipexec_validate_main_path [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_debugger.py::test_where_erase_value [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_run.py::test_script_tb [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic_table.py::test_startup_does_not_import_the_magics_modules [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_run.py::test_tclass [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_debugger.py::test_xmode_skip [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_dirops [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_embed.py::test_nest_embed [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_profile.py::test_startup_py [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_help.py::test_profile_help [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_line_cell_info [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_historyapp.py::test_history_app_trim_subcommand [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_tools.py::test_ipexec_validate_exception_path2 [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_displayhook.py::test_underscore_no_overwrite_builtins [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_debug_magic.py::test_debug_magic_passes_through_generators [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_help.py::test_locate_profile_help [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_shellapp.py::test_ipy_script_file_attribute [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_tools.py::test_ipexec_validate_exception_path [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_profile.py::test_profile_app_list_subcommand [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_application.py::test_initialize_stops_at_subapp [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "   LocateIPythonApp:history.py:793 Failed to create history session in /tmp/pytest-of-runner/pytest-0/test_histmanager_memory_fallba0/history.sqlite. History will not be saved. [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_multiline_time [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_shellapp.py::test_py_script_file_attribute_interactively [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_profile.py::test_startup_ipy [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_help.py::test_profile_create_help [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_interactiveshell.py::test_naked_string_cells [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_history.py::test_history_trim_cli[subcommand0-2] [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_history.py::test_history_trim_cli[subcommand1-0] [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_run.py::test_obj_del [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_undefined_variables[a = []\\nwhile condition:\\n    a.-append-False-limited] [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_help.py::test_trust_help [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_tools.py::test_ipexec_validate_main_path2 [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_help.py::test_locate_help [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_help.py::test_profile_list_help [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_dict_key_completion_string [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_shellapp.py::test_py_script_file_attribute [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_cell_magic_class2 [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_cell_magic_class [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_interactiveshell.py::test_run_cell_asyncio_run [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_interactiveshell.py::test_run_cell_await [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_cell_magic_reg [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_cd_force_quiet [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_displayhook.py::test_underscore_no_overwrite_user [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_magic.py::test_config_available_configs [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_timeit_raise_on_interrupt [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "IPython/core/magics/config.py::IPython.core.magics.config.ConfigMagics.config [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_cell_magic_func_deco [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_time_raise_on_interrupt [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_cell_magic_class [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_completer.py::test_mix_terms [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_cell_magic_class2 [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_magic.py::test_cell_magic_reg [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_profile.py::test_profile_app_list_subcommand [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_application.py::test_initialize_stops_at_subapp [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_multiline_time [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_magic.py::test_cell_magic_func_deco [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_run.py::test_run_tb [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_history.py::test_histmanager_memory_fallback_reopens_db [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_dirops [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_historyapp.py::test_history_app_trim_subcommand [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "   LocateIPythonApp:history.py:793 Failed to create history session in /tmp/pytest-of-runner/pytest-0/test_histmanager_memory_fallba0/history.sqlite. History will not be saved. [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_dict_key_restrict_to_dicts [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_interactiveshell.py::test_naked_string_cells [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_func_kw_completions [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_quoted_file_completions [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_magic_completion_shadowing [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_storemagic.py::test_store_restore [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          }
+        },
+        "failing_all": [
+          "IPython/core/magics/config.py::IPython.core.magics.config.ConfigMagics.config [ranking (rkn_qtf)]",
+          "IPython/testing/plugin/dtexample.py::IPython.testing.plugin.dtexample.ipos [ranking (rkn_qtf)]",
+          "tests/test_completer.py::test_dict_key_completion_string [ranking (rkn_qtf)]",
+          "tests/test_completer.py::test_dict_key_completion_unicode_py3 [ranking (rkn_qtf)]",
+          "tests/test_display_2.py::test_matplotlib_positioning [ranking (rkn_qtf)]",
+          "tests/test_displayhook.py::test_underscore_no_overwrite_user [ranking (rkn_qtf)]",
+          "tests/test_editorhooks.py::test_install_editor [ranking (rkn_qtf)]",
+          "tests/test_editorhooks.py::test_line_none_defaults_to_zero [ranking (rkn_qtf)]",
+          "tests/test_interactiveshell.py::test_run_cell_asyncio_run [ranking (rkn_qtf)]",
+          "tests/test_interactiveshell.py::test_run_cell_await [ranking (rkn_qtf)]",
+          "tests/test_ipapp.py::test_locate_profile_subcommand [ranking (rkn_hybrid)]",
+          "tests/test_ipapp.py::test_locate_profile_subcommand [ranking (rkn_qtf)]",
+          "tests/test_ipapp.py::test_locate_profile_subcommand [ranking (rkn_recentfail)]",
+          "tests/test_ipapp.py::test_locate_profile_subcommand [ranking (rkn_simchgpath)]",
+          "tests/test_magic.py::test_config_available_configs [ranking (rkn_qtf)]",
+          "tests/test_magic.py::test_reset_in [ranking (rkn_hybrid)]",
+          "tests/test_magic.py::test_reset_in [ranking (rkn_qtf)]",
+          "tests/test_magic.py::tests.test_magic.test_debug_magic [ranking (rkn_qtf)]",
+          "tests/test_magic.py::tests.test_magic.test_debug_magic_locals [ranking (rkn_qtf)]"
+        ]
+      },
+      "regsmart": {
+        "runs": 3,
+        "total_seen": 1671,
+        "flaky": {
+          "tests/test_completer.py::test_mix_terms [regsmart (rgsm_qtf)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_completer.py::test_dict_key_restrict_to_dicts [regsmart (rgsm_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_func_kw_completions [regsmart (rgsm_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_dict_key_completion_string [regsmart (rgsm_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          }
+        },
+        "failing_all": [
+          "tests/test_display_2.py::test_matplotlib_positioning [regsmart (rgsm_qtf)]",
+          "tests/test_editorhooks.py::test_install_editor [regsmart (rgsm_qtf)]",
+          "tests/test_editorhooks.py::test_line_none_defaults_to_zero [regsmart (rgsm_qtf)]",
+          "tests/test_ipapp.py::test_locate_profile_subcommand [regsmart (rgsm_hybrid)]",
+          "tests/test_ipapp.py::test_locate_profile_subcommand [regsmart (rgsm_qtf)]",
+          "tests/test_ipapp.py::test_locate_profile_subcommand [regsmart (rgsm_recentfail)]"
+        ]
+      },
+      "regsmart-no-rank": {
+        "runs": 3,
+        "total_seen": 557,
+        "flaky": {},
+        "failing_all": [
+          "tests/test_ipapp.py::test_locate_profile_subcommand [test-regsmart-nr (test_extra)]"
+        ]
+      }
+    },
+    "ipython-m22732": {
+      "baseline": {
+        "runs": 3,
+        "total_seen": 2850,
+        "flaky": {},
+        "failing_all": [
+          "tests/test_magic_terminal.py::test_paste_echo [test (ubuntu-latest, 3.12, test_extra)]"
+        ]
+      },
+      "ranking": {
+        "runs": 3,
+        "total_seen": 11401,
+        "flaky": {
+          "tests/test_magic.py::test_dirops [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_history.py::test_histmanager_memory_fallback_reopens_db [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_cell_magic_class2 [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_cell_magic_class [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_cell_magic_func_deco [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_displayhook.py::test_underscore_no_overwrite_builtins [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "   ProfileLocate:history.py:793 Failed to create history session in /tmp/pytest-of-runner/pytest-0/test_histmanager_memory_fallba0/history.sqlite. History will not be saved. [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_cell_magic_reg [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_dict_key_completion_string [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_magic.py::test_multiline_time [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_interactiveshell.py::test_naked_string_cells [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_interactiveshell.py::test_run_cell_asyncio_run [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_undefined_variables[a = []\\nwhile condition:\\n    a.-append-False-limited] [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_interactiveshell.py::test_run_cell_await [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_displayhook.py::test_underscore_no_overwrite_user [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::tests.test_magic.doctest_hist_op [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_time_raise_on_interrupt [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_timeit_raise_on_interrupt [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_displayhook.py::test_underscore_no_overwrite_user [ranking (rkn_recentfail)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_displayhook.py::test_underscore_no_overwrite_builtins [ranking (rkn_recentfail)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_interactiveshell.py::test_run_cell_asyncio_run [ranking (rkn_recentfail)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_interactiveshell.py::test_run_cell_await [ranking (rkn_recentfail)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_interactiveshell.py::test_naked_string_cells [ranking (rkn_recentfail)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_cell_magic_class [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_mix_terms [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_cell_magic_class2 [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_cell_magic_reg [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_profile.py::test_profile_app_list_subcommand [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_application.py::test_initialize_stops_at_subapp [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_multiline_time [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_cell_magic_func_deco [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_run.py::test_run_tb [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_historyapp.py::test_history_app_trim_subcommand [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_undefined_variables[t = []\\nif condition_1:\\n    t = 'string'\\nelif condition_2:\\n    t = 1\\nelif condition_3:\\n    t = {}\\nt.-insert_text29-False-limited] [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_magic_completion_shadowing [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_run.py::test_builtins_id [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_completer.py::test_dict_key_restrict_to_dicts [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_interactiveshell.py::test_naked_string_cells [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_completer.py::test_func_kw_completions [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_struct_array_key_completion [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_undefined_variables_without_jedi[t: int | str\\nt.-insert_text3] [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_omit__names [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_storemagic.py::test_store_restore [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magics_pylab.py::test_matplotlib_no_arg_prints_backend [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_dict_key_completion_string [ranking (rkn_simchgpath)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_displayhook.py::test_underscore_no_overwrite_user [ranking (rkn_simchgpath)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          }
+        },
+        "failing_all": [
+          "IPython/core/magics/config.py::IPython.core.magics.config.ConfigMagics.config [ranking (rkn_qtf)]",
+          "IPython/testing/plugin/dtexample.py::IPython.testing.plugin.dtexample.ipos [ranking (rkn_qtf)]",
+          "tests/test_completer.py::test_dict_key_completion_string [ranking (rkn_qtf)]",
+          "tests/test_completer.py::test_dict_key_completion_unicode_py3 [ranking (rkn_qtf)]",
+          "tests/test_display_2.py::test_matplotlib_positioning [ranking (rkn_qtf)]",
+          "tests/test_displayhook.py::test_underscore_no_overwrite_user [ranking (rkn_qtf)]",
+          "tests/test_editorhooks.py::test_install_editor [ranking (rkn_qtf)]",
+          "tests/test_editorhooks.py::test_line_none_defaults_to_zero [ranking (rkn_qtf)]",
+          "tests/test_interactiveshell.py::test_run_cell_asyncio_run [ranking (rkn_qtf)]",
+          "tests/test_interactiveshell.py::test_run_cell_await [ranking (rkn_qtf)]",
+          "tests/test_magic.py::test_config_available_configs [ranking (rkn_qtf)]",
+          "tests/test_magic.py::test_reset_in [ranking (rkn_hybrid)]",
+          "tests/test_magic.py::test_reset_in [ranking (rkn_qtf)]",
+          "tests/test_magic.py::tests.test_magic.test_debug_magic [ranking (rkn_qtf)]",
+          "tests/test_magic.py::tests.test_magic.test_debug_magic_locals [ranking (rkn_qtf)]",
+          "tests/test_magic_terminal.py::test_paste_echo [ranking (rkn_hybrid)]",
+          "tests/test_magic_terminal.py::test_paste_echo [ranking (rkn_qtf)]",
+          "tests/test_magic_terminal.py::test_paste_echo [ranking (rkn_recentfail)]",
+          "tests/test_magic_terminal.py::test_paste_echo [ranking (rkn_simchgpath)]"
+        ]
+      },
+      "regsmart": {
+        "runs": 3,
+        "total_seen": 8349,
+        "flaky": {
+          "tests/test_completer.py::test_mix_terms [regsmart (rgsm_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_storemagic.py::test_store_restore [regsmart (rgsm_qtf)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_completer.py::test_undefined_variables[t = []\\nif some_condition:\\n    t = 'string'\\nt.-insert_text25-False-limited] [regsmart (rgsm_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_dict_key_restrict_to_dicts [regsmart (rgsm_qtf)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_completer.py::test_dict_key_completion_unicode_py3 [regsmart (rgsm_qtf)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_completer.py::test_undefined_variables_without_jedi[t: int | str\\nt.-insert_text3] [regsmart (rgsm_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_line_cell_info [regsmart (rgsm_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_historyapp.py::test_history_app_trim_subcommand [regsmart (rgsm_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_undefined_variables[t = []\\nif condition_1:\\n    t = 'string'\\nelif condition_2:\\n    t = 1\\nelif condition_3:\\n    t = {}\\nt.-insert_text29-False-limited] [regsmart (rgsm_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_run.py::test_builtins_id [regsmart (rgsm_qtf)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_completer.py::test_func_kw_completions [regsmart (rgsm_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magics_pylab.py::test_matplotlib_no_arg_prints_backend [regsmart (rgsm_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_reset_out [regsmart (rgsm_recentfail)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_reset_in [regsmart (rgsm_recentfail)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_displayhook.py::test_underscore_no_overwrite_user [regsmart (rgsm_recentfail)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_displayhook.py::test_underscore_no_overwrite_builtins [regsmart (rgsm_recentfail)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_interactiveshell.py::test_run_cell_asyncio_run [regsmart (rgsm_recentfail)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_interactiveshell.py::test_run_cell_await [regsmart (rgsm_recentfail)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_interactiveshell.py::test_naked_string_cells [regsmart (rgsm_recentfail)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_dataframe_key_completion [regsmart (rgsm_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_interactiveshell.py::test_run_cell_asyncio_run [regsmart (rgsm_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_interactiveshell.py::test_run_cell_await [regsmart (rgsm_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_displayhook.py::test_underscore_no_overwrite_user [regsmart (rgsm_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_dict_key_completion_string [regsmart (rgsm_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_undefined_variables[a = []\\nwhile condition:\\n    a.-append-False-limited] [regsmart (rgsm_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          }
+        },
+        "failing_all": [
+          "tests/test_completer.py::test_dict_key_completion_string [regsmart (rgsm_qtf)]",
+          "tests/test_display_2.py::test_matplotlib_positioning [regsmart (rgsm_qtf)]",
+          "tests/test_displayhook.py::test_underscore_no_overwrite_user [regsmart (rgsm_qtf)]",
+          "tests/test_editorhooks.py::test_install_editor [regsmart (rgsm_qtf)]",
+          "tests/test_editorhooks.py::test_line_none_defaults_to_zero [regsmart (rgsm_qtf)]",
+          "tests/test_interactiveshell.py::test_run_cell_asyncio_run [regsmart (rgsm_qtf)]",
+          "tests/test_interactiveshell.py::test_run_cell_await [regsmart (rgsm_qtf)]",
+          "tests/test_magic.py::test_cell_magic_class [regsmart (rgsm_qtf)]",
+          "tests/test_magic.py::test_cell_magic_class2 [regsmart (rgsm_qtf)]",
+          "tests/test_magic.py::test_cell_magic_func_deco [regsmart (rgsm_qtf)]",
+          "tests/test_magic.py::test_cell_magic_reg [regsmart (rgsm_qtf)]",
+          "tests/test_magic.py::test_config_available_configs [regsmart (rgsm_qtf)]",
+          "tests/test_magic.py::test_multiline_time [regsmart (rgsm_qtf)]",
+          "tests/test_magic.py::test_reset_in [regsmart (rgsm_hybrid)]",
+          "tests/test_magic.py::test_reset_in [regsmart (rgsm_qtf)]",
+          "tests/test_magic.py::tests.test_magic.test_debug_magic [regsmart (rgsm_qtf)]",
+          "tests/test_magic.py::tests.test_magic.test_debug_magic_locals [regsmart (rgsm_qtf)]",
+          "tests/test_magic_terminal.py::test_paste_echo [regsmart (rgsm_hybrid)]",
+          "tests/test_magic_terminal.py::test_paste_echo [regsmart (rgsm_qtf)]",
+          "tests/test_magic_terminal.py::test_paste_echo [regsmart (rgsm_recentfail)]"
+        ]
+      },
+      "regsmart-no-rank": {
+        "runs": 3,
+        "total_seen": 2783,
+        "flaky": {},
+        "failing_all": [
+          "tests/test_magic.py::test_reset_out [test-regsmart-nr (test_extra)]",
+          "tests/test_magic_terminal.py::test_paste_echo [test-regsmart-nr (test_extra)]"
+        ]
+      }
+    },
+    "ipython-m4267": {
+      "baseline": {
+        "runs": 3,
+        "total_seen": 2850,
+        "flaky": {},
+        "failing_all": [
+          "tests/test_oinspect.py::test_find_file [test (ubuntu-latest, 3.12, test_extra)]"
+        ]
+      },
+      "ranking": {
+        "runs": 3,
+        "total_seen": 11401,
+        "flaky": {
+          "tests/test_completer.py::test_mix_terms [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_magic.py::test_cell_magic_reg [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_profile.py::test_profile_app_list_subcommand [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_application.py::test_initialize_stops_at_subapp [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_magic.py::test_cell_magic_func_deco [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_run.py::test_run_tb [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_history.py::test_histmanager_memory_fallback_reopens_db [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_completer.py::test_undefined_variables[t = []\\nif condition_1:\\n    if condition_2:\\n        t = 'nested'\\nt.-insert_text30-False-limited] [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_undefined_variables[t = []\\nwhile condition:\\n    t = 'str'\\nt.-insert_text32-False-limited] [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_dirops [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_completer.py::test_undefined_variables_without_jedi[t: int | str\\nt.-insert_text3] [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_historyapp.py::test_history_app_trim_subcommand [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "   ProfileLocate:history.py:793 Failed to create history session in /tmp/pytest-of-runner/pytest-0/test_histmanager_memory_fallba0/history.sqlite. History will not be saved. [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_completer.py::test_undefined_variables[t = []\\nif condition_1:\\n    t = 'string'\\nelif condition_2:\\n    t = 1\\nelif condition_3:\\n    t.-append-False-limited] [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_undefined_variables[t = []\\nif condition_1:\\n    t = 'string'\\nelif condition_2:\\n    t = 1\\nelif condition_3:\\n    t = {}\\nt.-insert_text29-False-limited] [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_undefined_variables[t = []\\nwhile condition_1:\\n    while condition_2:\\n        t = 'str'\\nt.-insert_text33-False-limited] [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_undefined_variables[t = []\\nif some_condition:\\n    t = 'string'\\nelse:\\n    t.-append-False-limited] [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_undefined_variables[t = []\\nif some_condition:\\n    t.-append-False-limited] [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_magic_completion_shadowing [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_undefined_variables[t = []\\nif some_condition:\\n    t = 'string'\\nt.-insert_text25-False-limited] [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_dict_key_restrict_to_dicts [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_magic.py::test_cd_force_quiet [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_func_kw_completions [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_undefined_variables_without_jedi[t: int | dict = {'a': []}\\nt.-insert_text1] [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_undefined_variables[t = []\\nif some_condition:\\n    t = 'string'\\nelse:\\n    t = 1\\nt.-insert_text27-False-limited] [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_struct_array_key_completion [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_ipapp.py::test_locate_subcommand [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_dict_key_completion_contexts [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_storemagic.py::test_store_restore [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magics_pylab.py::test_matplotlib_no_arg_prints_backend [ranking (rkn_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_dirops [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_cell_magic_class2 [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_storemagic.py::test_store_restore [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_cell_magic_class [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_cell_magic_func_deco [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_displayhook.py::test_underscore_no_overwrite_builtins [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_interactiveshell.py::test_run_cell_asyncio_run [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_completer.py::test_undefined_variables[a = []\\nwhile condition:\\n    a.-append-False-limited] [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_interactiveshell.py::test_run_cell_await [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 2,
+            "passed": 1
+          },
+          "tests/test_magic.py::test_cell_magic_reg [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_multiline_time [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_interactiveshell.py::test_naked_string_cells [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "IPython/core/magics/config.py::IPython.core.magics.config.ConfigMagics.config [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_line_cell_info [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_displayhook.py::test_underscore_no_overwrite_user [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::tests.test_magic.doctest_hist_op [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_time_raise_on_interrupt [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_magic.py::test_timeit_raise_on_interrupt [ranking (rkn_hybrid)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_interactiveshell.py::test_run_cell_asyncio_run [ranking (rkn_simchgpath)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_interactiveshell.py::test_run_cell_await [ranking (rkn_simchgpath)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_dict_key_completion_string [ranking (rkn_simchgpath)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_interactiveshell.py::test_naked_string_cells [ranking (rkn_simchgpath)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          }
+        },
+        "failing_all": [
+          "IPython/core/magics/config.py::IPython.core.magics.config.ConfigMagics.config [ranking (rkn_qtf)]",
+          "IPython/testing/plugin/dtexample.py::IPython.testing.plugin.dtexample.ipos [ranking (rkn_qtf)]",
+          "tests/test_completer.py::test_dict_key_completion_string [ranking (rkn_hybrid)]",
+          "tests/test_completer.py::test_dict_key_completion_string [ranking (rkn_qtf)]",
+          "tests/test_completer.py::test_dict_key_completion_unicode_py3 [ranking (rkn_qtf)]",
+          "tests/test_display_2.py::test_matplotlib_positioning [ranking (rkn_qtf)]",
+          "tests/test_displayhook.py::test_underscore_no_overwrite_user [ranking (rkn_qtf)]",
+          "tests/test_editorhooks.py::test_install_editor [ranking (rkn_qtf)]",
+          "tests/test_editorhooks.py::test_line_none_defaults_to_zero [ranking (rkn_qtf)]",
+          "tests/test_interactiveshell.py::test_run_cell_asyncio_run [ranking (rkn_qtf)]",
+          "tests/test_interactiveshell.py::test_run_cell_await [ranking (rkn_qtf)]",
+          "tests/test_magic.py::test_cell_magic_class [ranking (rkn_qtf)]",
+          "tests/test_magic.py::test_cell_magic_class2 [ranking (rkn_qtf)]",
+          "tests/test_magic.py::test_config_available_configs [ranking (rkn_qtf)]",
+          "tests/test_magic.py::test_multiline_time [ranking (rkn_qtf)]",
+          "tests/test_magic.py::test_reset_in [ranking (rkn_hybrid)]",
+          "tests/test_magic.py::test_reset_in [ranking (rkn_qtf)]",
+          "tests/test_magic.py::tests.test_magic.test_debug_magic [ranking (rkn_qtf)]",
+          "tests/test_magic.py::tests.test_magic.test_debug_magic_locals [ranking (rkn_qtf)]",
+          "tests/test_oinspect.py::test_find_file [ranking (rkn_hybrid)]",
+          "tests/test_oinspect.py::test_find_file [ranking (rkn_qtf)]",
+          "tests/test_oinspect.py::test_find_file [ranking (rkn_recentfail)]",
+          "tests/test_oinspect.py::test_find_file [ranking (rkn_simchgpath)]"
+        ]
+      },
+      "regsmart": {
+        "runs": 3,
+        "total_seen": 1683,
+        "flaky": {
+          "tests/test_completer.py::test_mix_terms [regsmart (rgsm_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_dict_key_restrict_to_dicts [regsmart (rgsm_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_func_kw_completions [regsmart (rgsm_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          },
+          "tests/test_completer.py::test_dict_key_completion_string [regsmart (rgsm_qtf)]": {
+            "reps": 3,
+            "failed": 1,
+            "passed": 2
+          }
+        },
+        "failing_all": [
+          "tests/test_display_2.py::test_matplotlib_positioning [regsmart (rgsm_qtf)]",
+          "tests/test_editorhooks.py::test_install_editor [regsmart (rgsm_qtf)]",
+          "tests/test_editorhooks.py::test_line_none_defaults_to_zero [regsmart (rgsm_qtf)]",
+          "tests/test_oinspect.py::test_find_file [regsmart (rgsm_hybrid)]",
+          "tests/test_oinspect.py::test_find_file [regsmart (rgsm_qtf)]",
+          "tests/test_oinspect.py::test_find_file [regsmart (rgsm_recentfail)]"
+        ]
+      },
+      "regsmart-no-rank": {
+        "runs": 3,
+        "total_seen": 561,
+        "flaky": {},
+        "failing_all": [
+          "tests/test_oinspect.py::test_find_file [test-regsmart-nr (test_extra)]"
+        ]
+      }
+    }
+  }
+}
