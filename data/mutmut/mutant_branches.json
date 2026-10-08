@@ -141,5 +141,158 @@
         "pr": "https://github.com/leticosta4/pytorch-lightning/pull/7"
       }
     }
+  },
+  "dvc": {
+    "base_branch": "insert-mutations",
+    "base_sha": "c6eecb50962259c13bac3c8ce9c2d8a2887f716f",
+    "mutants": {
+      "dvc-m11576": {
+        "branch": "mut-dvc-m11576",
+        "head_sha": "4241706fc8f7bdf80613b0d00381c0be0f8c02d2",
+        "file": "dvc/repo/experiments/queue/base.py",
+        "line": 428,
+        "patch": "data/mutmut/patches/dvc/dvc-m11576.patch",
+        "published": true,
+        "pr": "https://github.com/leticosta4/dvc/pull/2"
+      },
+      "dvc-m12545": {
+        "branch": "mut-dvc-m12545",
+        "head_sha": "850d7747026825d932d7b7763c6cf4f51acb04fa",
+        "file": "dvc/repo/experiments/stash.py",
+        "line": 42,
+        "patch": "data/mutmut/patches/dvc/dvc-m12545.patch",
+        "published": true,
+        "pr": "https://github.com/leticosta4/dvc/pull/3"
+      },
+      "dvc-m19066": {
+        "branch": "mut-dvc-m19066",
+        "head_sha": "b7d81e161a362607e12111aa9bb120fa71e77816",
+        "file": "dvc/utils/strictyaml.py",
+        "line": 223,
+        "patch": "data/mutmut/patches/dvc/dvc-m19066.patch",
+        "published": true,
+        "pr": "https://github.com/leticosta4/dvc/pull/4"
+      },
+      "dvc-m16845": {
+        "branch": "mut-dvc-m16845",
+        "head_sha": "6a96450bcd6c63ce2b99a5fba9a1dc0acd7e153b",
+        "file": "dvc/rwlock.py",
+        "line": 211,
+        "patch": "data/mutmut/patches/dvc/dvc-m16845.patch",
+        "published": true,
+        "pr": "https://github.com/leticosta4/dvc/pull/5"
+      },
+      "dvc-m6852": {
+        "branch": "mut-dvc-m6852",
+        "head_sha": "b83aec4d8bf70a4ed1c425abcbc97e2a10b32c01",
+        "file": "dvc/fs/callbacks.py",
+        "line": 58,
+        "patch": "data/mutmut/patches/dvc/dvc-m6852.patch",
+        "published": true,
+        "pr": "https://github.com/leticosta4/dvc/pull/6"
+      }
+    }
+  },
+  "apscheduler": {
+    "base_branch": "insert-mutations",
+    "base_sha": "8fd8b8190e8b5f79156ad4f34a4a9b5dec42dc78",
+    "mutants": {
+      "apscheduler-m2144": {
+        "branch": "mut-apscheduler-m2144",
+        "head_sha": "d9bba063897ba2b77a31c4043aab409c6756c5c7",
+        "file": "src/apscheduler/triggers/calendarinterval.py",
+        "line": 104,
+        "patch": "data/mutmut/patches/apscheduler/apscheduler-m2144.patch",
+        "published": true,
+        "pr": "https://github.com/leticosta4/apscheduler/pull/4"
+      },
+      "apscheduler-m1399": {
+        "branch": "mut-apscheduler-m1399",
+        "head_sha": "b188394e5d22468a7462398eb28ac58efd29b9b3",
+        "file": "src/apscheduler/datastores/sqlalchemy.py",
+        "line": 367,
+        "patch": "data/mutmut/patches/apscheduler/apscheduler-m1399.patch",
+        "published": true,
+        "pr": "https://github.com/leticosta4/apscheduler/pull/5"
+      },
+      "apscheduler-m2213": {
+        "branch": "mut-apscheduler-m2213",
+        "head_sha": "31a876af44ec8772fb917b1fdbbd66100a98a885",
+        "file": "src/apscheduler/triggers/combining.py",
+        "line": 67,
+        "patch": "data/mutmut/patches/apscheduler/apscheduler-m2213.patch",
+        "published": true,
+        "pr": "https://github.com/leticosta4/apscheduler/pull/6"
+      },
+      "apscheduler-m0316": {
+        "branch": "mut-apscheduler-m0316",
+        "head_sha": "62816bc98b831e9982a944a1da7ad766f6968ffb",
+        "file": "src/apscheduler/_schedulers/async_.py",
+        "line": 214,
+        "patch": "data/mutmut/patches/apscheduler/apscheduler-m0316.patch",
+        "published": true,
+        "pr": "https://github.com/leticosta4/apscheduler/pull/7"
+      },
+      "apscheduler-m0753": {
+        "branch": "mut-apscheduler-m0753",
+        "head_sha": "909f003d5138826639847e98bc82c71580537446",
+        "file": "src/apscheduler/_structures.py",
+        "line": 61,
+        "patch": "data/mutmut/patches/apscheduler/apscheduler-m0753.patch",
+        "published": true,
+        "pr": "https://github.com/leticosta4/apscheduler/pull/8"
+      }
+    }
+  },
+  "trimesh": {
+    "base_branch": "insert-mutations",
+    "base_sha": "a838af774addb363a9b136a563c75d00843c968a",
+    "mutants": {
+      "trimesh-m1825": {
+        "branch": "mut-trimesh-m1825",
+        "head_sha": "93f8bb8cdb0cb66bf3dd5787ad42a05abef147ac",
+        "file": "trimesh/convex.py",
+        "line": 208,
+        "patch": "data/mutmut/patches/trimesh/trimesh-m1825.patch",
+        "published": true,
+        "pr": "https://github.com/leticosta4/trimesh/pull/2"
+      },
+      "trimesh-m25103": {
+        "branch": "mut-trimesh-m25103",
+        "head_sha": "4d5d739f8c624e8e6f181792f7b578b456ecb7c8",
+        "file": "trimesh/visual/material.py",
+        "line": 500,
+        "patch": "data/mutmut/patches/trimesh/trimesh-m25103.patch",
+        "published": true,
+        "pr": "https://github.com/leticosta4/trimesh/pull/3"
+      },
+      "trimesh-m3147": {
+        "branch": "mut-trimesh-m3147",
+        "head_sha": "2c4f501278ed7ed43ced3c7b3ca4dd5d6da3aded",
+        "file": "trimesh/exchange/binvox.py",
+        "line": 295,
+        "patch": "data/mutmut/patches/trimesh/trimesh-m3147.patch",
+        "published": true,
+        "pr": "https://github.com/leticosta4/trimesh/pull/4"
+      },
+      "trimesh-m21160": {
+        "branch": "mut-trimesh-m21160",
+        "head_sha": "13c7a7f45418029dae46d49cdd2a127ad5ad5990",
+        "file": "trimesh/transformations.py",
+        "line": 1983,
+        "patch": "data/mutmut/patches/trimesh/trimesh-m21160.patch",
+        "published": true,
+        "pr": "https://github.com/leticosta4/trimesh/pull/5"
+      },
+      "trimesh-m13478": {
+        "branch": "mut-trimesh-m13478",
+        "head_sha": "28b48c7a3b423e058eea580cc45e1004ebf22f0c",
+        "file": "trimesh/path/polygons.py",
+        "line": 952,
+        "patch": "data/mutmut/patches/trimesh/trimesh-m13478.patch",
+        "published": true,
+        "pr": "https://github.com/leticosta4/trimesh/pull/6"
+      }
+    }
   }
 }
