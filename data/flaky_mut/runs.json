@@ -1,0 +1,4411 @@
+{
+  "created_utc": "2026-10-08T19:07:53.434872+00:00",
+  "campaign": "flaky",
+  "runs": [
+    {
+      "task": "ipython/ipython-m1288/baseline/r01",
+      "repo": "ipython",
+      "mutant": "ipython-m1288",
+      "ref": "mut-ipython-m1288",
+      "sha": "7210d236a25a5a5dc0d76716b1d30e33dcaee031",
+      "workflow": "baseline",
+      "workflow_file": "test.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "ipython@mut-ipython-m1288/baseline",
+      "dispatch_window_start_utc": "2026-10-08T19:07:57.003150+00:00",
+      "dispatched_at_utc": "2026-10-08T19:07:59.143728+00:00",
+      "run_id": 37829631628,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37829631628",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:11:19Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test (ubuntu-latest, 3.12, test_extra)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:08:02Z",
+          "completed_at": "2026-10-08T19:11:19Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m1288/baseline/r02",
+      "repo": "ipython",
+      "mutant": "ipython-m1288",
+      "ref": "mut-ipython-m1288",
+      "sha": "7210d236a25a5a5dc0d76716b1d30e33dcaee031",
+      "workflow": "baseline",
+      "workflow_file": "test.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "ipython@mut-ipython-m1288/baseline",
+      "dispatch_window_start_utc": "2026-10-08T19:11:54.121980+00:00",
+      "dispatched_at_utc": "2026-10-08T19:11:55.728131+00:00",
+      "run_id": 37830129757,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37830129757",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:16:37Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test (ubuntu-latest, 3.12, test_extra)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:13:14Z",
+          "completed_at": "2026-10-08T19:16:36Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m1288/baseline/r03",
+      "repo": "ipython",
+      "mutant": "ipython-m1288",
+      "ref": "mut-ipython-m1288",
+      "sha": "7210d236a25a5a5dc0d76716b1d30e33dcaee031",
+      "workflow": "baseline",
+      "workflow_file": "test.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "ipython@mut-ipython-m1288/baseline",
+      "dispatch_window_start_utc": "2026-10-08T19:17:19.325773+00:00",
+      "dispatched_at_utc": "2026-10-08T19:17:21.598868+00:00",
+      "run_id": 37830816707,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37830816707",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:23:52Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test (ubuntu-latest, 3.12, test_extra)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:20:06Z",
+          "completed_at": "2026-10-08T19:23:51Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m1288/ranking/r01",
+      "repo": "ipython",
+      "mutant": "ipython-m1288",
+      "ref": "mut-ipython-m1288",
+      "sha": "7210d236a25a5a5dc0d76716b1d30e33dcaee031",
+      "workflow": "ranking",
+      "workflow_file": "test-ranking.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "ipython@mut-ipython-m1288/ranking",
+      "dispatch_window_start_utc": "2026-10-08T19:08:00.145512+00:00",
+      "dispatched_at_utc": "2026-10-08T19:08:02.069269+00:00",
+      "run_id": 37829637160,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37829637160",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:11:40Z",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:08:05Z",
+          "completed_at": "2026-10-08T19:11:28Z"
+        },
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:08:06Z",
+          "completed_at": "2026-10-08T19:11:40Z"
+        },
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:08:05Z",
+          "completed_at": "2026-10-08T19:11:18Z"
+        },
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:08:05Z",
+          "completed_at": "2026-10-08T19:11:10Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m1288/ranking/r02",
+      "repo": "ipython",
+      "mutant": "ipython-m1288",
+      "ref": "mut-ipython-m1288",
+      "sha": "7210d236a25a5a5dc0d76716b1d30e33dcaee031",
+      "workflow": "ranking",
+      "workflow_file": "test-ranking.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "ipython@mut-ipython-m1288/ranking",
+      "dispatch_window_start_utc": "2026-10-08T19:11:56.729389+00:00",
+      "dispatched_at_utc": "2026-10-08T19:11:58.554414+00:00",
+      "run_id": 37830135795,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37830135795",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:18:54Z",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:12:06Z",
+          "completed_at": "2026-10-08T19:15:40Z"
+        },
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:14:57Z",
+          "completed_at": "2026-10-08T19:18:24Z"
+        },
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:13:15Z",
+          "completed_at": "2026-10-08T19:16:27Z"
+        },
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:15:29Z",
+          "completed_at": "2026-10-08T19:18:54Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m1288/ranking/r03",
+      "repo": "ipython",
+      "mutant": "ipython-m1288",
+      "ref": "mut-ipython-m1288",
+      "sha": "7210d236a25a5a5dc0d76716b1d30e33dcaee031",
+      "workflow": "ranking",
+      "workflow_file": "test-ranking.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "ipython@mut-ipython-m1288/ranking",
+      "dispatch_window_start_utc": "2026-10-08T19:19:28.662362+00:00",
+      "dispatched_at_utc": "2026-10-08T19:19:30.456135+00:00",
+      "run_id": 37831083038,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37831083038",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:26:01Z",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:20:10Z",
+          "completed_at": "2026-10-08T19:23:37Z"
+        },
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:21:30Z",
+          "completed_at": "2026-10-08T19:24:55Z"
+        },
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:20:51Z",
+          "completed_at": "2026-10-08T19:24:32Z"
+        },
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:22:42Z",
+          "completed_at": "2026-10-08T19:26:00Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m1288/regsmart/r01",
+      "repo": "ipython",
+      "mutant": "ipython-m1288",
+      "ref": "mut-ipython-m1288",
+      "sha": "7210d236a25a5a5dc0d76716b1d30e33dcaee031",
+      "workflow": "regsmart",
+      "workflow_file": "test-regsmart.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "ipython@mut-ipython-m1288/regsmart",
+      "dispatch_window_start_utc": "2026-10-08T19:08:03.072084+00:00",
+      "dispatched_at_utc": "2026-10-08T19:08:05.158085+00:00",
+      "run_id": 37829644274,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37829644274",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:10:04Z",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:08:09Z",
+          "completed_at": "2026-10-08T19:09:43Z"
+        },
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:08:09Z",
+          "completed_at": "2026-10-08T19:10:03Z"
+        },
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:08:08Z",
+          "completed_at": "2026-10-08T19:09:28Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m1288/regsmart/r02",
+      "repo": "ipython",
+      "mutant": "ipython-m1288",
+      "ref": "mut-ipython-m1288",
+      "sha": "7210d236a25a5a5dc0d76716b1d30e33dcaee031",
+      "workflow": "regsmart",
+      "workflow_file": "test-regsmart.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "ipython@mut-ipython-m1288/regsmart",
+      "dispatch_window_start_utc": "2026-10-08T19:10:42.079575+00:00",
+      "dispatched_at_utc": "2026-10-08T19:10:43.629431+00:00",
+      "run_id": 37829978204,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37829978204",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:15:04Z",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:11:45Z",
+          "completed_at": "2026-10-08T19:13:20Z"
+        },
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:13:05Z",
+          "completed_at": "2026-10-08T19:14:54Z"
+        },
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:13:27Z",
+          "completed_at": "2026-10-08T19:15:03Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m1288/regsmart/r03",
+      "repo": "ipython",
+      "mutant": "ipython-m1288",
+      "ref": "mut-ipython-m1288",
+      "sha": "7210d236a25a5a5dc0d76716b1d30e33dcaee031",
+      "workflow": "regsmart",
+      "workflow_file": "test-regsmart.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "ipython@mut-ipython-m1288/regsmart",
+      "dispatch_window_start_utc": "2026-10-08T19:15:08.990611+00:00",
+      "dispatched_at_utc": "2026-10-08T19:15:10.730076+00:00",
+      "run_id": 37830537640,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37830537640",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:21:00Z",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:17:11Z",
+          "completed_at": "2026-10-08T19:18:26Z"
+        },
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:18:36Z",
+          "completed_at": "2026-10-08T19:19:46Z"
+        },
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:19:48Z",
+          "completed_at": "2026-10-08T19:21:00Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m1288/regsmart-no-rank/r01",
+      "repo": "ipython",
+      "mutant": "ipython-m1288",
+      "ref": "mut-ipython-m1288",
+      "sha": "7210d236a25a5a5dc0d76716b1d30e33dcaee031",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "test-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "ipython@mut-ipython-m1288/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-10-08T19:08:06.160645+00:00",
+      "dispatched_at_utc": "2026-10-08T19:08:08.294768+00:00",
+      "run_id": 37829650785,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37829650785",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:09:54Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test-regsmart-nr (test_extra)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:08:12Z",
+          "completed_at": "2026-10-08T19:09:53Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m1288/regsmart-no-rank/r02",
+      "repo": "ipython",
+      "mutant": "ipython-m1288",
+      "ref": "mut-ipython-m1288",
+      "sha": "7210d236a25a5a5dc0d76716b1d30e33dcaee031",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "test-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "ipython@mut-ipython-m1288/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-10-08T19:10:01.950708+00:00",
+      "dispatched_at_utc": "2026-10-08T19:10:03.883480+00:00",
+      "run_id": 37829889320,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37829889320",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:14:57Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test-regsmart-nr (test_extra)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:13:03Z",
+          "completed_at": "2026-10-08T19:14:56Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m1288/regsmart-no-rank/r03",
+      "repo": "ipython",
+      "mutant": "ipython-m1288",
+      "ref": "mut-ipython-m1288",
+      "sha": "7210d236a25a5a5dc0d76716b1d30e33dcaee031",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "test-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "ipython@mut-ipython-m1288/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-10-08T19:15:11.733117+00:00",
+      "dispatched_at_utc": "2026-10-08T19:15:13.996203+00:00",
+      "run_id": 37830544543,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37830544543",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:18:14Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test-regsmart-nr (test_extra)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:16:38Z",
+          "completed_at": "2026-10-08T19:18:13Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m17283/baseline/r01",
+      "repo": "ipython",
+      "mutant": "ipython-m17283",
+      "ref": "mut-ipython-m17283",
+      "sha": "08f97debae590a4e13c751d1fa5b6c52e524d710",
+      "workflow": "baseline",
+      "workflow_file": "test.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "ipython@mut-ipython-m17283/baseline",
+      "dispatch_window_start_utc": "2026-10-08T19:08:09.296069+00:00",
+      "dispatched_at_utc": "2026-10-08T19:08:11.231031+00:00",
+      "run_id": 37829656804,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37829656804",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:11:42Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test (ubuntu-latest, 3.12, test_extra)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:08:15Z",
+          "completed_at": "2026-10-08T19:11:41Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m17283/baseline/r02",
+      "repo": "ipython",
+      "mutant": "ipython-m17283",
+      "ref": "mut-ipython-m17283",
+      "sha": "08f97debae590a4e13c751d1fa5b6c52e524d710",
+      "workflow": "baseline",
+      "workflow_file": "test.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "ipython@mut-ipython-m17283/baseline",
+      "dispatch_window_start_utc": "2026-10-08T19:11:59.556867+00:00",
+      "dispatched_at_utc": "2026-10-08T19:12:01.391544+00:00",
+      "run_id": 37830141591,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37830141591",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:19:10Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test (ubuntu-latest, 3.12, test_extra)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:15:45Z",
+          "completed_at": "2026-10-08T19:19:09Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m17283/baseline/r03",
+      "repo": "ipython",
+      "mutant": "ipython-m17283",
+      "ref": "mut-ipython-m17283",
+      "sha": "08f97debae590a4e13c751d1fa5b6c52e524d710",
+      "workflow": "baseline",
+      "workflow_file": "test.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "ipython@mut-ipython-m17283/baseline",
+      "dispatch_window_start_utc": "2026-10-08T19:19:31.459925+00:00",
+      "dispatched_at_utc": "2026-10-08T19:19:33.377592+00:00",
+      "run_id": 37831088410,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37831088410",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:25:00Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test (ubuntu-latest, 3.12, test_extra)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:21:46Z",
+          "completed_at": "2026-10-08T19:24:59Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m17283/ranking/r01",
+      "repo": "ipython",
+      "mutant": "ipython-m17283",
+      "ref": "mut-ipython-m17283",
+      "sha": "08f97debae590a4e13c751d1fa5b6c52e524d710",
+      "workflow": "ranking",
+      "workflow_file": "test-ranking.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "ipython@mut-ipython-m17283/ranking",
+      "dispatch_window_start_utc": "2026-10-08T19:08:12.232535+00:00",
+      "dispatched_at_utc": "2026-10-08T19:08:14.177971+00:00",
+      "run_id": 37829662631,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37829662631",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:13:02Z",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:08:17Z",
+          "completed_at": "2026-10-08T19:11:52Z"
+        },
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:08:18Z",
+          "completed_at": "2026-10-08T19:11:45Z"
+        },
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:08:17Z",
+          "completed_at": "2026-10-08T19:11:43Z"
+        },
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:08:17Z",
+          "completed_at": "2026-10-08T19:13:01Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m17283/ranking/r02",
+      "repo": "ipython",
+      "mutant": "ipython-m17283",
+      "ref": "mut-ipython-m17283",
+      "sha": "08f97debae590a4e13c751d1fa5b6c52e524d710",
+      "workflow": "ranking",
+      "workflow_file": "test-ranking.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "ipython@mut-ipython-m17283/ranking",
+      "dispatch_window_start_utc": "2026-10-08T19:13:10.363476+00:00",
+      "dispatched_at_utc": "2026-10-08T19:13:12.207668+00:00",
+      "run_id": 37830291051,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37830291051",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:20:34Z",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:15:06Z",
+          "completed_at": "2026-10-08T19:18:34Z"
+        },
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:16:31Z",
+          "completed_at": "2026-10-08T19:20:22Z"
+        },
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:17:29Z",
+          "completed_at": "2026-10-08T19:20:33Z"
+        },
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:16:48Z",
+          "completed_at": "2026-10-08T19:20:17Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m17283/ranking/r03",
+      "repo": "ipython",
+      "mutant": "ipython-m17283",
+      "ref": "mut-ipython-m17283",
+      "sha": "08f97debae590a4e13c751d1fa5b6c52e524d710",
+      "workflow": "ranking",
+      "workflow_file": "test-ranking.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "ipython@mut-ipython-m17283/ranking",
+      "dispatch_window_start_utc": "2026-10-08T19:20:40.618792+00:00",
+      "dispatched_at_utc": "2026-10-08T19:20:42.371526+00:00",
+      "run_id": 37831235843,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37831235843",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:27:17Z",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:22:06Z",
+          "completed_at": "2026-10-08T19:25:33Z"
+        },
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:23:00Z",
+          "completed_at": "2026-10-08T19:26:28Z"
+        },
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:23:35Z",
+          "completed_at": "2026-10-08T19:26:31Z"
+        },
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:23:39Z",
+          "completed_at": "2026-10-08T19:27:17Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m17283/regsmart/r01",
+      "repo": "ipython",
+      "mutant": "ipython-m17283",
+      "ref": "mut-ipython-m17283",
+      "sha": "08f97debae590a4e13c751d1fa5b6c52e524d710",
+      "workflow": "regsmart",
+      "workflow_file": "test-regsmart.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "ipython@mut-ipython-m17283/regsmart",
+      "dispatch_window_start_utc": "2026-10-08T19:08:15.179154+00:00",
+      "dispatched_at_utc": "2026-10-08T19:08:16.987593+00:00",
+      "run_id": 37829668236,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37829668236",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:10:04Z",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:08:20Z",
+          "completed_at": "2026-10-08T19:09:52Z"
+        },
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:08:20Z",
+          "completed_at": "2026-10-08T19:10:04Z"
+        },
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:08:20Z",
+          "completed_at": "2026-10-08T19:09:47Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m17283/regsmart/r02",
+      "repo": "ipython",
+      "mutant": "ipython-m17283",
+      "ref": "mut-ipython-m17283",
+      "sha": "08f97debae590a4e13c751d1fa5b6c52e524d710",
+      "workflow": "regsmart",
+      "workflow_file": "test-regsmart.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "ipython@mut-ipython-m17283/regsmart",
+      "dispatch_window_start_utc": "2026-10-08T19:10:44.631669+00:00",
+      "dispatched_at_utc": "2026-10-08T19:10:46.627191+00:00",
+      "run_id": 37829984404,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37829984404",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:17:10Z",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:11:13Z",
+          "completed_at": "2026-10-08T19:12:50Z"
+        },
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:15:39Z",
+          "completed_at": "2026-10-08T19:17:09Z"
+        },
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:14:56Z",
+          "completed_at": "2026-10-08T19:16:41Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m17283/regsmart/r03",
+      "repo": "ipython",
+      "mutant": "ipython-m17283",
+      "ref": "mut-ipython-m17283",
+      "sha": "08f97debae590a4e13c751d1fa5b6c52e524d710",
+      "workflow": "regsmart",
+      "workflow_file": "test-regsmart.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "ipython@mut-ipython-m17283/regsmart",
+      "dispatch_window_start_utc": "2026-10-08T19:17:22.602287+00:00",
+      "dispatched_at_utc": "2026-10-08T19:17:24.721434+00:00",
+      "run_id": 37830823339,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37830823339",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:23:15Z",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:21:31Z",
+          "completed_at": "2026-10-08T19:23:14Z"
+        },
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:19:11Z",
+          "completed_at": "2026-10-08T19:20:53Z"
+        },
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:21:11Z",
+          "completed_at": "2026-10-08T19:22:57Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m17283/regsmart-no-rank/r01",
+      "repo": "ipython",
+      "mutant": "ipython-m17283",
+      "ref": "mut-ipython-m17283",
+      "sha": "08f97debae590a4e13c751d1fa5b6c52e524d710",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "test-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "ipython@mut-ipython-m17283/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-10-08T19:08:17.989655+00:00",
+      "dispatched_at_utc": "2026-10-08T19:08:19.682104+00:00",
+      "run_id": 37829673810,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37829673810",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:09:40Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test-regsmart-nr (test_extra)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:08:22Z",
+          "completed_at": "2026-10-08T19:09:39Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m17283/regsmart-no-rank/r02",
+      "repo": "ipython",
+      "mutant": "ipython-m17283",
+      "ref": "mut-ipython-m17283",
+      "sha": "08f97debae590a4e13c751d1fa5b6c52e524d710",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "test-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "ipython@mut-ipython-m17283/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-10-08T19:10:04.884893+00:00",
+      "dispatched_at_utc": "2026-10-08T19:10:06.998277+00:00",
+      "run_id": 37829896693,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37829896693",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:13:18Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test-regsmart-nr (test_extra)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:11:41Z",
+          "completed_at": "2026-10-08T19:13:17Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m17283/regsmart-no-rank/r03",
+      "repo": "ipython",
+      "mutant": "ipython-m17283",
+      "ref": "mut-ipython-m17283",
+      "sha": "08f97debae590a4e13c751d1fa5b6c52e524d710",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "test-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "ipython@mut-ipython-m17283/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-10-08T19:13:53.354650+00:00",
+      "dispatched_at_utc": "2026-10-08T19:13:55.168328+00:00",
+      "run_id": 37830381513,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37830381513",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:18:05Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test-regsmart-nr (test_extra)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:16:29Z",
+          "completed_at": "2026-10-08T19:18:05Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m22324/baseline/r01",
+      "repo": "ipython",
+      "mutant": "ipython-m22324",
+      "ref": "mut-ipython-m22324",
+      "sha": "6fc215fc4bc014b144c61e97dcd212e83c13dd8b",
+      "workflow": "baseline",
+      "workflow_file": "test.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "ipython@mut-ipython-m22324/baseline",
+      "dispatch_window_start_utc": "2026-10-08T19:08:20.684347+00:00",
+      "dispatched_at_utc": "2026-10-08T19:08:22.564900+00:00",
+      "run_id": 37829679416,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37829679416",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:11:44Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test (ubuntu-latest, 3.12, test_extra)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:08:25Z",
+          "completed_at": "2026-10-08T19:11:44Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m22324/baseline/r02",
+      "repo": "ipython",
+      "mutant": "ipython-m22324",
+      "ref": "mut-ipython-m22324",
+      "sha": "6fc215fc4bc014b144c61e97dcd212e83c13dd8b",
+      "workflow": "baseline",
+      "workflow_file": "test.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "ipython@mut-ipython-m22324/baseline",
+      "dispatch_window_start_utc": "2026-10-08T19:12:02.393593+00:00",
+      "dispatched_at_utc": "2026-10-08T19:12:04.149994+00:00",
+      "run_id": 37830147381,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37830147381",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:16:29Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test (ubuntu-latest, 3.12, test_extra)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:13:11Z",
+          "completed_at": "2026-10-08T19:16:29Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m22324/baseline/r03",
+      "repo": "ipython",
+      "mutant": "ipython-m22324",
+      "ref": "mut-ipython-m22324",
+      "sha": "6fc215fc4bc014b144c61e97dcd212e83c13dd8b",
+      "workflow": "baseline",
+      "workflow_file": "test.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "ipython@mut-ipython-m22324/baseline",
+      "dispatch_window_start_utc": "2026-10-08T19:16:37.895943+00:00",
+      "dispatched_at_utc": "2026-10-08T19:16:39.725866+00:00",
+      "run_id": 37830728567,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37830728567",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:21:52Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test (ubuntu-latest, 3.12, test_extra)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:18:30Z",
+          "completed_at": "2026-10-08T19:21:49Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m22324/ranking/r01",
+      "repo": "ipython",
+      "mutant": "ipython-m22324",
+      "ref": "mut-ipython-m22324",
+      "sha": "6fc215fc4bc014b144c61e97dcd212e83c13dd8b",
+      "workflow": "ranking",
+      "workflow_file": "test-ranking.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "ipython@mut-ipython-m22324/ranking",
+      "dispatch_window_start_utc": "2026-10-08T19:08:23.566766+00:00",
+      "dispatched_at_utc": "2026-10-08T19:08:25.299030+00:00",
+      "run_id": 37829684684,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37829684684",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:14:55Z",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:09:55Z",
+          "completed_at": "2026-10-08T19:13:13Z"
+        },
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:08:28Z",
+          "completed_at": "2026-10-08T19:12:04Z"
+        },
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:09:49Z",
+          "completed_at": "2026-10-08T19:13:12Z"
+        },
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:11:27Z",
+          "completed_at": "2026-10-08T19:14:54Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m22324/ranking/r02",
+      "repo": "ipython",
+      "mutant": "ipython-m22324",
+      "ref": "mut-ipython-m22324",
+      "sha": "6fc215fc4bc014b144c61e97dcd212e83c13dd8b",
+      "workflow": "ranking",
+      "workflow_file": "test-ranking.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "ipython@mut-ipython-m22324/ranking",
+      "dispatch_window_start_utc": "2026-10-08T19:15:14.999838+00:00",
+      "dispatched_at_utc": "2026-10-08T19:15:17.073470+00:00",
+      "run_id": 37830551304,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37830551304",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:21:45Z",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:18:07Z",
+          "completed_at": "2026-10-08T19:21:44Z"
+        },
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:17:14Z",
+          "completed_at": "2026-10-08T19:20:49Z"
+        },
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:18:14Z",
+          "completed_at": "2026-10-08T19:21:42Z"
+        },
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:18:16Z",
+          "completed_at": "2026-10-08T19:21:28Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m22324/ranking/r03",
+      "repo": "ipython",
+      "mutant": "ipython-m22324",
+      "ref": "mut-ipython-m22324",
+      "sha": "6fc215fc4bc014b144c61e97dcd212e83c13dd8b",
+      "workflow": "ranking",
+      "workflow_file": "test-ranking.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "ipython@mut-ipython-m22324/ranking",
+      "dispatch_window_start_utc": "2026-10-08T19:21:49.823096+00:00",
+      "dispatched_at_utc": "2026-10-08T19:21:51.721292+00:00",
+      "run_id": 37831379694,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37831379694",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:28:02Z",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:23:25Z",
+          "completed_at": "2026-10-08T19:26:42Z"
+        },
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:23:16Z",
+          "completed_at": "2026-10-08T19:26:45Z"
+        },
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:23:46Z",
+          "completed_at": "2026-10-08T19:27:15Z"
+        },
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:24:33Z",
+          "completed_at": "2026-10-08T19:28:02Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m22324/regsmart/r01",
+      "repo": "ipython",
+      "mutant": "ipython-m22324",
+      "ref": "mut-ipython-m22324",
+      "sha": "6fc215fc4bc014b144c61e97dcd212e83c13dd8b",
+      "workflow": "regsmart",
+      "workflow_file": "test-regsmart.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "ipython@mut-ipython-m22324/regsmart",
+      "dispatch_window_start_utc": "2026-10-08T19:08:26.300982+00:00",
+      "dispatched_at_utc": "2026-10-08T19:08:28.119325+00:00",
+      "run_id": 37829690333,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37829690333",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:13:05Z",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:09:55Z",
+          "completed_at": "2026-10-08T19:11:25Z"
+        },
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:10:06Z",
+          "completed_at": "2026-10-08T19:11:39Z"
+        },
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:11:20Z",
+          "completed_at": "2026-10-08T19:13:04Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m22324/regsmart/r02",
+      "repo": "ipython",
+      "mutant": "ipython-m22324",
+      "ref": "mut-ipython-m22324",
+      "sha": "6fc215fc4bc014b144c61e97dcd212e83c13dd8b",
+      "workflow": "regsmart",
+      "workflow_file": "test-regsmart.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "ipython@mut-ipython-m22324/regsmart",
+      "dispatch_window_start_utc": "2026-10-08T19:13:13.210759+00:00",
+      "dispatched_at_utc": "2026-10-08T19:13:15.228378+00:00",
+      "run_id": 37830297181,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37830297181",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:16:34Z",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:13:48Z",
+          "completed_at": "2026-10-08T19:15:13Z"
+        },
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:14:56Z",
+          "completed_at": "2026-10-08T19:16:34Z"
+        },
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:14:48Z",
+          "completed_at": "2026-10-08T19:16:24Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m22324/regsmart/r03",
+      "repo": "ipython",
+      "mutant": "ipython-m22324",
+      "ref": "mut-ipython-m22324",
+      "sha": "6fc215fc4bc014b144c61e97dcd212e83c13dd8b",
+      "workflow": "regsmart",
+      "workflow_file": "test-regsmart.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "ipython@mut-ipython-m22324/regsmart",
+      "dispatch_window_start_utc": "2026-10-08T19:16:40.729799+00:00",
+      "dispatched_at_utc": "2026-10-08T19:16:42.766622+00:00",
+      "run_id": 37830734801,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37830734801",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:21:45Z",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:18:28Z",
+          "completed_at": "2026-10-08T19:20:14Z"
+        },
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:18:56Z",
+          "completed_at": "2026-10-08T19:20:42Z"
+        },
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:20:16Z",
+          "completed_at": "2026-10-08T19:21:45Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m22324/regsmart-no-rank/r01",
+      "repo": "ipython",
+      "mutant": "ipython-m22324",
+      "ref": "mut-ipython-m22324",
+      "sha": "6fc215fc4bc014b144c61e97dcd212e83c13dd8b",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "test-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "ipython@mut-ipython-m22324/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-10-08T19:08:29.121191+00:00",
+      "dispatched_at_utc": "2026-10-08T19:08:30.920883+00:00",
+      "run_id": 37829695875,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37829695875",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:13:12Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test-regsmart-nr (test_extra)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:11:21Z",
+          "completed_at": "2026-10-08T19:13:11Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m22324/regsmart-no-rank/r02",
+      "repo": "ipython",
+      "mutant": "ipython-m22324",
+      "ref": "mut-ipython-m22324",
+      "sha": "6fc215fc4bc014b144c61e97dcd212e83c13dd8b",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "test-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "ipython@mut-ipython-m22324/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-10-08T19:13:56.171804+00:00",
+      "dispatched_at_utc": "2026-10-08T19:13:57.701926+00:00",
+      "run_id": 37830386444,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37830386444",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:16:47Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test-regsmart-nr (test_extra)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:15:15Z",
+          "completed_at": "2026-10-08T19:16:46Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m22324/regsmart-no-rank/r03",
+      "repo": "ipython",
+      "mutant": "ipython-m22324",
+      "ref": "mut-ipython-m22324",
+      "sha": "6fc215fc4bc014b144c61e97dcd212e83c13dd8b",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "test-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "ipython@mut-ipython-m22324/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-10-08T19:17:25.724735+00:00",
+      "dispatched_at_utc": "2026-10-08T19:17:27.545455+00:00",
+      "run_id": 37830829118,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37830829118",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:22:10Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test-regsmart-nr (test_extra)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:20:35Z",
+          "completed_at": "2026-10-08T19:22:09Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m22732/baseline/r01",
+      "repo": "ipython",
+      "mutant": "ipython-m22732",
+      "ref": "mut-ipython-m22732",
+      "sha": "9c31a5f59bd6f5213a35eb10c269726dceb7e1c2",
+      "workflow": "baseline",
+      "workflow_file": "test.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "ipython@mut-ipython-m22732/baseline",
+      "dispatch_window_start_utc": "2026-10-08T19:08:31.922879+00:00",
+      "dispatched_at_utc": "2026-10-08T19:08:33.640895+00:00",
+      "run_id": 37829701313,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37829701313",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:13:32Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test (ubuntu-latest, 3.12, test_extra)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:10:05Z",
+          "completed_at": "2026-10-08T19:13:31Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m22732/baseline/r02",
+      "repo": "ipython",
+      "mutant": "ipython-m22732",
+      "ref": "mut-ipython-m22732",
+      "sha": "9c31a5f59bd6f5213a35eb10c269726dceb7e1c2",
+      "workflow": "baseline",
+      "workflow_file": "test.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "ipython@mut-ipython-m22732/baseline",
+      "dispatch_window_start_utc": "2026-10-08T19:13:58.706007+00:00",
+      "dispatched_at_utc": "2026-10-08T19:14:00.741283+00:00",
+      "run_id": 37830392233,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37830392233",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:18:35Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test (ubuntu-latest, 3.12, test_extra)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:15:12Z",
+          "completed_at": "2026-10-08T19:18:34Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m22732/baseline/r03",
+      "repo": "ipython",
+      "mutant": "ipython-m22732",
+      "ref": "mut-ipython-m22732",
+      "sha": "9c31a5f59bd6f5213a35eb10c269726dceb7e1c2",
+      "workflow": "baseline",
+      "workflow_file": "test.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "ipython@mut-ipython-m22732/baseline",
+      "dispatch_window_start_utc": "2026-10-08T19:18:45.681501+00:00",
+      "dispatched_at_utc": "2026-10-08T19:18:47.422284+00:00",
+      "run_id": 37830993310,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37830993310",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:25:10Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test (ubuntu-latest, 3.12, test_extra)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:21:46Z",
+          "completed_at": "2026-10-08T19:25:10Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m22732/ranking/r01",
+      "repo": "ipython",
+      "mutant": "ipython-m22732",
+      "ref": "mut-ipython-m22732",
+      "sha": "9c31a5f59bd6f5213a35eb10c269726dceb7e1c2",
+      "workflow": "ranking",
+      "workflow_file": "test-ranking.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "ipython@mut-ipython-m22732/ranking",
+      "dispatch_window_start_utc": "2026-10-08T19:08:34.643464+00:00",
+      "dispatched_at_utc": "2026-10-08T19:08:36.620115+00:00",
+      "run_id": 37829707413,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37829707413",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:15:10Z",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:09:45Z",
+          "completed_at": "2026-10-08T19:12:59Z"
+        },
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:11:30Z",
+          "completed_at": "2026-10-08T19:15:03Z"
+        },
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:11:43Z",
+          "completed_at": "2026-10-08T19:15:02Z"
+        },
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:11:45Z",
+          "completed_at": "2026-10-08T19:15:09Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m22732/ranking/r02",
+      "repo": "ipython",
+      "mutant": "ipython-m22732",
+      "ref": "mut-ipython-m22732",
+      "sha": "9c31a5f59bd6f5213a35eb10c269726dceb7e1c2",
+      "workflow": "ranking",
+      "workflow_file": "test-ranking.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "ipython@mut-ipython-m22732/ranking",
+      "dispatch_window_start_utc": "2026-10-08T19:15:58.254565+00:00",
+      "dispatched_at_utc": "2026-10-08T19:16:00.105568+00:00",
+      "run_id": 37830644625,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37830644625",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:21:42Z",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:16:39Z",
+          "completed_at": "2026-10-08T19:20:08Z"
+        },
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:18:00Z",
+          "completed_at": "2026-10-08T19:21:41Z"
+        },
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:16:43Z",
+          "completed_at": "2026-10-08T19:20:05Z"
+        },
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:18:15Z",
+          "completed_at": "2026-10-08T19:21:29Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m22732/ranking/r03",
+      "repo": "ipython",
+      "mutant": "ipython-m22732",
+      "ref": "mut-ipython-m22732",
+      "sha": "9c31a5f59bd6f5213a35eb10c269726dceb7e1c2",
+      "workflow": "ranking",
+      "workflow_file": "test-ranking.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "ipython@mut-ipython-m22732/ranking",
+      "dispatch_window_start_utc": "2026-10-08T19:21:52.726328+00:00",
+      "dispatched_at_utc": "2026-10-08T19:21:55.114700+00:00",
+      "run_id": 37831387115,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37831387115",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:27:32Z",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:22:28Z",
+          "completed_at": "2026-10-08T19:25:36Z"
+        },
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:22:11Z",
+          "completed_at": "2026-10-08T19:25:06Z"
+        },
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:23:20Z",
+          "completed_at": "2026-10-08T19:26:28Z"
+        },
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:24:11Z",
+          "completed_at": "2026-10-08T19:27:31Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m22732/regsmart/r01",
+      "repo": "ipython",
+      "mutant": "ipython-m22732",
+      "ref": "mut-ipython-m22732",
+      "sha": "9c31a5f59bd6f5213a35eb10c269726dceb7e1c2",
+      "workflow": "regsmart",
+      "workflow_file": "test-regsmart.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "ipython@mut-ipython-m22732/regsmart",
+      "dispatch_window_start_utc": "2026-10-08T19:08:37.621498+00:00",
+      "dispatched_at_utc": "2026-10-08T19:08:39.349804+00:00",
+      "run_id": 37829712777,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37829712777",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:15:44Z",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:11:41Z",
+          "completed_at": "2026-10-08T19:15:27Z"
+        },
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:10:05Z",
+          "completed_at": "2026-10-08T19:13:47Z"
+        },
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:11:54Z",
+          "completed_at": "2026-10-08T19:15:43Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m22732/regsmart/r02",
+      "repo": "ipython",
+      "mutant": "ipython-m22732",
+      "ref": "mut-ipython-m22732",
+      "sha": "9c31a5f59bd6f5213a35eb10c269726dceb7e1c2",
+      "workflow": "regsmart",
+      "workflow_file": "test-regsmart.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "ipython@mut-ipython-m22732/regsmart",
+      "dispatch_window_start_utc": "2026-10-08T19:16:01.107719+00:00",
+      "dispatched_at_utc": "2026-10-08T19:16:03.141041+00:00",
+      "run_id": 37830651065,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37830651065",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:22:27Z",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:17:58Z",
+          "completed_at": "2026-10-08T19:21:09Z"
+        },
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:18:25Z",
+          "completed_at": "2026-10-08T19:22:05Z"
+        },
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:18:37Z",
+          "completed_at": "2026-10-08T19:22:27Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m22732/regsmart/r03",
+      "repo": "ipython",
+      "mutant": "ipython-m22732",
+      "ref": "mut-ipython-m22732",
+      "sha": "9c31a5f59bd6f5213a35eb10c269726dceb7e1c2",
+      "workflow": "regsmart",
+      "workflow_file": "test-regsmart.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "ipython@mut-ipython-m22732/regsmart",
+      "dispatch_window_start_utc": "2026-10-08T19:23:09.685121+00:00",
+      "dispatched_at_utc": "2026-10-08T19:23:11.351613+00:00",
+      "run_id": 37831544961,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37831544961",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:28:37Z",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:23:54Z",
+          "completed_at": "2026-10-08T19:27:37Z"
+        },
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:24:57Z",
+          "completed_at": "2026-10-08T19:28:36Z"
+        },
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:24:35Z",
+          "completed_at": "2026-10-08T19:28:12Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m22732/regsmart-no-rank/r01",
+      "repo": "ipython",
+      "mutant": "ipython-m22732",
+      "ref": "mut-ipython-m22732",
+      "sha": "9c31a5f59bd6f5213a35eb10c269726dceb7e1c2",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "test-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "ipython@mut-ipython-m22732/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-10-08T19:08:40.352512+00:00",
+      "dispatched_at_utc": "2026-10-08T19:08:42.136180+00:00",
+      "run_id": 37829718375,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37829718375",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:16:40Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test-regsmart-nr (test_extra)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:13:06Z",
+          "completed_at": "2026-10-08T19:16:39Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m22732/regsmart-no-rank/r02",
+      "repo": "ipython",
+      "mutant": "ipython-m22732",
+      "ref": "mut-ipython-m22732",
+      "sha": "9c31a5f59bd6f5213a35eb10c269726dceb7e1c2",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "test-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "ipython@mut-ipython-m22732/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-10-08T19:17:28.547845+00:00",
+      "dispatched_at_utc": "2026-10-08T19:17:30.496014+00:00",
+      "run_id": 37830834909,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37830834909",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:22:05Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test-regsmart-nr (test_extra)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:18:28Z",
+          "completed_at": "2026-10-08T19:22:05Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m22732/regsmart-no-rank/r03",
+      "repo": "ipython",
+      "mutant": "ipython-m22732",
+      "ref": "mut-ipython-m22732",
+      "sha": "9c31a5f59bd6f5213a35eb10c269726dceb7e1c2",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "test-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "ipython@mut-ipython-m22732/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-10-08T19:22:32.716798+00:00",
+      "dispatched_at_utc": "2026-10-08T19:22:34.502570+00:00",
+      "run_id": 37831467058,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37831467058",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:27:48Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test-regsmart-nr (test_extra)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:24:15Z",
+          "completed_at": "2026-10-08T19:27:47Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m4267/baseline/r01",
+      "repo": "ipython",
+      "mutant": "ipython-m4267",
+      "ref": "mut-ipython-m4267",
+      "sha": "7ff21fcc84e73705cf537b12fc6f5b80b54f4c8d",
+      "workflow": "baseline",
+      "workflow_file": "test.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "ipython@mut-ipython-m4267/baseline",
+      "dispatch_window_start_utc": "2026-10-08T19:08:43.138210+00:00",
+      "dispatched_at_utc": "2026-10-08T19:08:44.717917+00:00",
+      "run_id": 37829723515,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37829723515",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:13:03Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test (ubuntu-latest, 3.12, test_extra)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:09:41Z",
+          "completed_at": "2026-10-08T19:13:03Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m4267/baseline/r02",
+      "repo": "ipython",
+      "mutant": "ipython-m4267",
+      "ref": "mut-ipython-m4267",
+      "sha": "7ff21fcc84e73705cf537b12fc6f5b80b54f4c8d",
+      "workflow": "baseline",
+      "workflow_file": "test.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "ipython@mut-ipython-m4267/baseline",
+      "dispatch_window_start_utc": "2026-10-08T19:13:16.231707+00:00",
+      "dispatched_at_utc": "2026-10-08T19:13:18.090034+00:00",
+      "run_id": 37830302919,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37830302919",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:17:59Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test (ubuntu-latest, 3.12, test_extra)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:14:32Z",
+          "completed_at": "2026-10-08T19:17:58Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m4267/baseline/r03",
+      "repo": "ipython",
+      "mutant": "ipython-m4267",
+      "ref": "mut-ipython-m4267",
+      "sha": "7ff21fcc84e73705cf537b12fc6f5b80b54f4c8d",
+      "workflow": "baseline",
+      "workflow_file": "test.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "ipython@mut-ipython-m4267/baseline",
+      "dispatch_window_start_utc": "2026-10-08T19:18:04.873357+00:00",
+      "dispatched_at_utc": "2026-10-08T19:18:06.452448+00:00",
+      "run_id": 37830908528,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37830908528",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:24:09Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test (ubuntu-latest, 3.12, test_extra)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:20:44Z",
+          "completed_at": "2026-10-08T19:24:09Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m4267/ranking/r01",
+      "repo": "ipython",
+      "mutant": "ipython-m4267",
+      "ref": "mut-ipython-m4267",
+      "sha": "7ff21fcc84e73705cf537b12fc6f5b80b54f4c8d",
+      "workflow": "ranking",
+      "workflow_file": "test-ranking.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "ipython@mut-ipython-m4267/ranking",
+      "dispatch_window_start_utc": "2026-10-08T19:08:45.719979+00:00",
+      "dispatched_at_utc": "2026-10-08T19:08:47.238474+00:00",
+      "run_id": 37829728664,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37829728664",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:18:29Z",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:13:33Z",
+          "completed_at": "2026-10-08T19:17:12Z"
+        },
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:13:19Z",
+          "completed_at": "2026-10-08T19:16:37Z"
+        },
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:14:58Z",
+          "completed_at": "2026-10-08T19:18:28Z"
+        },
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:15:05Z",
+          "completed_at": "2026-10-08T19:18:12Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m4267/ranking/r02",
+      "repo": "ipython",
+      "mutant": "ipython-m4267",
+      "ref": "mut-ipython-m4267",
+      "sha": "7ff21fcc84e73705cf537b12fc6f5b80b54f4c8d",
+      "workflow": "ranking",
+      "workflow_file": "test-ranking.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "ipython@mut-ipython-m4267/ranking",
+      "dispatch_window_start_utc": "2026-10-08T19:18:48.424382+00:00",
+      "dispatched_at_utc": "2026-10-08T19:18:50.426485+00:00",
+      "run_id": 37830999213,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37830999213",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:25:21Z",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:20:19Z",
+          "completed_at": "2026-10-08T19:23:44Z"
+        },
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:20:55Z",
+          "completed_at": "2026-10-08T19:24:14Z"
+        },
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:21:02Z",
+          "completed_at": "2026-10-08T19:24:31Z"
+        },
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:21:44Z",
+          "completed_at": "2026-10-08T19:25:20Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m4267/ranking/r03",
+      "repo": "ipython",
+      "mutant": "ipython-m4267",
+      "ref": "mut-ipython-m4267",
+      "sha": "7ff21fcc84e73705cf537b12fc6f5b80b54f4c8d",
+      "workflow": "ranking",
+      "workflow_file": "test-ranking.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "ipython@mut-ipython-m4267/ranking",
+      "dispatch_window_start_utc": "2026-10-08T19:25:27.079462+00:00",
+      "dispatched_at_utc": "2026-10-08T19:25:28.890709+00:00",
+      "run_id": 37831834678,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37831834678",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:28:55Z",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:25:32Z",
+          "completed_at": "2026-10-08T19:28:55Z"
+        },
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:25:32Z",
+          "completed_at": "2026-10-08T19:28:53Z"
+        },
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:25:32Z",
+          "completed_at": "2026-10-08T19:28:54Z"
+        },
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:25:32Z",
+          "completed_at": "2026-10-08T19:28:37Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m4267/regsmart/r01",
+      "repo": "ipython",
+      "mutant": "ipython-m4267",
+      "ref": "mut-ipython-m4267",
+      "sha": "7ff21fcc84e73705cf537b12fc6f5b80b54f4c8d",
+      "workflow": "regsmart",
+      "workflow_file": "test-regsmart.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "ipython@mut-ipython-m4267/regsmart",
+      "dispatch_window_start_utc": "2026-10-08T19:08:48.240899+00:00",
+      "dispatched_at_utc": "2026-10-08T19:08:50.401878+00:00",
+      "run_id": 37829734743,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37829734743",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:14:56Z",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:13:22Z",
+          "completed_at": "2026-10-08T19:14:55Z"
+        },
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:13:01Z",
+          "completed_at": "2026-10-08T19:14:30Z"
+        },
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:11:47Z",
+          "completed_at": "2026-10-08T19:13:25Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m4267/regsmart/r02",
+      "repo": "ipython",
+      "mutant": "ipython-m4267",
+      "ref": "mut-ipython-m4267",
+      "sha": "7ff21fcc84e73705cf537b12fc6f5b80b54f4c8d",
+      "workflow": "regsmart",
+      "workflow_file": "test-regsmart.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "ipython@mut-ipython-m4267/regsmart",
+      "dispatch_window_start_utc": "2026-10-08T19:15:18.076235+00:00",
+      "dispatched_at_utc": "2026-10-08T19:15:19.935641+00:00",
+      "run_id": 37830558109,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37830558109",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:18:27Z",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:16:26Z",
+          "completed_at": "2026-10-08T19:17:56Z"
+        },
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:16:35Z",
+          "completed_at": "2026-10-08T19:18:14Z"
+        },
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:16:42Z",
+          "completed_at": "2026-10-08T19:18:26Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m4267/regsmart/r03",
+      "repo": "ipython",
+      "mutant": "ipython-m4267",
+      "ref": "mut-ipython-m4267",
+      "sha": "7ff21fcc84e73705cf537b12fc6f5b80b54f4c8d",
+      "workflow": "regsmart",
+      "workflow_file": "test-regsmart.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "ipython@mut-ipython-m4267/regsmart",
+      "dispatch_window_start_utc": "2026-10-08T19:18:51.430545+00:00",
+      "dispatched_at_utc": "2026-10-08T19:18:53.443971+00:00",
+      "run_id": 37831006010,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37831006010",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:23:34Z",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:21:44Z",
+          "completed_at": "2026-10-08T19:23:18Z"
+        },
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:21:52Z",
+          "completed_at": "2026-10-08T19:23:23Z"
+        },
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:22:00Z",
+          "completed_at": "2026-10-08T19:23:34Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m4267/regsmart-no-rank/r01",
+      "repo": "ipython",
+      "mutant": "ipython-m4267",
+      "ref": "mut-ipython-m4267",
+      "sha": "7ff21fcc84e73705cf537b12fc6f5b80b54f4c8d",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "test-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "ipython@mut-ipython-m4267/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-10-08T19:08:51.403077+00:00",
+      "dispatched_at_utc": "2026-10-08T19:08:53.847044+00:00",
+      "run_id": 37829742104,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37829742104",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:14:47Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test-regsmart-nr (test_extra)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:13:13Z",
+          "completed_at": "2026-10-08T19:14:46Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m4267/regsmart-no-rank/r02",
+      "repo": "ipython",
+      "mutant": "ipython-m4267",
+      "ref": "mut-ipython-m4267",
+      "sha": "7ff21fcc84e73705cf537b12fc6f5b80b54f4c8d",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "test-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "ipython@mut-ipython-m4267/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-10-08T19:15:20.939612+00:00",
+      "dispatched_at_utc": "2026-10-08T19:15:23.122014+00:00",
+      "run_id": 37830564634,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37830564634",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:17:29Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test-regsmart-nr (test_extra)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:15:43Z",
+          "completed_at": "2026-10-08T19:17:27Z"
+        }
+      ]
+    },
+    {
+      "task": "ipython/ipython-m4267/regsmart-no-rank/r03",
+      "repo": "ipython",
+      "mutant": "ipython-m4267",
+      "ref": "mut-ipython-m4267",
+      "sha": "7ff21fcc84e73705cf537b12fc6f5b80b54f4c8d",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "test-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "ipython@mut-ipython-m4267/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-10-08T19:18:07.455162+00:00",
+      "dispatched_at_utc": "2026-10-08T19:18:09.072203+00:00",
+      "run_id": 37830913916,
+      "html_url": "https://github.com/leticosta4/ipython/actions/runs/37830913916",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T19:21:59Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test-regsmart-nr (test_extra)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T19:20:24Z",
+          "completed_at": "2026-10-08T19:21:58Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m13478/baseline/r01",
+      "repo": "trimesh",
+      "mutant": "trimesh-m13478",
+      "ref": "mut-trimesh-m13478",
+      "sha": "7df9c5c01e1c1f7b92b3af140853ef467911756c",
+      "workflow": "baseline",
+      "workflow_file": "test.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "trimesh@mut-trimesh-m13478/baseline",
+      "dispatch_window_start_utc": "2026-10-08T22:26:11.085123+00:00",
+      "dispatched_at_utc": "2026-10-08T22:26:12.696035+00:00",
+      "run_id": 37853452412,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37853452412",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:32:34Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "Run Unit Tests (py313)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:26:16Z",
+          "completed_at": "2026-10-08T22:32:33Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m13478/baseline/r02",
+      "repo": "trimesh",
+      "mutant": "trimesh-m13478",
+      "ref": "mut-trimesh-m13478",
+      "sha": "7df9c5c01e1c1f7b92b3af140853ef467911756c",
+      "workflow": "baseline",
+      "workflow_file": "test.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "trimesh@mut-trimesh-m13478/baseline",
+      "dispatch_window_start_utc": "2026-10-08T22:32:55.499706+00:00",
+      "dispatched_at_utc": "2026-10-08T22:32:57.228117+00:00",
+      "run_id": 37854164246,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37854164246",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:39:03Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "Run Unit Tests (py313)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:35:38Z",
+          "completed_at": "2026-10-08T22:39:02Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m13478/baseline/r03",
+      "repo": "trimesh",
+      "mutant": "trimesh-m13478",
+      "ref": "mut-trimesh-m13478",
+      "sha": "7df9c5c01e1c1f7b92b3af140853ef467911756c",
+      "workflow": "baseline",
+      "workflow_file": "test.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "trimesh@mut-trimesh-m13478/baseline",
+      "dispatch_window_start_utc": "2026-10-08T22:39:54.440913+00:00",
+      "dispatched_at_utc": "2026-10-08T22:39:56.088243+00:00",
+      "run_id": 37854881936,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37854881936",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:48:21Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "Run Unit Tests (py313)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:43:21Z",
+          "completed_at": "2026-10-08T22:48:20Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m13478/ranking/r01",
+      "repo": "trimesh",
+      "mutant": "trimesh-m13478",
+      "ref": "mut-trimesh-m13478",
+      "sha": "7df9c5c01e1c1f7b92b3af140853ef467911756c",
+      "workflow": "ranking",
+      "workflow_file": "test-ranking.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "trimesh@mut-trimesh-m13478/ranking",
+      "dispatch_window_start_utc": "2026-10-08T22:26:13.705047+00:00",
+      "dispatched_at_utc": "2026-10-08T22:26:15.759138+00:00",
+      "run_id": 37853457799,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37853457799",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:32:36Z",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:26:18Z",
+          "completed_at": "2026-10-08T22:32:33Z"
+        },
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:26:19Z",
+          "completed_at": "2026-10-08T22:32:34Z"
+        },
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:26:19Z",
+          "completed_at": "2026-10-08T22:32:35Z"
+        },
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:26:18Z",
+          "completed_at": "2026-10-08T22:32:35Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m13478/ranking/r02",
+      "repo": "trimesh",
+      "mutant": "trimesh-m13478",
+      "ref": "mut-trimesh-m13478",
+      "sha": "7df9c5c01e1c1f7b92b3af140853ef467911756c",
+      "workflow": "ranking",
+      "workflow_file": "test-ranking.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "trimesh@mut-trimesh-m13478/ranking",
+      "dispatch_window_start_utc": "2026-10-08T22:32:58.240556+00:00",
+      "dispatched_at_utc": "2026-10-08T22:33:00.023397+00:00",
+      "run_id": 37854169124,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37854169124",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:43:45Z",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:34:26Z",
+          "completed_at": "2026-10-08T22:39:32Z"
+        },
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:34:49Z",
+          "completed_at": "2026-10-08T22:39:50Z"
+        },
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:36:12Z",
+          "completed_at": "2026-10-08T22:42:41Z"
+        },
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:39:04Z",
+          "completed_at": "2026-10-08T22:43:44Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m13478/ranking/r03",
+      "repo": "trimesh",
+      "mutant": "trimesh-m13478",
+      "ref": "mut-trimesh-m13478",
+      "sha": "7df9c5c01e1c1f7b92b3af140853ef467911756c",
+      "workflow": "ranking",
+      "workflow_file": "test-ranking.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "trimesh@mut-trimesh-m13478/ranking",
+      "dispatch_window_start_utc": "2026-10-08T22:44:10.216278+00:00",
+      "dispatched_at_utc": "2026-10-08T22:44:11.933690+00:00",
+      "run_id": 37855325053,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37855325053",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:54:27Z",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:47:46Z",
+          "completed_at": "2026-10-08T22:54:04Z"
+        },
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:49:09Z",
+          "completed_at": "2026-10-08T22:53:15Z"
+        },
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:45:39Z",
+          "completed_at": "2026-10-08T22:50:30Z"
+        },
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:49:43Z",
+          "completed_at": "2026-10-08T22:54:26Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m13478/regsmart/r01",
+      "repo": "trimesh",
+      "mutant": "trimesh-m13478",
+      "ref": "mut-trimesh-m13478",
+      "sha": "7df9c5c01e1c1f7b92b3af140853ef467911756c",
+      "workflow": "regsmart",
+      "workflow_file": "test-regsmart.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "trimesh@mut-trimesh-m13478/regsmart",
+      "dispatch_window_start_utc": "2026-10-08T22:26:16.763821+00:00",
+      "dispatched_at_utc": "2026-10-08T22:26:19.012180+00:00",
+      "run_id": 37853463798,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37853463798",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:27:56Z",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:26:22Z",
+          "completed_at": "2026-10-08T22:27:45Z"
+        },
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:26:22Z",
+          "completed_at": "2026-10-08T22:27:56Z"
+        },
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:26:22Z",
+          "completed_at": "2026-10-08T22:27:54Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m13478/regsmart/r02",
+      "repo": "trimesh",
+      "mutant": "trimesh-m13478",
+      "ref": "mut-trimesh-m13478",
+      "sha": "7df9c5c01e1c1f7b92b3af140853ef467911756c",
+      "workflow": "regsmart",
+      "workflow_file": "test-regsmart.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "trimesh@mut-trimesh-m13478/regsmart",
+      "dispatch_window_start_utc": "2026-10-08T22:28:22.220388+00:00",
+      "dispatched_at_utc": "2026-10-08T22:28:24.019413+00:00",
+      "run_id": 37853683003,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37853683003",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:39:00Z",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:32:49Z",
+          "completed_at": "2026-10-08T22:34:24Z"
+        },
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:37:26Z",
+          "completed_at": "2026-10-08T22:38:59Z"
+        },
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:37:41Z",
+          "completed_at": "2026-10-08T22:38:59Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m13478/regsmart/r03",
+      "repo": "trimesh",
+      "mutant": "trimesh-m13478",
+      "ref": "mut-trimesh-m13478",
+      "sha": "7df9c5c01e1c1f7b92b3af140853ef467911756c",
+      "workflow": "regsmart",
+      "workflow_file": "test-regsmart.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "trimesh@mut-trimesh-m13478/regsmart",
+      "dispatch_window_start_utc": "2026-10-08T22:39:05.662562+00:00",
+      "dispatched_at_utc": "2026-10-08T22:39:07.537035+00:00",
+      "run_id": 37854800804,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37854800804",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:43:45Z",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:39:55Z",
+          "completed_at": "2026-10-08T22:41:12Z"
+        },
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:41:14Z",
+          "completed_at": "2026-10-08T22:42:46Z"
+        },
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:42:46Z",
+          "completed_at": "2026-10-08T22:43:44Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m13478/regsmart-no-rank/r01",
+      "repo": "trimesh",
+      "mutant": "trimesh-m13478",
+      "ref": "mut-trimesh-m13478",
+      "sha": "7df9c5c01e1c1f7b92b3af140853ef467911756c",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "test-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "trimesh@mut-trimesh-m13478/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-10-08T22:26:20.015315+00:00",
+      "dispatched_at_utc": "2026-10-08T22:26:21.886528+00:00",
+      "run_id": 37853468787,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37853468787",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:27:40Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "tests-regsmart-nr",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:26:24Z",
+          "completed_at": "2026-10-08T22:27:39Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m13478/regsmart-no-rank/r02",
+      "repo": "trimesh",
+      "mutant": "trimesh-m13478",
+      "ref": "mut-trimesh-m13478",
+      "sha": "7df9c5c01e1c1f7b92b3af140853ef467911756c",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "test-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "trimesh@mut-trimesh-m13478/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-10-08T22:27:46.188120+00:00",
+      "dispatched_at_utc": "2026-10-08T22:27:47.958653+00:00",
+      "run_id": 37853620220,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37853620220",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:34:03Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "tests-regsmart-nr",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:32:30Z",
+          "completed_at": "2026-10-08T22:34:03Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m13478/regsmart-no-rank/r03",
+      "repo": "trimesh",
+      "mutant": "trimesh-m13478",
+      "ref": "mut-trimesh-m13478",
+      "sha": "7df9c5c01e1c1f7b92b3af140853ef467911756c",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "test-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "trimesh@mut-trimesh-m13478/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-10-08T22:34:23.022905+00:00",
+      "dispatched_at_utc": "2026-10-08T22:34:24.762644+00:00",
+      "run_id": 37854315451,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37854315451",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:41:02Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "tests-regsmart-nr",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:39:39Z",
+          "completed_at": "2026-10-08T22:41:01Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m1825/baseline/r01",
+      "repo": "trimesh",
+      "mutant": "trimesh-m1825",
+      "ref": "mut-trimesh-m1825",
+      "sha": "1e6bae8b88849c1508b4796a72eab8d318ae3182",
+      "workflow": "baseline",
+      "workflow_file": "test.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "trimesh@mut-trimesh-m1825/baseline",
+      "dispatch_window_start_utc": "2026-10-08T22:26:22.893947+00:00",
+      "dispatched_at_utc": "2026-10-08T22:26:24.505537+00:00",
+      "run_id": 37853473300,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37853473300",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:32:29Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "Run Unit Tests (py313)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:26:27Z",
+          "completed_at": "2026-10-08T22:32:28Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m1825/baseline/r02",
+      "repo": "trimesh",
+      "mutant": "trimesh-m1825",
+      "ref": "mut-trimesh-m1825",
+      "sha": "1e6bae8b88849c1508b4796a72eab8d318ae3182",
+      "workflow": "baseline",
+      "workflow_file": "test.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "trimesh@mut-trimesh-m1825/baseline",
+      "dispatch_window_start_utc": "2026-10-08T22:33:01.030969+00:00",
+      "dispatched_at_utc": "2026-10-08T22:33:02.989215+00:00",
+      "run_id": 37854173847,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37854173847",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:44:07Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "Run Unit Tests (py313)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:37:51Z",
+          "completed_at": "2026-10-08T22:44:06Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m1825/baseline/r03",
+      "repo": "trimesh",
+      "mutant": "trimesh-m1825",
+      "ref": "mut-trimesh-m1825",
+      "sha": "1e6bae8b88849c1508b4796a72eab8d318ae3182",
+      "workflow": "baseline",
+      "workflow_file": "test.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "trimesh@mut-trimesh-m1825/baseline",
+      "dispatch_window_start_utc": "2026-10-08T22:44:45.753246+00:00",
+      "dispatched_at_utc": "2026-10-08T22:44:47.324110+00:00",
+      "run_id": 37855383531,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37855383531",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:56:04Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "Run Unit Tests (py313)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:50:32Z",
+          "completed_at": "2026-10-08T22:56:03Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m1825/ranking/r01",
+      "repo": "trimesh",
+      "mutant": "trimesh-m1825",
+      "ref": "mut-trimesh-m1825",
+      "sha": "1e6bae8b88849c1508b4796a72eab8d318ae3182",
+      "workflow": "ranking",
+      "workflow_file": "test-ranking.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "trimesh@mut-trimesh-m1825/ranking",
+      "dispatch_window_start_utc": "2026-10-08T22:26:25.513252+00:00",
+      "dispatched_at_utc": "2026-10-08T22:26:27.542396+00:00",
+      "run_id": 37853478683,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37853478683",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:32:29Z",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:26:30Z",
+          "completed_at": "2026-10-08T22:31:15Z"
+        },
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:26:30Z",
+          "completed_at": "2026-10-08T22:29:47Z"
+        },
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:26:30Z",
+          "completed_at": "2026-10-08T22:32:08Z"
+        },
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:26:31Z",
+          "completed_at": "2026-10-08T22:32:28Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m1825/ranking/r02",
+      "repo": "trimesh",
+      "mutant": "trimesh-m1825",
+      "ref": "mut-trimesh-m1825",
+      "sha": "1e6bae8b88849c1508b4796a72eab8d318ae3182",
+      "workflow": "ranking",
+      "workflow_file": "test-ranking.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "trimesh@mut-trimesh-m1825/ranking",
+      "dispatch_window_start_utc": "2026-10-08T22:33:03.993653+00:00",
+      "dispatched_at_utc": "2026-10-08T22:33:05.962716+00:00",
+      "run_id": 37854179285,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37854179285",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:44:56Z",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:37:13Z",
+          "completed_at": "2026-10-08T22:43:01Z"
+        },
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:38:31Z",
+          "completed_at": "2026-10-08T22:41:50Z"
+        },
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:39:01Z",
+          "completed_at": "2026-10-08T22:44:56Z"
+        },
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:39:25Z",
+          "completed_at": "2026-10-08T22:44:03Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m1825/ranking/r03",
+      "repo": "trimesh",
+      "mutant": "trimesh-m1825",
+      "ref": "mut-trimesh-m1825",
+      "sha": "1e6bae8b88849c1508b4796a72eab8d318ae3182",
+      "workflow": "ranking",
+      "workflow_file": "test-ranking.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "trimesh@mut-trimesh-m1825/ranking",
+      "dispatch_window_start_utc": "2026-10-08T22:45:28.960917+00:00",
+      "dispatched_at_utc": "2026-10-08T22:45:30.865735+00:00",
+      "run_id": 37855461806,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37855461806",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:57:57Z",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:49:53Z",
+          "completed_at": "2026-10-08T22:56:04Z"
+        },
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:50:53Z",
+          "completed_at": "2026-10-08T22:56:36Z"
+        },
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:51:44Z",
+          "completed_at": "2026-10-08T22:57:56Z"
+        },
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:51:10Z",
+          "completed_at": "2026-10-08T22:55:48Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m1825/regsmart/r01",
+      "repo": "trimesh",
+      "mutant": "trimesh-m1825",
+      "ref": "mut-trimesh-m1825",
+      "sha": "1e6bae8b88849c1508b4796a72eab8d318ae3182",
+      "workflow": "regsmart",
+      "workflow_file": "test-regsmart.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "trimesh@mut-trimesh-m1825/regsmart",
+      "dispatch_window_start_utc": "2026-10-08T22:26:28.545790+00:00",
+      "dispatched_at_utc": "2026-10-08T22:26:30.232419+00:00",
+      "run_id": 37853483739,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37853483739",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:32:54Z",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:26:33Z",
+          "completed_at": "2026-10-08T22:31:22Z"
+        },
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:26:34Z",
+          "completed_at": "2026-10-08T22:32:53Z"
+        },
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:26:33Z",
+          "completed_at": "2026-10-08T22:32:43Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m1825/regsmart/r02",
+      "repo": "trimesh",
+      "mutant": "trimesh-m1825",
+      "ref": "mut-trimesh-m1825",
+      "sha": "1e6bae8b88849c1508b4796a72eab8d318ae3182",
+      "workflow": "regsmart",
+      "workflow_file": "test-regsmart.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "trimesh@mut-trimesh-m1825/regsmart",
+      "dispatch_window_start_utc": "2026-10-08T22:33:44.694814+00:00",
+      "dispatched_at_utc": "2026-10-08T22:33:46.385734+00:00",
+      "run_id": 37854246809,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37854246809",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:45:54Z",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:39:01Z",
+          "completed_at": "2026-10-08T22:45:21Z"
+        },
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:39:36Z",
+          "completed_at": "2026-10-08T22:45:54Z"
+        },
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:39:08Z",
+          "completed_at": "2026-10-08T22:45:37Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m1825/regsmart/r03",
+      "repo": "trimesh",
+      "mutant": "trimesh-m1825",
+      "ref": "mut-trimesh-m1825",
+      "sha": "1e6bae8b88849c1508b4796a72eab8d318ae3182",
+      "workflow": "regsmart",
+      "workflow_file": "test-regsmart.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "trimesh@mut-trimesh-m1825/regsmart",
+      "dispatch_window_start_utc": "2026-10-08T22:46:16.460997+00:00",
+      "dispatched_at_utc": "2026-10-08T22:46:18.195521+00:00",
+      "run_id": 37855542972,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37855542972",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:57:28Z",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:49:49Z",
+          "completed_at": "2026-10-08T22:54:36Z"
+        },
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:51:07Z",
+          "completed_at": "2026-10-08T22:57:27Z"
+        },
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:51:15Z",
+          "completed_at": "2026-10-08T22:55:59Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m1825/regsmart-no-rank/r01",
+      "repo": "trimesh",
+      "mutant": "trimesh-m1825",
+      "ref": "mut-trimesh-m1825",
+      "sha": "1e6bae8b88849c1508b4796a72eab8d318ae3182",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "test-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "trimesh@mut-trimesh-m1825/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-10-08T22:26:31.235669+00:00",
+      "dispatched_at_utc": "2026-10-08T22:26:32.900442+00:00",
+      "run_id": 37853488582,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37853488582",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:32:55Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "tests-regsmart-nr",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:26:35Z",
+          "completed_at": "2026-10-08T22:32:55Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m1825/regsmart-no-rank/r02",
+      "repo": "trimesh",
+      "mutant": "trimesh-m1825",
+      "ref": "mut-trimesh-m1825",
+      "sha": "1e6bae8b88849c1508b4796a72eab8d318ae3182",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "test-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "trimesh@mut-trimesh-m1825/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-10-08T22:33:47.392381+00:00",
+      "dispatched_at_utc": "2026-10-08T22:33:49.286343+00:00",
+      "run_id": 37854252584,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37854252584",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:45:04Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "tests-regsmart-nr",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:39:07Z",
+          "completed_at": "2026-10-08T22:45:03Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m1825/regsmart-no-rank/r03",
+      "repo": "trimesh",
+      "mutant": "trimesh-m1825",
+      "ref": "mut-trimesh-m1825",
+      "sha": "1e6bae8b88849c1508b4796a72eab8d318ae3182",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "test-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "trimesh@mut-trimesh-m1825/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-10-08T22:45:31.870333+00:00",
+      "dispatched_at_utc": "2026-10-08T22:45:34.207501+00:00",
+      "run_id": 37855466775,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37855466775",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:52:10Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "tests-regsmart-nr",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:45:56Z",
+          "completed_at": "2026-10-08T22:52:10Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m21160/baseline/r01",
+      "repo": "trimesh",
+      "mutant": "trimesh-m21160",
+      "ref": "mut-trimesh-m21160",
+      "sha": "805b2f54529d8624998844b75388b3b7ce6cc612",
+      "workflow": "baseline",
+      "workflow_file": "test.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "trimesh@mut-trimesh-m21160/baseline",
+      "dispatch_window_start_utc": "2026-10-08T22:26:33.906824+00:00",
+      "dispatched_at_utc": "2026-10-08T22:26:35.615973+00:00",
+      "run_id": 37853493600,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37853493600",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:31:23Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "Run Unit Tests (py313)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:26:39Z",
+          "completed_at": "2026-10-08T22:31:22Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m21160/baseline/r02",
+      "repo": "trimesh",
+      "mutant": "trimesh-m21160",
+      "ref": "mut-trimesh-m21160",
+      "sha": "805b2f54529d8624998844b75388b3b7ce6cc612",
+      "workflow": "baseline",
+      "workflow_file": "test.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "trimesh@mut-trimesh-m21160/baseline",
+      "dispatch_window_start_utc": "2026-10-08T22:31:40.162686+00:00",
+      "dispatched_at_utc": "2026-10-08T22:31:41.736747+00:00",
+      "run_id": 37854032481,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37854032481",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:37:34Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "Run Unit Tests (py313)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:32:54Z",
+          "completed_at": "2026-10-08T22:37:33Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m21160/baseline/r03",
+      "repo": "trimesh",
+      "mutant": "trimesh-m21160",
+      "ref": "mut-trimesh-m21160",
+      "sha": "805b2f54529d8624998844b75388b3b7ce6cc612",
+      "workflow": "baseline",
+      "workflow_file": "test.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "trimesh@mut-trimesh-m21160/baseline",
+      "dispatch_window_start_utc": "2026-10-08T22:37:48.700743+00:00",
+      "dispatched_at_utc": "2026-10-08T22:37:50.489661+00:00",
+      "run_id": 37854670622,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37854670622",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:44:48Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "Run Unit Tests (py313)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:38:23Z",
+          "completed_at": "2026-10-08T22:44:47Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m21160/ranking/r01",
+      "repo": "trimesh",
+      "mutant": "trimesh-m21160",
+      "ref": "mut-trimesh-m21160",
+      "sha": "805b2f54529d8624998844b75388b3b7ce6cc612",
+      "workflow": "ranking",
+      "workflow_file": "test-ranking.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "trimesh@mut-trimesh-m21160/ranking",
+      "dispatch_window_start_utc": "2026-10-08T22:26:36.620939+00:00",
+      "dispatched_at_utc": "2026-10-08T22:26:38.127282+00:00",
+      "run_id": 37853498242,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37853498242",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:39:06Z",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:32:36Z",
+          "completed_at": "2026-10-08T22:39:06Z"
+        },
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:26:41Z",
+          "completed_at": "2026-10-08T22:32:06Z"
+        },
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:27:47Z",
+          "completed_at": "2026-10-08T22:31:11Z"
+        },
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:28:40Z",
+          "completed_at": "2026-10-08T22:34:32Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m21160/ranking/r02",
+      "repo": "trimesh",
+      "mutant": "trimesh-m21160",
+      "ref": "mut-trimesh-m21160",
+      "sha": "805b2f54529d8624998844b75388b3b7ce6cc612",
+      "workflow": "ranking",
+      "workflow_file": "test-ranking.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "trimesh@mut-trimesh-m21160/ranking",
+      "dispatch_window_start_utc": "2026-10-08T22:39:57.096501+00:00",
+      "dispatched_at_utc": "2026-10-08T22:39:59.659395+00:00",
+      "run_id": 37854887288,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37854887288",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:51:52Z",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:44:43Z",
+          "completed_at": "2026-10-08T22:51:08Z"
+        },
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:44:23Z",
+          "completed_at": "2026-10-08T22:47:45Z"
+        },
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:45:23Z",
+          "completed_at": "2026-10-08T22:51:51Z"
+        },
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:46:00Z",
+          "completed_at": "2026-10-08T22:50:51Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m21160/ranking/r03",
+      "repo": "trimesh",
+      "mutant": "trimesh-m21160",
+      "ref": "mut-trimesh-m21160",
+      "sha": "805b2f54529d8624998844b75388b3b7ce6cc612",
+      "workflow": "ranking",
+      "workflow_file": "test-ranking.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "trimesh@mut-trimesh-m21160/ranking",
+      "dispatch_window_start_utc": "2026-10-08T22:52:07.189125+00:00",
+      "dispatched_at_utc": "2026-10-08T22:52:09.027017+00:00",
+      "run_id": 37856127754,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37856127754",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T23:00:40Z",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:54:27Z",
+          "completed_at": "2026-10-08T23:00:39Z"
+        },
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:54:05Z",
+          "completed_at": "2026-10-08T22:57:45Z"
+        },
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:53:16Z",
+          "completed_at": "2026-10-08T22:57:43Z"
+        },
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:54:38Z",
+          "completed_at": "2026-10-08T22:58:07Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m21160/regsmart/r01",
+      "repo": "trimesh",
+      "mutant": "trimesh-m21160",
+      "ref": "mut-trimesh-m21160",
+      "sha": "805b2f54529d8624998844b75388b3b7ce6cc612",
+      "workflow": "regsmart",
+      "workflow_file": "test-regsmart.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "trimesh@mut-trimesh-m21160/regsmart",
+      "dispatch_window_start_utc": "2026-10-08T22:26:39.133912+00:00",
+      "dispatched_at_utc": "2026-10-08T22:26:41.032014+00:00",
+      "run_id": 37853502691,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37853502691",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:38:16Z",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:29:49Z",
+          "completed_at": "2026-10-08T22:34:47Z"
+        },
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:31:24Z",
+          "completed_at": "2026-10-08T22:37:49Z"
+        },
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:31:42Z",
+          "completed_at": "2026-10-08T22:38:15Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m21160/regsmart/r02",
+      "repo": "trimesh",
+      "mutant": "trimesh-m21160",
+      "ref": "mut-trimesh-m21160",
+      "sha": "805b2f54529d8624998844b75388b3b7ce6cc612",
+      "workflow": "regsmart",
+      "workflow_file": "test-regsmart.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "trimesh@mut-trimesh-m21160/regsmart",
+      "dispatch_window_start_utc": "2026-10-08T22:38:27.996033+00:00",
+      "dispatched_at_utc": "2026-10-08T22:38:29.667607+00:00",
+      "run_id": 37854738305,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37854738305",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:48:59Z",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:39:52Z",
+          "completed_at": "2026-10-08T22:43:20Z"
+        },
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:42:17Z",
+          "completed_at": "2026-10-08T22:48:59Z"
+        },
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:43:15Z",
+          "completed_at": "2026-10-08T22:48:14Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m21160/regsmart/r03",
+      "repo": "trimesh",
+      "mutant": "trimesh-m21160",
+      "ref": "mut-trimesh-m21160",
+      "sha": "805b2f54529d8624998844b75388b3b7ce6cc612",
+      "workflow": "regsmart",
+      "workflow_file": "test-regsmart.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "trimesh@mut-trimesh-m21160/regsmart",
+      "dispatch_window_start_utc": "2026-10-08T22:49:11.500156+00:00",
+      "dispatched_at_utc": "2026-10-08T22:49:13.191216+00:00",
+      "run_id": 37855833070,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37855833070",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:58:18Z",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:51:37Z",
+          "completed_at": "2026-10-08T22:58:18Z"
+        },
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:50:26Z",
+          "completed_at": "2026-10-08T22:56:30Z"
+        },
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:51:27Z",
+          "completed_at": "2026-10-08T22:58:02Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m21160/regsmart-no-rank/r01",
+      "repo": "trimesh",
+      "mutant": "trimesh-m21160",
+      "ref": "mut-trimesh-m21160",
+      "sha": "805b2f54529d8624998844b75388b3b7ce6cc612",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "test-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "trimesh@mut-trimesh-m21160/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-10-08T22:26:42.039100+00:00",
+      "dispatched_at_utc": "2026-10-08T22:26:44.103647+00:00",
+      "run_id": 37853508024,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37853508024",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:36:11Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "tests-regsmart-nr",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:31:16Z",
+          "completed_at": "2026-10-08T22:36:10Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m21160/regsmart-no-rank/r02",
+      "repo": "trimesh",
+      "mutant": "trimesh-m21160",
+      "ref": "mut-trimesh-m21160",
+      "sha": "805b2f54529d8624998844b75388b3b7ce6cc612",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "test-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "trimesh@mut-trimesh-m21160/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-10-08T22:36:37.110328+00:00",
+      "dispatched_at_utc": "2026-10-08T22:36:39.094740+00:00",
+      "run_id": 37854548526,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37854548526",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:44:47Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "tests-regsmart-nr",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:38:06Z",
+          "completed_at": "2026-10-08T22:44:47Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m21160/regsmart-no-rank/r03",
+      "repo": "trimesh",
+      "mutant": "trimesh-m21160",
+      "ref": "mut-trimesh-m21160",
+      "sha": "805b2f54529d8624998844b75388b3b7ce6cc612",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "test-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "trimesh@mut-trimesh-m21160/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-10-08T22:45:35.212960+00:00",
+      "dispatched_at_utc": "2026-10-08T22:45:37.230457+00:00",
+      "run_id": 37855472966,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37855472966",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:51:15Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "tests-regsmart-nr",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:46:11Z",
+          "completed_at": "2026-10-08T22:51:15Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m25103/baseline/r01",
+      "repo": "trimesh",
+      "mutant": "trimesh-m25103",
+      "ref": "mut-trimesh-m25103",
+      "sha": "349028d554ebe11eb6ccdf28f5b729fab6c80c18",
+      "workflow": "baseline",
+      "workflow_file": "test.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "trimesh@mut-trimesh-m25103/baseline",
+      "dispatch_window_start_utc": "2026-10-08T22:26:45.106499+00:00",
+      "dispatched_at_utc": "2026-10-08T22:26:48.097425+00:00",
+      "run_id": 37853515299,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37853515299",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:32:48Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "Run Unit Tests (py313)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:27:58Z",
+          "completed_at": "2026-10-08T22:32:47Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m25103/baseline/r02",
+      "repo": "trimesh",
+      "mutant": "trimesh-m25103",
+      "ref": "mut-trimesh-m25103",
+      "sha": "349028d554ebe11eb6ccdf28f5b729fab6c80c18",
+      "workflow": "baseline",
+      "workflow_file": "test.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "trimesh@mut-trimesh-m25103/baseline",
+      "dispatch_window_start_utc": "2026-10-08T22:33:06.969696+00:00",
+      "dispatched_at_utc": "2026-10-08T22:33:09.645644+00:00",
+      "run_id": 37854185208,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37854185208",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:45:10Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "Run Unit Tests (py313)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:38:51Z",
+          "completed_at": "2026-10-08T22:45:09Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m25103/baseline/r03",
+      "repo": "trimesh",
+      "mutant": "trimesh-m25103",
+      "ref": "mut-trimesh-m25103",
+      "sha": "349028d554ebe11eb6ccdf28f5b729fab6c80c18",
+      "workflow": "baseline",
+      "workflow_file": "test.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "trimesh@mut-trimesh-m25103/baseline",
+      "dispatch_window_start_utc": "2026-10-08T22:45:38.234658+00:00",
+      "dispatched_at_utc": "2026-10-08T22:45:40.041092+00:00",
+      "run_id": 37855477944,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37855477944",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:51:25Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "Run Unit Tests (py313)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:47:58Z",
+          "completed_at": "2026-10-08T22:51:25Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m25103/ranking/r01",
+      "repo": "trimesh",
+      "mutant": "trimesh-m25103",
+      "ref": "mut-trimesh-m25103",
+      "sha": "349028d554ebe11eb6ccdf28f5b729fab6c80c18",
+      "workflow": "ranking",
+      "workflow_file": "test-ranking.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "trimesh@mut-trimesh-m25103/ranking",
+      "dispatch_window_start_utc": "2026-10-08T22:26:49.100980+00:00",
+      "dispatched_at_utc": "2026-10-08T22:26:52.099976+00:00",
+      "run_id": 37853522536,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37853522536",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:39:24Z",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:32:35Z",
+          "completed_at": "2026-10-08T22:38:55Z"
+        },
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:32:37Z",
+          "completed_at": "2026-10-08T22:38:05Z"
+        },
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:32:45Z",
+          "completed_at": "2026-10-08T22:39:06Z"
+        },
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:32:55Z",
+          "completed_at": "2026-10-08T22:39:24Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m25103/ranking/r02",
+      "repo": "trimesh",
+      "mutant": "trimesh-m25103",
+      "ref": "mut-trimesh-m25103",
+      "sha": "349028d554ebe11eb6ccdf28f5b729fab6c80c18",
+      "workflow": "ranking",
+      "workflow_file": "test-ranking.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "trimesh@mut-trimesh-m25103/ranking",
+      "dispatch_window_start_utc": "2026-10-08T22:40:00.669603+00:00",
+      "dispatched_at_utc": "2026-10-08T22:40:02.742972+00:00",
+      "run_id": 37854892304,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37854892304",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:55:17Z",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:48:22Z",
+          "completed_at": "2026-10-08T22:54:44Z"
+        },
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:42:43Z",
+          "completed_at": "2026-10-08T22:49:07Z"
+        },
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:49:00Z",
+          "completed_at": "2026-10-08T22:55:17Z"
+        },
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:43:00Z",
+          "completed_at": "2026-10-08T22:49:51Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m25103/ranking/r03",
+      "repo": "trimesh",
+      "mutant": "trimesh-m25103",
+      "ref": "mut-trimesh-m25103",
+      "sha": "349028d554ebe11eb6ccdf28f5b729fab6c80c18",
+      "workflow": "ranking",
+      "workflow_file": "test-ranking.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "trimesh@mut-trimesh-m25103/ranking",
+      "dispatch_window_start_utc": "2026-10-08T22:55:38.640621+00:00",
+      "dispatched_at_utc": "2026-10-08T22:55:40.483408+00:00",
+      "run_id": 37856478055,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37856478055",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T23:02:20Z",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:56:01Z",
+          "completed_at": "2026-10-08T22:59:28Z"
+        },
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:56:05Z",
+          "completed_at": "2026-10-08T22:59:47Z"
+        },
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:56:05Z",
+          "completed_at": "2026-10-08T23:02:20Z"
+        },
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:56:31Z",
+          "completed_at": "2026-10-08T23:00:04Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m25103/regsmart/r01",
+      "repo": "trimesh",
+      "mutant": "trimesh-m25103",
+      "ref": "mut-trimesh-m25103",
+      "sha": "349028d554ebe11eb6ccdf28f5b729fab6c80c18",
+      "workflow": "regsmart",
+      "workflow_file": "test-regsmart.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "trimesh@mut-trimesh-m25103/regsmart",
+      "dispatch_window_start_utc": "2026-10-08T22:26:53.103687+00:00",
+      "dispatched_at_utc": "2026-10-08T22:26:55.237829+00:00",
+      "run_id": 37853527980,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37853527980",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:40:44Z",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:34:34Z",
+          "completed_at": "2026-10-08T22:39:37Z"
+        },
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:31:24Z",
+          "completed_at": "2026-10-08T22:37:11Z"
+        },
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:34:05Z",
+          "completed_at": "2026-10-08T22:40:43Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m25103/regsmart/r02",
+      "repo": "trimesh",
+      "mutant": "trimesh-m25103",
+      "ref": "mut-trimesh-m25103",
+      "sha": "349028d554ebe11eb6ccdf28f5b729fab6c80c18",
+      "workflow": "regsmart",
+      "workflow_file": "test-regsmart.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "trimesh@mut-trimesh-m25103/regsmart",
+      "dispatch_window_start_utc": "2026-10-08T22:41:13.904908+00:00",
+      "dispatched_at_utc": "2026-10-08T22:41:15.595444+00:00",
+      "run_id": 37855019515,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37855019515",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:52:45Z",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:44:49Z",
+          "completed_at": "2026-10-08T22:51:36Z"
+        },
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:45:05Z",
+          "completed_at": "2026-10-08T22:51:07Z"
+        },
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:46:54Z",
+          "completed_at": "2026-10-08T22:52:45Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m25103/regsmart/r03",
+      "repo": "trimesh",
+      "mutant": "trimesh-m25103",
+      "ref": "mut-trimesh-m25103",
+      "sha": "349028d554ebe11eb6ccdf28f5b729fab6c80c18",
+      "workflow": "regsmart",
+      "workflow_file": "test-regsmart.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "trimesh@mut-trimesh-m25103/regsmart",
+      "dispatch_window_start_utc": "2026-10-08T22:53:19.620513+00:00",
+      "dispatched_at_utc": "2026-10-08T22:53:21.135816+00:00",
+      "run_id": 37856248680,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37856248680",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T23:02:38Z",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:54:46Z",
+          "completed_at": "2026-10-08T22:59:56Z"
+        },
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:55:18Z",
+          "completed_at": "2026-10-08T23:01:59Z"
+        },
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:55:50Z",
+          "completed_at": "2026-10-08T23:02:38Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m25103/regsmart-no-rank/r01",
+      "repo": "trimesh",
+      "mutant": "trimesh-m25103",
+      "ref": "mut-trimesh-m25103",
+      "sha": "349028d554ebe11eb6ccdf28f5b729fab6c80c18",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "test-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "trimesh@mut-trimesh-m25103/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-10-08T22:26:56.243720+00:00",
+      "dispatched_at_utc": "2026-10-08T22:26:58.235943+00:00",
+      "run_id": 37853533006,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37853533006",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:31:41Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "tests-regsmart-nr",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:27:56Z",
+          "completed_at": "2026-10-08T22:31:40Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m25103/regsmart-no-rank/r02",
+      "repo": "trimesh",
+      "mutant": "trimesh-m25103",
+      "ref": "mut-trimesh-m25103",
+      "sha": "349028d554ebe11eb6ccdf28f5b729fab6c80c18",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "test-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "trimesh@mut-trimesh-m25103/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-10-08T22:32:16.990771+00:00",
+      "dispatched_at_utc": "2026-10-08T22:32:18.942687+00:00",
+      "run_id": 37854096892,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37854096892",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:38:50Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "tests-regsmart-nr",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:32:36Z",
+          "completed_at": "2026-10-08T22:38:50Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m25103/regsmart-no-rank/r03",
+      "repo": "trimesh",
+      "mutant": "trimesh-m25103",
+      "ref": "mut-trimesh-m25103",
+      "sha": "349028d554ebe11eb6ccdf28f5b729fab6c80c18",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "test-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "trimesh@mut-trimesh-m25103/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-10-08T22:39:08.543790+00:00",
+      "dispatched_at_utc": "2026-10-08T22:39:10.510091+00:00",
+      "run_id": 37854805932,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37854805932",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:46:53Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "tests-regsmart-nr",
+          "conclusion": "failure",
+          "started_at": "2026-10-08T22:40:10Z",
+          "completed_at": "2026-10-08T22:46:53Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m3147/baseline/r01",
+      "repo": "trimesh",
+      "mutant": "trimesh-m3147",
+      "ref": "mut-trimesh-m3147",
+      "sha": "bc3f22bf4f5f114efae410adbf89868f8644d7b2",
+      "workflow": "baseline",
+      "workflow_file": "test.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "trimesh@mut-trimesh-m3147/baseline",
+      "dispatch_window_start_utc": "2026-10-08T22:26:59.238983+00:00",
+      "dispatched_at_utc": "2026-10-08T22:27:01.000220+00:00",
+      "run_id": 37853538191,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37853538191",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:37:25Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "Run Unit Tests (py313)",
+          "conclusion": "success",
+          "started_at": "2026-10-08T22:32:36Z",
+          "completed_at": "2026-10-08T22:37:24Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m3147/baseline/r02",
+      "repo": "trimesh",
+      "mutant": "trimesh-m3147",
+      "ref": "mut-trimesh-m3147",
+      "sha": "bc3f22bf4f5f114efae410adbf89868f8644d7b2",
+      "workflow": "baseline",
+      "workflow_file": "test.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "trimesh@mut-trimesh-m3147/baseline",
+      "dispatch_window_start_utc": "2026-10-08T22:37:51.495357+00:00",
+      "dispatched_at_utc": "2026-10-08T22:37:53.432476+00:00",
+      "run_id": 37854675225,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37854675225",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:43:14Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "Run Unit Tests (py313)",
+          "conclusion": "success",
+          "started_at": "2026-10-08T22:38:18Z",
+          "completed_at": "2026-10-08T22:43:13Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m3147/baseline/r03",
+      "repo": "trimesh",
+      "mutant": "trimesh-m3147",
+      "ref": "mut-trimesh-m3147",
+      "sha": "bc3f22bf4f5f114efae410adbf89868f8644d7b2",
+      "workflow": "baseline",
+      "workflow_file": "test.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "trimesh@mut-trimesh-m3147/baseline",
+      "dispatch_window_start_utc": "2026-10-08T22:43:32.088049+00:00",
+      "dispatched_at_utc": "2026-10-08T22:43:33.688628+00:00",
+      "run_id": 37855258472,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37855258472",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:50:09Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "Run Unit Tests (py313)",
+          "conclusion": "success",
+          "started_at": "2026-10-08T22:43:46Z",
+          "completed_at": "2026-10-08T22:50:08Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m3147/ranking/r01",
+      "repo": "trimesh",
+      "mutant": "trimesh-m3147",
+      "ref": "mut-trimesh-m3147",
+      "sha": "bc3f22bf4f5f114efae410adbf89868f8644d7b2",
+      "workflow": "ranking",
+      "workflow_file": "test-ranking.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "trimesh@mut-trimesh-m3147/ranking",
+      "dispatch_window_start_utc": "2026-10-08T22:27:02.007159+00:00",
+      "dispatched_at_utc": "2026-10-08T22:27:03.587814+00:00",
+      "run_id": 37853542616,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37853542616",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:38:30Z",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "success",
+          "started_at": "2026-10-08T22:32:09Z",
+          "completed_at": "2026-10-08T22:38:30Z"
+        },
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "success",
+          "started_at": "2026-10-08T22:32:30Z",
+          "completed_at": "2026-10-08T22:37:39Z"
+        },
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "success",
+          "started_at": "2026-10-08T22:32:10Z",
+          "completed_at": "2026-10-08T22:35:36Z"
+        },
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "success",
+          "started_at": "2026-10-08T22:32:56Z",
+          "completed_at": "2026-10-08T22:38:22Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m3147/ranking/r02",
+      "repo": "trimesh",
+      "mutant": "trimesh-m3147",
+      "ref": "mut-trimesh-m3147",
+      "sha": "bc3f22bf4f5f114efae410adbf89868f8644d7b2",
+      "workflow": "ranking",
+      "workflow_file": "test-ranking.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "trimesh@mut-trimesh-m3147/ranking",
+      "dispatch_window_start_utc": "2026-10-08T22:39:11.516761+00:00",
+      "dispatched_at_utc": "2026-10-08T22:39:13.476313+00:00",
+      "run_id": 37854810682,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37854810682",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:51:14Z",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "success",
+          "started_at": "2026-10-08T22:43:03Z",
+          "completed_at": "2026-10-08T22:47:56Z"
+        },
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "success",
+          "started_at": "2026-10-08T22:43:46Z",
+          "completed_at": "2026-10-08T22:49:47Z"
+        },
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "success",
+          "started_at": "2026-10-08T22:44:49Z",
+          "completed_at": "2026-10-08T22:51:13Z"
+        },
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "success",
+          "started_at": "2026-10-08T22:44:05Z",
+          "completed_at": "2026-10-08T22:50:24Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m3147/ranking/r03",
+      "repo": "trimesh",
+      "mutant": "trimesh-m3147",
+      "ref": "mut-trimesh-m3147",
+      "sha": "bc3f22bf4f5f114efae410adbf89868f8644d7b2",
+      "workflow": "ranking",
+      "workflow_file": "test-ranking.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "trimesh@mut-trimesh-m3147/ranking",
+      "dispatch_window_start_utc": "2026-10-08T22:51:28.844862+00:00",
+      "dispatched_at_utc": "2026-10-08T22:51:30.765541+00:00",
+      "run_id": 37856063882,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37856063882",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:59:27Z",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "success",
+          "started_at": "2026-10-08T22:51:53Z",
+          "completed_at": "2026-10-08T22:58:19Z"
+        },
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "success",
+          "started_at": "2026-10-08T22:52:11Z",
+          "completed_at": "2026-10-08T22:58:30Z"
+        },
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "success",
+          "started_at": "2026-10-08T22:52:52Z",
+          "completed_at": "2026-10-08T22:59:26Z"
+        },
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "success",
+          "started_at": "2026-10-08T22:52:46Z",
+          "completed_at": "2026-10-08T22:57:07Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m3147/regsmart/r01",
+      "repo": "trimesh",
+      "mutant": "trimesh-m3147",
+      "ref": "mut-trimesh-m3147",
+      "sha": "bc3f22bf4f5f114efae410adbf89868f8644d7b2",
+      "workflow": "regsmart",
+      "workflow_file": "test-regsmart.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "trimesh@mut-trimesh-m3147/regsmart",
+      "dispatch_window_start_utc": "2026-10-08T22:27:04.593384+00:00",
+      "dispatched_at_utc": "2026-10-08T22:27:06.738375+00:00",
+      "run_id": 37853548196,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37853548196",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:39:54Z",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "success",
+          "started_at": "2026-10-08T22:27:41Z",
+          "completed_at": "2026-10-08T22:28:38Z"
+        },
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "success",
+          "started_at": "2026-10-08T22:31:13Z",
+          "completed_at": "2026-10-08T22:32:52Z"
+        },
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "success",
+          "started_at": "2026-10-08T22:38:56Z",
+          "completed_at": "2026-10-08T22:39:53Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m3147/regsmart/r02",
+      "repo": "trimesh",
+      "mutant": "trimesh-m3147",
+      "ref": "mut-trimesh-m3147",
+      "sha": "bc3f22bf4f5f114efae410adbf89868f8644d7b2",
+      "workflow": "regsmart",
+      "workflow_file": "test-regsmart.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "trimesh@mut-trimesh-m3147/regsmart",
+      "dispatch_window_start_utc": "2026-10-08T22:40:36.589854+00:00",
+      "dispatched_at_utc": "2026-10-08T22:40:38.270911+00:00",
+      "run_id": 37854956862,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37854956862",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:45:59Z",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "success",
+          "started_at": "2026-10-08T22:40:45Z",
+          "completed_at": "2026-10-08T22:42:16Z"
+        },
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "success",
+          "started_at": "2026-10-08T22:42:48Z",
+          "completed_at": "2026-10-08T22:44:21Z"
+        },
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "success",
+          "started_at": "2026-10-08T22:44:58Z",
+          "completed_at": "2026-10-08T22:45:59Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m3147/regsmart/r03",
+      "repo": "trimesh",
+      "mutant": "trimesh-m3147",
+      "ref": "mut-trimesh-m3147",
+      "sha": "bc3f22bf4f5f114efae410adbf89868f8644d7b2",
+      "workflow": "regsmart",
+      "workflow_file": "test-regsmart.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "trimesh@mut-trimesh-m3147/regsmart",
+      "dispatch_window_start_utc": "2026-10-08T22:46:19.200197+00:00",
+      "dispatched_at_utc": "2026-10-08T22:46:21.513393+00:00",
+      "run_id": 37855548470,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37855548470",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:52:44Z",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "success",
+          "started_at": "2026-10-08T22:48:16Z",
+          "completed_at": "2026-10-08T22:49:41Z"
+        },
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "success",
+          "started_at": "2026-10-08T22:50:09Z",
+          "completed_at": "2026-10-08T22:51:05Z"
+        },
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "success",
+          "started_at": "2026-10-08T22:51:16Z",
+          "completed_at": "2026-10-08T22:52:43Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m3147/regsmart-no-rank/r01",
+      "repo": "trimesh",
+      "mutant": "trimesh-m3147",
+      "ref": "mut-trimesh-m3147",
+      "sha": "bc3f22bf4f5f114efae410adbf89868f8644d7b2",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "test-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "trimesh@mut-trimesh-m3147/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-10-08T22:27:07.743200+00:00",
+      "dispatched_at_utc": "2026-10-08T22:27:10.011439+00:00",
+      "run_id": 37853554050,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37853554050",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:38:55Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "tests-regsmart-nr",
+          "conclusion": "success",
+          "started_at": "2026-10-08T22:37:34Z",
+          "completed_at": "2026-10-08T22:38:54Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m3147/regsmart-no-rank/r02",
+      "repo": "trimesh",
+      "mutant": "trimesh-m3147",
+      "ref": "mut-trimesh-m3147",
+      "sha": "bc3f22bf4f5f114efae410adbf89868f8644d7b2",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "test-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "trimesh@mut-trimesh-m3147/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-10-08T22:39:14.479717+00:00",
+      "dispatched_at_utc": "2026-10-08T22:39:17.166495+00:00",
+      "run_id": 37854816745,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37854816745",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:42:45Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "tests-regsmart-nr",
+          "conclusion": "success",
+          "started_at": "2026-10-08T22:41:03Z",
+          "completed_at": "2026-10-08T22:42:44Z"
+        }
+      ]
+    },
+    {
+      "task": "trimesh/trimesh-m3147/regsmart-no-rank/r03",
+      "repo": "trimesh",
+      "mutant": "trimesh-m3147",
+      "ref": "mut-trimesh-m3147",
+      "sha": "bc3f22bf4f5f114efae410adbf89868f8644d7b2",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "test-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "trimesh@mut-trimesh-m3147/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-10-08T22:42:56.536265+00:00",
+      "dispatched_at_utc": "2026-10-08T22:42:58.595153+00:00",
+      "run_id": 37855198179,
+      "html_url": "https://github.com/leticosta4/trimesh/actions/runs/37855198179",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-10-08T22:46:09Z",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "tests-regsmart-nr",
+          "conclusion": "success",
+          "started_at": "2026-10-08T22:45:11Z",
+          "completed_at": "2026-10-08T22:46:08Z"
+        }
+      ]
+    }
+  ],
+  "wall_clock": {
+    "started_utc": "2026-10-08T19:07:56.558771+00:00",
+    "finished_utc": "2026-10-08T23:03:06.418363+00:00",
+    "total_seconds": 3504.4
+  },
+  "rate_limit": {
+    "initial": {
+      "limit": 5000,
+      "remaining": 4966,
+      "used": 34,
+      "reset_utc": "2026-10-08T20:04:02+00:00"
+    },
+    "final": {
+      "limit": 5000,
+      "remaining": 4953,
+      "used": 47,
+      "reset_utc": "2026-10-08T23:51:24+00:00"
+    }
+  },
+  "counters": {
+    "get": 241,
+    "post": 120,
+    "retries": 0,
+    "rate_limit": 10
+  }
+}

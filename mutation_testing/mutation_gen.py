@@ -12,10 +12,10 @@ uma branch/commit.
 
 Uso:
     pip install "mutmut==2.5.1"
-    python mutation_gen.py gen                       # todos os repos do plano
-    python mutation_gen.py gen --repo dask --n 15    # um repo
-    python mutation_gen.py gen --repo dask --append  # completa o que já existe
-    python mutation_gen.py list                      # resumo do que foi gerado
+    python -m mutation_testing.mutation_gen gen                       # todos os repos do plano
+    python -m mutation_testing.mutation_gen gen --repo dask --n 15    # um repo
+    python -m mutation_testing.mutation_gen gen --repo dask --append  # completa o que já existe
+    python -m mutation_testing.mutation_gen list                      # resumo do que foi gerado
 
 Sem `--append`, `gen` é destrutivo no repo: apaga data/mutmut/patches/<repo>/ e
 reescreve o bloco do repo em mutants.json. Com `--append`, os mutantes já
@@ -56,7 +56,7 @@ OWNER = "leticosta4"
 ROOT = Path(__file__).resolve().parent
 DATA = ROOT / "data" / "mutmut"
 PLAN_PATH = DATA / "mutation_plan.json"
-FLAKY_PLAN_PATH = ROOT / "data" / "flaky" / "flaky_plan.json"
+FLAKY_PLAN_PATH = ROOT / "data" / "flaky_mut" / "flaky_plan.json"
 MUTANTS_PATH = DATA / "mutants.json"
 MUTMUT_VERSION = "2.5.1"
 DEFAULT_N = 15

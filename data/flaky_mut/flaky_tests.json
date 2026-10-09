@@ -1,0 +1,5001 @@
+{
+  "ipython": {
+    "ipython-m1288": {
+      "runs": {
+        "baseline": 3,
+        "ranking": 3,
+        "regsmart": 3,
+        "regsmart-no-rank": 3
+      },
+      "total_seen": {
+        "baseline": 2850,
+        "ranking": 11401,
+        "regsmart": 1671,
+        "regsmart-no-rank": 557
+      },
+      "tests": {
+        "   ProfileLocate:history.py:793 Failed to create history session in /tmp/pytest-of-runner/pytest-0/test_histmanager_memory_fallba0/history.sqlite. History will not be saved.": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "IPython/core/magics/config.py::IPython.core.magics.config.ConfigMagics.config": {
+          "class": "só no plugin (fixa)",
+          "why": "baseline nunca falhou; falha em todas as execuções em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "IPython/testing/plugin/dtexample.py::IPython.testing.plugin.dtexample.ipos": {
+          "class": "só no plugin (fixa)",
+          "why": "baseline nunca falhou; falha em todas as execuções em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_application.py::test_initialize_stops_at_subapp": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 2,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            },
+            "regsmart": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_back_unicode_completion": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_completer.py::test_dataframe_key_completion": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_dict_key_completion_bytes": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_dict_key_completion_string": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 2,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_dict_key_completion_unicode_py3": {
+          "class": "só no plugin (fixa)",
+          "why": "baseline nunca falhou; falha em todas as execuções em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_completer.py::test_dict_key_restrict_to_dicts": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: regsmart",
+          "wf": {
+            "regsmart": {
+              "failed": 2,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_func_kw_completions": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            },
+            "regsmart": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_magic_completion_order": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_magic_completion_shadowing": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_misc_no_jedi_completions[a=\"str\"; b=1-(a, b).-expected1-not_expected1]": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_mix_terms": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 2,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            },
+            "regsmart": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_undefined_variables[a = []\\nwhile condition:\\n    a.-append-False-limited]": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_undefined_variables[t = []\\nif condition_1:\\n    t = 'string'\\nelif condition_2:\\n    t = 1\\nelif condition_3:\\n    t = {}\\nt.-insert_text29-False-limited]": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_undefined_variables[t = []\\nif some_condition:\\n    t.-append-False-limited]": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_undefined_variables_without_jedi[t: int | str\\nt.-insert_text3]": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_display_2.py::test_matplotlib_positioning": {
+          "class": "só no plugin (fixa)",
+          "why": "baseline nunca falhou; falha em todas as execuções em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_displayhook.py::test_underscore_no_overwrite_builtins": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_displayhook.py::test_underscore_no_overwrite_user": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_editorhooks.py::test_install_editor": {
+          "class": "só no plugin (fixa)",
+          "why": "baseline nunca falhou; falha em todas as execuções em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_editorhooks.py::test_line_none_defaults_to_zero": {
+          "class": "só no plugin (fixa)",
+          "why": "baseline nunca falhou; falha em todas as execuções em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_history.py::test_histmanager_memory_fallback_reopens_db": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_historyapp.py::test_history_app_trim_subcommand": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_interactiveshell.py::test_naked_string_cells": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 2,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_interactiveshell.py::test_run_cell_asyncio_run": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_interactiveshell.py::test_run_cell_await": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_ipapp.py::test_locate_subcommand": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::test_cell_magic_class": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::test_cell_magic_class2": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::test_cell_magic_func_deco": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::test_cell_magic_reg": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::test_config_available_configs": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 2,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::test_dirops": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::test_multiline_time": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::test_reset_in": {
+          "class": "só no plugin (fixa)",
+          "why": "baseline nunca falhou; falha em todas as execuções em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_magic.py::test_time_raise_on_interrupt": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::test_timeit_raise_on_interrupt": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::tests.test_magic.doctest_hist_op": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::tests.test_magic.test_debug_magic": {
+          "class": "só no plugin (fixa)",
+          "why": "baseline nunca falhou; falha em todas as execuções em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_magic.py::tests.test_magic.test_debug_magic_locals": {
+          "class": "só no plugin (fixa)",
+          "why": "baseline nunca falhou; falha em todas as execuções em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_magics_pylab.py::test_matplotlib_no_arg_prints_backend": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_profile.py::test_profile_app_list_subcommand": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 2,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_run.py::test_builtins_id": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 2,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_run.py::test_run_tb": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_storemagic.py::test_store_restore": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        }
+      }
+    },
+    "ipython-m17283": {
+      "runs": {
+        "baseline": 3,
+        "ranking": 3,
+        "regsmart": 3,
+        "regsmart-no-rank": 3
+      },
+      "total_seen": {
+        "baseline": 2850,
+        "ranking": 11401,
+        "regsmart": 1671,
+        "regsmart-no-rank": 557
+      },
+      "tests": {
+        "   ProfileLocate:history.py:793 Failed to create history session in /tmp/pytest-of-runner/pytest-0/test_histmanager_memory_fallba0/history.sqlite. History will not be saved.": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "IPython/core/magics/config.py::IPython.core.magics.config.ConfigMagics.config": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        },
+        "IPython/testing/plugin/dtexample.py::IPython.testing.plugin.dtexample.ipos": {
+          "class": "só no plugin (fixa)",
+          "why": "baseline nunca falhou; falha em todas as execuções em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_application.py::test_initialize_stops_at_subapp": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 2,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_async_helpers.py::test_in_func_no_error": {
+          "class": "esperada, diverge",
+          "why": "não falhou sempre em: regsmart, regsmart-no-rank",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_async_helpers.py::test_nonlocal": {
+          "class": "esperada, diverge",
+          "why": "não falhou sempre em: regsmart, regsmart-no-rank",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_async_helpers.py::test_top_level_return_error": {
+          "class": "esperada, diverge",
+          "why": "não falhou sempre em: regsmart, regsmart-no-rank",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_backgroundjobs.py::test_dead_job_attributes": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_backgroundjobs.py::test_traceback": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_dict_key_completion_string": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            },
+            "regsmart": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_dict_key_completion_unicode_py3": {
+          "class": "só no plugin (fixa)",
+          "why": "baseline nunca falhou; falha em todas as execuções em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_completer.py::test_dict_key_restrict_to_dicts": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 2,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            },
+            "regsmart": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_func_kw_completions": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            },
+            "regsmart": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_magic_completion_order": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_magic_completion_shadowing": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_mix_terms": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 2,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            },
+            "regsmart": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_quoted_file_completions": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_undefined_variables[a = []\\nwhile condition:\\n    a.-append-False-limited]": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_undefined_variables[t = []\\nif condition_1:\\n    t = 'string'\\nelif condition_2:\\n    t = 1\\nelif condition_3:\\n    t = {}\\nt.-insert_text29-False-limited]": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_undefined_variables[t = []\\nif some_condition:\\n    t = 'string'\\nelse:\\n    t = 1\\nt.-insert_text27-False-limited]": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_display_2.py::test_matplotlib_positioning": {
+          "class": "só no plugin (fixa)",
+          "why": "baseline nunca falhou; falha em todas as execuções em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_displayhook.py::test_underscore_no_overwrite_builtins": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_displayhook.py::test_underscore_no_overwrite_user": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_editorhooks.py::test_install_editor": {
+          "class": "só no plugin (fixa)",
+          "why": "baseline nunca falhou; falha em todas as execuções em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_editorhooks.py::test_line_none_defaults_to_zero": {
+          "class": "só no plugin (fixa)",
+          "why": "baseline nunca falhou; falha em todas as execuções em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_formatters.py::test_bad_repr_traceback": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_formatters.py::test_error_method": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_formatters.py::test_error_pretty_method": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_formatters.py::test_warn_error_for_type": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_history.py::test_histmanager_memory_fallback_reopens_db": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_historyapp.py::test_history_app_trim_subcommand": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_interactiveshell.py::test_input_rejection": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_interactiveshell.py::test_multiline_string_cells": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_interactiveshell.py::test_naked_string_cells": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_interactiveshell.py::test_run_cell_asyncio_run": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_interactiveshell.py::test_run_cell_await": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_interactiveshell.py::test_silent_postexec": {
+          "class": "esperada, diverge",
+          "why": "não falhou sempre em: regsmart, regsmart-no-rank",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_interactiveshell.py::test_syntax_error": {
+          "class": "esperada, diverge",
+          "why": "não falhou sempre em: regsmart, regsmart-no-rank",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_interactiveshell.py::test_syntaxerror_input_transformer": {
+          "class": "esperada, diverge",
+          "why": "não falhou sempre em: regsmart, regsmart-no-rank",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_interactiveshell.py::test_user_expression": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_interactiveshell.py::test_user_variables": {
+          "class": "esperada, diverge",
+          "why": "não falhou sempre em: regsmart, regsmart-no-rank",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_interactivshell.py::test_inputtransformer_syntaxerror": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_interactivshell.py::test_repl_not_plain_text": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": true
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_ipapp.py::test_locate_subcommand": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_iplib.py::tests.test_iplib.doctest_tb_plain": {
+          "class": "esperada, diverge",
+          "why": "não falhou sempre em: regsmart, regsmart-no-rank",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_iplib.py::tests.test_iplib.doctest_tb_sysexit": {
+          "class": "esperada, diverge",
+          "why": "não falhou sempre em: regsmart, regsmart-no-rank",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_magic.py::test_cd_force_quiet": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::test_cell_magic_class": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 2,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::test_cell_magic_class2": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 2,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::test_cell_magic_func_deco": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 2,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::test_cell_magic_reg": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 2,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::test_config_available_configs": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::test_dirops": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::test_line_cell_info": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::test_multiline_time": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 2,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::test_notebook_export_json_with_output": {
+          "class": "esperada, diverge",
+          "why": "não falhou sempre em: regsmart, regsmart-no-rank",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::test_reset_in": {
+          "class": "só no plugin (fixa)",
+          "why": "baseline nunca falhou; falha em todas as execuções em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_magic.py::test_script_do_not_raise_on_interrupt": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::test_script_raise_on_interrupt": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::test_tb_syntaxerror": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_magic.py::test_time_raise_on_interrupt": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::test_timeit_raise_on_interrupt": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::tests.test_magic.doctest_hist_f": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::tests.test_magic.test_debug_magic": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::tests.test_magic.test_debug_magic_locals": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic_terminal.py::test_cpaste": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 2,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magics_pylab.py::test_matplotlib_no_arg_prints_backend": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_profile.py::test_profile_app_list_subcommand": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 2,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_run.py::test_builtins_id": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_run.py::test_debug_run_submodule[absolute]": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 2,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_run.py::test_debug_run_submodule[relative]": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 2,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_run.py::test_ignore_sys_exit": {
+          "class": "esperada, diverge",
+          "why": "não falhou sempre em: regsmart, regsmart-no-rank",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_run.py::test_multiprocessing_run": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_run.py::test_run_tb": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 2,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_storemagic.py::test_store_restore": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_ultratb.py::testSyntaxError": {
+          "class": "esperada, diverge",
+          "why": "não falhou sempre em: regsmart, regsmart-no-rank",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_ultratb.py::test_changing_py_file": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_ultratb.py::test_direct_cause_error": {
+          "class": "esperada, diverge",
+          "why": "não falhou sempre em: regsmart, regsmart-no-rank",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_ultratb.py::test_dynamic_code": {
+          "class": "esperada, diverge",
+          "why": "não falhou sempre em: regsmart, regsmart-no-rank",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_ultratb.py::test_exception_during_handling_error": {
+          "class": "esperada, diverge",
+          "why": "não falhou sempre em: regsmart, regsmart-no-rank",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_ultratb.py::test_handlers": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_ultratb.py::test_indentationerror_shows_line": {
+          "class": "esperada, diverge",
+          "why": "não falhou sempre em: regsmart, regsmart-no-rank",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_ultratb.py::test_iso8859_5": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_ultratb.py::test_jsondecodeerror_message": {
+          "class": "esperada, diverge",
+          "why": "não falhou sempre em: regsmart, regsmart-no-rank",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_ultratb.py::test_nested_genexpr": {
+          "class": "esperada, diverge",
+          "why": "não falhou sempre em: regsmart, regsmart-no-rank",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_ultratb.py::test_non_syntaxerror": {
+          "class": "esperada, diverge",
+          "why": "não falhou sempre em: regsmart, regsmart-no-rank",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_ultratb.py::test_nonascii_msg[minimal-Exception: \\xe9]": {
+          "class": "esperada, diverge",
+          "why": "não falhou sempre em: regsmart, regsmart-no-rank",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_ultratb.py::test_nonascii_msg[plain-Exception('\\xe9')]": {
+          "class": "esperada, diverge",
+          "why": "não falhou sempre em: regsmart, regsmart-no-rank",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_ultratb.py::test_nonascii_path": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_ultratb.py::test_plain_direct_cause_error": {
+          "class": "esperada, diverge",
+          "why": "não falhou sempre em: regsmart, regsmart-no-rank",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_ultratb.py::test_plain_exception_during_handling_error": {
+          "class": "esperada, diverge",
+          "why": "não falhou sempre em: regsmart, regsmart-no-rank",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_ultratb.py::test_plain_reports_notes": {
+          "class": "esperada, diverge",
+          "why": "não falhou sempre em: regsmart, regsmart-no-rank",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_ultratb.py::test_plain_suppress_exception_chaining": {
+          "class": "esperada, diverge",
+          "why": "não falhou sempre em: regsmart, regsmart-no-rank",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_ultratb.py::test_recursion_one_frame": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_ultratb.py::test_recursion_three_frames": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_ultratb.py::test_suppress_exception_chaining": {
+          "class": "esperada, diverge",
+          "why": "não falhou sempre em: regsmart, regsmart-no-rank",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_ultratb.py::test_syntax_error_changing_py_file": {
+          "class": "esperada, diverge",
+          "why": "não falhou sempre em: regsmart, regsmart-no-rank",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_ultratb.py::test_syntaxerror_no_stacktrace_at_compile_time": {
+          "class": "esperada, diverge",
+          "why": "não falhou sempre em: regsmart, regsmart-no-rank",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_ultratb.py::test_syntaxerror_stacktrace_when_running_compiled_code": {
+          "class": "esperada, diverge",
+          "why": "não falhou sempre em: regsmart, regsmart-no-rank",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_ultratb.py::test_sysexit_while_handling_error": {
+          "class": "esperada, diverge",
+          "why": "não falhou sempre em: regsmart, regsmart-no-rank",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_ultratb.py::test_verbose_reports_notes": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        }
+      }
+    },
+    "ipython-m22324": {
+      "runs": {
+        "baseline": 3,
+        "ranking": 3,
+        "regsmart": 3,
+        "regsmart-no-rank": 3
+      },
+      "total_seen": {
+        "baseline": 2850,
+        "ranking": 11402,
+        "regsmart": 1671,
+        "regsmart-no-rank": 557
+      },
+      "tests": {
+        "   LocateIPythonApp:history.py:793 Failed to create history session in /tmp/pytest-of-runner/pytest-0/test_histmanager_memory_fallba0/history.sqlite. History will not be saved.": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        },
+        "IPython/core/magics/config.py::IPython.core.magics.config.ConfigMagics.config": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        },
+        "IPython/testing/plugin/dtexample.py::IPython.testing.plugin.dtexample.ipos": {
+          "class": "só no plugin (fixa)",
+          "why": "baseline nunca falhou; falha em todas as execuções em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_application.py::test_initialize_stops_at_subapp": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_dict_key_completion_string": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": true
+            },
+            "regsmart": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_dict_key_completion_unicode_py3": {
+          "class": "só no plugin (fixa)",
+          "why": "baseline nunca falhou; falha em todas as execuções em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_completer.py::test_dict_key_restrict_to_dicts": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 2,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            },
+            "regsmart": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_func_kw_completions": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            },
+            "regsmart": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_magic_completion_shadowing": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_mix_terms": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            },
+            "regsmart": {
+              "failed": 2,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_quoted_file_completions": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_undefined_variables[a = []\\nwhile condition:\\n    a.-append-False-limited]": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_debug_magic.py::test_debug_magic_passes_through_generators": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_debugger.py::test_where_erase_value": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_debugger.py::test_xmode_skip": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_display_2.py::test_matplotlib_positioning": {
+          "class": "só no plugin (fixa)",
+          "why": "baseline nunca falhou; falha em todas as execuções em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_displayhook.py::test_underscore_no_overwrite_builtins": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_displayhook.py::test_underscore_no_overwrite_user": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_editorhooks.py::test_install_editor": {
+          "class": "só no plugin (fixa)",
+          "why": "baseline nunca falhou; falha em todas as execuções em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_editorhooks.py::test_line_none_defaults_to_zero": {
+          "class": "só no plugin (fixa)",
+          "why": "baseline nunca falhou; falha em todas as execuções em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_embed.py::test_nest_embed": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_help.py::test_locate_help": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_help.py::test_locate_profile_help": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_help.py::test_profile_create_help": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_help.py::test_profile_help": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_help.py::test_profile_list_help": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_help.py::test_trust_help": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_history.py::test_histmanager_memory_fallback_reopens_db": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_history.py::test_history_trim_cli[subcommand0-2]": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_history.py::test_history_trim_cli[subcommand1-0]": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_historyapp.py::test_history_app_trim_subcommand": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_interactiveshell.py::test_extraneous_loads": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_interactiveshell.py::test_naked_string_cells": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_interactiveshell.py::test_run_cell_asyncio_run": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_interactiveshell.py::test_run_cell_await": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_ipapp.py::test_locate_profile_subcommand": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_magic.py::test_cd_force_quiet": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::test_cell_magic_class": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 2,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::test_cell_magic_class2": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 2,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::test_cell_magic_func_deco": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::test_cell_magic_reg": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::test_config_available_configs": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::test_dirops": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::test_line_cell_info": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::test_multiline_time": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 2,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::test_reset_in": {
+          "class": "só no plugin (fixa)",
+          "why": "baseline nunca falhou; falha em todas as execuções em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_magic.py::test_time_raise_on_interrupt": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::test_timeit_raise_on_interrupt": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::tests.test_magic.test_debug_magic": {
+          "class": "só no plugin (fixa)",
+          "why": "baseline nunca falhou; falha em todas as execuções em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_magic.py::tests.test_magic.test_debug_magic_locals": {
+          "class": "só no plugin (fixa)",
+          "why": "baseline nunca falhou; falha em todas as execuções em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_magic_table.py::test_startup_does_not_import_the_magics_modules": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_profile.py::test_profile_app_list_subcommand": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_profile.py::test_startup_ipy": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_profile.py::test_startup_py": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_run.py::test_obj_del": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_run.py::test_run_tb": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 2,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_run.py::test_script_tb": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_run.py::test_tclass": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_shellapp.py::test_ipy_script_file_attribute": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_shellapp.py::test_py_script_file_attribute": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_shellapp.py::test_py_script_file_attribute_interactively": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_storemagic.py::test_store_restore": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_tools.py::test_ipexec_validate_exception_path": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_tools.py::test_ipexec_validate_exception_path2": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_tools.py::test_ipexec_validate_main_path": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_tools.py::test_ipexec_validate_main_path2": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        }
+      }
+    },
+    "ipython-m22732": {
+      "runs": {
+        "baseline": 3,
+        "ranking": 3,
+        "regsmart": 3,
+        "regsmart-no-rank": 3
+      },
+      "total_seen": {
+        "baseline": 2850,
+        "ranking": 11401,
+        "regsmart": 8349,
+        "regsmart-no-rank": 2783
+      },
+      "tests": {
+        "   ProfileLocate:history.py:793 Failed to create history session in /tmp/pytest-of-runner/pytest-0/test_histmanager_memory_fallba0/history.sqlite. History will not be saved.": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "IPython/core/magics/config.py::IPython.core.magics.config.ConfigMagics.config": {
+          "class": "só no plugin (fixa)",
+          "why": "baseline nunca falhou; falha em todas as execuções em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "IPython/testing/plugin/dtexample.py::IPython.testing.plugin.dtexample.ipos": {
+          "class": "só no plugin (fixa)",
+          "why": "baseline nunca falhou; falha em todas as execuções em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_application.py::test_initialize_stops_at_subapp": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_dataframe_key_completion": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: regsmart",
+          "wf": {
+            "regsmart": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_dict_key_completion_string": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": true
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_dict_key_completion_unicode_py3": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 2,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_dict_key_restrict_to_dicts": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 2,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            },
+            "regsmart": {
+              "failed": 2,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_func_kw_completions": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            },
+            "regsmart": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_magic_completion_shadowing": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_mix_terms": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            },
+            "regsmart": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_omit__names": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_struct_array_key_completion": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_undefined_variables[a = []\\nwhile condition:\\n    a.-append-False-limited]": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            },
+            "regsmart": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_undefined_variables[t = []\\nif condition_1:\\n    t = 'string'\\nelif condition_2:\\n    t = 1\\nelif condition_3:\\n    t = {}\\nt.-insert_text29-False-limited]": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            },
+            "regsmart": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_undefined_variables[t = []\\nif some_condition:\\n    t = 'string'\\nt.-insert_text25-False-limited]": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: regsmart",
+          "wf": {
+            "regsmart": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_undefined_variables_without_jedi[t: int | str\\nt.-insert_text3]": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            },
+            "regsmart": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_display_2.py::test_matplotlib_positioning": {
+          "class": "só no plugin (fixa)",
+          "why": "baseline nunca falhou; falha em todas as execuções em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_displayhook.py::test_underscore_no_overwrite_builtins": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            },
+            "regsmart": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_displayhook.py::test_underscore_no_overwrite_user": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": true
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_editorhooks.py::test_install_editor": {
+          "class": "só no plugin (fixa)",
+          "why": "baseline nunca falhou; falha em todas as execuções em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_editorhooks.py::test_line_none_defaults_to_zero": {
+          "class": "só no plugin (fixa)",
+          "why": "baseline nunca falhou; falha em todas as execuções em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_history.py::test_histmanager_memory_fallback_reopens_db": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_historyapp.py::test_history_app_trim_subcommand": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            },
+            "regsmart": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_interactiveshell.py::test_naked_string_cells": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 2,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": true
+            },
+            "regsmart": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_interactiveshell.py::test_run_cell_asyncio_run": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": true
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_interactiveshell.py::test_run_cell_await": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": true
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::test_cell_magic_class": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_magic.py::test_cell_magic_class2": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_magic.py::test_cell_magic_func_deco": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_magic.py::test_cell_magic_reg": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_magic.py::test_config_available_configs": {
+          "class": "só no plugin (fixa)",
+          "why": "baseline nunca falhou; falha em todas as execuções em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_magic.py::test_dirops": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::test_line_cell_info": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: regsmart",
+          "wf": {
+            "regsmart": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::test_multiline_time": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_magic.py::test_reset_in": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::test_reset_out": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: regsmart, regsmart-no-rank",
+          "wf": {
+            "regsmart": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_magic.py::test_time_raise_on_interrupt": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::test_timeit_raise_on_interrupt": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::tests.test_magic.doctest_hist_op": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::tests.test_magic.test_debug_magic": {
+          "class": "só no plugin (fixa)",
+          "why": "baseline nunca falhou; falha em todas as execuções em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_magic.py::tests.test_magic.test_debug_magic_locals": {
+          "class": "só no plugin (fixa)",
+          "why": "baseline nunca falhou; falha em todas as execuções em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_magic_terminal.py::test_paste_echo": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_magics_pylab.py::test_matplotlib_no_arg_prints_backend": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            },
+            "regsmart": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_profile.py::test_profile_app_list_subcommand": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_run.py::test_builtins_id": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 2,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            },
+            "regsmart": {
+              "failed": 2,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_run.py::test_run_tb": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_storemagic.py::test_store_restore": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            },
+            "regsmart": {
+              "failed": 2,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        }
+      }
+    },
+    "ipython-m4267": {
+      "runs": {
+        "baseline": 3,
+        "ranking": 3,
+        "regsmart": 3,
+        "regsmart-no-rank": 3
+      },
+      "total_seen": {
+        "baseline": 2850,
+        "ranking": 11401,
+        "regsmart": 1683,
+        "regsmart-no-rank": 561
+      },
+      "tests": {
+        "   ProfileLocate:history.py:793 Failed to create history session in /tmp/pytest-of-runner/pytest-0/test_histmanager_memory_fallba0/history.sqlite. History will not be saved.": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 2,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "IPython/core/magics/config.py::IPython.core.magics.config.ConfigMagics.config": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        },
+        "IPython/testing/plugin/dtexample.py::IPython.testing.plugin.dtexample.ipos": {
+          "class": "só no plugin (fixa)",
+          "why": "baseline nunca falhou; falha em todas as execuções em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_application.py::test_initialize_stops_at_subapp": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 2,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_dict_key_completion_contexts": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_dict_key_completion_string": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": true
+            },
+            "regsmart": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_dict_key_completion_unicode_py3": {
+          "class": "só no plugin (fixa)",
+          "why": "baseline nunca falhou; falha em todas as execuções em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_completer.py::test_dict_key_restrict_to_dicts": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 2,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            },
+            "regsmart": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_func_kw_completions": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            },
+            "regsmart": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_magic_completion_shadowing": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_mix_terms": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 2,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            },
+            "regsmart": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_struct_array_key_completion": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_undefined_variables[a = []\\nwhile condition:\\n    a.-append-False-limited]": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 2,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_undefined_variables[t = []\\nif condition_1:\\n    if condition_2:\\n        t = 'nested'\\nt.-insert_text30-False-limited]": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_undefined_variables[t = []\\nif condition_1:\\n    t = 'string'\\nelif condition_2:\\n    t = 1\\nelif condition_3:\\n    t = {}\\nt.-insert_text29-False-limited]": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_undefined_variables[t = []\\nif condition_1:\\n    t = 'string'\\nelif condition_2:\\n    t = 1\\nelif condition_3:\\n    t.-append-False-limited]": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_undefined_variables[t = []\\nif some_condition:\\n    t = 'string'\\nelse:\\n    t = 1\\nt.-insert_text27-False-limited]": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_undefined_variables[t = []\\nif some_condition:\\n    t = 'string'\\nelse:\\n    t.-append-False-limited]": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_undefined_variables[t = []\\nif some_condition:\\n    t = 'string'\\nt.-insert_text25-False-limited]": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_undefined_variables[t = []\\nif some_condition:\\n    t.-append-False-limited]": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_undefined_variables[t = []\\nwhile condition:\\n    t = 'str'\\nt.-insert_text32-False-limited]": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_undefined_variables[t = []\\nwhile condition_1:\\n    while condition_2:\\n        t = 'str'\\nt.-insert_text33-False-limited]": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_undefined_variables_without_jedi[t: int | dict = {'a': []}\\nt.-insert_text1]": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_completer.py::test_undefined_variables_without_jedi[t: int | str\\nt.-insert_text3]": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_display_2.py::test_matplotlib_positioning": {
+          "class": "só no plugin (fixa)",
+          "why": "baseline nunca falhou; falha em todas as execuções em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_displayhook.py::test_underscore_no_overwrite_builtins": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_displayhook.py::test_underscore_no_overwrite_user": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_editorhooks.py::test_install_editor": {
+          "class": "só no plugin (fixa)",
+          "why": "baseline nunca falhou; falha em todas as execuções em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_editorhooks.py::test_line_none_defaults_to_zero": {
+          "class": "só no plugin (fixa)",
+          "why": "baseline nunca falhou; falha em todas as execuções em: ranking, regsmart",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_history.py::test_histmanager_memory_fallback_reopens_db": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 2,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_historyapp.py::test_history_app_trim_subcommand": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_interactiveshell.py::test_naked_string_cells": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_interactiveshell.py::test_run_cell_asyncio_run": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_interactiveshell.py::test_run_cell_await": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_ipapp.py::test_locate_subcommand": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::test_cd_force_quiet": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::test_cell_magic_class": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::test_cell_magic_class2": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::test_cell_magic_func_deco": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 2,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::test_cell_magic_reg": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::test_config_available_configs": {
+          "class": "só no plugin (fixa)",
+          "why": "baseline nunca falhou; falha em todas as execuções em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_magic.py::test_dirops": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 2,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::test_line_cell_info": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::test_multiline_time": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::test_reset_in": {
+          "class": "só no plugin (fixa)",
+          "why": "baseline nunca falhou; falha em todas as execuções em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_magic.py::test_time_raise_on_interrupt": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::test_timeit_raise_on_interrupt": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::tests.test_magic.doctest_hist_op": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_magic.py::tests.test_magic.test_debug_magic": {
+          "class": "só no plugin (fixa)",
+          "why": "baseline nunca falhou; falha em todas as execuções em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_magic.py::tests.test_magic.test_debug_magic_locals": {
+          "class": "só no plugin (fixa)",
+          "why": "baseline nunca falhou; falha em todas as execuções em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_magics_pylab.py::test_matplotlib_no_arg_prints_backend": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_oinspect.py::test_find_file": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_profile.py::test_profile_app_list_subcommand": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 2,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_run.py::test_run_tb": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 2,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/test_storemagic.py::test_store_restore": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            }
+          }
+        }
+      }
+    }
+  },
+  "trimesh": {
+    "trimesh-m13478": {
+      "runs": {
+        "baseline": 3,
+        "ranking": 3,
+        "regsmart": 3,
+        "regsmart-no-rank": 3
+      },
+      "total_seen": {
+        "baseline": 754,
+        "ranking": 3016,
+        "regsmart": 3,
+        "regsmart-no-rank": 1
+      },
+      "tests": {
+        "tests/test_polygons.py::test_second_moment": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        }
+      }
+    },
+    "trimesh-m1825": {
+      "runs": {
+        "baseline": 3,
+        "ranking": 3,
+        "regsmart": 3,
+        "regsmart-no-rank": 3
+      },
+      "total_seen": {
+        "baseline": 754,
+        "ranking": 3016,
+        "regsmart": 2262,
+        "regsmart-no-rank": 754
+      },
+      "tests": {
+        "tests/test_gltf.py::GLTFTest::test_bulk": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        }
+      }
+    },
+    "trimesh-m21160": {
+      "runs": {
+        "baseline": 3,
+        "ranking": 3,
+        "regsmart": 3,
+        "regsmart-no-rank": 3
+      },
+      "total_seen": {
+        "baseline": 754,
+        "ranking": 3016,
+        "regsmart": 2262,
+        "regsmart-no-rank": 754
+      },
+      "tests": {
+        "tests/test_transformations.py::TransformTest::test_angle": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_transformations.py::TransformTest::test_doctest": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        }
+      }
+    },
+    "trimesh-m25103": {
+      "runs": {
+        "baseline": 3,
+        "ranking": 3,
+        "regsmart": 3,
+        "regsmart-no-rank": 3
+      },
+      "total_seen": {
+        "baseline": 754,
+        "ranking": 3016,
+        "regsmart": 2262,
+        "regsmart-no-rank": 754
+      },
+      "tests": {
+        "tests/test_dae.py::DAETest::test_invalid_shininess": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_dae.py::DAETest::test_material_round": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_gltf.py::GLTFTest::test_spec_gloss_factors_only": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_gltf.py::GLTFTest::test_specular_glossiness": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_pbr.py::PBRTest::test_storage": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_pbr_concatenate.py::PBRConcatenateTest::test_pbr_identical_materials": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_texture.py::TextureTest::test_pbr_nouv_export": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        }
+      }
+    },
+    "trimesh-m3147": {
+      "runs": {
+        "baseline": 3,
+        "ranking": 3,
+        "regsmart": 3,
+        "regsmart-no-rank": 3
+      },
+      "total_seen": {
+        "baseline": 754,
+        "ranking": 3016,
+        "regsmart": 3,
+        "regsmart-no-rank": 1
+      },
+      "tests": {}
+    }
+  }
+}
