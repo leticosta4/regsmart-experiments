@@ -1,6 +1,6 @@
 """
 Uso:
-    python track_flaky.py /caminho/para/pasta-com-os-clones
+    python pr_inicial_repos.py /caminho/para/pasta-com-os-clones
  
 Requisitos:
     - gh CLI autenticado (gh auth login) com acesso de push aos seus forks

@@ -2,7 +2,7 @@
 Atualiza o REGSMART_PACKAGE dos workflows do regsmart na `insert-mutations` e
 propaga a mudança para as branches de mutante.
 
-Por repo (de data/flaky/flaky_plan.json, com mutantes `published` no
+Por repo (de data/flaky_mut/flaky_plan.json, com mutantes `published` no
 data/mutmut/mutant_branches.json):
   1. nos workflows `regsmart` e `regsmart-no-rank` (nomes em data/workflow_plan.json),
      troca o valor de REGSMART_PACKAGE por
@@ -29,8 +29,8 @@ Uso:
   python -m gh_automation.sync_mut_branches --push --regsmart-sha <sha>  # fixa um commit específico
 
 Não confundir com fetch_mut_branches.py, que só realinha o registro com o
-remoto. Rode fetch_mut_branches.py --write` antes se você trocou mutantes na
-mão.
+remoto. Rode `python -m mutation_testing.fetch_mut_branches --write` antes se
+você trocou mutantes na mão.
 """
 import argparse
 import json
@@ -177,7 +177,7 @@ def process_repo(repo: str, cwd: Path, meta: dict, wf_files: dict[str, str], pkg
             br = m["branch"]
             remote = git(["rev-parse", "--verify", "--quiet", f"origin/{br}"], cwd, check=False).stdout.strip()
             if remote != m["head_sha"]:
-                print(f"  ! {key}: branch no remoto != registro; rode sync_mutant_branches.py --write")
+                print(f"  ! {key}: branch no remoto != registro; rode python -m mutation_testing.fetch_mut_branches --write")
                 failed += 1
                 continue
             if is_ancestor(cwd, base_sha, remote):

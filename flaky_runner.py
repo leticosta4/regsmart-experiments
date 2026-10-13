@@ -265,7 +265,7 @@ def workflows_for(cfg: dict, repo_plan: dict[str, dict], only: list[str] | None)
 
 def load_registry() -> dict:
     if not BRANCHES_PATH.exists():
-        sys.exit(f"{BRANCHES_PATH} não existe: rode `python insert_mutations.py --mutants --push`")
+        sys.exit(f"{BRANCHES_PATH} não existe: rode `python -m mutation_testing.insert_mutations --mutants --push`")
     return json.loads(BRANCHES_PATH.read_text(encoding="utf-8"))
 
 
@@ -943,7 +943,7 @@ def check_refs(api: Api, rows: dict, todo: list[dict]) -> None:
         row["sha"] = row.get("sha") or seen[k]
     if problems:
         sys.exit("branches mudaram desde o registro (mutante trocado na mão?): rode "
-                 "`python sync_mutant_branches.py --write` pra atualizar o "
+                 "`python -m mutation_testing.fetch_mut_branches --write` pra atualizar o "
                  "mutant_branches.json:\n  " + "\n  ".join(sorted(set(problems))))
 
 

@@ -5,12 +5,12 @@ FASE 1 (padrão): cria a branch `insert-mutations` em cada fork da lista,
 **baseada no default branch do próprio fork** (main/master/etc. -- resolvido por
 `origin/HEAD`, nunca escrito "main" no código, porque `apscheduler`,
 `pytest-xdist` e `pytorch-lightning` usam `master`). Grava o SHA-base em
-`data/mutmut/mutation_testing/insert_mutations_bases.csv` (mescla com o que já existe).
+`data/mutmut/insert_mutations_bases.csv` (mescla com o que já existe).
 
 FASE 2 (`--mutants`): lê os patches gerados por `mutation_gen.py`
 (`data/mutmut/mutants.json`) e cria **uma branch por mutante**,
 `mut-<repo>-mNNNN`, com **um commit** que aplica só aquele patch sobre a
-`origin/mutation_testing/insert_mutations`. Cada commit vira um `head_sha` (para o faults.yaml),
+`origin/insert-mutations`. Cada commit vira um `head_sha` (para o faults.yaml),
 gravado em `data/mutmut/mutant_branches.json`.
 
 A fase 2 não mexe no seu working tree nem cria branches locais: monta o commit
@@ -56,9 +56,9 @@ BRANCH = "insert-mutations"
 MUTANT_PREFIX = "mut-"
 CLONES = Path("/home/Letícia/Projetos/tcc-experiments/effective-validation")
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data" / "mutmut"
-RECORD_PATH = DATA / "mutation_testing/insert_mutations_bases.csv"
+RECORD_PATH = DATA / "insert_mutations_bases.csv"
 MUTANTS_PATH = DATA / "mutants.json"            # gerado por mutation_gen.py
 BRANCHES_PATH = DATA / "mutant_branches.json"   # head_sha de cada mutante
 CSV_FIELDS = ["repo", "base_branch", "base_sha", "branch", "branch_sha", "data"]
@@ -272,7 +272,7 @@ def prepare_mutants(name: str, all_meta: dict, reset: bool, dry_run: bool,
         return None
     meta = all_meta.get(name)
     if not meta or not meta.get("mutants"):
-        print(f"!! {name}: sem mutantes em {MUTANTS_PATH.name} (rode mutation_gen.py) -- pulando",
+        print(f"!! {name}: sem mutantes em {MUTANTS_PATH.name} (rode python -m mutation_testing.mutation_gen gen) -- pulando",
               file=sys.stderr)
         return None
     items = meta["mutants"][:limit] if limit else meta["mutants"]
@@ -303,7 +303,7 @@ def prepare_mutants(name: str, all_meta: dict, reset: bool, dry_run: bool,
             sha = build_mutant_commit(repo_dir, base_sha, ROOT / m["patch"], message, when)
         except Exception as exc:
             failed.append(m["key"])
-            print(f"   ! {m['key']}: patch não aplica na base ({err(exc)}) -- regenere com mutation_gen.py",
+            print(f"   ! {m['key']}: patch não aplica na base ({err(exc)}) -- regenere com python -m mutation_testing.mutation_gen gen",
                   file=sys.stderr)
             continue
         current = remote.get(branch)
@@ -414,7 +414,7 @@ def main() -> None:
 
     if args.mutants:
         if not MUTANTS_PATH.exists():
-            sys.exit(f"{MUTANTS_PATH} não existe: rode `python mutation_gen.py gen` antes")
+            sys.exit(f"{MUTANTS_PATH} não existe: rode `python -m mutation_testing.mutation_gen gen` antes")
         all_meta = json.loads(MUTANTS_PATH.read_text(encoding="utf-8"))
         results = []
         for name in selected:
@@ -449,7 +449,7 @@ def main() -> None:
     touched = sum(1 for row in rows if row["changed"])
     print(f"\n{len(rows)} repo(s) no padrão, {touched} alterado(s) nesta execução."
           + ("" if args.dry_run else f" Bases em {RECORD_PATH}.")
-          + "  Próximo passo: python mutation_testing/insert_mutations.py --mutants --push")
+          + "  Próximo passo: python -m mutation_testing.insert_mutations --mutants --push")
 
 
 if __name__ == "__main__":

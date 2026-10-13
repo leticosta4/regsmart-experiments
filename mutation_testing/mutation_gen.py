@@ -31,7 +31,7 @@ Entradas:
     data/mutmut/mutation_plan.json (opcional): [{"repo": "dask", "src": "dask/", "n": 15}]
         - src: caminho(s) a mutar (string ou lista); sem ele o mutmut tenta descobrir
         - n:   nº de mutantes amostrados; sem ele usa --n
-    Sem esse arquivo, usa os repos de data/flaky/flaky_plan.json.
+    Sem esse arquivo, usa os repos de data/flaky_mut/flaky_plan.json.
 
 Saídas:
     data/mutmut/patches/<repo>/<repo>-mNNNN.patch
@@ -53,7 +53,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 OWNER = "leticosta4"
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data" / "mutmut"
 PLAN_PATH = DATA / "mutation_plan.json"
 FLAKY_PLAN_PATH = ROOT / "data" / "flaky_mut" / "flaky_plan.json"

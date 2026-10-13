@@ -42,9 +42,9 @@ Forks dos repos abaixo:
 ## Pipeline
 
 ```
-1. mutation_gen.py       gera os patches dos mutantes (mutmut, sem rodar testes)
-2. insert_mutations.py   cria a branch base `insert-mutations` e uma branch `mut-<repo>-mNNNN` por mutante
-3. flaky_runner.py       roda os 4 workflows em cada mutante e detecta testes flaky
+1. mutation_testing/mutation_gen.py     gera os patches dos mutantes (mutmut, sem rodar testes)
+2. mutation_testing/insert_mutations.py cria a branch base `insert-mutations` e uma branch `mut-<repo>-mNNNN` por mutante
+3. flaky_runner.py                      roda os 4 workflows em cada mutante e detecta testes flaky
 4. (a fazer) coleta de métricas a partir de data/experiment/runs.json
 ```
 
@@ -52,15 +52,15 @@ Forks dos repos abaixo:
 
 | script | função |
 |---|---|
-| [identify_test_workflows.py](./identify_test_workflows.py) | mapeia os workflows de teste de cada repositório |
-| [last_commit.py](./last_commit.py) | pega o último commit de atuação do fork em relação ao upstream |
+| [get_info/identify_test_workflows.py](./get_info/identify_test_workflows.py) | mapeia os workflows de teste de cada repositório |
+| [get_info/last_commit.py](./get_info/last_commit.py) | pega o último commit de atuação do fork em relação ao upstream |
 | [pr_inicial_repos.py](./pr_inicial_repos.py) | sobe uma mudança simples de comentário em um arquivo Python e abre um PR; serviu de base para a limpeza dos workflows |
-| [experiments_labels.py](./experiments_labels.py) | cria labels nos 12 repositórios e apaga as labels default |
-| [mutation_gen.py](./mutation_gen.py) | gera N mutantes por repositório e salva um *patch* por mutante |
-| [insert_mutations.py](./insert_mutations.py) | cria a branch base e as branches de mutante, publicando o patch |
+| [gh_automation/experiments_labels.py](./gh_automation/experiments_labels.py) | cria labels nos 12 repositórios e apaga as labels default |
+| [mutation_testing/mutation_gen.py](./mutation_testing/mutation_gen.py) | gera N mutantes por repositório e salva um *patch* por mutante |
+| [mutation_testing/insert_mutations.py](./mutation_testing/insert_mutations.py) | cria a branch base e as branches de mutante, publicando o patch |
 | [flaky_runner.py](./flaky_runner.py) | dispara repetições dos workflows nos mutantes e detecta testes flaky |
-| [sync_mut_branches.md](./sync_mut_branches.md) | sincroniza as branches de mutação com a `insert_mutations` |
-| [fetch_mut_branches.md](./fetch_mut_branches.md) | verifica alterações nas branches de mutação como preparo para o _flay_runner.py` |
+| [gh_automation/sync_mut_branches.py](./gh_automation/sync_mut_branches.py) | sincroniza as branches de mutação com a `insert-mutations` |
+| [mutation_testing/fetch_mut_branches.py](./mutation_testing/fetch_mut_branches.py) | verifica alterações nas branches de mutação como preparo para o _flaky_runner.py |
 
 ### Pré-requisitos
 

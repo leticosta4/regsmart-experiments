@@ -24,7 +24,7 @@ Uso:
   python -m mutation_testing.fetch_mut_branches --write        # grava (backup em .json.bak)
   python -m mutation_testing.fetch_mut_branches --repo ipython --write
 
-ATENÇÃO: não rode `insert_mutations.py --mutants --reset` nos mutantes
+ATENÇÃO: não rode `python -m mutation_testing.insert_mutations --mutants --reset` nos mutantes
 alterados: ele reconstrói a branch a partir do patch original e apaga a sua troca.
 """
 import argparse
