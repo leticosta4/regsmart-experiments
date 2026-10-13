@@ -126,6 +126,24 @@
             "file": "pr_regsmart-nr.yml",
             "warmup": false
         }
+    },
+    "ultralytics": {
+      "baseline": {
+        "file": "ci-pytorch.yml",
+        "warmup": false
+        },
+      "ranking": {
+            "file": "ci-ranking.yml",
+            "warmup": true
+        },
+      "regsmart": {
+            "file": "ci-regsmart.yml",
+            "warmup": true
+        },
+      "regsmart-no-rank": {
+            "file": "ci-regsmart-nr.yml",
+            "warmup": false
+        }
     }
   }
 }

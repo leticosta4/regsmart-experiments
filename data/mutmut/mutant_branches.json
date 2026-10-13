@@ -410,5 +410,56 @@
         "base_sha": "de06214817f525bd0a138965efea388b3407f837"
       }
     }
+  },
+  "ultralytics": {
+    "base_branch": "insert-mutations",
+    "base_sha": "1e9626c09e04dff06d3860aa3e6f1ae18b036d9f",
+    "mutants": {
+      "ultralytics-m36889": {
+        "branch": "mut-ultralytics-m36889",
+        "head_sha": "ba1ddc8967f92482e6e883b851e7be30db13f148",
+        "file": "ultralytics/trackers/track_tracker.py",
+        "line": 439,
+        "patch": "data/mutmut/patches/ultralytics/ultralytics-m36889.patch",
+        "published": true,
+        "pr": "https://github.com/leticosta4/ultralytics/pull/2"
+      },
+      "ultralytics-m23817": {
+        "branch": "mut-ultralytics-m23817",
+        "head_sha": "5788aa65f7b1351315c4a784290935a0257123f4",
+        "file": "ultralytics/models/yolo/detect/train.py",
+        "line": 122,
+        "patch": "data/mutmut/patches/ultralytics/ultralytics-m23817.patch",
+        "published": true,
+        "pr": "https://github.com/leticosta4/ultralytics/pull/3"
+      },
+      "ultralytics-m34570": {
+        "branch": "mut-ultralytics-m34570",
+        "head_sha": "9b64632bb14d2601d74a82917c5f9f223c27d4e2",
+        "file": "ultralytics/solutions/similarity_search.py",
+        "line": 160,
+        "patch": "data/mutmut/patches/ultralytics/ultralytics-m34570.patch",
+        "published": true,
+        "pr": "https://github.com/leticosta4/ultralytics/pull/4"
+      },
+      "ultralytics-m5380": {
+        "branch": "mut-ultralytics-m5380",
+        "head_sha": "4b370bc24c628a454b2e60633fc546b147b93496",
+        "file": "ultralytics/data/dataset.py",
+        "line": 466,
+        "patch": "data/mutmut/patches/ultralytics/ultralytics-m5380.patch",
+        "published": true,
+        "pr": "https://github.com/leticosta4/ultralytics/pull/5"
+      },
+      "ultralytics-m2383": {
+        "branch": "mut-ultralytics-m2383",
+        "head_sha": "e461f38ebcf9fb1174fbf8a78dd1dbedd3c13855",
+        "file": "ultralytics/data/augment.py",
+        "line": 1841,
+        "patch": "data/mutmut/patches/ultralytics/ultralytics-m2383.patch",
+        "published": true,
+        "pr": "https://github.com/leticosta4/ultralytics/pull/6"
+      }
+    }
   }
 }
