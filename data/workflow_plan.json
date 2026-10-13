@@ -108,6 +108,24 @@
             "file": "test-regsmart-nr.yml",
             "warmup": false
         }
+    },
+    "aeon": {
+      "baseline": {
+        "file": "pr_pytest.yml",
+        "warmup": false
+        },
+      "ranking": {
+            "file": "pr_ranking.yml",
+            "warmup": true
+        },
+      "regsmart": {
+            "file": "pr_regsmart.yml",
+            "warmup": true
+        },
+      "regsmart-no-rank": {
+            "file": "pr_regsmart-nr.yml",
+            "warmup": false
+        }
     }
   }
 }

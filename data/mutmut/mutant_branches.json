@@ -334,5 +334,81 @@
         "behind_base": 0
       }
     }
+  },
+  "aeon": {
+    "base_branch": "insert-mutations",
+    "base_sha": "de06214817f525bd0a138965efea388b3407f837",
+    "mutants": {
+      "aeon-m6601": {
+        "branch": "mut-aeon-m6601",
+        "head_sha": "c284bfbca7d3daa2d3665a41cdc7aa634ce0e851",
+        "file": "aeon/classification/deep_learning/_disjoint_cnn.py",
+        "line": 311,
+        "patch": "data/mutmut/patches/aeon/aeon-m6601.patch",
+        "published": true,
+        "original_head_sha": "c5d5cf74dc291152feabb8ffc75129ab5cf087ce",
+        "altered": true,
+        "ahead_base": 4,
+        "behind_base": 0,
+        "previous_head_sha": "abf0d85da8af737a2c55b08d6d292a11d8d76386",
+        "base_sha": "de06214817f525bd0a138965efea388b3407f837"
+      },
+      "aeon-m24470": {
+        "branch": "mut-aeon-m24470",
+        "head_sha": "38ad9c05956b4cdde2cdf32a63cd5bd2ebe611c6",
+        "file": "aeon/distances/elastic/_erp.py",
+        "line": 208,
+        "patch": "data/mutmut/patches/aeon/aeon-m24470.patch",
+        "published": true,
+        "original_head_sha": "7ddcf2c34a4b82f61916e3a9605bdfb548730f41",
+        "altered": true,
+        "ahead_base": 4,
+        "behind_base": 0,
+        "previous_head_sha": "3128a21b4f4a2ca53eaf20e8ea89bfd5df8f37ef",
+        "base_sha": "de06214817f525bd0a138965efea388b3407f837"
+      },
+      "aeon-m22318": {
+        "branch": "mut-aeon-m22318",
+        "head_sha": "f6599b78cd4d0f60e74d13bb1dfbe175eeee5ae2",
+        "file": "aeon/datasets/tser_datasets.py",
+        "line": 224,
+        "patch": "data/mutmut/patches/aeon/aeon-m22318.patch",
+        "published": true,
+        "original_head_sha": "8374ef500d81f7ba7dc9421d4e8b35b2f154c649",
+        "altered": true,
+        "ahead_base": 4,
+        "behind_base": 0,
+        "previous_head_sha": "274a0c016eb0ff4d618abca00db860d62f16a022",
+        "base_sha": "de06214817f525bd0a138965efea388b3407f837"
+      },
+      "aeon-m6969": {
+        "branch": "mut-aeon-m6969",
+        "head_sha": "e0b51a786187dec6f742ae43d54f68c54fdbe8f1",
+        "file": "aeon/classification/deep_learning/_inception_time.py",
+        "line": 249,
+        "patch": "data/mutmut/patches/aeon/aeon-m6969.patch",
+        "published": true,
+        "original_head_sha": "8367edd0cc9596429d11765a787f6e9182b5afdb",
+        "altered": true,
+        "ahead_base": 4,
+        "behind_base": 0,
+        "previous_head_sha": "e392fb71bb54286047eb7f23401126e4290907a1",
+        "base_sha": "de06214817f525bd0a138965efea388b3407f837"
+      },
+      "aeon-m30584": {
+        "branch": "mut-aeon-m30584",
+        "head_sha": "c0b50d5ab33109eb4b49d8f795c592b9527441cd",
+        "file": "aeon/forecasting/stats/_dotm.py",
+        "line": 611,
+        "patch": "data/mutmut/patches/aeon/aeon-m30584.patch",
+        "published": true,
+        "original_head_sha": "d554722761d05132deb290d0020d23074b683b43",
+        "altered": true,
+        "ahead_base": 4,
+        "behind_base": 0,
+        "previous_head_sha": "b2e8223bb326aa8b8dae3a43ff375b6e911b9b08",
+        "base_sha": "de06214817f525bd0a138965efea388b3407f837"
+      }
+    }
   }
 }
