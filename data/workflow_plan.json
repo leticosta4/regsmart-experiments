@@ -144,6 +144,24 @@
             "file": "ci-regsmart-nr.yml",
             "warmup": false
         }
+    },
+    "dask": {
+      "baseline": {
+        "file": "tests.yml",
+        "warmup": false
+        },
+      "ranking": {
+            "file": "tests-ranking.yml",
+            "warmup": true
+        },
+      "regsmart": {
+            "file": "tests-regsmart.yml",
+            "warmup": true
+        },
+      "regsmart-no-rank": {
+            "file": "tests-regsmart-nr.yml",
+            "warmup": false
+        }
     }
   }
 }

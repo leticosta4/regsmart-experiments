@@ -337,77 +337,77 @@
   },
   "aeon": {
     "base_branch": "insert-mutations",
-    "base_sha": "de06214817f525bd0a138965efea388b3407f837",
+    "base_sha": "c7ace2a9cdee7affe23af532a58a80bd1cad5b10",
     "mutants": {
       "aeon-m6601": {
         "branch": "mut-aeon-m6601",
-        "head_sha": "c284bfbca7d3daa2d3665a41cdc7aa634ce0e851",
+        "head_sha": "90caf24cb27c73855670c434eae46bf80c2f2cb4",
         "file": "aeon/classification/deep_learning/_disjoint_cnn.py",
         "line": 311,
         "patch": "data/mutmut/patches/aeon/aeon-m6601.patch",
         "published": true,
         "original_head_sha": "c5d5cf74dc291152feabb8ffc75129ab5cf087ce",
         "altered": true,
-        "ahead_base": 4,
+        "ahead_base": 5,
         "behind_base": 0,
-        "previous_head_sha": "abf0d85da8af737a2c55b08d6d292a11d8d76386",
-        "base_sha": "de06214817f525bd0a138965efea388b3407f837"
+        "previous_head_sha": "c284bfbca7d3daa2d3665a41cdc7aa634ce0e851",
+        "base_sha": "c7ace2a9cdee7affe23af532a58a80bd1cad5b10"
       },
       "aeon-m24470": {
         "branch": "mut-aeon-m24470",
-        "head_sha": "38ad9c05956b4cdde2cdf32a63cd5bd2ebe611c6",
+        "head_sha": "8bc18bdba26cdc36a3c582d7430135272a72fe82",
         "file": "aeon/distances/elastic/_erp.py",
         "line": 208,
         "patch": "data/mutmut/patches/aeon/aeon-m24470.patch",
         "published": true,
         "original_head_sha": "7ddcf2c34a4b82f61916e3a9605bdfb548730f41",
         "altered": true,
-        "ahead_base": 4,
+        "ahead_base": 5,
         "behind_base": 0,
-        "previous_head_sha": "3128a21b4f4a2ca53eaf20e8ea89bfd5df8f37ef",
-        "base_sha": "de06214817f525bd0a138965efea388b3407f837"
+        "previous_head_sha": "38ad9c05956b4cdde2cdf32a63cd5bd2ebe611c6",
+        "base_sha": "c7ace2a9cdee7affe23af532a58a80bd1cad5b10"
       },
       "aeon-m22318": {
         "branch": "mut-aeon-m22318",
-        "head_sha": "f6599b78cd4d0f60e74d13bb1dfbe175eeee5ae2",
+        "head_sha": "62c382ea021ef0b9e55ea2850d29c8e283f198fe",
         "file": "aeon/datasets/tser_datasets.py",
         "line": 224,
         "patch": "data/mutmut/patches/aeon/aeon-m22318.patch",
         "published": true,
         "original_head_sha": "8374ef500d81f7ba7dc9421d4e8b35b2f154c649",
         "altered": true,
-        "ahead_base": 4,
+        "ahead_base": 5,
         "behind_base": 0,
-        "previous_head_sha": "274a0c016eb0ff4d618abca00db860d62f16a022",
-        "base_sha": "de06214817f525bd0a138965efea388b3407f837"
+        "previous_head_sha": "f6599b78cd4d0f60e74d13bb1dfbe175eeee5ae2",
+        "base_sha": "c7ace2a9cdee7affe23af532a58a80bd1cad5b10"
       },
       "aeon-m6969": {
         "branch": "mut-aeon-m6969",
-        "head_sha": "e0b51a786187dec6f742ae43d54f68c54fdbe8f1",
+        "head_sha": "61af836256c2c27c2d098061a609240b1c59f09e",
         "file": "aeon/classification/deep_learning/_inception_time.py",
         "line": 249,
         "patch": "data/mutmut/patches/aeon/aeon-m6969.patch",
         "published": true,
         "original_head_sha": "8367edd0cc9596429d11765a787f6e9182b5afdb",
         "altered": true,
-        "ahead_base": 4,
+        "ahead_base": 5,
         "behind_base": 0,
-        "previous_head_sha": "e392fb71bb54286047eb7f23401126e4290907a1",
-        "base_sha": "de06214817f525bd0a138965efea388b3407f837"
+        "previous_head_sha": "e0b51a786187dec6f742ae43d54f68c54fdbe8f1",
+        "base_sha": "c7ace2a9cdee7affe23af532a58a80bd1cad5b10"
       },
       "aeon-m30584": {
         "branch": "mut-aeon-m30584",
-        "head_sha": "c0b50d5ab33109eb4b49d8f795c592b9527441cd",
+        "head_sha": "c3aa51d397810cab9ab056cf79e16fcf61070c04",
         "file": "aeon/forecasting/stats/_dotm.py",
         "line": 611,
         "patch": "data/mutmut/patches/aeon/aeon-m30584.patch",
         "published": true,
         "original_head_sha": "d554722761d05132deb290d0020d23074b683b43",
         "altered": true,
-        "ahead_base": 4,
+        "ahead_base": 5,
         "behind_base": 0,
-        "previous_head_sha": "b2e8223bb326aa8b8dae3a43ff375b6e911b9b08",
-        "base_sha": "de06214817f525bd0a138965efea388b3407f837"
+        "previous_head_sha": "c0b50d5ab33109eb4b49d8f795c592b9527441cd",
+        "base_sha": "c7ace2a9cdee7affe23af532a58a80bd1cad5b10"
       }
     }
   },
@@ -459,6 +459,79 @@
         "patch": "data/mutmut/patches/ultralytics/ultralytics-m2383.patch",
         "published": true,
         "pr": "https://github.com/leticosta4/ultralytics/pull/6"
+      }
+    }
+  },
+  "dask": {
+    "base_branch": "insert-mutations",
+    "base_sha": "0ab142df09dd2d0608fba100959dea0f42153ab9",
+    "mutants": {
+      "dask-m1940": {
+        "branch": "mut-dask-m1940",
+        "head_sha": "960cd58a102e063605ed4569f7fbfa513ec55922",
+        "file": "dask/array/_array_expr/_creation.py",
+        "line": 24,
+        "patch": "data/mutmut/patches/dask/dask-m1940.patch",
+        "published": true,
+        "pr": "https://github.com/leticosta4/dask/pull/2",
+        "ahead_base": 4,
+        "behind_base": 0,
+        "previous_head_sha": "c2a7760204980c2c011f3b61453b166fef35f3a4",
+        "base_sha": "ec06023166af6e5a4db8ea96e82c200f226fede0"
+      },
+      "dask-m11282": {
+        "branch": "mut-dask-m11282",
+        "head_sha": "70ebe3f199fad572ae379d27dbaa0cb4cfd10943",
+        "file": "dask/array/overlap.py",
+        "line": 491,
+        "patch": "data/mutmut/patches/dask/dask-m11282.patch",
+        "published": true,
+        "pr": "https://github.com/leticosta4/dask/pull/3",
+        "ahead_base": 5,
+        "behind_base": 0,
+        "previous_head_sha": "5693dbcda93e42868d2744e4f979b254c32a867c",
+        "base_sha": "0ab142df09dd2d0608fba100959dea0f42153ab9",
+        "original_head_sha": "038671c83b815568a24bab651d97763ad1e97138",
+        "altered": true
+      },
+      "dask-m28832": {
+        "branch": "mut-dask-m28832",
+        "head_sha": "b385a946ddd348a78184d1e6af77cd577ef80431",
+        "file": "dask/dataframe/dask_expr/_merge.py",
+        "line": 737,
+        "patch": "data/mutmut/patches/dask/dask-m28832.patch",
+        "published": true,
+        "pr": "https://github.com/leticosta4/dask/pull/4",
+        "ahead_base": 4,
+        "behind_base": 0,
+        "previous_head_sha": "70ab379be4771c1ae2cc9515fdd40fd2c1087cec",
+        "base_sha": "ec06023166af6e5a4db8ea96e82c200f226fede0"
+      },
+      "dask-m12753": {
+        "branch": "mut-dask-m12753",
+        "head_sha": "8f1934ce9b20910d14880bd7488f2a1e0cfd6c74",
+        "file": "dask/array/rechunk.py",
+        "line": 857,
+        "patch": "data/mutmut/patches/dask/dask-m12753.patch",
+        "published": true,
+        "pr": "https://github.com/leticosta4/dask/pull/5",
+        "ahead_base": 4,
+        "behind_base": 0,
+        "previous_head_sha": "ecfd3985dd78220ec74559565de91cc8cbb259b4",
+        "base_sha": "ec06023166af6e5a4db8ea96e82c200f226fede0"
+      },
+      "dask-m37146": {
+        "branch": "mut-dask-m37146",
+        "head_sha": "086257a5890ae68ae639c558a3d9fd177e5aa5a7",
+        "file": "dask/dataframe/io/parquet/core.py",
+        "line": 294,
+        "patch": "data/mutmut/patches/dask/dask-m37146.patch",
+        "published": true,
+        "pr": "https://github.com/leticosta4/dask/pull/6",
+        "ahead_base": 4,
+        "behind_base": 0,
+        "previous_head_sha": "0a883f25dea64ffb77b411afaaa5b5bde5d61d17",
+        "base_sha": "ec06023166af6e5a4db8ea96e82c200f226fede0"
       }
     }
   }
