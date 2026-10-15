@@ -1,11 +1,11 @@
 {
   "ipython": {
     "base_branch": "insert-mutations",
-    "base_sha": "342d8986b1891d07a8c1239d785800dc7eb5d9c6",
+    "base_sha": "138a347fea1448d4861feb944042a602fca84376",
     "mutants": {
       "ipython-m1288": {
         "branch": "mut-ipython-m1288",
-        "head_sha": "7210d236a25a5a5dc0d76716b1d30e33dcaee031",
+        "head_sha": "29928fe7900468a4af4a3bdc92e351f6d4939bc1",
         "file": "IPython/core/completer.py",
         "line": 1787,
         "patch": "data/mutmut/patches/ipython/ipython-m1288.patch",
@@ -13,11 +13,13 @@
         "original_head_sha": "a65daee35a638527e8be8733dda2bd9ecf966da2",
         "altered": true,
         "ahead_base": 10,
-        "behind_base": 0
+        "behind_base": 0,
+        "previous_head_sha": "3f34c30ddd345fdc78c8b56629d714ac39e8f70d",
+        "base_sha": "138a347fea1448d4861feb944042a602fca84376"
       },
       "ipython-m17283": {
         "branch": "mut-ipython-m17283",
-        "head_sha": "08f97debae590a4e13c751d1fa5b6c52e524d710",
+        "head_sha": "3d19308c94c028a7d7152250787333d748655cdb",
         "file": "IPython/core/ultratb.py",
         "line": 194,
         "patch": "data/mutmut/patches/ipython/ipython-m17283.patch",
@@ -25,23 +27,27 @@
         "original_head_sha": "eb6c943b9ab1b5a241fcafe1d35153adbd01615f",
         "altered": true,
         "ahead_base": 9,
-        "behind_base": 0
+        "behind_base": 0,
+        "previous_head_sha": "14ea7d2ed438f62d000e42961836c1050f8122f8",
+        "base_sha": "138a347fea1448d4861feb944042a602fca84376"
       },
       "ipython-m4267": {
         "branch": "mut-ipython-m4267",
-        "head_sha": "7ff21fcc84e73705cf537b12fc6f5b80b54f4c8d",
+        "head_sha": "e170bfcfb92d24304f403aa12798c0f34e635d3b",
         "file": "IPython/core/displayhook.py",
         "line": 327,
         "patch": "data/mutmut/patches/ipython/ipython-m4267.patch",
         "published": true,
         "original_head_sha": "dfc73e5c0e1feed313185a27e932111b595bc16d",
         "altered": true,
-        "ahead_base": 5,
-        "behind_base": 0
+        "ahead_base": 6,
+        "behind_base": 0,
+        "previous_head_sha": "a240bb626685fc010d3275c56ddc6aff65831573",
+        "base_sha": "138a347fea1448d4861feb944042a602fca84376"
       },
       "ipython-m22732": {
         "branch": "mut-ipython-m22732",
-        "head_sha": "9c31a5f59bd6f5213a35eb10c269726dceb7e1c2",
+        "head_sha": "ac62db9a196b23f1c7eda046d0943570b3941749",
         "file": "IPython/terminal/pt_inputhooks/osx.py",
         "line": 38,
         "patch": "data/mutmut/patches/ipython/ipython-m22732.patch",
@@ -49,11 +55,13 @@
         "original_head_sha": "2541564352cd592407be326b76f62087c0543a70",
         "altered": true,
         "ahead_base": 5,
-        "behind_base": 0
+        "behind_base": 0,
+        "previous_head_sha": "41b9e31c44719bf28f1db7f6903a7d840c8f3528",
+        "base_sha": "138a347fea1448d4861feb944042a602fca84376"
       },
       "ipython-m22324": {
         "branch": "mut-ipython-m22324",
-        "head_sha": "6fc215fc4bc014b144c61e97dcd212e83c13dd8b",
+        "head_sha": "225dfc2234528c5bbb640d7a7d9eca2817f67b61",
         "file": "IPython/terminal/ipapp.py",
         "line": 168,
         "patch": "data/mutmut/patches/ipython/ipython-m22324.patch",
@@ -61,63 +69,95 @@
         "original_head_sha": "3e876b03ba422035ef05a2138486e791768ee8bf",
         "altered": true,
         "ahead_base": 4,
-        "behind_base": 0
+        "behind_base": 0,
+        "previous_head_sha": "38d46fa29e43007d7bc747d10e607bd0bdb8c295",
+        "base_sha": "138a347fea1448d4861feb944042a602fca84376"
       }
     }
   },
   "librosa": {
     "base_branch": "insert-mutations",
-    "base_sha": "e226696dba3c280cee72334aba57bdd8311d5317",
+    "base_sha": "8e7989b1308f520ed3d6c0c4237ce1a5afd96830",
     "mutants": {
       "librosa-m7678": {
         "branch": "mut-librosa-m7678",
-        "head_sha": "3e1887b8e94c0d994137c8bbfe0ecd513ee721ff",
+        "head_sha": "00cccb37438a9bfb143044e7daf37e059876ce7f",
         "file": "librosa/feature/spectral.py",
         "line": 1704,
         "patch": "data/mutmut/patches/librosa/librosa-m7678.patch",
-        "published": true
+        "published": true,
+        "original_head_sha": "3e1887b8e94c0d994137c8bbfe0ecd513ee721ff",
+        "altered": true,
+        "ahead_base": 4,
+        "behind_base": 0,
+        "previous_head_sha": "f692e4ec07ec2ea2063bbca1dd364941b2d71f2f",
+        "base_sha": "8e7989b1308f520ed3d6c0c4237ce1a5afd96830"
       },
       "librosa-m2885": {
         "branch": "mut-librosa-m2885",
-        "head_sha": "5b8603273d475b307115a4ef71a6a914d02cbd99",
+        "head_sha": "ef3444b33d6352690d670936da1f6593f45ed06a",
         "file": "librosa/core/notation.py",
         "line": 423,
         "patch": "data/mutmut/patches/librosa/librosa-m2885.patch",
-        "published": true
+        "published": true,
+        "original_head_sha": "5b8603273d475b307115a4ef71a6a914d02cbd99",
+        "altered": true,
+        "ahead_base": 3,
+        "behind_base": 0,
+        "previous_head_sha": "0334bd013b2ad3d5ff085cb2ae238c52abb10dfb",
+        "base_sha": "8e7989b1308f520ed3d6c0c4237ce1a5afd96830"
       },
       "librosa-m4950": {
         "branch": "mut-librosa-m4950",
-        "head_sha": "b90d24634da9873a0cc4287fa8456fa368650269",
+        "head_sha": "27f17bcb2df09a81bb8e0cfb082ad84cfc2e2623",
         "file": "librosa/core/spectrum.py",
         "line": 2681,
         "patch": "data/mutmut/patches/librosa/librosa-m4950.patch",
-        "published": true
+        "published": true,
+        "original_head_sha": "b90d24634da9873a0cc4287fa8456fa368650269",
+        "altered": true,
+        "ahead_base": 3,
+        "behind_base": 0,
+        "previous_head_sha": "3ccf3adaf30f0324c7bb124bf380a79970ce9e7e",
+        "base_sha": "8e7989b1308f520ed3d6c0c4237ce1a5afd96830"
       },
       "librosa-m0265": {
         "branch": "mut-librosa-m0265",
-        "head_sha": "e5458b8f6162cac6f0ab21338ee3cb37b45c4798",
+        "head_sha": "6b6f09557df6d217a1a81ef0acb6ebd112f8cbcd",
         "file": "librosa/core/audio.py",
         "line": 708,
         "patch": "data/mutmut/patches/librosa/librosa-m0265.patch",
-        "published": true
+        "published": true,
+        "original_head_sha": "e5458b8f6162cac6f0ab21338ee3cb37b45c4798",
+        "altered": true,
+        "ahead_base": 3,
+        "behind_base": 0,
+        "previous_head_sha": "4c8b7527ee5cd123505de24c20bae82663030223",
+        "base_sha": "8e7989b1308f520ed3d6c0c4237ce1a5afd96830"
       },
       "librosa-m0035": {
         "branch": "mut-librosa-m0035",
-        "head_sha": "d4dd4b7eff1865536a073fc188373db382594da8",
+        "head_sha": "01ec55933d9fe2331448b66dfbcbe27d63c91223",
         "file": "librosa/core/audio.py",
         "line": 160,
         "patch": "data/mutmut/patches/librosa/librosa-m0035.patch",
-        "published": true
+        "published": true,
+        "original_head_sha": "d4dd4b7eff1865536a073fc188373db382594da8",
+        "altered": true,
+        "ahead_base": 2,
+        "behind_base": 0,
+        "previous_head_sha": "fed0010c88e1dad63a06f76cceccef4130d854d4",
+        "base_sha": "8e7989b1308f520ed3d6c0c4237ce1a5afd96830"
       }
     }
   },
   "pytorch-lightning": {
     "base_branch": "insert-mutations",
-    "base_sha": "c1b378b75bd8f3b710d9fe997a0013b4843551ab",
+    "base_sha": "d083ff533a0a3c9575c79e01016e7eedd50b7b3f",
     "mutants": {
       "pytorch-lightning-m14490": {
         "branch": "mut-pytorch-lightning-m14490",
-        "head_sha": "484ebd34a00024dcba5b2b56b3667fd1b6c5a6de",
+        "head_sha": "07798a8613d928938e70b5418847aa225cf0cfef",
         "file": "src/lightning/pytorch/serve/servable_module.py",
         "line": 89,
         "patch": "data/mutmut/patches/pytorch-lightning/pytorch-lightning-m14490.patch",
@@ -125,14 +165,14 @@
         "pr": "https://github.com/leticosta4/pytorch-lightning/pull/3",
         "original_head_sha": "ae6d32357314c8f3a94ba0e9e681cf5359fa48e8",
         "altered": true,
-        "ahead_base": 9,
+        "ahead_base": 11,
         "behind_base": 0,
-        "previous_head_sha": "fea8a4df8998077ee819e89c9ac4f6e48592ee58",
-        "base_sha": "c1b378b75bd8f3b710d9fe997a0013b4843551ab"
+        "previous_head_sha": "ef27e4d11d9b718e635d7b39bd42c6d00ab4a2ee",
+        "base_sha": "d083ff533a0a3c9575c79e01016e7eedd50b7b3f"
       },
       "pytorch-lightning-m15854": {
         "branch": "mut-pytorch-lightning-m15854",
-        "head_sha": "58e86af6347ea0421eea1e7b8c0aa03a2c509ee6",
+        "head_sha": "8ce737c85e704030973d6133d3761cdbbc797704",
         "file": "src/lightning/pytorch/strategies/single_device.py",
         "line": 64,
         "patch": "data/mutmut/patches/pytorch-lightning/pytorch-lightning-m15854.patch",
@@ -140,14 +180,14 @@
         "pr": "https://github.com/leticosta4/pytorch-lightning/pull/4",
         "original_head_sha": "3be797caffdf7eef8ed521a88d4c76adcf748ebb",
         "altered": true,
-        "ahead_base": 3,
+        "ahead_base": 5,
         "behind_base": 0,
-        "previous_head_sha": "75eaa0e965055de7aa4623d13a2e072009881339",
-        "base_sha": "c1b378b75bd8f3b710d9fe997a0013b4843551ab"
+        "previous_head_sha": "72ab67cdbbf85b83abfcc4ad6d51baabb226c9f7",
+        "base_sha": "d083ff533a0a3c9575c79e01016e7eedd50b7b3f"
       },
       "pytorch-lightning-m0766": {
         "branch": "mut-pytorch-lightning-m0766",
-        "head_sha": "3d287a68ee34a3249d7d03c50655c0dafe67638f",
+        "head_sha": "abec793c3ccbc6331bdd06fb0a50c2bb71314b18",
         "file": "src/lightning/fabric/connector.py",
         "line": 280,
         "patch": "data/mutmut/patches/pytorch-lightning/pytorch-lightning-m0766.patch",
@@ -155,14 +195,14 @@
         "pr": "https://github.com/leticosta4/pytorch-lightning/pull/5",
         "original_head_sha": "c1158b27650a56176d6fad0e9a29684aeb66680d",
         "altered": true,
-        "ahead_base": 10,
+        "ahead_base": 12,
         "behind_base": 0,
-        "previous_head_sha": "ac08ecb4d4b60f58f3d00c4decbc890d5af4a371",
-        "base_sha": "c1b378b75bd8f3b710d9fe997a0013b4843551ab"
+        "previous_head_sha": "fbbb6b8bb0f53ff3cf68e660b8d3d0ead33e4759",
+        "base_sha": "d083ff533a0a3c9575c79e01016e7eedd50b7b3f"
       },
       "pytorch-lightning-m20410": {
         "branch": "mut-pytorch-lightning-m20410",
-        "head_sha": "174eee9e9bf1db212487bdc127a9fced077c6d61",
+        "head_sha": "999fbbc4acd15a3860b9fd339b8cfd5a11bc3104",
         "file": "src/lightning/pytorch/utilities/model_summary/model_summary.py",
         "line": 454,
         "patch": "data/mutmut/patches/pytorch-lightning/pytorch-lightning-m20410.patch",
@@ -170,14 +210,14 @@
         "pr": "https://github.com/leticosta4/pytorch-lightning/pull/6",
         "original_head_sha": "9a174a18a57fa39c22840daaa76549e63b44a6d8",
         "altered": true,
-        "ahead_base": 3,
+        "ahead_base": 5,
         "behind_base": 0,
-        "previous_head_sha": "160cbc00ce1a4a72869978fb8adf1e069e56718b",
-        "base_sha": "c1b378b75bd8f3b710d9fe997a0013b4843551ab"
+        "previous_head_sha": "d96343f7c6ba80465584b5712bb69a26cf693c6f",
+        "base_sha": "d083ff533a0a3c9575c79e01016e7eedd50b7b3f"
       },
       "pytorch-lightning-m9476": {
         "branch": "mut-pytorch-lightning-m9476",
-        "head_sha": "a01539717cff54d8aee976ee9a008c0fe712e78d",
+        "head_sha": "8a889a426dc0c8a08f713840d3e70f34e21f8a3b",
         "file": "src/lightning/pytorch/cli.py",
         "line": 225,
         "patch": "data/mutmut/patches/pytorch-lightning/pytorch-lightning-m9476.patch",
@@ -185,112 +225,172 @@
         "pr": "https://github.com/leticosta4/pytorch-lightning/pull/7",
         "original_head_sha": "ca8994bbb0ea81e16fdb91d1866132084c2ac734",
         "altered": true,
-        "ahead_base": 3,
+        "ahead_base": 5,
         "behind_base": 0,
-        "previous_head_sha": "ff11d2802c9f22fb639b7ab1ead7b3c999283e08",
-        "base_sha": "c1b378b75bd8f3b710d9fe997a0013b4843551ab"
+        "previous_head_sha": "6eb856e9d60249f49a1642e8a4ac448fee46bcd1",
+        "base_sha": "d083ff533a0a3c9575c79e01016e7eedd50b7b3f"
       }
     }
   },
   "dvc": {
     "base_branch": "insert-mutations",
-    "base_sha": "c6eecb50962259c13bac3c8ce9c2d8a2887f716f",
+    "base_sha": "2600c8525fdc13813fa135b4cb8257f3f49de0a3",
     "mutants": {
       "dvc-m11576": {
         "branch": "mut-dvc-m11576",
-        "head_sha": "4241706fc8f7bdf80613b0d00381c0be0f8c02d2",
+        "head_sha": "f6c1a0f0ce8e3533440912eca9e2ddf24838d62f",
         "file": "dvc/repo/experiments/queue/base.py",
         "line": 428,
         "patch": "data/mutmut/patches/dvc/dvc-m11576.patch",
         "published": true,
-        "pr": "https://github.com/leticosta4/dvc/pull/2"
+        "pr": "https://github.com/leticosta4/dvc/pull/2",
+        "original_head_sha": "4241706fc8f7bdf80613b0d00381c0be0f8c02d2",
+        "altered": true,
+        "ahead_base": 4,
+        "behind_base": 0,
+        "previous_head_sha": "1b565699cd76ed520b85280221527f070858f316",
+        "base_sha": "2600c8525fdc13813fa135b4cb8257f3f49de0a3"
       },
       "dvc-m12545": {
         "branch": "mut-dvc-m12545",
-        "head_sha": "850d7747026825d932d7b7763c6cf4f51acb04fa",
+        "head_sha": "f2677152def454e592f99246b6b269bac3cc0b35",
         "file": "dvc/repo/experiments/stash.py",
         "line": 42,
         "patch": "data/mutmut/patches/dvc/dvc-m12545.patch",
         "published": true,
-        "pr": "https://github.com/leticosta4/dvc/pull/3"
+        "pr": "https://github.com/leticosta4/dvc/pull/3",
+        "original_head_sha": "850d7747026825d932d7b7763c6cf4f51acb04fa",
+        "altered": true,
+        "ahead_base": 4,
+        "behind_base": 0,
+        "previous_head_sha": "6f1da464dc5d87eb437bb0f66f838fd8a9c5b4bf",
+        "base_sha": "2600c8525fdc13813fa135b4cb8257f3f49de0a3"
       },
       "dvc-m19066": {
         "branch": "mut-dvc-m19066",
-        "head_sha": "b7d81e161a362607e12111aa9bb120fa71e77816",
+        "head_sha": "5fd5eee0c1a318853ad966807851b59bf1f0006e",
         "file": "dvc/utils/strictyaml.py",
         "line": 223,
         "patch": "data/mutmut/patches/dvc/dvc-m19066.patch",
         "published": true,
-        "pr": "https://github.com/leticosta4/dvc/pull/4"
+        "pr": "https://github.com/leticosta4/dvc/pull/4",
+        "original_head_sha": "b7d81e161a362607e12111aa9bb120fa71e77816",
+        "altered": true,
+        "ahead_base": 4,
+        "behind_base": 0,
+        "previous_head_sha": "be33f71c169083a7ccacc5483cbb24012b8bf6c9",
+        "base_sha": "2600c8525fdc13813fa135b4cb8257f3f49de0a3"
       },
       "dvc-m16845": {
         "branch": "mut-dvc-m16845",
-        "head_sha": "6a96450bcd6c63ce2b99a5fba9a1dc0acd7e153b",
+        "head_sha": "bc6b010fa5c1f3e819e7dba561449ac2b52f4521",
         "file": "dvc/rwlock.py",
         "line": 211,
         "patch": "data/mutmut/patches/dvc/dvc-m16845.patch",
         "published": true,
-        "pr": "https://github.com/leticosta4/dvc/pull/5"
+        "pr": "https://github.com/leticosta4/dvc/pull/5",
+        "original_head_sha": "6a96450bcd6c63ce2b99a5fba9a1dc0acd7e153b",
+        "altered": true,
+        "ahead_base": 4,
+        "behind_base": 0,
+        "previous_head_sha": "bdc167c2bba515d7a4fedaed9f4a3cb981f48a38",
+        "base_sha": "2600c8525fdc13813fa135b4cb8257f3f49de0a3"
       },
       "dvc-m6852": {
         "branch": "mut-dvc-m6852",
-        "head_sha": "b83aec4d8bf70a4ed1c425abcbc97e2a10b32c01",
+        "head_sha": "2215237a665a3a51f534357c55e5c504f85614e1",
         "file": "dvc/fs/callbacks.py",
         "line": 58,
         "patch": "data/mutmut/patches/dvc/dvc-m6852.patch",
         "published": true,
-        "pr": "https://github.com/leticosta4/dvc/pull/6"
+        "pr": "https://github.com/leticosta4/dvc/pull/6",
+        "original_head_sha": "b83aec4d8bf70a4ed1c425abcbc97e2a10b32c01",
+        "altered": true,
+        "ahead_base": 4,
+        "behind_base": 0,
+        "previous_head_sha": "93ba809bfec9698da951bb606ce103a3f6542809",
+        "base_sha": "2600c8525fdc13813fa135b4cb8257f3f49de0a3"
       }
     }
   },
   "apscheduler": {
     "base_branch": "insert-mutations",
-    "base_sha": "8fd8b8190e8b5f79156ad4f34a4a9b5dec42dc78",
+    "base_sha": "e819cf16e5e53dc13c7325ce073bfdfd18fffa07",
     "mutants": {
       "apscheduler-m2144": {
         "branch": "mut-apscheduler-m2144",
-        "head_sha": "d9bba063897ba2b77a31c4043aab409c6756c5c7",
+        "head_sha": "f69fa65032f1fd708dd74064c930bc2f1b5ae617",
         "file": "src/apscheduler/triggers/calendarinterval.py",
         "line": 104,
         "patch": "data/mutmut/patches/apscheduler/apscheduler-m2144.patch",
         "published": true,
-        "pr": "https://github.com/leticosta4/apscheduler/pull/4"
+        "pr": "https://github.com/leticosta4/apscheduler/pull/4",
+        "original_head_sha": "d9bba063897ba2b77a31c4043aab409c6756c5c7",
+        "altered": true,
+        "ahead_base": 4,
+        "behind_base": 0,
+        "previous_head_sha": "5fcf00687267f571d3fe193cb221f134d5fbf11b",
+        "base_sha": "e819cf16e5e53dc13c7325ce073bfdfd18fffa07"
       },
       "apscheduler-m1399": {
         "branch": "mut-apscheduler-m1399",
-        "head_sha": "b188394e5d22468a7462398eb28ac58efd29b9b3",
+        "head_sha": "7117d6589e7c4bcea88c5029a917f01125011fe9",
         "file": "src/apscheduler/datastores/sqlalchemy.py",
         "line": 367,
         "patch": "data/mutmut/patches/apscheduler/apscheduler-m1399.patch",
         "published": true,
-        "pr": "https://github.com/leticosta4/apscheduler/pull/5"
+        "pr": "https://github.com/leticosta4/apscheduler/pull/5",
+        "original_head_sha": "b188394e5d22468a7462398eb28ac58efd29b9b3",
+        "altered": true,
+        "ahead_base": 4,
+        "behind_base": 0,
+        "previous_head_sha": "5e026c6d1783a7aafb2917957ffc484e60ae726d",
+        "base_sha": "e819cf16e5e53dc13c7325ce073bfdfd18fffa07"
       },
       "apscheduler-m2213": {
         "branch": "mut-apscheduler-m2213",
-        "head_sha": "31a876af44ec8772fb917b1fdbbd66100a98a885",
+        "head_sha": "158876764ef104e2e35a0139f00446b672bd34e8",
         "file": "src/apscheduler/triggers/combining.py",
         "line": 67,
         "patch": "data/mutmut/patches/apscheduler/apscheduler-m2213.patch",
         "published": true,
-        "pr": "https://github.com/leticosta4/apscheduler/pull/6"
+        "pr": "https://github.com/leticosta4/apscheduler/pull/6",
+        "original_head_sha": "31a876af44ec8772fb917b1fdbbd66100a98a885",
+        "altered": true,
+        "ahead_base": 4,
+        "behind_base": 0,
+        "previous_head_sha": "0c4516497c9aa2119c4b1815ac7aecd46d46e3e7",
+        "base_sha": "e819cf16e5e53dc13c7325ce073bfdfd18fffa07"
       },
       "apscheduler-m0316": {
         "branch": "mut-apscheduler-m0316",
-        "head_sha": "62816bc98b831e9982a944a1da7ad766f6968ffb",
+        "head_sha": "b100a4cdbae729e68411bc1680d6087327e2e0a8",
         "file": "src/apscheduler/_schedulers/async_.py",
         "line": 214,
         "patch": "data/mutmut/patches/apscheduler/apscheduler-m0316.patch",
         "published": true,
-        "pr": "https://github.com/leticosta4/apscheduler/pull/7"
+        "pr": "https://github.com/leticosta4/apscheduler/pull/7",
+        "original_head_sha": "62816bc98b831e9982a944a1da7ad766f6968ffb",
+        "altered": true,
+        "ahead_base": 4,
+        "behind_base": 0,
+        "previous_head_sha": "d9ed9dc4c389c51e002d8af54d400d8ab6c74342",
+        "base_sha": "e819cf16e5e53dc13c7325ce073bfdfd18fffa07"
       },
       "apscheduler-m0753": {
         "branch": "mut-apscheduler-m0753",
-        "head_sha": "909f003d5138826639847e98bc82c71580537446",
+        "head_sha": "2f3b7bc71c79d51f58356966ba5059a25e8aad28",
         "file": "src/apscheduler/_structures.py",
         "line": 61,
         "patch": "data/mutmut/patches/apscheduler/apscheduler-m0753.patch",
         "published": true,
-        "pr": "https://github.com/leticosta4/apscheduler/pull/8"
+        "pr": "https://github.com/leticosta4/apscheduler/pull/8",
+        "original_head_sha": "909f003d5138826639847e98bc82c71580537446",
+        "altered": true,
+        "ahead_base": 5,
+        "behind_base": 0,
+        "previous_head_sha": "24a114cbcbe618e877e291c02f32b774f8443f81",
+        "base_sha": "e819cf16e5e53dc13c7325ce073bfdfd18fffa07"
       }
     }
   },
@@ -377,128 +477,158 @@
   },
   "aeon": {
     "base_branch": "insert-mutations",
-    "base_sha": "c7ace2a9cdee7affe23af532a58a80bd1cad5b10",
+    "base_sha": "d0cda0cf1749f91a147e4ab6cd529734a1bd2298",
     "mutants": {
       "aeon-m6601": {
         "branch": "mut-aeon-m6601",
-        "head_sha": "90caf24cb27c73855670c434eae46bf80c2f2cb4",
+        "head_sha": "2adcd590d453f2eb62e2777302d385049420b105",
         "file": "aeon/classification/deep_learning/_disjoint_cnn.py",
         "line": 311,
         "patch": "data/mutmut/patches/aeon/aeon-m6601.patch",
         "published": true,
         "original_head_sha": "c5d5cf74dc291152feabb8ffc75129ab5cf087ce",
         "altered": true,
-        "ahead_base": 5,
+        "ahead_base": 6,
         "behind_base": 0,
-        "previous_head_sha": "c284bfbca7d3daa2d3665a41cdc7aa634ce0e851",
-        "base_sha": "c7ace2a9cdee7affe23af532a58a80bd1cad5b10"
+        "previous_head_sha": "90caf24cb27c73855670c434eae46bf80c2f2cb4",
+        "base_sha": "d0cda0cf1749f91a147e4ab6cd529734a1bd2298"
       },
       "aeon-m24470": {
         "branch": "mut-aeon-m24470",
-        "head_sha": "8bc18bdba26cdc36a3c582d7430135272a72fe82",
+        "head_sha": "2d4f42545a1fe6be7c4d5e0142219237859f2e10",
         "file": "aeon/distances/elastic/_erp.py",
         "line": 208,
         "patch": "data/mutmut/patches/aeon/aeon-m24470.patch",
         "published": true,
         "original_head_sha": "7ddcf2c34a4b82f61916e3a9605bdfb548730f41",
         "altered": true,
-        "ahead_base": 5,
+        "ahead_base": 6,
         "behind_base": 0,
-        "previous_head_sha": "38ad9c05956b4cdde2cdf32a63cd5bd2ebe611c6",
-        "base_sha": "c7ace2a9cdee7affe23af532a58a80bd1cad5b10"
+        "previous_head_sha": "8bc18bdba26cdc36a3c582d7430135272a72fe82",
+        "base_sha": "d0cda0cf1749f91a147e4ab6cd529734a1bd2298"
       },
       "aeon-m22318": {
         "branch": "mut-aeon-m22318",
-        "head_sha": "62c382ea021ef0b9e55ea2850d29c8e283f198fe",
+        "head_sha": "eee5736d882684719889539ea5dc6f3519b78ff3",
         "file": "aeon/datasets/tser_datasets.py",
         "line": 224,
         "patch": "data/mutmut/patches/aeon/aeon-m22318.patch",
         "published": true,
         "original_head_sha": "8374ef500d81f7ba7dc9421d4e8b35b2f154c649",
         "altered": true,
-        "ahead_base": 5,
+        "ahead_base": 6,
         "behind_base": 0,
-        "previous_head_sha": "f6599b78cd4d0f60e74d13bb1dfbe175eeee5ae2",
-        "base_sha": "c7ace2a9cdee7affe23af532a58a80bd1cad5b10"
+        "previous_head_sha": "62c382ea021ef0b9e55ea2850d29c8e283f198fe",
+        "base_sha": "d0cda0cf1749f91a147e4ab6cd529734a1bd2298"
       },
       "aeon-m6969": {
         "branch": "mut-aeon-m6969",
-        "head_sha": "61af836256c2c27c2d098061a609240b1c59f09e",
+        "head_sha": "feee6147f5e48fc03688959d0c37ec7ce1c80548",
         "file": "aeon/classification/deep_learning/_inception_time.py",
         "line": 249,
         "patch": "data/mutmut/patches/aeon/aeon-m6969.patch",
         "published": true,
         "original_head_sha": "8367edd0cc9596429d11765a787f6e9182b5afdb",
         "altered": true,
-        "ahead_base": 5,
+        "ahead_base": 6,
         "behind_base": 0,
-        "previous_head_sha": "e0b51a786187dec6f742ae43d54f68c54fdbe8f1",
-        "base_sha": "c7ace2a9cdee7affe23af532a58a80bd1cad5b10"
+        "previous_head_sha": "61af836256c2c27c2d098061a609240b1c59f09e",
+        "base_sha": "d0cda0cf1749f91a147e4ab6cd529734a1bd2298"
       },
       "aeon-m30584": {
         "branch": "mut-aeon-m30584",
-        "head_sha": "c3aa51d397810cab9ab056cf79e16fcf61070c04",
+        "head_sha": "ed2bdb0b099d2fe58678eec58b89e6990a055d98",
         "file": "aeon/forecasting/stats/_dotm.py",
         "line": 611,
         "patch": "data/mutmut/patches/aeon/aeon-m30584.patch",
         "published": true,
         "original_head_sha": "d554722761d05132deb290d0020d23074b683b43",
         "altered": true,
-        "ahead_base": 5,
+        "ahead_base": 6,
         "behind_base": 0,
-        "previous_head_sha": "c0b50d5ab33109eb4b49d8f795c592b9527441cd",
-        "base_sha": "c7ace2a9cdee7affe23af532a58a80bd1cad5b10"
+        "previous_head_sha": "c3aa51d397810cab9ab056cf79e16fcf61070c04",
+        "base_sha": "d0cda0cf1749f91a147e4ab6cd529734a1bd2298"
       }
     }
   },
   "ultralytics": {
     "base_branch": "insert-mutations",
-    "base_sha": "1e9626c09e04dff06d3860aa3e6f1ae18b036d9f",
+    "base_sha": "8b1b3efe10d531767ec6294aaf067963e9ed4971",
     "mutants": {
       "ultralytics-m36889": {
         "branch": "mut-ultralytics-m36889",
-        "head_sha": "ba1ddc8967f92482e6e883b851e7be30db13f148",
+        "head_sha": "038b2d4070bcc84957046ed99710653daf70ceb3",
         "file": "ultralytics/trackers/track_tracker.py",
         "line": 439,
         "patch": "data/mutmut/patches/ultralytics/ultralytics-m36889.patch",
         "published": true,
-        "pr": "https://github.com/leticosta4/ultralytics/pull/2"
+        "pr": "https://github.com/leticosta4/ultralytics/pull/2",
+        "original_head_sha": "ba1ddc8967f92482e6e883b851e7be30db13f148",
+        "altered": true,
+        "ahead_base": 3,
+        "behind_base": 0,
+        "previous_head_sha": "ef26260bc7a582f07bfed02d3857af994e5e7b99",
+        "base_sha": "8b1b3efe10d531767ec6294aaf067963e9ed4971"
       },
       "ultralytics-m23817": {
         "branch": "mut-ultralytics-m23817",
-        "head_sha": "5788aa65f7b1351315c4a784290935a0257123f4",
+        "head_sha": "3d01d3fa608f1ad5c856d8d55f95684676ede432",
         "file": "ultralytics/models/yolo/detect/train.py",
         "line": 122,
         "patch": "data/mutmut/patches/ultralytics/ultralytics-m23817.patch",
         "published": true,
-        "pr": "https://github.com/leticosta4/ultralytics/pull/3"
+        "pr": "https://github.com/leticosta4/ultralytics/pull/3",
+        "original_head_sha": "5788aa65f7b1351315c4a784290935a0257123f4",
+        "altered": true,
+        "ahead_base": 3,
+        "behind_base": 0,
+        "previous_head_sha": "3e519f6988ee0e278005a4cfcd31125eeac81b2c",
+        "base_sha": "8b1b3efe10d531767ec6294aaf067963e9ed4971"
       },
       "ultralytics-m34570": {
         "branch": "mut-ultralytics-m34570",
-        "head_sha": "9b64632bb14d2601d74a82917c5f9f223c27d4e2",
+        "head_sha": "9eff84319498d6943a1329f46ef279a2706d5410",
         "file": "ultralytics/solutions/similarity_search.py",
         "line": 160,
         "patch": "data/mutmut/patches/ultralytics/ultralytics-m34570.patch",
         "published": true,
-        "pr": "https://github.com/leticosta4/ultralytics/pull/4"
+        "pr": "https://github.com/leticosta4/ultralytics/pull/4",
+        "original_head_sha": "9b64632bb14d2601d74a82917c5f9f223c27d4e2",
+        "altered": true,
+        "ahead_base": 3,
+        "behind_base": 0,
+        "previous_head_sha": "e264be4ec03d8b73747675c165e8659d805a0caa",
+        "base_sha": "8b1b3efe10d531767ec6294aaf067963e9ed4971"
       },
       "ultralytics-m5380": {
         "branch": "mut-ultralytics-m5380",
-        "head_sha": "4b370bc24c628a454b2e60633fc546b147b93496",
+        "head_sha": "869e34a024ec368b23320082ff2b0547317361d9",
         "file": "ultralytics/data/dataset.py",
         "line": 466,
         "patch": "data/mutmut/patches/ultralytics/ultralytics-m5380.patch",
         "published": true,
-        "pr": "https://github.com/leticosta4/ultralytics/pull/5"
+        "pr": "https://github.com/leticosta4/ultralytics/pull/5",
+        "original_head_sha": "4b370bc24c628a454b2e60633fc546b147b93496",
+        "altered": true,
+        "ahead_base": 3,
+        "behind_base": 0,
+        "previous_head_sha": "a58cfd6f8cfe02422c93d83eebb36c9419559d8a",
+        "base_sha": "8b1b3efe10d531767ec6294aaf067963e9ed4971"
       },
       "ultralytics-m2383": {
         "branch": "mut-ultralytics-m2383",
-        "head_sha": "e461f38ebcf9fb1174fbf8a78dd1dbedd3c13855",
+        "head_sha": "fecd99d2870211b84cf433a77cf53c38a040e682",
         "file": "ultralytics/data/augment.py",
         "line": 1841,
         "patch": "data/mutmut/patches/ultralytics/ultralytics-m2383.patch",
         "published": true,
-        "pr": "https://github.com/leticosta4/ultralytics/pull/6"
+        "pr": "https://github.com/leticosta4/ultralytics/pull/6",
+        "original_head_sha": "e461f38ebcf9fb1174fbf8a78dd1dbedd3c13855",
+        "altered": true,
+        "ahead_base": 5,
+        "behind_base": 0,
+        "previous_head_sha": "aab9c20370dd5824b69f2223959ff1f837d1ef0d",
+        "base_sha": "8b1b3efe10d531767ec6294aaf067963e9ed4971"
       }
     }
   },

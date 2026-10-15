@@ -39,19 +39,19 @@
     },
     "dvc": {
       "baseline": {
-        "file": "tests.yml",
+        "file": "tests.yaml",
         "warmup": false
         },
       "ranking": {
-            "file": "tests-ranking.yml",
+            "file": "tests-ranking.yaml",
             "warmup": true
         },
       "regsmart": {
-            "file": "tests-regsmart.yml",
+            "file": "tests-regsmart.yaml",
             "warmup": true
         },
       "regsmart-no-rank": {
-            "file": "tests-regsmart-nr.yml",
+            "file": "tests-regsmart-nr.yaml",
             "warmup": false
         }
     },
