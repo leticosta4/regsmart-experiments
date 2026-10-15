@@ -797,7 +797,9 @@
         "line": 249,
         "patch": "data/mutmut/patches/pytest-xdist/pytest-xdist-m1214.patch",
         "published": true,
-        "pr": "https://github.com/leticosta4/pytest-xdist/pull/2"
+        "pr": "https://github.com/leticosta4/pytest-xdist/pull/2",
+        "ahead_base": 1,
+        "behind_base": 0
       },
       "pytest-xdist-m1461": {
         "branch": "mut-pytest-xdist-m1461",
@@ -806,7 +808,9 @@
         "line": 168,
         "patch": "data/mutmut/patches/pytest-xdist/pytest-xdist-m1461.patch",
         "published": true,
-        "pr": "https://github.com/leticosta4/pytest-xdist/pull/3"
+        "pr": "https://github.com/leticosta4/pytest-xdist/pull/3",
+        "ahead_base": 1,
+        "behind_base": 0
       },
       "pytest-xdist-m1049": {
         "branch": "mut-pytest-xdist-m1049",
@@ -815,7 +819,9 @@
         "line": 61,
         "patch": "data/mutmut/patches/pytest-xdist/pytest-xdist-m1049.patch",
         "published": true,
-        "pr": "https://github.com/leticosta4/pytest-xdist/pull/4"
+        "pr": "https://github.com/leticosta4/pytest-xdist/pull/4",
+        "ahead_base": 1,
+        "behind_base": 0
       },
       "pytest-xdist-m0722": {
         "branch": "mut-pytest-xdist-m0722",
@@ -824,7 +830,9 @@
         "line": 425,
         "patch": "data/mutmut/patches/pytest-xdist/pytest-xdist-m0722.patch",
         "published": true,
-        "pr": "https://github.com/leticosta4/pytest-xdist/pull/5"
+        "pr": "https://github.com/leticosta4/pytest-xdist/pull/5",
+        "ahead_base": 1,
+        "behind_base": 0
       },
       "pytest-xdist-m1537": {
         "branch": "mut-pytest-xdist-m1537",
@@ -833,7 +841,9 @@
         "line": 316,
         "patch": "data/mutmut/patches/pytest-xdist/pytest-xdist-m1537.patch",
         "published": true,
-        "pr": "https://github.com/leticosta4/pytest-xdist/pull/6"
+        "pr": "https://github.com/leticosta4/pytest-xdist/pull/6",
+        "ahead_base": 1,
+        "behind_base": 0
       }
     }
   },

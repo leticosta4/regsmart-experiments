@@ -234,11 +234,11 @@
   },
   "dvc": {
     "base_branch": "insert-mutations",
-    "base_sha": "c6eecb50962259c13bac3c8ce9c2d8a2887f716f",
+    "base_sha": "2600c8525fdc13813fa135b4cb8257f3f49de0a3",
     "mutants": {
       "dvc-m11576": {
         "branch": "mut-dvc-m11576",
-        "head_sha": "1b565699cd76ed520b85280221527f070858f316",
+        "head_sha": "f6c1a0f0ce8e3533440912eca9e2ddf24838d62f",
         "file": "dvc/repo/experiments/queue/base.py",
         "line": 428,
         "patch": "data/mutmut/patches/dvc/dvc-m11576.patch",
@@ -246,12 +246,14 @@
         "pr": "https://github.com/leticosta4/dvc/pull/2",
         "original_head_sha": "4241706fc8f7bdf80613b0d00381c0be0f8c02d2",
         "altered": true,
-        "ahead_base": 6,
-        "behind_base": 0
+        "ahead_base": 4,
+        "behind_base": 0,
+        "previous_head_sha": "1b565699cd76ed520b85280221527f070858f316",
+        "base_sha": "2600c8525fdc13813fa135b4cb8257f3f49de0a3"
       },
       "dvc-m12545": {
         "branch": "mut-dvc-m12545",
-        "head_sha": "6f1da464dc5d87eb437bb0f66f838fd8a9c5b4bf",
+        "head_sha": "f2677152def454e592f99246b6b269bac3cc0b35",
         "file": "dvc/repo/experiments/stash.py",
         "line": 42,
         "patch": "data/mutmut/patches/dvc/dvc-m12545.patch",
@@ -259,12 +261,14 @@
         "pr": "https://github.com/leticosta4/dvc/pull/3",
         "original_head_sha": "850d7747026825d932d7b7763c6cf4f51acb04fa",
         "altered": true,
-        "ahead_base": 6,
-        "behind_base": 0
+        "ahead_base": 4,
+        "behind_base": 0,
+        "previous_head_sha": "6f1da464dc5d87eb437bb0f66f838fd8a9c5b4bf",
+        "base_sha": "2600c8525fdc13813fa135b4cb8257f3f49de0a3"
       },
       "dvc-m19066": {
         "branch": "mut-dvc-m19066",
-        "head_sha": "be33f71c169083a7ccacc5483cbb24012b8bf6c9",
+        "head_sha": "5fd5eee0c1a318853ad966807851b59bf1f0006e",
         "file": "dvc/utils/strictyaml.py",
         "line": 223,
         "patch": "data/mutmut/patches/dvc/dvc-m19066.patch",
@@ -272,12 +276,14 @@
         "pr": "https://github.com/leticosta4/dvc/pull/4",
         "original_head_sha": "b7d81e161a362607e12111aa9bb120fa71e77816",
         "altered": true,
-        "ahead_base": 6,
-        "behind_base": 0
+        "ahead_base": 4,
+        "behind_base": 0,
+        "previous_head_sha": "be33f71c169083a7ccacc5483cbb24012b8bf6c9",
+        "base_sha": "2600c8525fdc13813fa135b4cb8257f3f49de0a3"
       },
       "dvc-m16845": {
         "branch": "mut-dvc-m16845",
-        "head_sha": "bdc167c2bba515d7a4fedaed9f4a3cb981f48a38",
+        "head_sha": "bc6b010fa5c1f3e819e7dba561449ac2b52f4521",
         "file": "dvc/rwlock.py",
         "line": 211,
         "patch": "data/mutmut/patches/dvc/dvc-m16845.patch",
@@ -285,12 +291,14 @@
         "pr": "https://github.com/leticosta4/dvc/pull/5",
         "original_head_sha": "6a96450bcd6c63ce2b99a5fba9a1dc0acd7e153b",
         "altered": true,
-        "ahead_base": 6,
-        "behind_base": 0
+        "ahead_base": 4,
+        "behind_base": 0,
+        "previous_head_sha": "bdc167c2bba515d7a4fedaed9f4a3cb981f48a38",
+        "base_sha": "2600c8525fdc13813fa135b4cb8257f3f49de0a3"
       },
       "dvc-m6852": {
         "branch": "mut-dvc-m6852",
-        "head_sha": "93ba809bfec9698da951bb606ce103a3f6542809",
+        "head_sha": "2215237a665a3a51f534357c55e5c504f85614e1",
         "file": "dvc/fs/callbacks.py",
         "line": 58,
         "patch": "data/mutmut/patches/dvc/dvc-m6852.patch",
@@ -298,8 +306,10 @@
         "pr": "https://github.com/leticosta4/dvc/pull/6",
         "original_head_sha": "b83aec4d8bf70a4ed1c425abcbc97e2a10b32c01",
         "altered": true,
-        "ahead_base": 6,
-        "behind_base": 0
+        "ahead_base": 4,
+        "behind_base": 0,
+        "previous_head_sha": "93ba809bfec9698da951bb606ce103a3f6542809",
+        "base_sha": "2600c8525fdc13813fa135b4cb8257f3f49de0a3"
       }
     }
   },
@@ -787,7 +797,9 @@
         "line": 249,
         "patch": "data/mutmut/patches/pytest-xdist/pytest-xdist-m1214.patch",
         "published": true,
-        "pr": "https://github.com/leticosta4/pytest-xdist/pull/2"
+        "pr": "https://github.com/leticosta4/pytest-xdist/pull/2",
+        "ahead_base": 1,
+        "behind_base": 0
       },
       "pytest-xdist-m1461": {
         "branch": "mut-pytest-xdist-m1461",
@@ -796,7 +808,9 @@
         "line": 168,
         "patch": "data/mutmut/patches/pytest-xdist/pytest-xdist-m1461.patch",
         "published": true,
-        "pr": "https://github.com/leticosta4/pytest-xdist/pull/3"
+        "pr": "https://github.com/leticosta4/pytest-xdist/pull/3",
+        "ahead_base": 1,
+        "behind_base": 0
       },
       "pytest-xdist-m1049": {
         "branch": "mut-pytest-xdist-m1049",
@@ -805,7 +819,9 @@
         "line": 61,
         "patch": "data/mutmut/patches/pytest-xdist/pytest-xdist-m1049.patch",
         "published": true,
-        "pr": "https://github.com/leticosta4/pytest-xdist/pull/4"
+        "pr": "https://github.com/leticosta4/pytest-xdist/pull/4",
+        "ahead_base": 1,
+        "behind_base": 0
       },
       "pytest-xdist-m0722": {
         "branch": "mut-pytest-xdist-m0722",
@@ -814,7 +830,9 @@
         "line": 425,
         "patch": "data/mutmut/patches/pytest-xdist/pytest-xdist-m0722.patch",
         "published": true,
-        "pr": "https://github.com/leticosta4/pytest-xdist/pull/5"
+        "pr": "https://github.com/leticosta4/pytest-xdist/pull/5",
+        "ahead_base": 1,
+        "behind_base": 0
       },
       "pytest-xdist-m1537": {
         "branch": "mut-pytest-xdist-m1537",
@@ -823,7 +841,9 @@
         "line": 316,
         "patch": "data/mutmut/patches/pytest-xdist/pytest-xdist-m1537.patch",
         "published": true,
-        "pr": "https://github.com/leticosta4/pytest-xdist/pull/6"
+        "pr": "https://github.com/leticosta4/pytest-xdist/pull/6",
+        "ahead_base": 1,
+        "behind_base": 0
       }
     }
   },
