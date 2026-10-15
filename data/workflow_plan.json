@@ -162,6 +162,60 @@
             "file": "tests-regsmart-nr.yml",
             "warmup": false
         }
+    },
+    "networkx": {
+      "baseline": {
+        "file": "test.yml",
+        "warmup": false
+        },
+      "ranking": {
+            "file": "test-ranking.yml",
+            "warmup": true
+        },
+      "regsmart": {
+            "file": "test-regsmart.yml",
+            "warmup": true
+        },
+      "regsmart-no-rank": {
+            "file": "test-regsmart-nr.yml",
+            "warmup": false
+        }
+    },
+    "pytest-xdist": {
+      "baseline": {
+        "file": "test.yml",
+        "warmup": false
+        },
+      "ranking": {
+            "file": "test-ranking.yml",
+            "warmup": true
+        },
+      "regsmart": {
+            "file": "test-regsmart.yml",
+            "warmup": true
+        },
+      "regsmart-no-rank": {
+            "file": "test-regsmart-nr.yml",
+            "warmup": false
+        }
+    },
+    "pytest-django": {
+      "baseline": {
+        "file": "main.yml",
+        "warmup": false
+        },
+      "ranking": {
+            "file": "main-ranking.yml",
+            "warmup": true
+        },
+      "regsmart": {
+            "file": "main-regsmart.yml",
+            "warmup": true
+        },
+      "regsmart-no-rank": {
+            "file": "main-regsmart-nr.yml",
+            "warmup": false
+        }
     }
   }
 }

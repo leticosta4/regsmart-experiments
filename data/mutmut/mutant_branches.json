@@ -113,52 +113,82 @@
   },
   "pytorch-lightning": {
     "base_branch": "insert-mutations",
-    "base_sha": "8d2a1fff21d782cda2dc802ae724d7aa3e14dcee",
+    "base_sha": "c1b378b75bd8f3b710d9fe997a0013b4843551ab",
     "mutants": {
       "pytorch-lightning-m14490": {
         "branch": "mut-pytorch-lightning-m14490",
-        "head_sha": "ae6d32357314c8f3a94ba0e9e681cf5359fa48e8",
+        "head_sha": "484ebd34a00024dcba5b2b56b3667fd1b6c5a6de",
         "file": "src/lightning/pytorch/serve/servable_module.py",
         "line": 89,
         "patch": "data/mutmut/patches/pytorch-lightning/pytorch-lightning-m14490.patch",
         "published": true,
-        "pr": "https://github.com/leticosta4/pytorch-lightning/pull/3"
+        "pr": "https://github.com/leticosta4/pytorch-lightning/pull/3",
+        "original_head_sha": "ae6d32357314c8f3a94ba0e9e681cf5359fa48e8",
+        "altered": true,
+        "ahead_base": 9,
+        "behind_base": 0,
+        "previous_head_sha": "fea8a4df8998077ee819e89c9ac4f6e48592ee58",
+        "base_sha": "c1b378b75bd8f3b710d9fe997a0013b4843551ab"
       },
       "pytorch-lightning-m15854": {
         "branch": "mut-pytorch-lightning-m15854",
-        "head_sha": "3be797caffdf7eef8ed521a88d4c76adcf748ebb",
+        "head_sha": "58e86af6347ea0421eea1e7b8c0aa03a2c509ee6",
         "file": "src/lightning/pytorch/strategies/single_device.py",
         "line": 64,
         "patch": "data/mutmut/patches/pytorch-lightning/pytorch-lightning-m15854.patch",
         "published": true,
-        "pr": "https://github.com/leticosta4/pytorch-lightning/pull/4"
+        "pr": "https://github.com/leticosta4/pytorch-lightning/pull/4",
+        "original_head_sha": "3be797caffdf7eef8ed521a88d4c76adcf748ebb",
+        "altered": true,
+        "ahead_base": 3,
+        "behind_base": 0,
+        "previous_head_sha": "75eaa0e965055de7aa4623d13a2e072009881339",
+        "base_sha": "c1b378b75bd8f3b710d9fe997a0013b4843551ab"
       },
       "pytorch-lightning-m0766": {
         "branch": "mut-pytorch-lightning-m0766",
-        "head_sha": "c1158b27650a56176d6fad0e9a29684aeb66680d",
+        "head_sha": "3d287a68ee34a3249d7d03c50655c0dafe67638f",
         "file": "src/lightning/fabric/connector.py",
         "line": 280,
         "patch": "data/mutmut/patches/pytorch-lightning/pytorch-lightning-m0766.patch",
         "published": true,
-        "pr": "https://github.com/leticosta4/pytorch-lightning/pull/5"
+        "pr": "https://github.com/leticosta4/pytorch-lightning/pull/5",
+        "original_head_sha": "c1158b27650a56176d6fad0e9a29684aeb66680d",
+        "altered": true,
+        "ahead_base": 10,
+        "behind_base": 0,
+        "previous_head_sha": "ac08ecb4d4b60f58f3d00c4decbc890d5af4a371",
+        "base_sha": "c1b378b75bd8f3b710d9fe997a0013b4843551ab"
       },
       "pytorch-lightning-m20410": {
         "branch": "mut-pytorch-lightning-m20410",
-        "head_sha": "9a174a18a57fa39c22840daaa76549e63b44a6d8",
+        "head_sha": "174eee9e9bf1db212487bdc127a9fced077c6d61",
         "file": "src/lightning/pytorch/utilities/model_summary/model_summary.py",
         "line": 454,
         "patch": "data/mutmut/patches/pytorch-lightning/pytorch-lightning-m20410.patch",
         "published": true,
-        "pr": "https://github.com/leticosta4/pytorch-lightning/pull/6"
+        "pr": "https://github.com/leticosta4/pytorch-lightning/pull/6",
+        "original_head_sha": "9a174a18a57fa39c22840daaa76549e63b44a6d8",
+        "altered": true,
+        "ahead_base": 3,
+        "behind_base": 0,
+        "previous_head_sha": "160cbc00ce1a4a72869978fb8adf1e069e56718b",
+        "base_sha": "c1b378b75bd8f3b710d9fe997a0013b4843551ab"
       },
       "pytorch-lightning-m9476": {
         "branch": "mut-pytorch-lightning-m9476",
-        "head_sha": "ca8994bbb0ea81e16fdb91d1866132084c2ac734",
+        "head_sha": "a01539717cff54d8aee976ee9a008c0fe712e78d",
         "file": "src/lightning/pytorch/cli.py",
         "line": 225,
         "patch": "data/mutmut/patches/pytorch-lightning/pytorch-lightning-m9476.patch",
         "published": true,
-        "pr": "https://github.com/leticosta4/pytorch-lightning/pull/7"
+        "pr": "https://github.com/leticosta4/pytorch-lightning/pull/7",
+        "original_head_sha": "ca8994bbb0ea81e16fdb91d1866132084c2ac734",
+        "altered": true,
+        "ahead_base": 3,
+        "behind_base": 0,
+        "previous_head_sha": "ff11d2802c9f22fb639b7ab1ead7b3c999283e08",
+        "base_sha": "c1b378b75bd8f3b710d9fe997a0013b4843551ab"
       }
     }
   },
@@ -266,11 +296,11 @@
   },
   "trimesh": {
     "base_branch": "insert-mutations",
-    "base_sha": "a838af774addb363a9b136a563c75d00843c968a",
+    "base_sha": "9fca2a84e1232c7267bdc7354696415e20e53131",
     "mutants": {
       "trimesh-m1825": {
         "branch": "mut-trimesh-m1825",
-        "head_sha": "1e6bae8b88849c1508b4796a72eab8d318ae3182",
+        "head_sha": "82e845d77df2c9dc8a6dab2c3ed144ad3b55d2a3",
         "file": "trimesh/convex.py",
         "line": 208,
         "patch": "data/mutmut/patches/trimesh/trimesh-m1825.patch",
@@ -278,12 +308,14 @@
         "pr": "https://github.com/leticosta4/trimesh/pull/2",
         "original_head_sha": "93f8bb8cdb0cb66bf3dd5787ad42a05abef147ac",
         "altered": true,
-        "ahead_base": 3,
-        "behind_base": 0
+        "ahead_base": 4,
+        "behind_base": 0,
+        "previous_head_sha": "1e6bae8b88849c1508b4796a72eab8d318ae3182",
+        "base_sha": "9fca2a84e1232c7267bdc7354696415e20e53131"
       },
       "trimesh-m25103": {
         "branch": "mut-trimesh-m25103",
-        "head_sha": "349028d554ebe11eb6ccdf28f5b729fab6c80c18",
+        "head_sha": "07e173b1f9cfa50aa55165a04a267626ca2bf1ae",
         "file": "trimesh/visual/material.py",
         "line": 500,
         "patch": "data/mutmut/patches/trimesh/trimesh-m25103.patch",
@@ -291,12 +323,14 @@
         "pr": "https://github.com/leticosta4/trimesh/pull/3",
         "original_head_sha": "4d5d739f8c624e8e6f181792f7b578b456ecb7c8",
         "altered": true,
-        "ahead_base": 3,
-        "behind_base": 0
+        "ahead_base": 4,
+        "behind_base": 0,
+        "previous_head_sha": "349028d554ebe11eb6ccdf28f5b729fab6c80c18",
+        "base_sha": "9fca2a84e1232c7267bdc7354696415e20e53131"
       },
       "trimesh-m3147": {
         "branch": "mut-trimesh-m3147",
-        "head_sha": "bc3f22bf4f5f114efae410adbf89868f8644d7b2",
+        "head_sha": "cc1d73962a6a3326a3df724e5c0c3ac37a79ba68",
         "file": "trimesh/exchange/binvox.py",
         "line": 295,
         "patch": "data/mutmut/patches/trimesh/trimesh-m3147.patch",
@@ -304,12 +338,14 @@
         "pr": "https://github.com/leticosta4/trimesh/pull/4",
         "original_head_sha": "2c4f501278ed7ed43ced3c7b3ca4dd5d6da3aded",
         "altered": true,
-        "ahead_base": 3,
-        "behind_base": 0
+        "ahead_base": 5,
+        "behind_base": 0,
+        "previous_head_sha": "2e97c966e06a603f6c2444bd2aca65d1438daa3d",
+        "base_sha": "9fca2a84e1232c7267bdc7354696415e20e53131"
       },
       "trimesh-m21160": {
         "branch": "mut-trimesh-m21160",
-        "head_sha": "805b2f54529d8624998844b75388b3b7ce6cc612",
+        "head_sha": "32aa88f0b2b3d6a308566a2e710119ae34ca6f6f",
         "file": "trimesh/transformations.py",
         "line": 1983,
         "patch": "data/mutmut/patches/trimesh/trimesh-m21160.patch",
@@ -317,12 +353,14 @@
         "pr": "https://github.com/leticosta4/trimesh/pull/5",
         "original_head_sha": "13c7a7f45418029dae46d49cdd2a127ad5ad5990",
         "altered": true,
-        "ahead_base": 3,
-        "behind_base": 0
+        "ahead_base": 4,
+        "behind_base": 0,
+        "previous_head_sha": "805b2f54529d8624998844b75388b3b7ce6cc612",
+        "base_sha": "9fca2a84e1232c7267bdc7354696415e20e53131"
       },
       "trimesh-m13478": {
         "branch": "mut-trimesh-m13478",
-        "head_sha": "7df9c5c01e1c1f7b92b3af140853ef467911756c",
+        "head_sha": "bcd425289a49d50c71671526bacce789f0a5405d",
         "file": "trimesh/path/polygons.py",
         "line": 952,
         "patch": "data/mutmut/patches/trimesh/trimesh-m13478.patch",
@@ -330,8 +368,10 @@
         "pr": "https://github.com/leticosta4/trimesh/pull/6",
         "original_head_sha": "28b48c7a3b423e058eea580cc45e1004ebf22f0c",
         "altered": true,
-        "ahead_base": 3,
-        "behind_base": 0
+        "ahead_base": 4,
+        "behind_base": 0,
+        "previous_head_sha": "7df9c5c01e1c1f7b92b3af140853ef467911756c",
+        "base_sha": "9fca2a84e1232c7267bdc7354696415e20e53131"
       }
     }
   },
@@ -532,6 +572,209 @@
         "behind_base": 0,
         "previous_head_sha": "0a883f25dea64ffb77b411afaaa5b5bde5d61d17",
         "base_sha": "ec06023166af6e5a4db8ea96e82c200f226fede0"
+      }
+    }
+  },
+  "networkx": {
+    "base_branch": "insert-mutations",
+    "base_sha": "8eb1dc489549737ed0153a3b4902d0a766b4689f",
+    "mutants": {
+      "networkx-m6449": {
+        "branch": "mut-networkx-m6449",
+        "head_sha": "0264fe84c9dbec7aac1c5117f010790f9bbb9f30",
+        "file": "networkx/algorithms/community/label_propagation.py",
+        "line": 193,
+        "patch": "data/mutmut/patches/networkx/networkx-m6449.patch",
+        "published": true,
+        "pr": "https://github.com/leticosta4/networkx/pull/2",
+        "previous_head_sha": "7497afb9c87cc717b3c0c65ceb7e9b0be19b1353",
+        "base_sha": "8eb1dc489549737ed0153a3b4902d0a766b4689f",
+        "behind_base": 0,
+        "ahead_base": 5,
+        "original_head_sha": "d0cd73065cc697abd74de1f6cbb18bb66a38a0ab",
+        "altered": true
+      },
+      "networkx-m1096": {
+        "branch": "mut-networkx-m1096",
+        "head_sha": "88e56e22ce4d9043f1d95650b6e8dc2cba14de61",
+        "file": "networkx/algorithms/approximation/traveling_salesman.py",
+        "line": 1246,
+        "patch": "data/mutmut/patches/networkx/networkx-m1096.patch",
+        "published": true,
+        "pr": "https://github.com/leticosta4/networkx/pull/3",
+        "previous_head_sha": "4770217fff47336d1b34adce0addc63ebec1c218",
+        "base_sha": "8eb1dc489549737ed0153a3b4902d0a766b4689f",
+        "behind_base": 0,
+        "ahead_base": 5,
+        "original_head_sha": "deba6035a588d17fbf05bee3478586aac658a9f1",
+        "altered": true
+      },
+      "networkx-m14277": {
+        "branch": "mut-networkx-m14277",
+        "head_sha": "f853265800d392ca7e241991e9c6bf34b9246453",
+        "file": "networkx/algorithms/isomorphism/vf2pp.py",
+        "line": 475,
+        "patch": "data/mutmut/patches/networkx/networkx-m14277.patch",
+        "published": true,
+        "pr": "https://github.com/leticosta4/networkx/pull/4",
+        "previous_head_sha": "6633f63d3ef90feb83351623f57f3b63ac04c09f",
+        "base_sha": "8eb1dc489549737ed0153a3b4902d0a766b4689f",
+        "behind_base": 0,
+        "ahead_base": 5,
+        "original_head_sha": "fb4c29103c8ba1e9cf00fc198543e501e6b07e21",
+        "altered": true
+      },
+      "networkx-m17565": {
+        "branch": "mut-networkx-m17565",
+        "head_sha": "164ff752a1dfbe21b275f5d04b3fbe941b0e14d4",
+        "file": "networkx/algorithms/shortest_paths/dense.py",
+        "line": 267,
+        "patch": "data/mutmut/patches/networkx/networkx-m17565.patch",
+        "published": true,
+        "pr": "https://github.com/leticosta4/networkx/pull/5",
+        "previous_head_sha": "951575ad48b5ff54724e7ccc3435a37c5a37afc8",
+        "base_sha": "8eb1dc489549737ed0153a3b4902d0a766b4689f",
+        "behind_base": 0,
+        "ahead_base": 5,
+        "original_head_sha": "78486f6085d6e18489307e0a9b39499b16a75268",
+        "altered": true
+      },
+      "networkx-m25405": {
+        "branch": "mut-networkx-m25405",
+        "head_sha": "6e2ad0642c7828b25472b3b502d19bb8025aafb8",
+        "file": "networkx/drawing/nx_agraph.py",
+        "line": 209,
+        "patch": "data/mutmut/patches/networkx/networkx-m25405.patch",
+        "published": true,
+        "pr": "https://github.com/leticosta4/networkx/pull/6",
+        "previous_head_sha": "7ac0168a54e94cc87f01ee90f5e125e7d482808e",
+        "base_sha": "8eb1dc489549737ed0153a3b4902d0a766b4689f",
+        "behind_base": 0,
+        "ahead_base": 5,
+        "original_head_sha": "5abb0a07692776d1cd6ec429613ea3c0fcffd40d",
+        "altered": true
+      }
+    }
+  },
+  "pytest-xdist": {
+    "base_branch": "insert-mutations",
+    "base_sha": "82b0dbc7ba31d0359c8f7a0de3aa2eea691faeae",
+    "mutants": {
+      "pytest-xdist-m1214": {
+        "branch": "mut-pytest-xdist-m1214",
+        "head_sha": "94e4b9ca61e9aa881d409279fc1f4774e1267acc",
+        "file": "src/xdist/scheduler/loadscope.py",
+        "line": 249,
+        "patch": "data/mutmut/patches/pytest-xdist/pytest-xdist-m1214.patch",
+        "published": true,
+        "pr": "https://github.com/leticosta4/pytest-xdist/pull/2"
+      },
+      "pytest-xdist-m1461": {
+        "branch": "mut-pytest-xdist-m1461",
+        "head_sha": "ab32318b343958dc15efc5ec5781c7f331530b07",
+        "file": "src/xdist/workermanage.py",
+        "line": 168,
+        "patch": "data/mutmut/patches/pytest-xdist/pytest-xdist-m1461.patch",
+        "published": true,
+        "pr": "https://github.com/leticosta4/pytest-xdist/pull/3"
+      },
+      "pytest-xdist-m1049": {
+        "branch": "mut-pytest-xdist-m1049",
+        "head_sha": "bd648d7962e7e72878195b59029455a6a84dd01f",
+        "file": "src/xdist/scheduler/load.py",
+        "line": 61,
+        "patch": "data/mutmut/patches/pytest-xdist/pytest-xdist-m1049.patch",
+        "published": true,
+        "pr": "https://github.com/leticosta4/pytest-xdist/pull/4"
+      },
+      "pytest-xdist-m0722": {
+        "branch": "mut-pytest-xdist-m0722",
+        "head_sha": "e1971e2970dba57cd485856ef6f73c800a7ab7ec",
+        "file": "src/xdist/plugin.py",
+        "line": 425,
+        "patch": "data/mutmut/patches/pytest-xdist/pytest-xdist-m0722.patch",
+        "published": true,
+        "pr": "https://github.com/leticosta4/pytest-xdist/pull/5"
+      },
+      "pytest-xdist-m1537": {
+        "branch": "mut-pytest-xdist-m1537",
+        "head_sha": "147d8d2590b6b9ccae2a717d7440f518825ebea2",
+        "file": "src/xdist/workermanage.py",
+        "line": 316,
+        "patch": "data/mutmut/patches/pytest-xdist/pytest-xdist-m1537.patch",
+        "published": true,
+        "pr": "https://github.com/leticosta4/pytest-xdist/pull/6"
+      }
+    }
+  },
+  "pytest-django": {
+    "base_branch": "insert-mutations",
+    "base_sha": "eb95dbaa32f571173671435f656fe1dba59eee64",
+    "mutants": {
+      "pytest-django-m0376": {
+        "branch": "mut-pytest-django-m0376",
+        "head_sha": "2934c2aab4ec342a9730bed4c2e115a96f705200",
+        "file": "pytest_django/plugin.py",
+        "line": 153,
+        "patch": "data/mutmut/patches/pytest-django/pytest-django-m0376.patch",
+        "published": true,
+        "pr": "https://github.com/leticosta4/pytest-django/pull/3",
+        "previous_head_sha": "999b43b731b170ba767ebbf0c6caba46cacd58aa",
+        "base_sha": "eb95dbaa32f571173671435f656fe1dba59eee64",
+        "behind_base": 0,
+        "ahead_base": 2
+      },
+      "pytest-django-m0491": {
+        "branch": "mut-pytest-django-m0491",
+        "head_sha": "1a446e32ec873501faf9d3b9a9bdc89439b06402",
+        "file": "pytest_django/plugin.py",
+        "line": 399,
+        "patch": "data/mutmut/patches/pytest-django/pytest-django-m0491.patch",
+        "published": true,
+        "pr": "https://github.com/leticosta4/pytest-django/pull/4",
+        "previous_head_sha": "44fe8ef9a064995d0ec7eb001cd9493fcc450115",
+        "base_sha": "eb95dbaa32f571173671435f656fe1dba59eee64",
+        "behind_base": 0,
+        "ahead_base": 2
+      },
+      "pytest-django-m0604": {
+        "branch": "mut-pytest-django-m0604",
+        "head_sha": "f1dab3afaae0e7c118e209e66ebc30830d9579f8",
+        "file": "pytest_django/plugin.py",
+        "line": 679,
+        "patch": "data/mutmut/patches/pytest-django/pytest-django-m0604.patch",
+        "published": true,
+        "pr": "https://github.com/leticosta4/pytest-django/pull/5",
+        "previous_head_sha": "ccdca108cea897857cd6f2f6a9cbce7fba7a01f2",
+        "base_sha": "eb95dbaa32f571173671435f656fe1dba59eee64",
+        "behind_base": 0,
+        "ahead_base": 2
+      },
+      "pytest-django-m0049": {
+        "branch": "mut-pytest-django-m0049",
+        "head_sha": "ceadb61c2f5883256084257ac36d3693772e253e",
+        "file": "pytest_django/fixtures.py",
+        "line": 105,
+        "patch": "data/mutmut/patches/pytest-django/pytest-django-m0049.patch",
+        "published": true,
+        "pr": "https://github.com/leticosta4/pytest-django/pull/6",
+        "previous_head_sha": "3517b992842dd1ac23753de0e6b900343186dbe4",
+        "base_sha": "eb95dbaa32f571173671435f656fe1dba59eee64",
+        "behind_base": 0,
+        "ahead_base": 2
+      },
+      "pytest-django-m0192": {
+        "branch": "mut-pytest-django-m0192",
+        "head_sha": "c6054199a4c925b94428da524e7383f742fe33d4",
+        "file": "pytest_django/fixtures.py",
+        "line": 505,
+        "patch": "data/mutmut/patches/pytest-django/pytest-django-m0192.patch",
+        "published": true,
+        "pr": "https://github.com/leticosta4/pytest-django/pull/7",
+        "previous_head_sha": "8c88160b1a9c6bccd537ff55a0c623762fbc7f48",
+        "base_sha": "eb95dbaa32f571173671435f656fe1dba59eee64",
+        "behind_base": 0,
+        "ahead_base": 2
       }
     }
   }
