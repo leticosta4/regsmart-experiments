@@ -39,19 +39,19 @@
     },
     "dvc": {
       "baseline": {
-        "file": "tests.yml",
+        "file": "tests.yaml",
         "warmup": false
         },
       "ranking": {
-            "file": "tests-ranking.yml",
+            "file": "tests-ranking.yaml",
             "warmup": true
         },
       "regsmart": {
-            "file": "tests-regsmart.yml",
+            "file": "tests-regsmart.yaml",
             "warmup": true
         },
       "regsmart-no-rank": {
-            "file": "tests-regsmart-nr.yml",
+            "file": "tests-regsmart-nr.yaml",
             "warmup": false
         }
     },
@@ -124,6 +124,96 @@
         },
       "regsmart-no-rank": {
             "file": "pr_regsmart-nr.yml",
+            "warmup": false
+        }
+    },
+    "ultralytics": {
+      "baseline": {
+        "file": "ci-pytorch.yml",
+        "warmup": false
+        },
+      "ranking": {
+            "file": "ci-ranking.yml",
+            "warmup": true
+        },
+      "regsmart": {
+            "file": "ci-regsmart.yml",
+            "warmup": true
+        },
+      "regsmart-no-rank": {
+            "file": "ci-regsmart-nr.yml",
+            "warmup": false
+        }
+    },
+    "dask": {
+      "baseline": {
+        "file": "tests.yml",
+        "warmup": false
+        },
+      "ranking": {
+            "file": "tests-ranking.yml",
+            "warmup": true
+        },
+      "regsmart": {
+            "file": "tests-regsmart.yml",
+            "warmup": true
+        },
+      "regsmart-no-rank": {
+            "file": "tests-regsmart-nr.yml",
+            "warmup": false
+        }
+    },
+    "networkx": {
+      "baseline": {
+        "file": "test.yml",
+        "warmup": false
+        },
+      "ranking": {
+            "file": "test-ranking.yml",
+            "warmup": true
+        },
+      "regsmart": {
+            "file": "test-regsmart.yml",
+            "warmup": true
+        },
+      "regsmart-no-rank": {
+            "file": "test-regsmart-nr.yml",
+            "warmup": false
+        }
+    },
+    "pytest-xdist": {
+      "baseline": {
+        "file": "test.yml",
+        "warmup": false
+        },
+      "ranking": {
+            "file": "test-ranking.yml",
+            "warmup": true
+        },
+      "regsmart": {
+            "file": "test-regsmart.yml",
+            "warmup": true
+        },
+      "regsmart-no-rank": {
+            "file": "test-regsmart-nr.yml",
+            "warmup": false
+        }
+    },
+    "pytest-django": {
+      "baseline": {
+        "file": "main.yml",
+        "warmup": false
+        },
+      "ranking": {
+            "file": "main-ranking.yml",
+            "warmup": true
+        },
+      "regsmart": {
+            "file": "main-regsmart.yml",
+            "warmup": true
+        },
+      "regsmart-no-rank": {
+            "file": "main-regsmart-nr.yml",
             "warmup": false
         }
     }
