@@ -779,7 +779,7 @@ def analyze_flaky(c: Campaign, manifest: dict, exclude_warmup: bool,
     """
     groups = collections.defaultdict(lambda: collections.defaultdict(list))
     for r in manifest["runs"]:
-        if not (r.get("mutant") and r.get("run_id") and r.get("status") == "completed"):
+        if not (r.get("mutant") and r.get("run_id") and r.get("conclusion") in ("success", "failure")):
             continue
         if exclude_warmup and r["phase"] == "warmup":
             continue
