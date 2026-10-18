@@ -12,10 +12,10 @@ uma branch/commit.
 
 Uso:
     pip install "mutmut==2.5.1"
-    python -m mutation_testing.mutation_gen gen                       # todos os repos do plano
-    python -m mutation_testing.mutation_gen gen --repo dask --n 15    # um repo
-    python -m mutation_testing.mutation_gen gen --repo dask --append  # completa o que já existe
-    python -m mutation_testing.mutation_gen list                      # resumo do que foi gerado
+    python3 -m mutation_testing.mutation_gen gen                       # todos os repos do plano
+    python3 -m mutation_testing.mutation_gen gen --repo dask --n 15    # um repo
+    python3 -m mutation_testing.mutation_gen gen --repo dask --append  # completa o que já existe
+    python3 -m mutation_testing.mutation_gen list                      # resumo do que foi gerado
 
 Sem `--append`, `gen` é destrutivo no repo: apaga data/mutmut/patches/<repo>/ e
 reescreve o bloco do repo em mutants.json. Com `--append`, os mutantes já
@@ -298,6 +298,15 @@ def load_plan(only: list[str] | None, default_n: int | None) -> list[dict]:
     return entries
 
 
+def default_branch(url: str) -> str:
+    """Default branch do fork no remoto (main, master...), sem clonar."""
+    out = run(["git", "ls-remote", "--symref", url, "HEAD"])
+    m = re.search(r"^ref: refs/heads/(\S+)\s+HEAD", out, re.M)
+    if not m:
+        raise RuntimeError(f"não consegui descobrir o default branch de {url}")
+    return m.group(1)
+
+
 def ensure_clone(repo: str, branch: str, workdir: Path, url_template: str) -> tuple[Path, str, bool]:
     """Clone (ou atualiza) o fork em workdir/<repo>, limpo e na branch pedida.
 
@@ -446,9 +455,11 @@ def _generate(entry: dict, args, existing: list[dict] | None = None) -> dict:
     print(f"\n== {repo}", flush=True)
 
     with Phase(1, "clone") as ph:
-        clone, how, had_cache = ensure_clone(repo, args.branch, Path(args.workdir), args.url_template)
+        # sem --branch: usa o default branch do próprio fork (main/master)
+        branch = args.branch or default_branch(args.url_template.format(repo=repo))
+        clone, how, had_cache = ensure_clone(repo, branch, Path(args.workdir), args.url_template)
         base_sha = run(["git", "rev-parse", "HEAD"], cwd=clone).strip()
-        detail = f"{how}: {rel(clone)} @ {args.branch} = {base_sha[:8]}"
+        detail = f"{how}: {rel(clone)} @ {branch} = {base_sha[:8]}"
         if how == "fetch":
             detail += f" | cache {('guardado' if had_cache else 'inexistente')}"
         ph.end(detail)
@@ -619,7 +630,7 @@ def _generate(entry: dict, args, existing: list[dict] | None = None) -> dict:
     unhide_pyproject(clone, bak)
 
     return {
-        "base_branch": args.branch,
+        "base_branch": branch,
         "base_sha": base_sha,
         "mutmut_version": MUTMUT_VERSION,
         "seed": args.seed,
@@ -689,7 +700,8 @@ def main() -> None:
     g.add_argument("--no-progress", dest="progress", action="store_false", default=True,
                    help="desliga os heartbeats e a barra do mutmut")
     g.add_argument("--seed", default="42", help="semente da amostragem (reprodutível)")
-    g.add_argument("--branch", default="insert-mutations", help="branch base de cada fork")
+    g.add_argument("--branch", default=None,
+                   help="branch base de cada fork (default: o default branch de cada fork, main/master)")
     g.add_argument("--workdir", default=str(ROOT / "work"), help="onde clonar os forks")
     g.add_argument("--url-template", default=f"https://github.com/{OWNER}/{{repo}}.git")
     g.add_argument("--mutmut", default=shutil.which("mutmut") or "mutmut")

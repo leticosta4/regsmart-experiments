@@ -15,16 +15,23 @@ Pra cada repo:
     `altered: true` (chave = nome sem o prefixo `mut-`);
   - PR (head = a branch) com a label ALT-mutante-alterada -> `altered: true`
     e guarda a url em `pr`;
-  - confere (compare API) quantos commits o mutante está à frente/atrás da
-    `insert-mutations` atual: atrás > 0 significa que workflows novos da base
-    NÃO estão nessa branch (o dispatch usa o workflow da branch do mutante).
+  - head_sha diferente do registro: se a branch só AVANÇOU (o commit antigo
+    continua no histórico, ex.: `git merge main` feito pelo sync_regsmart.py),
+    só atualiza o head_sha; se foi REESCRITA, marca `altered: true`;
+  - confere (compare API) quantos commits o mutante está à frente/atrás do
+    default branch do fork (main/master): atrás > 0 significa que commits novos
+    da base (ex.: workflows) NÃO estão nessa branch, falta o `git merge` da base
+    (o dispatch usa o workflow da branch do mutante).
 
 Uso:
-  python -m mutation_testing.fetch_mut_branches                # só mostra o que mudaria
-  python -m mutation_testing.fetch_mut_branches --write        # grava (backup em .json.bak)
-  python -m mutation_testing.fetch_mut_branches --repo ipython --write
+  python3 -m mutation_testing.fetch_mut_branches                # só mostra o que mudaria
+  python3 -m mutation_testing.fetch_mut_branches --write        # grava (backup em .json.bak)
+  python3 -m mutation_testing.fetch_mut_branches --repo ipython --write
 
-ATENÇÃO: não rode `python -m mutation_testing.insert_mutations --mutants --reset` nos mutantes
+A base dos mutantes agora é o default branch do fork (main/master); a branch
+`insert-mutations` não existe mais.
+
+ATENÇÃO: não rode `python -m mutation_testing.insert_mutations --reset` nos mutantes
 alterados: ele reconstrói a branch a partir do patch original e apaga a sua troca.
 """
 import argparse
@@ -64,8 +71,23 @@ def labeled_prs(api: Api, repo: str, label: str) -> dict[str, str]:
     return out
 
 
+def descends_from(api: Api, repo: str, old: str | None, new: str) -> bool:
+    """True se `new` contém `old` (a branch só avançou, ex.: merge da base).
+    False se foi reescrita (ou se não dá pra comparar)."""
+    if not old:
+        return False
+    try:
+        cmp_ = api.get(f"/repos/{OWNER}/{repo}/compare/{old}...{new}")
+    except Exception:
+        return False
+    return cmp_["behind_by"] == 0
+
+
 def sync_repo(api: Api, repo: str, meta: dict, label: str) -> list[str]:
-    base = meta.get("base_branch", "insert-mutations")
+    # a base é o default branch atual do fork (main/master); o registro antigo
+    # ainda pode dizer `insert-mutations`, que não existe mais
+    base = api.get(f"/repos/{OWNER}/{repo}")["default_branch"]
+    meta["base_branch"] = base
     mutants = meta.setdefault("mutants", {})
     remote = remote_mutants(api, repo)
     prs = labeled_prs(api, repo, label)
@@ -80,10 +102,15 @@ def sync_repo(api: Api, repo: str, meta: dict, label: str) -> list[str]:
             m["published"] = False
             continue
         if m.get("head_sha") != sha:
-            m.setdefault("original_head_sha", m.get("head_sha"))
-            notes.append(f"{key}: head_sha {str(m.get('head_sha'))[:8]} -> {sha[:8]} (alterado)")
-            m["head_sha"] = sha
-            m["altered"] = True
+            old = m.get("head_sha")
+            if descends_from(api, repo, old, sha):
+                notes.append(f"{key}: head_sha {str(old)[:8]} -> {sha[:8]} (só avançou, ex.: merge da base)")
+                m["head_sha"] = sha
+            else:
+                m.setdefault("original_head_sha", old)
+                notes.append(f"{key}: head_sha {str(old)[:8]} -> {sha[:8]} (reescrito: alterado)")
+                m["head_sha"] = sha
+                m["altered"] = True
         elif not m.get("published"):
             notes.append(f"{key}: branch existe e bate com o registro -> published=true")
         m["published"] = True
@@ -110,10 +137,10 @@ def sync_repo(api: Api, repo: str, meta: dict, label: str) -> list[str]:
                        f"{urllib.parse.quote(base, safe='')}...{m['head_sha']}")
         m["ahead_base"], m["behind_base"] = cmp_["ahead_by"], cmp_["behind_by"]
         if cmp_["behind_by"]:
-            notes.append(f"{key}: {cmp_['behind_by']} commit(s) ATRÁS de {base}: workflows "
-                         f"novos da base não estão nessa branch")
-        if cmp_["ahead_by"] != 1:
-            notes.append(f"{key}: {cmp_['ahead_by']} commit(s) à frente de {base} (esperado 1)")
+            notes.append(f"{key}: {cmp_['behind_by']} commit(s) de {base} ainda não estão nessa "
+                         f"branch (falta `git merge {base}`, ex.: sync_regsmart.py)")
+        if cmp_["ahead_by"] == 0:
+            notes.append(f"{key}: nenhum commit à frente de {base} (mutante vazio?)")
     return notes
 
 

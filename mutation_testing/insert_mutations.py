@@ -1,50 +1,48 @@
 """
 mutation_testing/insert_mutations.py
 
-FASE 1 (padrão): cria a branch `insert-mutations` em cada fork da lista,
-**baseada no default branch do próprio fork** (main/master/etc. -- resolvido por
-`origin/HEAD`, nunca escrito "main" no código, porque `apscheduler`,
-`pytest-xdist` e `pytorch-lightning` usam `master`). Grava o SHA-base em
-`data/mutmut/insert_mutations_bases.csv` (mescla com o que já existe).
+Cria **uma branch por mutante**, `mut-<repo>-mNNNN`, com **um commit** que aplica só
+aquele patch (data/mutmut/mutants.json, gerado por `mutation_gen.py`) sobre o
+**default branch do próprio fork** (main/master -- resolvido por `origin/HEAD`, nunca
+escrito "main" no código, porque `apscheduler`, `pytest-xdist` e `pytorch-lightning`
+usam `master`). Cada commit vira um `head_sha` (para o faults.yaml), gravado em
+`data/mutmut/mutant_branches.json`.
 
-FASE 2 (`--mutants`): lê os patches gerados por `mutation_gen.py`
-(`data/mutmut/mutants.json`) e cria **uma branch por mutante**,
-`mut-<repo>-mNNNN`, com **um commit** que aplica só aquele patch sobre a
-`origin/insert-mutations`. Cada commit vira um `head_sha` (para o faults.yaml),
-gravado em `data/mutmut/mutant_branches.json`.
+A branch intermediária `insert-mutations` (antiga fase 1) não existe mais: subir algo
+na main, atualizar a insert-mutations e depois as branches mut-* era redundante.
+Agora, quando a main muda (workflows, REGSMART_PACKAGE...), basta fazer
+`git merge main` nas mut-* (ver sync_regsmart.py) e rodar fetch_mut_branches.py
+--write para realinhar o registro.
 
-A fase 2 não mexe no seu working tree nem cria branches locais: monta o commit
-com comandos de baixo nível do git (índice temporário + commit-tree) e publica
-direto por SHA. O commit é determinístico (mesma base + mesmo patch = mesmo SHA),
-então rodar de novo é idempotente.
+Não mexe no seu working tree nem cria branches locais: monta o commit com comandos
+de baixo nível do git (índice temporário + commit-tree) e publica direto por SHA.
+Para uma mesma base, o commit é determinístico (mesma base + mesmo patch = mesmo SHA).
 
-Não abre PR. Nada é publicado sem `--push`.
+Branches de mutante que JÁ existem no fork são mantidas como estão (podem ter
+recebido merge da main ou ter sido trocadas na mão). Só `--reset` reconstrói a
+branch a partir do patch original e sobrescreve (force) o que está no remoto.
+
+Não abre PR sem `--pr`. Nada é publicado sem `--push`.
 
 USO:
-    python -m mutation_testing.insert_mutations --dry-run                     # fase 1: mostra o plano
-    python -m mutation_testing.insert_mutations --push                        # fase 1: cria e publica a base
-    python -m mutation_testing.insert_mutations --repo trimesh --reset --push # reaponta a base (ex.: após atualizar workflows)
+    python3 -m mutation_testing.insert_mutations --dry-run                       # mostra o plano
+    python3 -m mutation_testing.insert_mutations --repo pytest-xdist --limit 3 --push   # teste pequeno
+    python3 -m mutation_testing.insert_mutations --push --pr                     # todos (e abre draft)
+    python3 -m mutation_testing.insert_mutations --reset --push                  # refaz (sobrescreve)
 
-    python -m mutation_testing.insert_mutations --mutants --dry-run           # fase 2: mostra o plano
-    python -m mutation_testing.insert_mutations --mutants --repo pytest-xdist --limit 3 --push   # teste pequeno
-    python -m mutation_testing.insert_mutations --mutants --push --pr         # todos (e abre draft)
-    python -m mutation_testing.insert_mutations --mutants --reset --push     # refaz (ex.: base mudou)
-
-ATENÇÃO: os workflows na `insert-mutations` precisam excluir `mut-*` do gatilho
-`push` (`branches: ['**', '!mut-*']`), senão cada branch de mutante publicada
-dispara um run sozinha.
+ATENÇÃO: os workflows na main precisam excluir `mut-*` do gatilho `push`
+(`branches: ['**', '!mut-*']`), senão cada branch de mutante publicada dispara um
+run sozinha.
 """
 
 import argparse
-import csv
 import json
 import os
+import re
 import subprocess
 import sys
 import tempfile
-import re
 import time
-from datetime import date
 from pathlib import Path
 
 # Os 12 projetos do dataset.
@@ -52,16 +50,13 @@ repos = ["librosa", "apscheduler", "pytest-django", "trimesh",
          "networkx", "pytest-xdist", "pytorch-lightning", "aeon",
          "dvc", "dask", "ultralytics", "ipython"]
 
-BRANCH = "insert-mutations"
 MUTANT_PREFIX = "mut-"
 CLONES = Path("/home/Letícia/Projetos/tcc-experiments/effective-validation")
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data" / "mutmut"
-RECORD_PATH = DATA / "insert_mutations_bases.csv"
 MUTANTS_PATH = DATA / "mutants.json"            # gerado por mutation_gen.py
 BRANCHES_PATH = DATA / "mutant_branches.json"   # head_sha de cada mutante
-CSV_FIELDS = ["repo", "base_branch", "base_sha", "branch", "branch_sha", "data"]
 PUSH_BATCH = 40
 
 
@@ -75,6 +70,7 @@ def err(exc: Exception) -> str:
     if isinstance(exc, subprocess.CalledProcessError):
         return (exc.stderr or exc.stdout or str(exc)).strip().splitlines()[-1][:200]
     return str(exc)
+
 
 def fork_slug(repo_dir: Path) -> str:
     """owner/repo do `origin`. Não usa `gh repo view`: num fork ele pode resolver
@@ -107,9 +103,6 @@ def save_json(path: Path, payload) -> None:
     tmp.replace(path)
 
 
-# ------------------------------------------------------------------ fase 1
-
-
 def origin_default_ref(repo_dir: Path) -> str:
     """Ref do default branch do fork, via origin/HEAD (ou main/master como fallback)."""
     try:
@@ -126,109 +119,6 @@ def origin_default_ref(repo_dir: Path) -> str:
         if exists.returncode == 0:
             return candidate
     raise RuntimeError("não achei o default branch do fork (origin/HEAD, main ou master)")
-
-
-def is_dirty(repo_dir: Path) -> bool:
-    return bool(run(["git", "status", "--porcelain"], repo_dir))
-
-
-def local_branch_exists(repo_dir: Path, branch: str) -> bool:
-    found = subprocess.run(
-        ["git", "rev-parse", "--verify", "--quiet", f"refs/heads/{branch}"],
-        cwd=repo_dir, text=True, capture_output=True,
-    )
-    return found.returncode == 0
-
-
-def remote_branch_exists(repo_dir: Path, branch: str) -> bool:
-    found = subprocess.run(
-        ["git", "ls-remote", "--exit-code", "--heads", "origin", branch],
-        cwd=repo_dir, text=True, capture_output=True,
-    )
-    return found.returncode == 0
-
-
-def prepare(name: str, reset: bool, dry_run: bool, push: bool) -> dict | None:
-    repo_dir = CLONES / name
-    if not (repo_dir / ".git").is_dir():
-        print(f"!! {name}: clone não encontrado em {repo_dir} -- pulando", file=sys.stderr)
-        return None
-
-    if is_dirty(repo_dir):
-        print(f"!! {name}: working tree com alterações locais -- pulando "
-              f"(commit/stash antes, o script não mexe em trabalho não salvo)",
-              file=sys.stderr)
-        return None
-
-    # Traz o default do fork pra cima do dia; dry-run não fala com a rede.
-    if not dry_run:
-        run(["git", "fetch", "--prune", "origin"], repo_dir)
-
-    base_ref = origin_default_ref(repo_dir)
-    base_sha = run(["git", "rev-parse", base_ref], repo_dir)
-    previous = run(["git", "rev-parse", "--abbrev-ref", "HEAD"], repo_dir)
-
-    exists = local_branch_exists(repo_dir, BRANCH)
-    if exists and not reset:
-        current = run(["git", "rev-parse", "refs/heads/" + BRANCH], repo_dir)
-        if current == base_sha:
-            print(f"== {name}: branch {BRANCH} já está em {base_sha[:7]} "
-                  f"(base {base_ref}) -- nada a fazer")
-            return {"repo": name, "base": base_ref, "base_sha": base_sha,
-                    "branch": BRANCH, "branch_sha": base_sha, "changed": False}
-        print(f"!! {name}: branch {BRANCH} existe em {current[:7]} e a base "
-              f"{base_ref} está em {base_sha[:7]} -- pulando "
-              f"(use --reset para reapontar)", file=sys.stderr)
-        return None
-
-    if dry_run:
-        action = "reapontar" if exists else "criar"
-        print(f"== {name}: [dry-run] {action} {BRANCH} a partir de "
-              f"{base_ref} ({base_sha[:7]}) -- saindo de {previous}")
-        return {"repo": name, "base": base_ref, "base_sha": base_sha,
-                "branch": BRANCH, "branch_sha": base_sha, "changed": True}
-
-    # --no-track: a branch não deve rastrear o default (evita um `git push` solto
-    # confundir a branch de mutação com a base).
-    run(["git", "checkout", "-B", BRANCH, "--no-track", base_ref], repo_dir)
-
-    # Segurança: se a branch já existia no remoto e o push não foi pedido, diz isso
-    # em vez de deixar dois estados divergentes sem ninguém notar.
-    unpublished = exists and remote_branch_exists(repo_dir, BRANCH)
-    if push:
-        run(["git", "push", "--force-with-lease", "origin", f"{BRANCH}:{BRANCH}"], repo_dir)
-        state = "publicada"
-    else:
-        state = "local (branch remota intacta)"
-        if unpublished:
-            state += " -- ATENÇÃO: já existe no remoto, divergindo"
-    branch_sha = run(["git", "rev-parse", "HEAD"], repo_dir)
-    print(f"== {name}: {BRANCH} @ {branch_sha[:7]} (base {base_ref} "
-          f"{base_sha[:7]}) -> {state}")
-    return {"repo": name, "base": base_ref, "base_sha": base_sha,
-            "branch": BRANCH, "branch_sha": branch_sha, "changed": True}
-
-
-def write_bases_csv(rows: list[dict]) -> None:
-    """Mescla com o CSV existente: rodar com --repo não apaga os outros repos."""
-    RECORD_PATH.parent.mkdir(parents=True, exist_ok=True)
-    merged = {}
-    if RECORD_PATH.exists():
-        with RECORD_PATH.open(newline="", encoding="utf-8") as f:
-            merged = {r["repo"]: r for r in csv.DictReader(f)}
-    for row in rows:
-        merged[row["repo"]] = {
-            "repo": row["repo"], "base_branch": row["base"], "base_sha": row["base_sha"],
-            "branch": row["branch"], "branch_sha": row["branch_sha"],
-            "data": date.today().isoformat(),
-        }
-    with RECORD_PATH.open("w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=CSV_FIELDS)
-        writer.writeheader()
-        writer.writerows(merged[k] for k in sorted(merged))
-
-
-# ------------------------------------------------------------------ fase 2
 
 
 def mutant_branch(key: str) -> str:
@@ -265,7 +155,8 @@ def build_mutant_commit(repo_dir: Path, base_sha: str, patch: Path, message: str
 
 
 def prepare_mutants(name: str, all_meta: dict, reset: bool, dry_run: bool,
-                    push: bool, limit: int | None, pr: bool = False) -> dict | None:
+                    push: bool, limit: int | None, pr: bool = False,
+                    base_override: str | None = None) -> dict | None:
     repo_dir = CLONES / name
     if not (repo_dir / ".git").is_dir():
         print(f"!! {name}: clone não encontrado em {repo_dir} -- pulando", file=sys.stderr)
@@ -279,24 +170,36 @@ def prepare_mutants(name: str, all_meta: dict, reset: bool, dry_run: bool,
 
     if dry_run:
         print(f"== {name}: [dry-run] {len(items)} mutante(s) -> branches "
-              f"{mutant_branch(items[0]['key'])} .. {mutant_branch(items[-1]['key'])}")
+              f"{mutant_branch(items[0]['key'])} .. {mutant_branch(items[-1]['key'])} "
+              f"(sobre o default branch do fork)")
         return None
 
     run(["git", "fetch", "--prune", "origin"], repo_dir)
+    run(["git", "remote", "set-head", "origin", "-a"], repo_dir, check=False)  # atualiza origin/HEAD
+    base_ref = f"origin/{base_override}" if base_override else origin_default_ref(repo_dir)
+    base_name = base_ref.removeprefix("origin/")
     try:
-        base_sha = run(["git", "rev-parse", "--verify", f"origin/{BRANCH}"], repo_dir)
+        base_sha = run(["git", "rev-parse", "--verify", base_ref], repo_dir)
     except subprocess.CalledProcessError:
-        print(f"!! {name}: origin/{BRANCH} não existe -- rode a fase 1 com --push antes",
-              file=sys.stderr)
+        print(f"!! {name}: {base_ref} não existe", file=sys.stderr)
         return None
     when = run(["git", "log", "-1", "--format=%cI", base_sha], repo_dir)
     remote = remote_mutant_refs(repo_dir, name)
 
     entries, todo = {}, {}
-    ok = conflicts = 0
+    kept = 0
     failed: list[str] = []
     for m in items:
         branch = mutant_branch(m["key"])
+        current = remote.get(branch)
+        base_entry = {"branch": branch, "file": m["file"], "line": m.get("line"), "patch": m["patch"]}
+
+        if current and not reset:
+            # já existe no fork: mantém (pode ter recebido merge da base ou troca manual)
+            entries[m["key"]] = {**base_entry, "head_sha": current, "published": True}
+            kept += 1
+            continue
+
         message = (f"mutante {m['key']}\n\n{m['file']}:{m.get('line')} "
                    f"(mutmut id {m['mutmut_id']})\nbase: {base_sha}")
         try:
@@ -306,19 +209,8 @@ def prepare_mutants(name: str, all_meta: dict, reset: bool, dry_run: bool,
             print(f"   ! {m['key']}: patch não aplica na base ({err(exc)}) -- regenere com python -m mutation_testing.mutation_gen gen",
                   file=sys.stderr)
             continue
-        current = remote.get(branch)
-        entries[m["key"]] = {"branch": branch, "head_sha": sha, "file": m["file"],
-                             "line": m.get("line"), "patch": m["patch"],
-                             "published": current == sha}
-        if current == sha:
-            ok += 1
-        elif current and not reset:
-            conflicts += 1
-            entries[m["key"]]["published"] = False
-            print(f"   ! {branch}: já existe no fork em {current[:7]} (esperado {sha[:7]}) "
-                  f"-- use --reset pra sobrescrever", file=sys.stderr)
-        else:
-            todo[branch] = sha
+        entries[m["key"]] = {**base_entry, "head_sha": sha, "published": False, "rebuilt": reset}
+        todo[branch] = sha
 
     pushed = 0
     if push and todo:
@@ -329,24 +221,23 @@ def prepare_mutants(name: str, all_meta: dict, reset: bool, dry_run: bool,
             cmd += [f"{sha}:refs/heads/{branch}" for branch, sha in chunk]
             run(cmd, repo_dir)
             pushed += len(chunk)
-        for key, e in entries.items():
+        for e in entries.values():
             if e["branch"] in todo:
                 e["published"] = True
 
     prs_new = prs_failed = 0
     if pr:
         slug = fork_slug(repo_dir)
-        pr_base = origin_default_ref(repo_dir).removeprefix("origin/")
         for key, e in entries.items():
             if not e["published"]:
                 continue
             m = next(x for x in items if x["key"] == key)
             body = (f"Mutante `{key}` (mutmut id {m['mutmut_id']})\n\n"
                     f"- arquivo: `{m['file']}:{m.get('line')}`\n"
-                    f"- commit sobre: `{BRANCH}@{base_sha}`\n"
+                    f"- commit sobre: `{base_name}@{base_sha}`\n"
                     f"- patch: `{m['patch']}`")
             try:
-                url, created = ensure_draft_pr(repo_dir, slug, e["branch"], pr_base,
+                url, created = ensure_draft_pr(repo_dir, slug, e["branch"], base_name,
                                                f"mutante {key}", body)
                 e["pr"] = url
                 if created:
@@ -357,53 +248,62 @@ def prepare_mutants(name: str, all_meta: dict, reset: bool, dry_run: bool,
                 print(f"   ! {key}: PR não criado ({err(exc)})", file=sys.stderr)
 
     state = f"{pushed} publicada(s)" if push else f"{len(todo)} a publicar (use --push)"
-    print(f"== {name}: {len(entries)}/{len(items)} commits prontos sobre "
-          f"{BRANCH}@{base_sha[:7]} -> {state}, {ok} já ok, {conflicts} conflito(s), {len(failed)} falha(s)"
+    print(f"== {name}: {len(entries)}/{len(items)} mutantes sobre {base_name}@{base_sha[:7]} "
+          f"-> {state}, {kept} já existiam (mantidas), {len(failed)} falha(s)"
           + (f", {prs_new} PR(s) criados, {prs_failed} falha(s)" if pr else ""))
-    return {"repo": name, "base_sha": base_sha, "entries": entries,
-            "partial": bool(limit), "failed": failed, "conflicts": conflicts}
+    return {"repo": name, "base_branch": base_name, "base_sha": base_sha, "entries": entries,
+            "partial": bool(limit), "failed": failed, "pr_failed": prs_failed}
 
 
 def write_branches_registry(results: list[dict]) -> None:
+    """Atualiza o registro preservando o que já se sabe de cada mutante (altered, pr,
+    original_head_sha...). Só uma reconstrução (--reset) começa a entrada do zero."""
     registry = json.loads(BRANCHES_PATH.read_text(encoding="utf-8")) if BRANCHES_PATH.exists() else {}
     for r in results:
         prev = registry.get(r["repo"], {})
-        keep = prev.get("mutants", {}) if r["partial"] and prev.get("base_sha") == r["base_sha"] else {}
+        prev_m = prev.get("mutants", {})
+        if r["partial"]:
+            mutants = dict(prev_m)  # rodada parcial (--limit): não perde os outros
+        else:  # mantém só o que o fetch_mut_branches trouxe do remoto
+            mutants = {k: v for k, v in prev_m.items() if v.get("source") == "remote"}
+        for key, e in r["entries"].items():
+            e = dict(e)
+            rebuilt = e.pop("rebuilt", False)
+            mutants[key] = {**({} if rebuilt else prev_m.get(key, {})), **e}
         registry[r["repo"]] = {
-            "base_branch": BRANCH, "base_sha": r["base_sha"],
-            "mutants": {**keep, **r["entries"]},
+            "base_branch": r["base_branch"], "base_sha": r["base_sha"],
+            "mutants": mutants,
         }
     save_json(BRANCHES_PATH, registry)
 
 
-# ------------------------------------------------------------------ main
-
-
 def main() -> None:
-    global BRANCH, CLONES
+    global CLONES
 
     parser = argparse.ArgumentParser(
-        description="fase 1: cria a branch insert-mutations nos forks; "
-                    "fase 2 (--mutants): cria uma branch por mutante sobre ela")
+        description="cria uma branch por mutante (mut-<repo>-mNNNN) sobre o default branch do fork")
     parser.add_argument("--repo", action="append", help="restringe a um repo (repetível)")
-    parser.add_argument("--branch", default=BRANCH, help=f"nome da branch base (default: {BRANCH})")
+    parser.add_argument("--branch", default=None,
+                        help="branch base (default: o default branch de cada fork, main/master)")
     parser.add_argument("--mutants", action="store_true",
-                        help="fase 2: cria as branches de mutante a partir dos patches")
-    parser.add_argument("--limit", type=int, help="fase 2: só os N primeiros mutantes de cada repo (teste)")
+                        help="(ignorado, mantido por compatibilidade: agora é o único modo)")
+    parser.add_argument("--limit", type=int, help="só os N primeiros mutantes de cada repo (teste)")
     parser.add_argument("--reset", action="store_true",
-                        help="fase 1: reaponta a base; fase 2: sobrescreve branches de mutante existentes")
+                        help="reconstrói a branch do mutante a partir do patch e sobrescreve a existente "
+                             "(apaga merges da base e trocas manuais!)")
     parser.add_argument("--push", action="store_true",
                         help="publica no fork (não abre PR)")
     parser.add_argument("--clones", type=Path, default=CLONES,
                         help=f"pasta dos clones (default: {CLONES})")
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--pr", action="store_true",
-                        help="fase 2: abre um PR draft por mutante (head mut-*, base insert-mutations); exige --push e `gh` autenticado")
+                        help="abre um PR draft por mutante (head mut-*, base = default branch); "
+                             "exige --push e `gh` autenticado")
     args = parser.parse_args()
-    if args.pr and not (args.mutants and args.push):
-        sys.exit("--pr só vale com --mutants --push")
+    if args.pr and not args.push:
+        sys.exit("--pr só vale com --push")
 
-    BRANCH, CLONES = args.branch, args.clones
+    CLONES = args.clones
 
     selected = args.repo or repos
     unknown = [r for r in selected if r not in repos]
@@ -412,44 +312,32 @@ def main() -> None:
               f"ou passe --repo com um repo dela", file=sys.stderr)
         sys.exit(1)
 
-    if args.mutants:
-        if not MUTANTS_PATH.exists():
-            sys.exit(f"{MUTANTS_PATH} não existe: rode `python -m mutation_testing.mutation_gen gen` antes")
-        all_meta = json.loads(MUTANTS_PATH.read_text(encoding="utf-8"))
-        results = []
-        for name in selected:
-            try:
-                res = prepare_mutants(name, all_meta, args.reset, args.dry_run, args.push, args.limit, args.pr)
-            except Exception as exc:
-                print(f"!! {name}: {err(exc)}", file=sys.stderr)
-                continue
-            if res:
-                results.append(res)
-        if results:
-            write_branches_registry(results)
-            print(f"\nHead SHAs em {BRANCHES_PATH}.")
-            if args.push:
-                print("Confira que o `on.push` dos workflows exclui `mut-*`, "
-                      "senão cada branch publicada dispara um run.")
-            sys.exit(1 if any(r["failed"] or r["conflicts"] or r.get("pr_failed") for r in results) else 0)
+    if not MUTANTS_PATH.exists():
+        sys.exit(f"{MUTANTS_PATH} não existe: rode `python -m mutation_testing.mutation_gen gen` antes")
+    all_meta = json.loads(MUTANTS_PATH.read_text(encoding="utf-8"))
 
-    rows = []
+    results = []
     for name in selected:
-        row = prepare(name, args.reset, args.dry_run, args.push)
-        if row:
-            rows.append(row)
+        try:
+            res = prepare_mutants(name, all_meta, args.reset, args.dry_run, args.push,
+                                  args.limit, args.pr, args.branch)
+        except Exception as exc:
+            print(f"!! {name}: {err(exc)}", file=sys.stderr)
+            continue
+        if res:
+            results.append(res)
 
-    if not rows:
-        print("\nNada registrado.", file=sys.stderr)
+    if not results:
+        if not args.dry_run:
+            print("\nNada registrado.", file=sys.stderr)
         return
 
-    if not args.dry_run:
-        write_bases_csv(rows)
-
-    touched = sum(1 for row in rows if row["changed"])
-    print(f"\n{len(rows)} repo(s) no padrão, {touched} alterado(s) nesta execução."
-          + ("" if args.dry_run else f" Bases em {RECORD_PATH}.")
-          + "  Próximo passo: python -m mutation_testing.insert_mutations --mutants --push")
+    write_branches_registry(results)
+    print(f"\nHead SHAs em {BRANCHES_PATH}.")
+    if args.push:
+        print("Confira que o `on.push` dos workflows exclui `mut-*`, "
+              "senão cada branch publicada dispara um run.")
+    sys.exit(1 if any(r["failed"] or r["pr_failed"] for r in results) else 0)
 
 
 if __name__ == "__main__":
