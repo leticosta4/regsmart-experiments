@@ -1,6 +1,6 @@
 {
   "ipython": {
-    "base_branch": "insert-mutations",
+    "base_branch": "main",
     "base_sha": "342d8986b1891d07a8c1239d785800dc7eb5d9c6",
     "mutmut_version": "2.5.1",
     "seed": "42",
@@ -49,7 +49,7 @@
     ]
   },
   "librosa": {
-    "base_branch": "insert-mutations",
+    "base_branch": "main",
     "base_sha": "e226696dba3c280cee72334aba57bdd8311d5317",
     "mutmut_version": "2.5.1",
     "seed": "42",
@@ -102,7 +102,7 @@
     ]
   },
   "pytorch-lightning": {
-    "base_branch": "insert-mutations",
+    "base_branch": "master",
     "base_sha": "8d2a1fff21d782cda2dc802ae724d7aa3e14dcee",
     "mutmut_version": "2.5.1",
     "seed": "42",
@@ -151,7 +151,7 @@
     ]
   },
   "networkx": {
-    "base_branch": "insert-mutations",
+    "base_branch": "main",
     "base_sha": "caf65bab9c3b4c028c8a1b80a088444d244cdfdd",
     "mutmut_version": "2.5.1",
     "seed": "42",
@@ -198,7 +198,7 @@
     ]
   },
   "dask": {
-    "base_branch": "insert-mutations",
+    "base_branch": "main",
     "base_sha": "ba2e48d6239b6ccdf315c5e16dc1c82943d234be",
     "mutmut_version": "2.5.1",
     "seed": "42",
@@ -245,7 +245,7 @@
     ]
   },
   "dvc": {
-    "base_branch": "insert-mutations",
+    "base_branch": "main",
     "base_sha": "c6eecb50962259c13bac3c8ce9c2d8a2887f716f",
     "mutmut_version": "2.5.1",
     "seed": "42",
@@ -295,7 +295,7 @@
     ]
   },
   "trimesh": {
-    "base_branch": "insert-mutations",
+    "base_branch": "main",
     "base_sha": "a838af774addb363a9b136a563c75d00843c968a",
     "mutmut_version": "2.5.1",
     "seed": "42",
@@ -344,7 +344,7 @@
     ]
   },
   "pytest-xdist": {
-    "base_branch": "insert-mutations",
+    "base_branch": "master",
     "base_sha": "82b0dbc7ba31d0359c8f7a0de3aa2eea691faeae",
     "mutmut_version": "2.5.1",
     "seed": "42",
@@ -391,7 +391,7 @@
     ]
   },
   "pytest-django": {
-    "base_branch": "insert-mutations",
+    "base_branch": "main",
     "base_sha": "01f739da6f7e336c518dd9111e9ceb0709f27bd6",
     "mutmut_version": "2.5.1",
     "seed": "42",
@@ -438,7 +438,7 @@
     ]
   },
   "aeon": {
-    "base_branch": "insert-mutations",
+    "base_branch": "main",
     "base_sha": "222367a04a004cbe5544a28a3780b30ab1e27afd",
     "mutmut_version": "2.5.1",
     "seed": "42",
@@ -485,7 +485,7 @@
     ]
   },
   "ultralytics": {
-    "base_branch": "insert-mutations",
+    "base_branch": "main",
     "base_sha": "a87f087c046dd2dcee3b4ef2a787fcc8360e85d9",
     "mutmut_version": "2.5.1",
     "seed": "42",
@@ -532,7 +532,7 @@
     ]
   },
   "apscheduler": {
-    "base_branch": "insert-mutations",
+    "base_branch": "master",
     "base_sha": "8fd8b8190e8b5f79156ad4f34a4a9b5dec42dc78",
     "mutmut_version": "2.5.1",
     "seed": "42",

@@ -265,7 +265,7 @@ def workflows_for(cfg: dict, repo_plan: dict[str, dict], only: list[str] | None)
 
 def load_registry() -> dict:
     if not BRANCHES_PATH.exists():
-        sys.exit(f"{BRANCHES_PATH} não existe: rode `python -m mutation_testing.insert_mutations --mutants --push`")
+        sys.exit(f"{BRANCHES_PATH} não existe: rode `python -m mutation_testing.insert_mutations --push`")
     return json.loads(BRANCHES_PATH.read_text(encoding="utf-8"))
 
 
@@ -868,10 +868,10 @@ def cmd_verify(api: Api, args) -> int:
     blockers = warns = 0
     for repo in repo_plan:
         meta = registry.get(repo) or {}
-        base = meta.get("base_branch", "insert-mutations")
+        default_branch = api.get(f"/repos/{OWNER}/{repo}")["default_branch"] # a base dos mutantes é o default branch do fork
+        base = default_branch
         n_pub = sum(1 for m in (meta.get("mutants") or {}).values() if m.get("published"))
-        default_branch = api.get(f"/repos/{OWNER}/{repo}")["default_branch"]
-        print(f"\n{repo}  (base {base}, {n_pub} mutantes publicados, default {default_branch})")
+        print(f"\n{repo}  (base {base}, {n_pub} mutantes publicados)")
         if n_pub == 0:
             print("  ! sem mutantes publicados")
             blockers += 1
