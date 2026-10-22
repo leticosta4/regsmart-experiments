@@ -51,37 +51,39 @@ Forks dos repos abaixo:
 ## Pipeline
 
 ```
-1.  get_info/identify_test_workflows.py    mapeia quais workflows de cada fork rodam a suíte de testes (base p/ a limpeza manual)
-2.  pr_inicial_repos.py                    sube um commit simples e abre um PR por fork; usada p/ validar a limpeza dos workflows
-3.  gh_automation/experiments_labels.py    cria as labels de experimento nos 12 forks
+1.  get_info/identify_test_workflows.py    mapeia quais workflows de cada fork rodam a suíte de testes (base para limpeza manual)
+2.  pr_inicial_repos.py                    abre um PR inicial em cada fork para validar a limpeza dos workflows
+3.  gh_automation/experiments_labels.py    cria/replica as labels de experimento nos 12 forks
 4.  mutation_testing/mutation_gen.py       gera os patches dos mutantes (mutmut, sem rodar testes)
-5.  mutation_testing/insert_mutations.py   cria a branch base `insert-mutations` e uma branch `mut-<repo>-mNNNN` por mutante
-6.  gh_automation/sync_mut_branches.py     atualiza o REGSMART_PACKAGE dos workflows e propaga p/ as branches de mutante
-7.  flaky_runner.py                        roda os 4 workflows em cada mutante e detecta testes flaky
-8.  mutation_testing/fetch_mut_branches.py realinha o registro com o remoto (só após trocar um mutante na mão)
-9.  (a criar+fazer)  coleta de métricas           TSR/RTS/RTP, APFDc etc. a partir de data/experiment/runs.json
+5.  mutation_testing/insert_mutations.py   publica uma branch `mut-<repo>-mNNNN` por mutante sobre a base do fork
+6.  gh_automation/sync_repo.py             atualiza o `REGSMART_PACKAGE` dos workflows e propaga a base para as branches de mutante
+7.  flaky_runner.py                       roda os 4 workflows em cada mutante e detecta testes flaky
+8.  mutation_testing/fetch_mut_branches.py realinha o registro com o remoto quando um mutante foi alterado na mão
+9.  metrics_collector.py                   coleta métricas do run (TSR/RTS/RTP, APFDc, TTFF, etc.) a partir dos artifacts/logs
 ```
 
-
-> A ordem importa: `sync_mut_branches.py` (passo 6) roda **antes** de disparar
-> qualquer run, senão os manifests ficam com o SHA antigo do `REGSMART_PACKAGE`.
-> `fetch_mut_branches.py` (passo 8) só é necessário quando um mutante foi
-> trocado na mão (branch reescrita, PR com a label `ALT-mutante-alterada`).
+> A ordem importa: `gh_automation/sync_repo.py` (passo 6) roda **antes** de disparar
+> qualquer run, senão os workflows ficam com o SHA antigo do `REGSMART_PACKAGE`.
+> `mutation_testing/fetch_mut_branches.py` (passo 8) só é necessário quando um mutante foi
+> trocado na mão (branch reescrita, PR com a label `ALT-mutante-modificada`).
 
 ## Scripts
 
 | script | função |
 |---|---|
-| [get_info/identify_test_workflows.py](./get_info/identify_test_workflows.py) | mapeia os workflows de teste de cada repositório |
-| [get_info/last_commit.py](./get_info/last_commit.py) | pega o último commit de atuação do fork em relação ao upstream |
-| [pr_inicial_repos.py](./pr_inicial_repos.py) | sobe uma mudança simples de comentário em um arquivo Python e abre um PR; serviu de base para a limpeza dos workflows |
-| [gh_automation/experiments_labels.py](./gh_automation/experiments_labels.py) | cria labels nos 12 repositórios e apaga as labels default |
-| [mutation_testing/mutation_gen.py](./mutation_testing/mutation_gen.py) | gera N mutantes por repositório e salva um *patch* por mutante |
-| [mutation_testing/insert_mutations.py](./mutation_testing/insert_mutations.py) | cria a branch base e as branches de mutante, publicando o patch |
-| [flaky_runner.py](./flaky_runner.py) | dispara repetições dos workflows nos mutantes e detecta testes flaky |
-| [gh_automation/sync_mut_branches.py](./gh_automation/sync_mut_branches.py) | sincroniza as branches de mutação com a `insert-mutations` |
-| [gh_automation/gactions_check.sh](./gh_automation/gactions_check.sh) | lista os runs `in_progress`/`queued` nos 12 forks (diagnóstico de fila/concorrência) |
-| [mutation_testing/fetch_mut_branches.py](./mutation_testing/fetch_mut_branches.py) | verifica alterações nas branches de mutação como preparo para o _flaky_runner.py |
+| [check_previous_results.py](./check_previous_results.py) | consulta os PRs recentes de cada fork e resume se a avaliação foi positiva, negativa, mista ou sem classificação |
+| [metrics_collector.py](./metrics_collector.py) | coleta métricas dos runs de experimentação (tempo, falhas detectadas, ocultas, APFDc, TTFF e demais indicadores) |
+| [flaky_runner.py](./flaky_runner.py) | dispara repetições dos workflows em cada mutante, baixa os logs e detecta testes flaky |
+| [pr_inicial_repos.py](./pr_inicial_repos.py) | cria uma alteração simples de teste em cada fork e abre um PR inicial para validar o setup de workflows |
+| [get_info/identify_test_workflows.py](./get_info/identify_test_workflows.py) | mapeia quais workflows de cada repositório executam a suíte de testes e produzem a base do planejamento |
+| [get_info/last_commit.py](./get_info/last_commit.py) | coleta o último commit de atuação do fork em relação ao upstream |
+| [gh_automation/check_workflows.py](./gh_automation/check_workflows.py) | verifica, via API do GitHub, se cada workflow já está no formato esperado para o experimento e o coletor |
+| [gh_automation/experiments_labels.py](./gh_automation/experiments_labels.py) | remove labels padrão e copia as labels de experimento para os 12 forks |
+| [gh_automation/sync_repo.py](./gh_automation/sync_repo.py) | sincroniza o `REGSMART_PACKAGE` do plugin com o HEAD atual e reaplica a base nas branches de mutante |
+| [gh_automation/gactions_check.sh](./gh_automation/gactions_check.sh) | lista runs `in_progress`/`queued` nos forks para diagnosticar fila e concorrência do GitHub Actions |
+| [mutation_testing/mutation_gen.py](./mutation_testing/mutation_gen.py) | gera os patches de mutação (mutmut) para cada repositório e registra os metadados dos mutantes |
+| [mutation_testing/insert_mutations.py](./mutation_testing/insert_mutations.py) | constrói uma branch por mutante aplicando o patch sobre a base do fork e publica o resultado |
+| [mutation_testing/fetch_mut_branches.py](./mutation_testing/fetch_mut_branches.py) | reaproveita/realinha o registro das branches de mutante quando elas foram alteradas manualmente |
 
 ### Pré-requisitos
 
@@ -98,7 +100,7 @@ Cada script tem instruções completas na docstring; este é o caminho feliz, na
 **0. Preparação**
 
 - Siga os [pré-requisitos](#pré-requisitos).
-- Clone os 12 forks numa pasta, um clone por repositório, com o `origin` apontando para o fork. **Os scripts não assumem esse caminho**: `insert_mutations.py` e `sync_mut_branches.py` recebem a pasta dos clones por `--clones`.
+- Clone os 12 forks numa pasta, um clone por repositório, com o `origin` apontando para o fork. **Os scripts não assumem esse caminho**: `insert_mutations.py` aceita `--clones`, enquanto `sync_repo.py` usa o diretório de sincronização configurado em código (`_regsmart_sync/`).
 
 **1. Mapear e limpar os workflows**
 
@@ -119,15 +121,17 @@ python3 -m gh_automation.experiments_labels
 **3. Mutantes**
 
 ```bash
-python -m mutation_testing.mutation_gen gen --n 5                        # gera os patches (data/mutmut/patches/)
-python -m mutation_testing.insert_mutations --clones work --push         # fase 1: branch base
-python -m mutation_testing.insert_mutations --mutants --clones work --push  # fase 2: uma branch por mutante
+python -m mutation_testing.mutation_gen gen --n 5                           # gera os patches (data/mutmut/patches/)
+python -m mutation_testing.insert_mutations --dry-run                       # mostra o plano
+python -m mutation_testing.insert_mutations --repo pytest-xdist --limit 3 --push  # teste pequeno
+python -m mutation_testing.insert_mutations --push --pr                     # publica todas as branches e abre draft PRs
 ```
 
 **4. Sincronizar os workflows dos mutantes**
 
 ```bash
-python -m gh_automation.sync_mut_branches --clones work --push
+python -m gh_automation.sync_repo --dry-run
+python -m gh_automation.sync_repo            # executa a sincronização
 ```
 
 **5. Rodar e classificar**
@@ -146,9 +150,9 @@ python flaky_runner.py report --show-expected
 - Os comandos acima são a invocação correta de cada script: `flaky_runner.py` roda como script (`python flaky_runner.py`), os demais como módulo (`python -m <pasta>.<script>`).
 - `--reps` define as repetições medidas; `--limit-mutants` restringe aos N primeiros mutantes de cada repo (teste barato).
 - `--max-active` limita os runs simultâneos (padrão 30). O plano **Free** tem teto de 20 jobs; acima disso o GitHub enfileira sozinho e a fila contamina a medição de makespan.
-- `insert_mutations.py` e `sync_mut_branches.py` só mostram o plano por padrão: nada é publicado sem `--push`. `fetch_mut_branches.py` só grava com `--write`.
+- `insert_mutations.py` e `sync_repo.py` só mostram o plano por padrão: nada é publicado sem `--push`. `fetch_mut_branches.py` só grava com `--write`.
 - `fetch_mut_branches.py` é o passo 8 do [pipeline](#pipeline): rode-o só se algum mutante foi trocado na mão.
-- `sync_mut_branches.py` precisa rodar **antes** de disparar os runs; runs já feitos ficam com o SHA antigo no manifesto.
+- `sync_repo.py` precisa rodar **antes** de disparar os runs; runs já feitos ficam com o SHA antigo no manifesto.
 
 ### Importante: Sobre detecção de flaky (`flaky`)
 
@@ -194,7 +198,8 @@ Para regenerar estes números: branches em `data/mutmut/mutant_branches.json` (c
 
 ## Arquivos não versionados
 
-- `work/` — os 12 clones locais dos forks (esperados por `insert_mutations.py` e `sync_mut_branches.py` via `--clones`).
+- `work/` — os 12 clones locais dos forks (usados por `insert_mutations.py` via `--clones` e por rotinas locais de validação).
+- `_regsmart_sync/` — clones de sincronização usados por `gh_automation/sync_repo.py` para atualizar o `REGSMART_PACKAGE` nos workflows.
 - `data/flaky_mut/raw/` — logs brutos baixados da API do Actions (um zip por run); o comando `flaky` os rebaixa quando necessário.
 - `data/mutmut/mutcache/` — cache de enumeração do mutmut.
 
