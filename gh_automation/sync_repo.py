@@ -11,11 +11,11 @@ Para cada repo:
      git merge origin/<base> + git push origin mut-*
 
 Uso:
-    python3 gh_automation/sync_regsmart.py --dry-run          # só mostra o que seria feito
-    python3 gh_automation/sync_regsmart.py                    # executa
-    python3 gh_automation/sync_regsmart.py --only ipython,dask
-    python3 gh_automation/sync_regsmart.py --sha <sha>        # força um SHA em vez do HEAD do plugin
-    python3 gh_automation/sync_regsmart.py --always-sync      # faz o merge nas mut-* mesmo sem bump
+    python3 -m gh_automation.sync_repo --dry-run          # só mostra o que seria feito
+    python3 -m gh_automation.sync_repo                    # executa
+    python3 -m gh_automation.sync_repo --only ipython,dask
+    python3 -m gh_automation.sync_repo --sha <sha>        # força um SHA em vez do HEAD do plugin
+    python3 -m gh_automation.sync_repo --always-sync      # faz o merge nas mut-* mesmo sem bump
 
 Usa o git da máquina (as credenciais/SSH que você já tem configuradas).
 """
