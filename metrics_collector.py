@@ -27,11 +27,14 @@ linhas do controle não entram em runs.csv.
 
 Uso:
   python metrics_collector.py probe     --campaign experiment --repo ipython
-  python metrics_collector.py collect   --campaign experiment [--test-step REGEX] [--rts-re ..] [--rtp-re ..]
+  python metrics_collector.py collect   --campaign experiment [--python aeon=3.13] [--rts-re ..] [--rtp-re ..]
   python metrics_collector.py aggregate --campaign experiment [--rep-stat median] [--mut-stat mean]
 
 Pré-requisito nos workflows: ver workflow_snippet.yml (report-log + artifact `reportlog-<label>`,
-job com `name: test (<label>)`, `fail-fast: false`).
+`fail-fast: false`). O casamento job <-> artifact tolera os formatos dos forks: label em
+qualquer posição do nome do job, artifacts repetidos (matriz de Python) e `reportlog-` sem
+sufixo, desempatados pelo horário do upload (ver build_legs). Matriz de versões do Python:
+use `--python REPO=X.Y` para ficar com uma só (ex.: aeon=3.13).
 """
 
 import argparse
@@ -182,15 +185,27 @@ def read_artifact(path):
         return read_reportlog(z.read(name)) if name else None
 
 
-def job_log(zlog, job_name: str) -> str:
+def job_log(zlog, job_name: str, started_at: str | None = None) -> str:
+    """Log de um job dentro do zip de logs do run.
+
+    Se vários jobs têm o mesmo nome (matriz cujo nome não inclui a versão, como no aeon),
+    escolhe o arquivo cuja primeira linha tem o timestamp mais perto de ``started_at``."""
     if not zlog or not Path(zlog).exists():
         return ""
     key = norm(job_name)
     with zipfile.ZipFile(zlog) as z:
-        for n in z.namelist():
-            if "/" not in n and norm(re.sub(r"^\d+_", "", n).removesuffix(".txt")) == key:
-                return z.read(n).decode("utf-8", "replace")
-    return ""
+        texts = [z.read(n).decode("utf-8", "replace") for n in z.namelist()
+                 if "/" not in n and norm(re.sub(r"^\d+_", "", n).removesuffix(".txt")) == key]
+    if len(texts) <= 1 or not started_at:
+        return texts[0] if texts else ""
+    t0 = parse_ts(started_at).timestamp()
+
+    def gap(text):
+        m = re.match(r"^\ufeff?(\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d)", text)
+        return abs(parse_ts(m.group(1) + "Z").timestamp() - t0) if m else float("inf")
+
+    best = min(texts, key=gap)
+    return best if gap(best) <= 120 else ""
 
 
 def suite_time(text: str):
@@ -270,8 +285,48 @@ def ttff(times, detected, overhead):
 
 # ---------------------------------------------------------------- coleta
 
-def build_legs(api: Api, c: Campaign, r: dict, step_rx: re.Pattern) -> list[dict]:
-    """Baixa (com cache) jobs, logs e artifacts de um run e devolve um dict por leg."""
+def last_final_ts(text: str):
+    """Timestamp (datetime) da última linha final do pytest no log do job, ou None."""
+    last = None
+    for line in text.splitlines():
+        line = re.sub(r"\x1b\[[0-9;]*m", "", line)
+        m = re.match(r"^(\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d)(?:\.\d+)?Z (.*)$", line)
+        if m and FINAL_LINE.match(m.group(2).strip()):
+            last = parse_ts(m.group(1) + "Z")
+    return last
+
+
+def python_version(text: str):
+    """Versão do Python (\"3.13\") da sessão pytest, pelo cabeçalho \"platform ... -- Python X.Y.Z\"."""
+    m = (re.search(r"platform \S+ -- Python (\d+\.\d+)", text)
+         or re.search(r"Successfully set up CPython \((\d+\.\d+)", text)
+         or re.search(r"python-version:\s*['\"]?(\d+\.\d+)", text))
+    return m.group(1) if m else None
+
+
+def label_for(job_name: str, suffixes: set):
+    """Label do job: o sufixo de artifact que aparece como token no nome (o mais longo);
+    sem isso, o conteúdo do último parêntese; sem parêntese, \"main\"."""
+    hits = [s for s in suffixes if s and re.search(rf"(?<![A-Za-z0-9_]){re.escape(s)}(?![A-Za-z0-9_])", job_name)]
+    if hits:
+        return max(hits, key=len)
+    m = re.findall(r"\(([^()]*)\)", job_name)
+    return m[-1] if m else "main"
+
+
+def build_legs(api: Api, c: Campaign, r: dict, step_rx: re.Pattern, pyver: dict | None = None) -> list[dict]:
+    """Baixa (com cache) jobs, logs e artifacts de um run e devolve um dict por leg.
+
+    Casamento job <-> artifact robusto aos formatos dos forks:
+    * job de teste = job cujo log tem a linha final do pytest (o step de teste é o que
+      contém o timestamp dessa linha); sem log, cai no regex --test-step;
+    * label = sufixo do artifact presente no nome do job (``regsmart (rgsm_qtf) py313-...``),
+      ou o único sufixo do run, ou o último parêntese;
+    * vários artifacts com o mesmo nome (matriz de Python no aeon, ``reportlog-`` vazio no
+      pytorch-lightning): cada um vai para o job cujo step de upload contém o created_at
+      do artifact (ou o job terminado mais perto dele);
+    * ``pyver[repo]`` (``--python aeon=3.13``) descarta legs de outras versões do Python.
+    """
     d = mdir(c) / "cache" / str(r["run_id"])
     d.mkdir(parents=True, exist_ok=True)
     base = f"/repos/{OWNER}/{r['repo']}/actions/runs/{r['run_id']}"
@@ -286,39 +341,105 @@ def build_legs(api: Api, c: Campaign, r: dict, step_rx: re.Pattern) -> list[dict
     starts = [parse_ts(j["started_at"]) for j in jobs if j.get("started_at")]
     ends = [parse_ts(j["completed_at"]) for j in jobs if j.get("completed_at")]
     wf_s = (max(ends) - min(starts)).total_seconds() if starts and ends else None
-    by_label = {a["name"][len(ART_PREFIX):]: a for a in arts
-                if a["name"].startswith(ART_PREFIX) and not a.get("expired")}
+    arts = [a for a in arts if a["name"].startswith(ART_PREFIX) and not a.get("expired")]
+    suffixes = {a["name"][len(ART_PREFIX):] for a in arts}
+
+    def log_of(j) -> Path | None:
+        """Log do job salvo em cache: sai do zip do run (nome repetido: pelo horário de
+        início); se não estiver lá, log individual do job pela API."""
+        f = d / f"job-{j['id']}.txt"
+        if not f.exists():
+            text = job_log(zlog, j["name"], j.get("started_at"))
+            if not text:
+                raw = gh_bytes(f"repos/{OWNER}/{r['repo']}/actions/jobs/{j['id']}/logs")
+                text = raw.decode("utf-8", "replace") if raw else ""
+            if not text:
+                return None
+            f.write_text(text, encoding="utf-8")
+        return f
+
+    def within(ts, s, pad_before=1, pad_after=1):
+        if not (ts and s.get("started_at") and s.get("completed_at")):
+            return False
+        return (parse_ts(s["started_at"]).timestamp() - pad_before <= ts.timestamp()
+                <= parse_ts(s["completed_at"]).timestamp() + pad_after)
+
     cands = []
     for j in jobs:
         if j.get("conclusion") not in ("success", "failure"):
             continue
-        step = next((s for s in j.get("steps") or [] if step_rx.search(s["name"])), None)
-        if step is not None:  # job sem step de teste (lint, etc.) fica de fora
-            cands.append((j, step))
+        steps = j.get("steps") or []
+        lf = log_of(j)
+        text = lf.read_text(encoding="utf-8") if lf else ""
+        fin = last_final_ts(text)
+        step = next((s for s in steps if within(fin, s)), None) if fin else None
+        if step is None and not text:  # sem log: só o regex do nome do step
+            step = next((s for s in steps if step_rx.search(s["name"])), None)
+        if step is None:  # job sem sessão pytest (lint, check, package...) fica de fora
+            continue
+        ver = python_version(text)
+        want = (pyver or {}).get(r["repo"])
+        if want and ver != want:
+            if ver is None:
+                print(f"\n  ! {r['repo']} run {r['run_id']}: versão do Python não achada no log de "
+                      f"'{j['name']}', leg descartada pelo --python")
+            continue
+        only = next(iter(suffixes)) if len(suffixes) == 1 else None
+        label = only if only else label_for(j["name"], suffixes)
+        cands.append(dict(job=j, step=step, log=lf, label=label, pyver=ver))
+
+    # Artifacts -> jobs. Por label; se houver mais de um artifact (ou job) com o mesmo
+    # label, desempata pelo horário do upload.
+    by_suffix = collections.defaultdict(list)
+    for a in arts:
+        by_suffix[a["name"][len(ART_PREFIX):]].append(a)
+    used = set()
+    for cd in cands:
+        # artifact sem sufixo ("reportlog-", matrix.mode vazio): vale para qualquer label
+        named = by_suffix.get(cd["label"]) or by_suffix.get("", [])
+        pool = [a for a in named if a["id"] not in used]
+        if not pool and len(arts) == 1 and len(cands) == 1:
+            pool = arts
+        if not pool:
+            cd["art"] = None
+            continue
+        if len(pool) == 1 and len(named) <= 1:
+            cd["art"] = pool[0]
+        else:
+            up = [s for s in cd["job"].get("steps") or [] if re.search(r"(?i)upload", s["name"])]
+            in_up = [a for a in pool if any(within(parse_ts(a["created_at"]), s, 5, 30) for s in up)]
+            if in_up:
+                cd["art"] = in_up[0]
+            else:
+                end = parse_ts(cd["job"]["completed_at"]).timestamp()
+                cd["art"] = min(pool, key=lambda a: abs(parse_ts(a["created_at"]).timestamp() - end))
+        used.add(cd["art"]["id"])
+
     # O nome do modo (workflow ou workflow:label) é decidido depois, em cmd_collect,
     # olhando todas as execuções do workflow: se uma perna for cancelada ou perder o
     # artifact num run, o modo não muda de nome só naquele run.
     legs, seen = [], set()
-    for j, step in cands:
-        m = re.search(r"\((.*)\)\s*$", j["name"])
-        label = m.group(1) if m else "main"
+    for cd in cands:
+        j, step, label = cd["job"], cd["step"], cd["label"]
         if label in seen:
-            print(f"\n  ! {r['repo']} run {r['run_id']}: dois jobs com label '{label}', ignorando o 2º")
+            print(f"\n  ! {r['repo']} run {r['run_id']}: dois jobs com label '{label}', ignorando o 2º "
+                  f"({j['name']}; use --python {r['repo']}=X.Y se for matriz de versões)")
             continue
         seen.add(label)
         leg = {
             "repo": r["repo"], "mutant": r["mutant"], "workflow": r["workflow"],
             "label": label,
             "rep": r["rep"], "phase": r["phase"], "run_id": r["run_id"], "job_id": j["id"],
-            "conclusion": j["conclusion"], "job_name": j["name"],
+            "conclusion": j["conclusion"], "job_name": j["name"], "python": cd["pyver"],
             "tsr_s": secs(step.get("started_at"), step.get("completed_at")),
             "job_s": secs(j.get("started_at"), j.get("completed_at")),
-            "wf_s": wf_s, "zlog": str(zlog) if zlog.exists() else None, "reportlog": None,
+            "wf_s": wf_s, "zlog": str(zlog) if zlog.exists() else None,
+            "log": str(cd["log"]) if cd["log"] else None, "reportlog": None,
+            "artifact_id": (cd.get("art") or {}).get("id"),
         }
-        art = by_label.get(label) or (next(iter(by_label.values())) if len(by_label) == 1
-                                      and len(cands) == 1 else None)
+        art = cd.get("art")
         if art:
-            p = d / (ART_PREFIX + re.sub(r"[^\w.-]+", "_", label) + ".zip")
+            p = d / f"{ART_PREFIX}{art['id']}.zip"
             if not p.exists():
                 data = gh_bytes(f"repos/{OWNER}/{r['repo']}/actions/artifacts/{art['id']}/zip")
                 if data:
@@ -332,6 +453,7 @@ def cmd_collect(args) -> int:
     c = Campaign(args.campaign)
     api = Api(TOKEN)
     step_rx = re.compile(args.test_step)
+    pyver = dict(kv.split("=", 1) for kv in (args.python or []))
     rts_rx, rtp_rx = re.compile(args.rts_re), re.compile(args.rtp_re)
     manifest = load_manifest(c)
     runs = [r for r in manifest["runs"] if r.get("mutant") and r.get("run_id")
@@ -346,7 +468,7 @@ def cmd_collect(args) -> int:
     for i, r in enumerate(runs, 1):
         if i % 20 == 0:
             throttle(api)
-        legs += build_legs(api, c, r, step_rx)
+        legs += build_legs(api, c, r, step_rx, pyver)
         print(f"  {i}/{len(runs)} runs, {len(legs)} legs", end="\r")
     print()
     labels = collections.defaultdict(set)
@@ -386,7 +508,8 @@ def cmd_collect(args) -> int:
     for leg in legs:
         if leg["mutant"] == CONTROL:
             continue
-        text = job_log(leg["zlog"], leg["job_name"])
+        text = (Path(leg["log"]).read_text(encoding="utf-8") if leg.get("log")
+                else job_log(leg["zlog"], leg["job_name"]))
         data = read_artifact(leg["reportlog"])
         row = {k: leg[k] for k in ID_FIELDS}
         row.update(tsr_s=leg["tsr_s"], suite_s=suite_time(text), job_s=leg["job_s"], wf_s=leg["wf_s"],
@@ -603,7 +726,10 @@ def main() -> None:
     sub = p.add_subparsers(dest="cmd", required=True)
 
     s = sub.add_parser("collect", parents=[common], help="baixa e calcula as métricas por leg")
-    s.add_argument("--test-step", default=DEFAULT_TEST_STEP, help="regex do nome do step de teste")
+    s.add_argument("--test-step", default=DEFAULT_TEST_STEP,
+                   help="regex do nome do step de teste; só usado quando o job não tem log")
+    s.add_argument("--python", action="append", metavar="REPO=X.Y",
+                   help="mantém só os jobs dessa versão do Python no repo (ex.: aeon=3.13; repetível)")
     s.add_argument("--rts-re", default=DEFAULT_RTS, help="regex (grupos v e u) do tempo de RTS no log")
     s.add_argument("--rtp-re", default=DEFAULT_RTP, help="regex (grupos v e u) do tempo de RTP no log")
     s.set_defaults(func=cmd_collect)
