@@ -140,6 +140,7 @@ python -m gh_automation.sync_repo            # executa a sincronização
 python flaky_runner.py verify               # confere dispatch, push, concurrency, cache
 python flaky_runner.py run --dry-run        # mostra o plano
 python flaky_runner.py run                  # dispara e espera (lanes sequenciais)
+python flaky_runner.py run --control        # inclui a branch default (sem mutante) como controle de falhas de ambiente
 python flaky_runner.py status               # progresso, sem API
 python flaky_runner.py flaky                # baixa os logs e acha os testes flaky
 python flaky_runner.py report --show-expected
@@ -168,7 +169,7 @@ Dentro de cada workflow, um teste é intermitente se falhou em algumas execuçõ
 
 O warm-up conta como execução (`--exclude-warmup` desliga). Decisões que valem citar na monografia:
 
-- job sem resumo do pytest no log (infra, lint, runner caiu) é ignorado; "no tests ran" (RTS que não selecionou nada) conta como job válido;
+- job sem resumo do pytest no log (infra, lint, runner caiu) é ignorado; "no tests ran" e "N deselected in Xs" (RTS que não selecionou nada) contam como job válido;
 - o log não distingue "passou" de "não foi selecionado": `0/3` num plugin pode ser qualquer um dos dois;
 - "baseline nunca falhou" com poucas repetições não prova ausência de flakiness;
 - testes que falham por dependência não fixada ou serviço externo aparecem como flaky e podem pedir checagem manual.

@@ -75,6 +75,10 @@ DEFAULT_WORKFLOWS = {
     "regsmart-no-rank": {"file": "regsmart-no-rank.yml", "warmup": False},
 }
 
+# Branch default rodada como "mutante de controle" (`run --control`): o que falha nela
+# não é efeito de mutante (falha de ambiente ou pré-existente) e sai das faltas.
+CONTROL = "control"
+
 STATIC_FIELDS = ("task", "repo", "mutant", "ref", "sha", "workflow", "workflow_file",
                  "phase", "rep", "lane")
 
@@ -110,6 +114,23 @@ TOKEN = (
     or os.environ.get("GITHUB_TOKEN")
     or _gh_token()
 )
+
+# Tolerância (s) ao casar run com dispatch: cobre relógio local adiantado em
+# relação ao GitHub. Seguro porque cada lane tem no máximo 1 run em voo.
+MATCH_SLACK_S = 120
+
+
+def gh_env() -> dict:
+    """Env pro `gh api`: o gh não lê GITHUB_TOKEN_REGSMART, então repassa o TOKEN."""
+    env = dict(os.environ)
+    if TOKEN:
+        env["GH_TOKEN"] = TOKEN
+    return env
+
+
+def gh_bytes(path: str) -> bytes | None:
+    res = subprocess.run(["gh", "api", path], capture_output=True, env=gh_env())
+    return res.stdout if res.returncode == 0 else None
 
 
 def now() -> str:
@@ -163,13 +184,17 @@ class Api:
                 retryable = (
                     exc.code == 429
                     or exc.code >= 500
-                    or (exc.code == 403 and (retry_after or "rate limit" in detail.lower()))
+                    or (exc.code == 403 and (retry_after or "rate limit" in detail.lower()
+                                             or exc.headers.get("x-ratelimit-remaining") == "0"))
                 )
                 if not retryable or attempt == self.max_retries:
                     raise RuntimeError(
                         f"{method} {url} -> HTTP {exc.code}: {detail}"
                     ) from exc
                 wait = float(retry_after) if retry_after else delay
+                if exc.headers.get("x-ratelimit-remaining") == "0":
+                    reset = float(exc.headers.get("x-ratelimit-reset") or 0)
+                    wait = max(wait, reset - time.time() + 5)
                 self.counters["retries"] += 1
                 print(f"  ! HTTP {exc.code}, esperando {wait:.0f}s ({attempt + 1})")
                 time.sleep(wait)
@@ -290,13 +315,16 @@ def task_id(repo: str, who: str, workflow: str, rep: int) -> str:
 
 
 def build_tasks(repos: list[str], workflows: dict, mutants: dict, reps: int, warmup: bool,
-                warmup_ref: str, serialize_ref: bool) -> list[dict]:
+                warmup_ref: str, serialize_ref: bool,
+                control_refs: dict[str, str] | None = None) -> list[dict]:
     """Uma tarefa por run a disparar, já na ordem de cada lane.
 
     lane = sequência de runs que NÃO podem rodar ao mesmo tempo: por padrão
     (repo, branch, workflow); com `serialize_ref`, (repo, branch) inteiro, pro
     caso de workflows cujo `concurrency` não inclui github.workflow.
     Tarefa só dispara quando todas as `deps` terminaram.
+    `control_refs` = {repo: branch default}: roda a branch default como o mutante
+    `control`, com as mesmas repetições e workflows.
     """
     tasks: list[dict] = []
     last: dict[str, str] = {}  # lane -> última tarefa
@@ -319,7 +347,10 @@ def build_tasks(repos: list[str], workflows: dict, mutants: dict, reps: int, war
             for w, spec in workflows[repo].items():
                 if spec.get("warmup"):
                     base_warm[w] = add(repo, f"@{warmup_ref}", warmup_ref, None, w, spec, 0, "warmup")
-        for key, m in mutants.get(repo, []):
+        targets = list(mutants.get(repo, []))
+        if control_refs and repo in control_refs:
+            targets.append((CONTROL, {"branch": control_refs[repo], "head_sha": None}))
+        for key, m in targets:
             for w, spec in workflows[repo].items():
                 if warmup and spec.get("warmup") and warmup_ref == "mutant":
                     add(repo, key, m["branch"], m["head_sha"], w, spec, 0, "warmup")
@@ -358,10 +389,19 @@ def workflow_id(api: Api, repo: str, workflow_file: str) -> int:
     return _WF_IDS[key]
 
 
-def list_runs(api: Api, repo: str) -> list[dict]:
-    return api.get(
-        f"/repos/{OWNER}/{repo}/actions/runs?event=workflow_dispatch&per_page=100"
-    ).get("workflow_runs", [])
+def list_runs(api: Api, repo: str, since_iso: str | None = None, max_pages: int = 5) -> list[dict]:
+    """Runs de workflow_dispatch do repo, criados a partir de `since_iso` (paginado)."""
+    q = "event=workflow_dispatch&per_page=100"
+    if since_iso:
+        q += "&created=" + urllib.parse.quote(">=" + since_iso)
+    out = []
+    for page in range(1, max_pages + 1):
+        data = api.get(f"/repos/{OWNER}/{repo}/actions/runs?{q}&page={page}")
+        batch = data.get("workflow_runs", [])
+        out.extend(batch)
+        if len(batch) < 100:
+            break
+    return out
 
 
 def dispatch(api: Api, repo: str, workflow_file: str, ref: str) -> None:
@@ -384,13 +424,19 @@ def refresh(api: Api, manifest: dict) -> None:
     watch = [r for r in rows if r.get("dispatched_at_utc")
              and not (r.get("status") == "completed" and "jobs" in r)]
     claimed = {r["run_id"] for r in rows if r.get("run_id")}
+    # runs de tentativas anteriores (--redo) também não podem ser casados de novo
+    claimed |= {h["run_id"] for r in rows for h in r.get("history") or [] if h.get("run_id")}
     for repo in sorted({r["repo"] for r in watch}):
-        listed = list_runs(api, repo)
+        t0 = min(parse_ts(r["dispatch_window_start_utc"]).timestamp() for r in watch
+                 if r["repo"] == repo)
+        since_iso = datetime.fromtimestamp(t0 - 2 * MATCH_SLACK_S, timezone.utc).strftime(
+            "%Y-%m-%dT%H:%M:%SZ")
+        listed = list_runs(api, repo, since_iso)
         by_id = {x["id"]: x for x in listed}
         for r in (r for r in watch if r["repo"] == repo):
             if not r.get("run_id"):
                 wid = workflow_id(api, repo, r["workflow_file"])
-                since = parse_ts(r["dispatch_window_start_utc"]).timestamp() - 2
+                since = parse_ts(r["dispatch_window_start_utc"]).timestamp() - MATCH_SLACK_S
                 hits = sorted(
                     (x for x in listed
                      if x["workflow_id"] == wid and x["head_branch"] == r["ref"]
@@ -415,6 +461,12 @@ def refresh(api: Api, manifest: dict) -> None:
             r["run_attempt"] = run["run_attempt"]
             r["conclusion_at_utc"] = run["updated_at"]
             r["html_url"] = run["html_url"]
+            r["run_head_sha"] = run.get("head_sha")
+            if r.get("sha") and run.get("head_sha") and run["head_sha"] != r["sha"]:
+                if not r.get("sha_mismatch"):
+                    print(f"\n  ! {r['task']}: run {r['run_id']} rodou em {run['head_sha'][:8]}, "
+                          f"esperado {r['sha'][:8]} (branch mudou durante a campanha?)")
+                r["sha_mismatch"] = True
             if run["status"] == "completed" and "jobs" not in r:
                 jobs = api.get(
                     f"/repos/{OWNER}/{repo}/actions/runs/{r['run_id']}/jobs?per_page=100"
@@ -447,7 +499,8 @@ def reset_row(r: dict) -> None:
     })
     for k in ("run_id", "html_url", "status", "conclusion", "run_attempt", "conclusion_at_utc",
               "jobs", "jobs_total", "dispatched_at_utc", "dispatch_window_start_utc",
-              "dispatch_error", "dispatch_failed", "dispatch_attempts"):
+              "dispatch_error", "dispatch_failed", "dispatch_attempts", "run_head_sha",
+              "sha_mismatch", "warmup_missing"):
         r.pop(k, None)
 
 
@@ -507,6 +560,7 @@ def span(rows: list[dict]) -> float | None:
 WF_ORDER = ["baseline", "ranking", "regsmart", "regsmart-no-rank"]
 MAX_ROWS = 40  # linhas de detalhe por mutante; o resto fica no flaky_tests.json
 LEGEND = [
+    ("ambiente (controle)", "também falha na branch default sem mutante (`run --control`): ambiente ou falha pré-existente, não é efeito do mutante"),
     ("flaky", "falha em algumas execuções do baseline e passa em outras"),
     ("só no plugin (flaky)", "baseline nunca falhou; falha às vezes sob plugin (provável dependência de ordem exposta pelo reordenamento)"),
     ("só no plugin (fixa)", "baseline nunca falhou; falha em todas as execuções de algum plugin (investigar o plugin)"),
@@ -524,12 +578,12 @@ def flaky_section(flaky: dict, show_expected: bool) -> list[str]:
          "", "| classe | significado |", "|---|---|"]
     L += [f"| {k} | {v} |" for k, v in LEGEND]
     L += ["", "### Resumo", "",
-          "| repo | mutante | flaky | só plugin (flaky) | só plugin (fixa) | esperada, diverge | esperada | outros |",
-          "|---|---|---|---|---|---|---|---|"]
+          "| repo | mutante | ambiente | flaky | só plugin (flaky) | só plugin (fixa) | esperada, diverge | esperada | outros |",
+          "|---|---|---|---|---|---|---|---|---|"]
     for repo, muts in sorted(flaky.items()):
         for mut, info in sorted(muts.items()):
             k = collections.Counter(t["class"] for t in info["tests"].values())
-            L.append(f"| {repo} | {mut} | {k['flaky']} | {k['só no plugin (flaky)']} | "
+            L.append(f"| {repo} | {mut} | {k['ambiente (controle)']} | {k['flaky']} | {k['só no plugin (flaky)']} | "
                      f"{k['só no plugin (fixa)']} | {k['esperada, diverge']} | {k['esperada']} | "
                      f"{k['indeterminado'] + k['sem baseline']} |")
     combos = sorted({k for muts in flaky.values() for info in muts.values()
@@ -621,6 +675,8 @@ def build_report(c: Campaign, manifest: dict, flaky: dict | None,
         ("Canceladas", lambda rs: n(rs, conclusion="cancelled")),
         ("Em andamento", lambda rs: sum(1 for r in rs if r.get("status") in ACTIVE)),
         ("Dispatch falhou / run perdido", lambda rs: sum(1 for r in rs if r.get("dispatch_failed"))),
+        ("SHA do run ≠ SHA do mutante", lambda rs: sum(1 for r in rs if r.get("sha_mismatch"))),
+        ("Rep sem warm-up concluído", lambda rs: sum(1 for r in rs if r.get("warmup_missing"))),
     ]:
         L.append(f"| {label} | {fn([r for r in runs if r['phase'] == 'warmup'])} | "
                  f"{fn([r for r in runs if r['phase'] == 'rep'])} |")
@@ -670,51 +726,72 @@ def build_report(c: Campaign, manifest: dict, flaky: dict | None,
 ANSI = re.compile(r"\x1b\[[0-9;]*m")
 TS = re.compile(r"^\d{4}-\d\d-\d\dT[\d:.]+Z ")
 FAILED = re.compile(r"^(?:FAILED|ERROR) (.+?)(?: - .*)?$")
-SUMMARY = re.compile(r"\d+ (?:failed|passed|errors?).* in [\d.:]+s")
-NO_TESTS = re.compile(r"no tests ran in [\d.:]+s")  # RTS que não selecionou nada
+# Linha final do pytest. Com RTS que deseleciona tudo o pytest imprime
+# "N deselected in Xs" (não "no tests ran"), então deselected/skipped também contam.
 COUNT = re.compile(r"(\d+) (?:failed|passed|errors?)")
+# Linha final de uma sessão do pytest, ancorada na linha inteira (com ou sem a moldura
+# de `=`), para não casar com o mesmo texto citado dentro de uma mensagem de erro.
+FINAL_LINE = re.compile(r"^(?:=+ )?(?:\d+ (?:failed|passed|errors?|skipped|deselected|xfailed|"
+                        r"xpassed|warnings?|rerun)\b.*|no tests ran) in [\d.:]+s(?: \(\d+:\d\d:\d\d\))?(?: =+)?$")
+SHORT_SUMMARY = re.compile(r"^=+ short test summary info =+$")
+
+
+def outer_session(lines: list[str]):
+    """(nodeids que falharam, total, achou resumo) da sessão principal do job.
+
+    Testes que rodam um pytest filho (`pytester.runpytest`, comum no pytest-xdist e no
+    pytest-django) imprimem no log a saída inteira do filho quando falham: linhas
+    `FAILED ...` e linha de contagem de uma sessão que não é a do job. A sessão principal
+    termina por último, então vale só a última linha final, e as falhas são as do último
+    bloco `short test summary info` antes dela, desde que esse bloco venha depois da linha
+    final anterior (senão ele é de um filho e a sessão principal não teve falhas).
+    """
+    finals = [i for i, line in enumerate(lines) if FINAL_LINE.match(line)]
+    if not finals:
+        return set(), 0, False
+    last = finals[-1]
+    prev = finals[-2] if len(finals) > 1 else -1
+    header = max((i for i in range(prev + 1, last) if SHORT_SUMMARY.match(lines[i])), default=None)
+    failed = set()
+    if header is not None:
+        for line in lines[header + 1:last]:
+            m = FAILED.match(line)
+            if m:
+                failed.add(m.group(1))
+    total = sum(int(n) for n in COUNT.findall(lines[last]))
+    return failed, total, True
 
 
 def parse_run(c: Campaign, repo: str, run_id: int) -> list[tuple[str, set, int]]:
     """Por job: (nome do job, nodeids que falharam, total de testes).
 
     Usa só o que o pytest imprime por padrão: as linhas `FAILED <nodeid>` do
-    resumo final e a linha de contagem (`3 failed, 1200 passed in 90s`).
+    resumo final e a linha de contagem (`3 failed, 1200 passed in 90s`) da sessão
+    principal; a saída de pytest filho impressa nas falhas é ignorada (`outer_session`).
     """
     zpath = c.raw / repo / f"{run_id}.zip"
     if not zpath.exists():
         zpath.parent.mkdir(parents=True, exist_ok=True)
-        res = subprocess.run(
-            ["gh", "api", f"repos/{OWNER}/{repo}/actions/runs/{run_id}/logs"],
-            capture_output=True,
-        )
-        if res.returncode:
+        data = gh_bytes(f"repos/{OWNER}/{repo}/actions/runs/{run_id}/logs")
+        if not data:
             print(f"  ! {repo} run {run_id}: falha ao baixar log")
             return []
-        zpath.write_bytes(res.stdout)
+        zpath.write_bytes(data)
     out = []
     with zipfile.ZipFile(zpath) as z:
         for name in z.namelist():
             if "/" in name:  # só o log completo de cada job (arquivo na raiz do zip)
                 continue
             job = re.sub(r"^\d+_", "", name).removesuffix(".txt")
-            failed, total, seen = set(), 0, False
-            for line in z.read(name).decode(errors="replace").splitlines():
-                line = ANSI.sub("", TS.sub("", line.lstrip("\ufeff"))).strip()
-                m = FAILED.match(line)
-                if m:
-                    failed.add(m.group(1))
-                elif SUMMARY.search(line):
-                    seen = True
-                    total += sum(int(n) for n in COUNT.findall(line))
-                elif NO_TESTS.search(line):
-                    seen = True
+            lines = [ANSI.sub("", TS.sub("", line.lstrip("\ufeff"))).strip()
+                     for line in z.read(name).decode(errors="replace").splitlines()]
+            failed, total, seen = outer_session(lines)
             if seen:  # job sem resumo do pytest (lint, infra quebrou) não conta
                 out.append((job, failed, total))
     return out
 
 
-CLASS_ORDER = ["flaky", "só no plugin (flaky)", "só no plugin (fixa)", "esperada, diverge",
+CLASS_ORDER = ["ambiente (controle)", "flaky", "só no plugin (flaky)", "só no plugin (fixa)", "esperada, diverge",
                "indeterminado", "sem baseline", "esperada"]
 
 
@@ -785,13 +862,13 @@ def analyze_flaky(c: Campaign, manifest: dict, exclude_warmup: bool,
             continue
         if only["repo"] and r["repo"] not in only["repo"]:
             continue
-        if only["mutant"] and r["mutant"] not in only["mutant"]:
+        if only["mutant"] and r["mutant"] != CONTROL and r["mutant"] not in only["mutant"]:
             continue
         if only["workflow"] and r["workflow"] not in only["workflow"]:
             continue
         groups[(r["repo"], r["mutant"])][r["workflow"]].append(r)
 
-    out: dict = {}
+    prepared = {}
     for (repo, mut), wfs in sorted(groups.items()):
         runs, total_seen = {}, {}
         cells: dict = collections.defaultdict(dict)  # nodeid -> workflow -> célula
@@ -815,9 +892,22 @@ def analyze_flaky(c: Campaign, manifest: dict, exclude_warmup: bool,
                     cur["intermittent"] = cur["intermittent"] or k < n
                     if (k / n, n) > (cur["failed"] / cur["runs"], cur["runs"]):
                         cur["failed"], cur["runs"] = k, n
+        prepared[(repo, mut)] = (runs, total_seen, cells)
+
+    # Falhou ao menos uma vez na branch de controle (qualquer workflow) = ambiente.
+    env = collections.defaultdict(set)
+    for (repo, mut), (_, _, cells) in prepared.items():
+        if mut == CONTROL:
+            env[repo].update(cells)
+
+    out: dict = {}
+    for (repo, mut), (runs, total_seen, cells) in sorted(prepared.items()):
         tests = {}
         for nid, cs in sorted(cells.items()):
-            cls, why = classify(cs, runs)
+            if mut != CONTROL and nid in env[repo]:
+                cls, why = "ambiente (controle)", "também falha na branch default, sem mutante"
+            else:
+                cls, why = classify(cs, runs)
             tests[nid] = {"class": cls, "why": why, "wf": cs}
         out.setdefault(repo, {})[mut] = {"runs": runs, "total_seen": total_seen, "tests": tests}
         counts = collections.Counter(t["class"] for t in tests.values())
@@ -841,21 +931,33 @@ def plan_from_args(c: Campaign, args):
     reps = args.reps if args.reps is not None else c.reps
     warmup = c.warmup if getattr(args, "warmup", None) is None else args.warmup
     warmup_ref = getattr(args, "warmup_ref", None) or cfg.get("warmup_ref") or "mutant"
+    control_refs = None
+    if getattr(args, "control", False):
+        missing = [r for r, e in repo_plan.items() if not e.get("default_branch")]
+        if missing:
+            sys.exit(f"--control: falta `default_branch` no flaky_plan.json para: {', '.join(missing)}")
+        control_refs = {r: e["default_branch"] for r, e in repo_plan.items()}
     tasks = build_tasks(list(repo_plan), workflows, mutants, reps, warmup, warmup_ref,
-                        getattr(args, "serialize_ref", False))
+                        getattr(args, "serialize_ref", False), control_refs)
     return repo_plan, workflows, mutants, tasks, warmup, warmup_ref, reps
 
 
-def fetch_workflow(api: Api, repo: str, workflow_file: str, ref: str) -> dict:
+def workflow_blob(api: Api, repo: str, workflow_file: str, ref: str) -> dict:
+    return api.get(
+        f"/repos/{OWNER}/{repo}/contents/.github/workflows/"
+        f"{urllib.parse.quote(workflow_file)}?ref={urllib.parse.quote(ref, safe='')}"
+    )
+
+
+def fetch_workflow(api: Api, repo: str, workflow_file: str, ref: str) -> tuple[dict, str]:
+    """(YAML parseado, sha do blob) do workflow em `ref`."""
     try:
         import yaml
     except ImportError:
         sys.exit("verify precisa de PyYAML: pip install pyyaml")
-    d = api.get(
-        f"/repos/{OWNER}/{repo}/contents/.github/workflows/"
-        f"{urllib.parse.quote(workflow_file)}?ref={urllib.parse.quote(ref)}"
-    )
-    return yaml.safe_load(base64.b64decode(d["content"]).decode(errors="replace")) or {}
+    d = workflow_blob(api, repo, workflow_file, ref)
+    doc = yaml.safe_load(base64.b64decode(d["content"]).decode(errors="replace")) or {}
+    return doc, d["sha"]
 
 
 def cmd_verify(api: Api, args) -> int:
@@ -883,7 +985,7 @@ def cmd_verify(api: Api, args) -> int:
         for w, spec in workflows[repo].items():
             key = f"{w} ({spec['file']})"
             try:
-                doc = fetch_workflow(api, repo, spec["file"], base)
+                doc, base_blob = fetch_workflow(api, repo, spec["file"], base)
             except Exception as exc:
                 print(f"  {key:44} FALHOU ao ler em {base}: {str(exc)[:80]}")
                 blockers += 1
@@ -918,6 +1020,22 @@ def cmd_verify(api: Api, args) -> int:
             if uses_cache and not spec.get("warmup"):
                 notes.append("usa actions/cache mas sem warm-up no plano")
                 warns += 1
+            # O dispatch roda o workflow da branch do mutante, não o da default:
+            # se a mut-* foi criada antes de um ajuste no workflow, ela roda o antigo.
+            if not args.skip_branch_check:
+                diff_br = []
+                for m in (meta.get("mutants") or {}).values():
+                    if not m.get("published"):
+                        continue
+                    try:
+                        if workflow_blob(api, repo, spec["file"], m["branch"])["sha"] != base_blob:
+                            diff_br.append(m["branch"])
+                    except Exception:
+                        diff_br.append(m["branch"] + " (ausente)")
+                if diff_br:
+                    notes.append(f"workflow DIFERENTE da {base} em {len(diff_br)} branch(es): "
+                                 + ", ".join(diff_br[:3]) + (" ..." if len(diff_br) > 3 else ""))
+                    warns += 1
             print(f"  {key:44} {'ok' if not notes else '; '.join(notes)}"
                   f"  [concurrency={group[:40] or '-'} cache={'sim' if uses_cache else 'não'}]")
         weak = [w for w, g in groups.items() if g and "github.workflow" not in g and "github.ref" in g]
@@ -958,7 +1076,8 @@ def cmd_run(api: Api, args) -> int:
           f"reps={reps}, warm-up={'sim, em ' + warmup_ref if warmup else 'não'}, fase={args.phase}")
     for repo in repo_plan:
         mine = [t for t in sel if t["repo"] == repo]
-        print(f"  {repo:18} {len(mutants.get(repo, []))} mutantes × {len(workflows[repo])} workflows "
+        ctl = " + controle" if any(t["mutant"] == CONTROL for t in mine) else ""
+        print(f"  {repo:18} {len(mutants.get(repo, []))} mutantes{ctl} × {len(workflows[repo])} workflows "
               f"-> {len(mine)} runs")
     if not sel:
         sys.exit("nada a rodar (confira --repo/--mutant/--workflow e se há mutantes `published`)")
@@ -1001,7 +1120,6 @@ def cmd_run(api: Api, args) -> int:
         while True:
             refresh(api, manifest)
             active = sum(1 for r in rows.values() if r.get("dispatched_at_utc") and not is_done(r))
-            sent = 0
             for t in sel:
                 r = rows[t["task"]]
                 if r.get("dispatched_at_utc") or r.get("dispatch_failed"):
@@ -1010,13 +1128,16 @@ def cmd_run(api: Api, args) -> int:
                     continue
                 if active >= args.max_active:
                     break
+                bad_dep = [d for d in t["deps"] if rows[d]["phase"] == "warmup"
+                           and (rows[d].get("dispatch_failed") or rows[d].get("conclusion") == "cancelled")]
+                if bad_dep:
+                    r["warmup_missing"] = True  # cache do QTF/RecentFail não foi populado
                 r["dispatch_window_start_utc"] = now()
                 try:
                     dispatch(api, t["repo"], t["workflow_file"], t["ref"])
                     r["dispatched_at_utc"] = now()
                     r.pop("dispatch_error", None)
                     active += 1
-                    sent += 1
                     print(f"  {t['repo']:18} {(t['mutant'] or t['ref']):24} {t['workflow']:18} "
                           f"{'warm-up' if t['phase'] == 'warmup' else 'r%02d' % t['rep']}")
                 except Exception as exc:
@@ -1118,7 +1239,10 @@ def main(campaign: str = "flaky") -> None:
     common.add_argument("--reps", type=int, help=f"repetições medidas (padrão {c.reps})")
     sub = parser.add_subparsers(dest="cmd", required=True)
 
-    sub.add_parser("verify", parents=[common], help="confere dispatch/push/concurrency/cache").set_defaults(func=cmd_verify)
+    p = sub.add_parser("verify", parents=[common], help="confere dispatch/push/concurrency/cache")
+    p.add_argument("--skip-branch-check", action="store_true",
+                   help="não compara o workflow de cada branch mut-* com o da default (economiza API)")
+    p.set_defaults(func=cmd_verify)
 
     p = sub.add_parser("run", parents=[common], help="dispara e espera (lanes sequenciais)")
     p.add_argument("--phase", choices=["all", "warmup", "rep"], default="all",
@@ -1130,6 +1254,9 @@ def main(campaign: str = "flaky") -> None:
     p.add_argument("--serialize-ref", action="store_true",
                    help="trata todos os workflows de uma branch como uma lane só (concurrency compartilhado)")
     p.add_argument("--limit-mutants", type=int, help="só os N primeiros mutantes de cada repo (teste)")
+    p.add_argument("--control", action="store_true",
+                   help="roda também a branch default (`default_branch` no flaky_plan.json) como o "
+                        "mutante `control`: o que falha nela sai das faltas na análise")
     p.add_argument("--max-active", type=int, default=30, help="máx. de runs em andamento (padrão 30)")
     p.add_argument("--redo", action="store_true", help="redispara runs cancelados ou perdidos")
     p.add_argument("--no-wait", action="store_true", help="uma passada de dispatch e sai")
