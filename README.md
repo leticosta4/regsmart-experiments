@@ -140,6 +140,7 @@ python -m gh_automation.sync_repo            # executa a sincronização
 python flaky_runner.py verify               # confere dispatch, push, concurrency, cache
 python flaky_runner.py run --dry-run        # mostra o plano
 python flaky_runner.py run                  # dispara e espera (lanes sequenciais)
+python flaky_runner.py run --control        # inclui a branch default (sem mutante) como controle de falhas de ambiente
 python flaky_runner.py status               # progresso, sem API
 python flaky_runner.py flaky                # baixa os logs e acha os testes flaky
 python flaky_runner.py report --show-expected
