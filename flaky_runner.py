@@ -162,7 +162,7 @@ class Api:
             h["Authorization"] = f"Bearer {self.token}"
         return h
 
-    def request(self, method: str, path: str, body: dict | None = None):
+    def request(self, method: str, path: str, body: dict | None = None, retry_5xx: bool = True):
         url = f"{API}{path}"
         data = json.dumps(body).encode() if body is not None else None
         self.counters["get" if method == "GET" else "post"] += 1
@@ -183,7 +183,7 @@ class Api:
                 retry_after = exc.headers.get("Retry-After")
                 retryable = (
                     exc.code == 429
-                    or exc.code >= 500
+                    or (exc.code >= 500 and retry_5xx)
                     or (exc.code == 403 and (retry_after or "rate limit" in detail.lower()
                                              or exc.headers.get("x-ratelimit-remaining") == "0"))
                 )
@@ -209,8 +209,8 @@ class Api:
     def get(self, path: str):
         return self.request("GET", path)
 
-    def post(self, path: str, body: dict | None = None):
-        return self.request("POST", path, body=body)
+    def post(self, path: str, body: dict | None = None, retry_5xx: bool = True):
+        return self.request("POST", path, body=body, retry_5xx=retry_5xx)
 
     def rate_limit(self) -> dict:
         self.counters["rate_limit"] += 1
@@ -405,8 +405,41 @@ def list_runs(api: Api, repo: str, since_iso: str | None = None, max_pages: int 
 
 
 def dispatch(api: Api, repo: str, workflow_file: str, ref: str) -> None:
+    # sem retry interno em 5xx: quem decide é o loop do `run` (ver server_error), que
+    # antes confere se o run foi criado mesmo assim, pra não disparar duas vezes
     path = urllib.parse.quote(workflow_file)
-    api.post(f"/repos/{OWNER}/{repo}/actions/workflows/{path}/dispatches", {"ref": ref})
+    api.post(f"/repos/{OWNER}/{repo}/actions/workflows/{path}/dispatches", {"ref": ref},
+             retry_5xx=False)
+
+
+def server_error(exc: Exception) -> bool:
+    """Erro 5xx do GitHub (instabilidade do lado deles, não da tarefa)."""
+    return bool(re.search(r"HTTP 5\d\d\b", str(exc)))
+
+
+def run_created_anyway(api: Api, rows: dict, r: dict) -> bool:
+    """Depois de um 5xx no dispatch: o GitHub criou o run mesmo assim?"""
+    claimed = {x["run_id"] for x in rows.values() if x.get("run_id")}
+    claimed |= {h["run_id"] for x in rows.values() for h in x.get("history") or [] if h.get("run_id")}
+    t0 = parse_ts(r["dispatch_window_start_utc"]).timestamp()
+    since_iso = datetime.fromtimestamp(t0 - 5, timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    try:
+        wid = workflow_id(api, r["repo"], r["workflow_file"])
+        listed = list_runs(api, r["repo"], since_iso, max_pages=1)
+    except Exception:
+        return False
+    return any(x["workflow_id"] == wid and x["head_branch"] == r["ref"] and x["id"] not in claimed
+               and parse_ts(x["created_at"]).timestamp() >= t0 - 5 for x in listed)
+
+
+def dep_ready(row: dict) -> bool:
+    """Dependência satisfeita? Repetição só libera a próxima da lane se o run terminou
+    de fato: dispatch que falhou bloqueia a lane (senão r03 restauraria o cache do r01 e
+    o --redo rodaria o r02 depois do r03). Warm-up que falhou libera, marcando
+    `warmup_missing` (comportamento antigo)."""
+    if row.get("phase") == "warmup":
+        return is_done(row)
+    return row.get("status") == "completed"
 
 
 def is_done(row: dict) -> bool:
@@ -500,7 +533,7 @@ def reset_row(r: dict) -> None:
     for k in ("run_id", "html_url", "status", "conclusion", "run_attempt", "conclusion_at_utc",
               "jobs", "jobs_total", "dispatched_at_utc", "dispatch_window_start_utc",
               "dispatch_error", "dispatch_failed", "dispatch_attempts", "run_head_sha",
-              "sha_mismatch", "warmup_missing"):
+              "sha_mismatch", "warmup_missing", "dispatch_5xx"):
         r.pop(k, None)
 
 
@@ -1116,6 +1149,7 @@ def cmd_run(api: Api, args) -> int:
 
     print(f"\nDespachando (máx. {args.max_active} runs ativos, lanes sequenciais)...\n")
     total = len(sel)
+    pause_until, n_5xx = 0.0, 0  # backoff global depois de 5xx do GitHub
     try:
         while True:
             refresh(api, manifest)
@@ -1124,9 +1158,9 @@ def cmd_run(api: Api, args) -> int:
                 r = rows[t["task"]]
                 if r.get("dispatched_at_utc") or r.get("dispatch_failed"):
                     continue
-                if not all(is_done(rows[d]) for d in t["deps"]):
+                if not all(dep_ready(rows[d]) for d in t["deps"]):
                     continue
-                if active >= args.max_active:
+                if active >= args.max_active or time.time() < pause_until:
                     break
                 bad_dep = [d for d in t["deps"] if rows[d]["phase"] == "warmup"
                            and (rows[d].get("dispatch_failed") or rows[d].get("conclusion") == "cancelled")]
@@ -1138,9 +1172,26 @@ def cmd_run(api: Api, args) -> int:
                     r["dispatched_at_utc"] = now()
                     r.pop("dispatch_error", None)
                     active += 1
+                    n_5xx = 0
                     print(f"  {t['repo']:18} {(t['mutant'] or t['ref']):24} {t['workflow']:18} "
                           f"{'warm-up' if t['phase'] == 'warmup' else 'r%02d' % t['rep']}")
                 except Exception as exc:
+                    if server_error(exc):
+                        # instabilidade do GitHub: não conta nas 3 tentativas da tarefa
+                        time.sleep(10)
+                        if run_created_anyway(api, rows, r):
+                            r["dispatched_at_utc"] = now()
+                            active += 1
+                            print(f"  {t['task']}: HTTP 5xx, mas o run foi criado; seguindo")
+                        else:
+                            r["dispatch_5xx"] = r.get("dispatch_5xx", 0) + 1
+                            n_5xx += 1
+                            wait = min(300, 15 * 2 ** (min(n_5xx, 6) - 1))
+                            pause_until = time.time() + wait
+                            print(f"  {t['task']}: HTTP 5xx do GitHub, pausando os dispatches por "
+                                  f"{wait}s (não conta nas 3 tentativas)")
+                        save_json(c.manifest_path, manifest)
+                        break
                     r["dispatch_attempts"] = r.get("dispatch_attempts", 0) + 1
                     r["dispatch_error"] = str(exc)
                     if r["dispatch_attempts"] >= 3:
@@ -1152,6 +1203,26 @@ def cmd_run(api: Api, args) -> int:
             finished = sum(1 for t in sel if is_done(rows[t["task"]]))
             print(f"  {finished}/{total} concluídas, {active} ativas", end="\r")
             if finished == total:
+                break
+            # lanes travadas por uma repetição cujo dispatch falhou de vez: sem nada
+            # ativo, não há o que esperar
+            blocked: set = set()
+            grew = True
+            while grew:  # transitivo: r03 espera r02, que espera o r01 que falhou
+                grew = False
+                for t in sel:
+                    if (t["task"] not in blocked and not rows[t["task"]].get("dispatched_at_utc")
+                            and not rows[t["task"]].get("dispatch_failed")
+                            and any(d in blocked or (rows[d].get("dispatch_failed")
+                                                     and rows[d].get("phase") != "warmup")
+                                    for d in t["deps"])):
+                        blocked.add(t["task"])
+                        grew = True
+            pending = [t for t in sel if not is_done(rows[t["task"]]) and t["task"] not in blocked]
+            if blocked and active == 0 and not pending:
+                print(f"\n\n{len(blocked)} tarefa(s) esperando uma repetição anterior cujo dispatch "
+                      f"falhou (ex.: {sorted(blocked)[0]}). Rode de novo com --redo: a lane recomeça "
+                      f"da repetição que falhou, na ordem.")
                 break
             if args.no_wait:
                 time.sleep(20)  # dá tempo do GitHub criar os runs pra casar os run_ids
