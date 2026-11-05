@@ -129,7 +129,7 @@
     },
     "ultralytics": {
       "baseline": {
-        "file": "ci-pytorch.yml",
+        "file": "ci.yml",
         "warmup": false
         },
       "ranking": {
