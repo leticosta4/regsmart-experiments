@@ -1,0 +1,2731 @@
+{
+  "created_utc": "2026-11-05T21:52:21.692332+00:00",
+  "campaign": "flaky",
+  "runs": [
+    {
+      "task": "librosa/librosa-m0035/baseline/r01",
+      "repo": "librosa",
+      "mutant": "librosa-m0035",
+      "ref": "mut-librosa-m0035",
+      "sha": "3e2cf7140066f57325c6d3be0bff3435ea7a8d15",
+      "workflow": "baseline",
+      "workflow_file": "ci.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "librosa@mut-librosa-m0035/baseline",
+      "dispatch_window_start_utc": "2026-11-05T21:52:25.324655+00:00",
+      "dispatched_at_utc": "2026-11-05T21:52:27.123411+00:00",
+      "run_id": 42116538167,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42116538167",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T21:55:58Z",
+      "run_head_sha": "3e2cf7140066f57325c6d3be0bff3435ea7a8d15",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "Python 3.12 on ubuntu-latest",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:52:31Z",
+          "completed_at": "2026-11-05T21:55:57Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m0035/baseline/r02",
+      "repo": "librosa",
+      "mutant": "librosa-m0035",
+      "ref": "mut-librosa-m0035",
+      "sha": "3e2cf7140066f57325c6d3be0bff3435ea7a8d15",
+      "workflow": "baseline",
+      "workflow_file": "ci.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "librosa@mut-librosa-m0035/baseline",
+      "dispatch_window_start_utc": "2026-11-05T21:56:05.468255+00:00",
+      "dispatched_at_utc": "2026-11-05T21:56:07.086141+00:00",
+      "run_id": 42117078296,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42117078296",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T22:01:40Z",
+      "run_head_sha": "3e2cf7140066f57325c6d3be0bff3435ea7a8d15",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "Python 3.12 on ubuntu-latest",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:57:15Z",
+          "completed_at": "2026-11-05T22:01:40Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m0035/baseline/r03",
+      "repo": "librosa",
+      "mutant": "librosa-m0035",
+      "ref": "mut-librosa-m0035",
+      "sha": "3e2cf7140066f57325c6d3be0bff3435ea7a8d15",
+      "workflow": "baseline",
+      "workflow_file": "ci.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "librosa@mut-librosa-m0035/baseline",
+      "dispatch_window_start_utc": "2026-11-05T22:01:44.861419+00:00",
+      "dispatched_at_utc": "2026-11-05T22:01:46.933168+00:00",
+      "run_id": 42117906145,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42117906145",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T22:05:49Z",
+      "run_head_sha": "3e2cf7140066f57325c6d3be0bff3435ea7a8d15",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "Python 3.12 on ubuntu-latest",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T22:02:19Z",
+          "completed_at": "2026-11-05T22:05:49Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m0035/ranking/r01",
+      "repo": "librosa",
+      "mutant": "librosa-m0035",
+      "ref": "mut-librosa-m0035",
+      "sha": "3e2cf7140066f57325c6d3be0bff3435ea7a8d15",
+      "workflow": "ranking",
+      "workflow_file": "ci-ranking.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "librosa@mut-librosa-m0035/ranking",
+      "dispatch_window_start_utc": "2026-11-05T21:52:28.125842+00:00",
+      "dispatched_at_utc": "2026-11-05T21:52:30.211195+00:00",
+      "run_id": 42116546111,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42116546111",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T21:58:12Z",
+      "run_head_sha": "3e2cf7140066f57325c6d3be0bff3435ea7a8d15",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:52:32Z",
+          "completed_at": "2026-11-05T21:57:48Z"
+        },
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:52:33Z",
+          "completed_at": "2026-11-05T21:58:12Z"
+        },
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:52:33Z",
+          "completed_at": "2026-11-05T21:56:52Z"
+        },
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:52:32Z",
+          "completed_at": "2026-11-05T21:56:57Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m0035/ranking/r02",
+      "repo": "librosa",
+      "mutant": "librosa-m0035",
+      "ref": "mut-librosa-m0035",
+      "sha": "3e2cf7140066f57325c6d3be0bff3435ea7a8d15",
+      "workflow": "ranking",
+      "workflow_file": "ci-ranking.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "librosa@mut-librosa-m0035/ranking",
+      "dispatch_window_start_utc": "2026-11-05T21:58:30.859327+00:00",
+      "dispatched_at_utc": "2026-11-05T21:58:32.542381+00:00",
+      "run_id": 42117420608,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42117420608",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T22:04:20Z",
+      "run_head_sha": "3e2cf7140066f57325c6d3be0bff3435ea7a8d15",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:58:35Z",
+          "completed_at": "2026-11-05T22:04:15Z"
+        },
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:58:35Z",
+          "completed_at": "2026-11-05T22:03:12Z"
+        },
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:58:35Z",
+          "completed_at": "2026-11-05T22:02:29Z"
+        },
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:58:35Z",
+          "completed_at": "2026-11-05T22:04:20Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m0035/ranking/r03",
+      "repo": "librosa",
+      "mutant": "librosa-m0035",
+      "ref": "mut-librosa-m0035",
+      "sha": "3e2cf7140066f57325c6d3be0bff3435ea7a8d15",
+      "workflow": "ranking",
+      "workflow_file": "ci-ranking.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "librosa@mut-librosa-m0035/ranking",
+      "dispatch_window_start_utc": "2026-11-05T22:04:49.532745+00:00",
+      "dispatched_at_utc": "2026-11-05T22:04:51.456416+00:00",
+      "run_id": 42118354415,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42118354415",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T22:10:38Z",
+      "run_head_sha": "3e2cf7140066f57325c6d3be0bff3435ea7a8d15",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T22:04:54Z",
+          "completed_at": "2026-11-05T22:09:12Z"
+        },
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T22:04:54Z",
+          "completed_at": "2026-11-05T22:10:33Z"
+        },
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T22:04:54Z",
+          "completed_at": "2026-11-05T22:10:37Z"
+        },
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T22:04:54Z",
+          "completed_at": "2026-11-05T22:09:31Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m0035/regsmart/r01",
+      "repo": "librosa",
+      "mutant": "librosa-m0035",
+      "ref": "mut-librosa-m0035",
+      "sha": "3e2cf7140066f57325c6d3be0bff3435ea7a8d15",
+      "workflow": "regsmart",
+      "workflow_file": "ci-regsmart.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "librosa@mut-librosa-m0035/regsmart",
+      "dispatch_window_start_utc": "2026-11-05T21:52:31.214278+00:00",
+      "dispatched_at_utc": "2026-11-05T21:52:32.955057+00:00",
+      "run_id": 42116552056,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42116552056",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T21:53:58Z",
+      "run_head_sha": "3e2cf7140066f57325c6d3be0bff3435ea7a8d15",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:52:35Z",
+          "completed_at": "2026-11-05T21:53:58Z"
+        },
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:52:35Z",
+          "completed_at": "2026-11-05T21:53:58Z"
+        },
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:52:35Z",
+          "completed_at": "2026-11-05T21:53:47Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m0035/regsmart/r02",
+      "repo": "librosa",
+      "mutant": "librosa-m0035",
+      "ref": "mut-librosa-m0035",
+      "sha": "3e2cf7140066f57325c6d3be0bff3435ea7a8d15",
+      "workflow": "regsmart",
+      "workflow_file": "ci-regsmart.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "librosa@mut-librosa-m0035/regsmart",
+      "dispatch_window_start_utc": "2026-11-05T21:54:10.225419+00:00",
+      "dispatched_at_utc": "2026-11-05T21:54:11.720816+00:00",
+      "run_id": 42116795501,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42116795501",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T21:58:01Z",
+      "run_head_sha": "3e2cf7140066f57325c6d3be0bff3435ea7a8d15",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:54:28Z",
+          "completed_at": "2026-11-05T21:56:01Z"
+        },
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:56:18Z",
+          "completed_at": "2026-11-05T21:57:43Z"
+        },
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:56:38Z",
+          "completed_at": "2026-11-05T21:58:00Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m0035/regsmart/r03",
+      "repo": "librosa",
+      "mutant": "librosa-m0035",
+      "ref": "mut-librosa-m0035",
+      "sha": "3e2cf7140066f57325c6d3be0bff3435ea7a8d15",
+      "workflow": "regsmart",
+      "workflow_file": "ci-regsmart.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "librosa@mut-librosa-m0035/regsmart",
+      "dispatch_window_start_utc": "2026-11-05T21:58:33.546143+00:00",
+      "dispatched_at_utc": "2026-11-05T21:58:35.135288+00:00",
+      "run_id": 42117426776,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42117426776",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T22:00:12Z",
+      "run_head_sha": "3e2cf7140066f57325c6d3be0bff3435ea7a8d15",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:58:37Z",
+          "completed_at": "2026-11-05T22:00:06Z"
+        },
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:58:37Z",
+          "completed_at": "2026-11-05T22:00:12Z"
+        },
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:58:37Z",
+          "completed_at": "2026-11-05T22:00:02Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m0035/regsmart-no-rank/r01",
+      "repo": "librosa",
+      "mutant": "librosa-m0035",
+      "ref": "mut-librosa-m0035",
+      "sha": "3e2cf7140066f57325c6d3be0bff3435ea7a8d15",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "ci-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "librosa@mut-librosa-m0035/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-11-05T21:52:33.957409+00:00",
+      "dispatched_at_utc": "2026-11-05T21:52:36.235255+00:00",
+      "run_id": 42116560380,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42116560380",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T21:54:24Z",
+      "run_head_sha": "3e2cf7140066f57325c6d3be0bff3435ea7a8d15",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test-regsmart-nr (3.12, strict, .github/environment-ci.yml)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:52:39Z",
+          "completed_at": "2026-11-05T21:54:23Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m0035/regsmart-no-rank/r02",
+      "repo": "librosa",
+      "mutant": "librosa-m0035",
+      "ref": "mut-librosa-m0035",
+      "sha": "3e2cf7140066f57325c6d3be0bff3435ea7a8d15",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "ci-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "librosa@mut-librosa-m0035/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-11-05T21:54:46.588104+00:00",
+      "dispatched_at_utc": "2026-11-05T21:54:48.369785+00:00",
+      "run_id": 42116883628,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42116883628",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T21:58:37Z",
+      "run_head_sha": "3e2cf7140066f57325c6d3be0bff3435ea7a8d15",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test-regsmart-nr (3.12, strict, .github/environment-ci.yml)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:56:59Z",
+          "completed_at": "2026-11-05T21:58:36Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m0035/regsmart-no-rank/r03",
+      "repo": "librosa",
+      "mutant": "librosa-m0035",
+      "ref": "mut-librosa-m0035",
+      "sha": "3e2cf7140066f57325c6d3be0bff3435ea7a8d15",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "ci-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "librosa@mut-librosa-m0035/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-11-05T21:59:21.575683+00:00",
+      "dispatched_at_utc": "2026-11-05T21:59:23.271798+00:00",
+      "run_id": 42117540115,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42117540115",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T22:00:49Z",
+      "run_head_sha": "3e2cf7140066f57325c6d3be0bff3435ea7a8d15",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test-regsmart-nr (3.12, strict, .github/environment-ci.yml)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:59:26Z",
+          "completed_at": "2026-11-05T22:00:48Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m0265/baseline/r01",
+      "repo": "librosa",
+      "mutant": "librosa-m0265",
+      "ref": "mut-librosa-m0265",
+      "sha": "74bb77d3293579c0d396d59bd933b25164e7c656",
+      "workflow": "baseline",
+      "workflow_file": "ci.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "librosa@mut-librosa-m0265/baseline",
+      "dispatch_window_start_utc": "2026-11-05T21:52:37.238303+00:00",
+      "dispatched_at_utc": "2026-11-05T21:52:39.397689+00:00",
+      "run_id": 42116568690,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42116568690",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T21:58:32Z",
+      "run_head_sha": "74bb77d3293579c0d396d59bd933b25164e7c656",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "Python 3.12 on ubuntu-latest",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:52:42Z",
+          "completed_at": "2026-11-05T21:58:31Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m0265/baseline/r02",
+      "repo": "librosa",
+      "mutant": "librosa-m0265",
+      "ref": "mut-librosa-m0265",
+      "sha": "74bb77d3293579c0d396d59bd933b25164e7c656",
+      "workflow": "baseline",
+      "workflow_file": "ci.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "librosa@mut-librosa-m0265/baseline",
+      "dispatch_window_start_utc": "2026-11-05T21:59:24.276997+00:00",
+      "dispatched_at_utc": "2026-11-05T21:59:26.448387+00:00",
+      "run_id": 42117547172,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42117547172",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T22:04:40Z",
+      "run_head_sha": "74bb77d3293579c0d396d59bd933b25164e7c656",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "Python 3.12 on ubuntu-latest",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:59:29Z",
+          "completed_at": "2026-11-05T22:04:39Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m0265/baseline/r03",
+      "repo": "librosa",
+      "mutant": "librosa-m0265",
+      "ref": "mut-librosa-m0265",
+      "sha": "74bb77d3293579c0d396d59bd933b25164e7c656",
+      "workflow": "baseline",
+      "workflow_file": "ci.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "librosa@mut-librosa-m0265/baseline",
+      "dispatch_window_start_utc": "2026-11-05T22:04:52.461061+00:00",
+      "dispatched_at_utc": "2026-11-05T22:04:54.528255+00:00",
+      "run_id": 42118361263,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42118361263",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T22:09:55Z",
+      "run_head_sha": "74bb77d3293579c0d396d59bd933b25164e7c656",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "Python 3.12 on ubuntu-latest",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T22:04:57Z",
+          "completed_at": "2026-11-05T22:09:54Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m0265/ranking/r01",
+      "repo": "librosa",
+      "mutant": "librosa-m0265",
+      "ref": "mut-librosa-m0265",
+      "sha": "74bb77d3293579c0d396d59bd933b25164e7c656",
+      "workflow": "ranking",
+      "workflow_file": "ci-ranking.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "librosa@mut-librosa-m0265/ranking",
+      "dispatch_window_start_utc": "2026-11-05T21:52:40.400866+00:00",
+      "dispatched_at_utc": "2026-11-05T21:52:42.171868+00:00",
+      "run_id": 42116575044,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42116575044",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T21:58:47Z",
+      "run_head_sha": "74bb77d3293579c0d396d59bd933b25164e7c656",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:52:46Z",
+          "completed_at": "2026-11-05T21:58:34Z"
+        },
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:52:44Z",
+          "completed_at": "2026-11-05T21:58:35Z"
+        },
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:52:45Z",
+          "completed_at": "2026-11-05T21:58:46Z"
+        },
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:52:44Z",
+          "completed_at": "2026-11-05T21:58:45Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m0265/ranking/r02",
+      "repo": "librosa",
+      "mutant": "librosa-m0265",
+      "ref": "mut-librosa-m0265",
+      "sha": "74bb77d3293579c0d396d59bd933b25164e7c656",
+      "workflow": "ranking",
+      "workflow_file": "ci-ranking.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "librosa@mut-librosa-m0265/ranking",
+      "dispatch_window_start_utc": "2026-11-05T21:59:27.452293+00:00",
+      "dispatched_at_utc": "2026-11-05T21:59:28.946659+00:00",
+      "run_id": 42117553175,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42117553175",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T22:05:32Z",
+      "run_head_sha": "74bb77d3293579c0d396d59bd933b25164e7c656",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:59:31Z",
+          "completed_at": "2026-11-05T22:05:32Z"
+        },
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:59:31Z",
+          "completed_at": "2026-11-05T22:05:09Z"
+        },
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:59:31Z",
+          "completed_at": "2026-11-05T22:03:58Z"
+        },
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:59:31Z",
+          "completed_at": "2026-11-05T22:05:32Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m0265/ranking/r03",
+      "repo": "librosa",
+      "mutant": "librosa-m0265",
+      "ref": "mut-librosa-m0265",
+      "sha": "74bb77d3293579c0d396d59bd933b25164e7c656",
+      "workflow": "ranking",
+      "workflow_file": "ci-ranking.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "librosa@mut-librosa-m0265/ranking",
+      "dispatch_window_start_utc": "2026-11-05T22:06:04.746759+00:00",
+      "dispatched_at_utc": "2026-11-05T22:06:06.404691+00:00",
+      "run_id": 42118544382,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42118544382",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T22:12:56Z",
+      "run_head_sha": "74bb77d3293579c0d396d59bd933b25164e7c656",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T22:06:09Z",
+          "completed_at": "2026-11-05T22:12:08Z"
+        },
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T22:06:09Z",
+          "completed_at": "2026-11-05T22:12:09Z"
+        },
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T22:06:09Z",
+          "completed_at": "2026-11-05T22:11:59Z"
+        },
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T22:06:10Z",
+          "completed_at": "2026-11-05T22:12:56Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m0265/regsmart/r01",
+      "repo": "librosa",
+      "mutant": "librosa-m0265",
+      "ref": "mut-librosa-m0265",
+      "sha": "74bb77d3293579c0d396d59bd933b25164e7c656",
+      "workflow": "regsmart",
+      "workflow_file": "ci-regsmart.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "librosa@mut-librosa-m0265/regsmart",
+      "dispatch_window_start_utc": "2026-11-05T21:52:43.175171+00:00",
+      "dispatched_at_utc": "2026-11-05T21:52:45.551335+00:00",
+      "run_id": 42116582648,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42116582648",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T21:54:48Z",
+      "run_head_sha": "74bb77d3293579c0d396d59bd933b25164e7c656",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:52:48Z",
+          "completed_at": "2026-11-05T21:54:19Z"
+        },
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:52:48Z",
+          "completed_at": "2026-11-05T21:54:19Z"
+        },
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:52:49Z",
+          "completed_at": "2026-11-05T21:54:47Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m0265/regsmart/r02",
+      "repo": "librosa",
+      "mutant": "librosa-m0265",
+      "ref": "mut-librosa-m0265",
+      "sha": "74bb77d3293579c0d396d59bd933b25164e7c656",
+      "workflow": "regsmart",
+      "workflow_file": "ci-regsmart.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "librosa@mut-librosa-m0265/regsmart",
+      "dispatch_window_start_utc": "2026-11-05T21:55:26.833287+00:00",
+      "dispatched_at_utc": "2026-11-05T21:55:28.265126+00:00",
+      "run_id": 42116984104,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42116984104",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T22:00:01Z",
+      "run_head_sha": "74bb77d3293579c0d396d59bd933b25164e7c656",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:57:00Z",
+          "completed_at": "2026-11-05T21:58:31Z"
+        },
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:57:50Z",
+          "completed_at": "2026-11-05T21:59:51Z"
+        },
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:57:59Z",
+          "completed_at": "2026-11-05T22:00:01Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m0265/regsmart/r03",
+      "repo": "librosa",
+      "mutant": "librosa-m0265",
+      "ref": "mut-librosa-m0265",
+      "sha": "74bb77d3293579c0d396d59bd933b25164e7c656",
+      "workflow": "regsmart",
+      "workflow_file": "ci-regsmart.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "librosa@mut-librosa-m0265/regsmart",
+      "dispatch_window_start_utc": "2026-11-05T22:00:15.376953+00:00",
+      "dispatched_at_utc": "2026-11-05T22:00:16.962379+00:00",
+      "run_id": 42117671839,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42117671839",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T22:02:32Z",
+      "run_head_sha": "74bb77d3293579c0d396d59bd933b25164e7c656",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T22:00:20Z",
+          "completed_at": "2026-11-05T22:02:31Z"
+        },
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T22:00:21Z",
+          "completed_at": "2026-11-05T22:02:07Z"
+        },
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T22:00:20Z",
+          "completed_at": "2026-11-05T22:01:56Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m0265/regsmart-no-rank/r01",
+      "repo": "librosa",
+      "mutant": "librosa-m0265",
+      "ref": "mut-librosa-m0265",
+      "sha": "74bb77d3293579c0d396d59bd933b25164e7c656",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "ci-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "librosa@mut-librosa-m0265/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-11-05T21:52:46.554711+00:00",
+      "dispatched_at_utc": "2026-11-05T21:52:48.572035+00:00",
+      "run_id": 42116589982,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42116589982",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T21:54:49Z",
+      "run_head_sha": "74bb77d3293579c0d396d59bd933b25164e7c656",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test-regsmart-nr (3.12, strict, .github/environment-ci.yml)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:52:51Z",
+          "completed_at": "2026-11-05T21:54:49Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m0265/regsmart-no-rank/r02",
+      "repo": "librosa",
+      "mutant": "librosa-m0265",
+      "ref": "mut-librosa-m0265",
+      "sha": "74bb77d3293579c0d396d59bd933b25164e7c656",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "ci-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "librosa@mut-librosa-m0265/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-11-05T21:55:29.268898+00:00",
+      "dispatched_at_utc": "2026-11-05T21:55:31.239790+00:00",
+      "run_id": 42116991158,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42116991158",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T21:57:57Z",
+      "run_head_sha": "74bb77d3293579c0d396d59bd933b25164e7c656",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test-regsmart-nr (3.12, strict, .github/environment-ci.yml)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:55:57Z",
+          "completed_at": "2026-11-05T21:57:57Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m0265/regsmart-no-rank/r03",
+      "repo": "librosa",
+      "mutant": "librosa-m0265",
+      "ref": "mut-librosa-m0265",
+      "sha": "74bb77d3293579c0d396d59bd933b25164e7c656",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "ci-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "librosa@mut-librosa-m0265/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-11-05T21:58:36.139620+00:00",
+      "dispatched_at_utc": "2026-11-05T21:58:37.901217+00:00",
+      "run_id": 42117433276,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42117433276",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T22:00:34Z",
+      "run_head_sha": "74bb77d3293579c0d396d59bd933b25164e7c656",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test-regsmart-nr (3.12, strict, .github/environment-ci.yml)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:58:40Z",
+          "completed_at": "2026-11-05T22:00:34Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m2885/baseline/r01",
+      "repo": "librosa",
+      "mutant": "librosa-m2885",
+      "ref": "mut-librosa-m2885",
+      "sha": "d92125d82910b8cee8c7829720992d1cabe67fc7",
+      "workflow": "baseline",
+      "workflow_file": "ci.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "librosa@mut-librosa-m2885/baseline",
+      "dispatch_window_start_utc": "2026-11-05T21:52:49.574482+00:00",
+      "dispatched_at_utc": "2026-11-05T21:52:51.337108+00:00",
+      "run_id": 42116597025,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42116597025",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T21:58:07Z",
+      "run_head_sha": "d92125d82910b8cee8c7829720992d1cabe67fc7",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "Python 3.12 on ubuntu-latest",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:52:53Z",
+          "completed_at": "2026-11-05T21:58:07Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m2885/baseline/r02",
+      "repo": "librosa",
+      "mutant": "librosa-m2885",
+      "ref": "mut-librosa-m2885",
+      "sha": "d92125d82910b8cee8c7829720992d1cabe67fc7",
+      "workflow": "baseline",
+      "workflow_file": "ci.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "librosa@mut-librosa-m2885/baseline",
+      "dispatch_window_start_utc": "2026-11-05T21:58:38.905324+00:00",
+      "dispatched_at_utc": "2026-11-05T21:58:40.926262+00:00",
+      "run_id": 42117440049,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42117440049",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T22:04:49Z",
+      "run_head_sha": "d92125d82910b8cee8c7829720992d1cabe67fc7",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "Python 3.12 on ubuntu-latest",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:58:43Z",
+          "completed_at": "2026-11-05T22:04:48Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m2885/baseline/r03",
+      "repo": "librosa",
+      "mutant": "librosa-m2885",
+      "ref": "mut-librosa-m2885",
+      "sha": "d92125d82910b8cee8c7829720992d1cabe67fc7",
+      "workflow": "baseline",
+      "workflow_file": "ci.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "librosa@mut-librosa-m2885/baseline",
+      "dispatch_window_start_utc": "2026-11-05T22:05:27.603874+00:00",
+      "dispatched_at_utc": "2026-11-05T22:05:29.324124+00:00",
+      "run_id": 42118447957,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42118447957",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T22:12:26Z",
+      "run_head_sha": "d92125d82910b8cee8c7829720992d1cabe67fc7",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "Python 3.12 on ubuntu-latest",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T22:05:33Z",
+          "completed_at": "2026-11-05T22:12:25Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m2885/ranking/r01",
+      "repo": "librosa",
+      "mutant": "librosa-m2885",
+      "ref": "mut-librosa-m2885",
+      "sha": "d92125d82910b8cee8c7829720992d1cabe67fc7",
+      "workflow": "ranking",
+      "workflow_file": "ci-ranking.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "librosa@mut-librosa-m2885/ranking",
+      "dispatch_window_start_utc": "2026-11-05T21:52:52.339929+00:00",
+      "dispatched_at_utc": "2026-11-05T21:52:53.895954+00:00",
+      "run_id": 42116602954,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42116602954",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T21:59:33Z",
+      "run_head_sha": "d92125d82910b8cee8c7829720992d1cabe67fc7",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:52:56Z",
+          "completed_at": "2026-11-05T21:58:59Z"
+        },
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:52:57Z",
+          "completed_at": "2026-11-05T21:59:33Z"
+        },
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:52:56Z",
+          "completed_at": "2026-11-05T21:59:31Z"
+        },
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:52:56Z",
+          "completed_at": "2026-11-05T21:59:18Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m2885/ranking/r02",
+      "repo": "librosa",
+      "mutant": "librosa-m2885",
+      "ref": "mut-librosa-m2885",
+      "sha": "d92125d82910b8cee8c7829720992d1cabe67fc7",
+      "workflow": "ranking",
+      "workflow_file": "ci-ranking.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "librosa@mut-librosa-m2885/ranking",
+      "dispatch_window_start_utc": "2026-11-05T22:00:17.965255+00:00",
+      "dispatched_at_utc": "2026-11-05T22:00:19.525544+00:00",
+      "run_id": 42117678222,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42117678222",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T22:06:53Z",
+      "run_head_sha": "d92125d82910b8cee8c7829720992d1cabe67fc7",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T22:00:22Z",
+          "completed_at": "2026-11-05T22:05:33Z"
+        },
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T22:00:22Z",
+          "completed_at": "2026-11-05T22:04:20Z"
+        },
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T22:00:22Z",
+          "completed_at": "2026-11-05T22:04:17Z"
+        },
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T22:00:22Z",
+          "completed_at": "2026-11-05T22:06:52Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m2885/ranking/r03",
+      "repo": "librosa",
+      "mutant": "librosa-m2885",
+      "ref": "mut-librosa-m2885",
+      "sha": "d92125d82910b8cee8c7829720992d1cabe67fc7",
+      "workflow": "ranking",
+      "workflow_file": "ci-ranking.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "librosa@mut-librosa-m2885/ranking",
+      "dispatch_window_start_utc": "2026-11-05T22:07:23.121272+00:00",
+      "dispatched_at_utc": "2026-11-05T22:07:24.753731+00:00",
+      "run_id": 42118738034,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42118738034",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T22:14:22Z",
+      "run_head_sha": "d92125d82910b8cee8c7829720992d1cabe67fc7",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T22:07:27Z",
+          "completed_at": "2026-11-05T22:14:06Z"
+        },
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T22:07:27Z",
+          "completed_at": "2026-11-05T22:13:53Z"
+        },
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T22:07:28Z",
+          "completed_at": "2026-11-05T22:14:21Z"
+        },
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T22:07:28Z",
+          "completed_at": "2026-11-05T22:12:56Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m2885/regsmart/r01",
+      "repo": "librosa",
+      "mutant": "librosa-m2885",
+      "ref": "mut-librosa-m2885",
+      "sha": "d92125d82910b8cee8c7829720992d1cabe67fc7",
+      "workflow": "regsmart",
+      "workflow_file": "ci-regsmart.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "librosa@mut-librosa-m2885/regsmart",
+      "dispatch_window_start_utc": "2026-11-05T21:52:54.898579+00:00",
+      "dispatched_at_utc": "2026-11-05T21:52:56.703817+00:00",
+      "run_id": 42116609696,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42116609696",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T21:58:25Z",
+      "run_head_sha": "d92125d82910b8cee8c7829720992d1cabe67fc7",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:53:00Z",
+          "completed_at": "2026-11-05T21:56:58Z"
+        },
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:53:00Z",
+          "completed_at": "2026-11-05T21:56:51Z"
+        },
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:53:00Z",
+          "completed_at": "2026-11-05T21:58:24Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m2885/regsmart/r02",
+      "repo": "librosa",
+      "mutant": "librosa-m2885",
+      "ref": "mut-librosa-m2885",
+      "sha": "d92125d82910b8cee8c7829720992d1cabe67fc7",
+      "workflow": "regsmart",
+      "workflow_file": "ci-regsmart.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "librosa@mut-librosa-m2885/regsmart",
+      "dispatch_window_start_utc": "2026-11-05T21:58:41.929478+00:00",
+      "dispatched_at_utc": "2026-11-05T21:58:43.929447+00:00",
+      "run_id": 42117447132,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42117447132",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T22:04:01Z",
+      "run_head_sha": "d92125d82910b8cee8c7829720992d1cabe67fc7",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:58:46Z",
+          "completed_at": "2026-11-05T22:04:00Z"
+        },
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:58:47Z",
+          "completed_at": "2026-11-05T22:03:34Z"
+        },
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:58:47Z",
+          "completed_at": "2026-11-05T22:03:36Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m2885/regsmart/r03",
+      "repo": "librosa",
+      "mutant": "librosa-m2885",
+      "ref": "mut-librosa-m2885",
+      "sha": "d92125d82910b8cee8c7829720992d1cabe67fc7",
+      "workflow": "regsmart",
+      "workflow_file": "ci-regsmart.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "librosa@mut-librosa-m2885/regsmart",
+      "dispatch_window_start_utc": "2026-11-05T22:04:11.572922+00:00",
+      "dispatched_at_utc": "2026-11-05T22:04:13.202383+00:00",
+      "run_id": 42118259140,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42118259140",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T22:09:28Z",
+      "run_head_sha": "d92125d82910b8cee8c7829720992d1cabe67fc7",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T22:04:17Z",
+          "completed_at": "2026-11-05T22:08:38Z"
+        },
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T22:04:22Z",
+          "completed_at": "2026-11-05T22:07:45Z"
+        },
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T22:04:17Z",
+          "completed_at": "2026-11-05T22:09:27Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m2885/regsmart-no-rank/r01",
+      "repo": "librosa",
+      "mutant": "librosa-m2885",
+      "ref": "mut-librosa-m2885",
+      "sha": "d92125d82910b8cee8c7829720992d1cabe67fc7",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "ci-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "librosa@mut-librosa-m2885/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-11-05T21:52:57.707492+00:00",
+      "dispatched_at_utc": "2026-11-05T21:52:59.463262+00:00",
+      "run_id": 42116616494,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42116616494",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T21:55:55Z",
+      "run_head_sha": "d92125d82910b8cee8c7829720992d1cabe67fc7",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test-regsmart-nr (3.12, strict, .github/environment-ci.yml)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:53:02Z",
+          "completed_at": "2026-11-05T21:55:54Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m2885/regsmart-no-rank/r02",
+      "repo": "librosa",
+      "mutant": "librosa-m2885",
+      "ref": "mut-librosa-m2885",
+      "sha": "d92125d82910b8cee8c7829720992d1cabe67fc7",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "ci-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "librosa@mut-librosa-m2885/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-11-05T21:56:08.089773+00:00",
+      "dispatched_at_utc": "2026-11-05T21:56:09.777945+00:00",
+      "run_id": 42117084672,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42117084672",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T22:03:06Z",
+      "run_head_sha": "d92125d82910b8cee8c7829720992d1cabe67fc7",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test-regsmart-nr (3.12, strict, .github/environment-ci.yml)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:57:55Z",
+          "completed_at": "2026-11-05T22:03:06Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m2885/regsmart-no-rank/r03",
+      "repo": "librosa",
+      "mutant": "librosa-m2885",
+      "ref": "mut-librosa-m2885",
+      "sha": "d92125d82910b8cee8c7829720992d1cabe67fc7",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "ci-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "librosa@mut-librosa-m2885/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-11-05T22:03:35.448709+00:00",
+      "dispatched_at_utc": "2026-11-05T22:03:37.103456+00:00",
+      "run_id": 42118167859,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42118167859",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T22:08:29Z",
+      "run_head_sha": "d92125d82910b8cee8c7829720992d1cabe67fc7",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test-regsmart-nr (3.12, strict, .github/environment-ci.yml)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T22:03:39Z",
+          "completed_at": "2026-11-05T22:08:29Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m4950/baseline/r01",
+      "repo": "librosa",
+      "mutant": "librosa-m4950",
+      "ref": "mut-librosa-m4950",
+      "sha": "b703ac6ed6fff0c863bf6a9bf6641566e59112c1",
+      "workflow": "baseline",
+      "workflow_file": "ci.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "librosa@mut-librosa-m4950/baseline",
+      "dispatch_window_start_utc": "2026-11-05T21:53:00.466980+00:00",
+      "dispatched_at_utc": "2026-11-05T21:53:02.955740+00:00",
+      "run_id": 42116624828,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42116624828",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T21:59:08Z",
+      "run_head_sha": "b703ac6ed6fff0c863bf6a9bf6641566e59112c1",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "Python 3.12 on ubuntu-latest",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:53:05Z",
+          "completed_at": "2026-11-05T21:59:08Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m4950/baseline/r02",
+      "repo": "librosa",
+      "mutant": "librosa-m4950",
+      "ref": "mut-librosa-m4950",
+      "sha": "b703ac6ed6fff0c863bf6a9bf6641566e59112c1",
+      "workflow": "baseline",
+      "workflow_file": "ci.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "librosa@mut-librosa-m4950/baseline",
+      "dispatch_window_start_utc": "2026-11-05T21:59:29.950215+00:00",
+      "dispatched_at_utc": "2026-11-05T21:59:31.585791+00:00",
+      "run_id": 42117559199,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42117559199",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T22:05:41Z",
+      "run_head_sha": "b703ac6ed6fff0c863bf6a9bf6641566e59112c1",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "Python 3.12 on ubuntu-latest",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:59:39Z",
+          "completed_at": "2026-11-05T22:05:41Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m4950/baseline/r03",
+      "repo": "librosa",
+      "mutant": "librosa-m4950",
+      "ref": "mut-librosa-m4950",
+      "sha": "b703ac6ed6fff0c863bf6a9bf6641566e59112c1",
+      "workflow": "baseline",
+      "workflow_file": "ci.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "librosa@mut-librosa-m4950/baseline",
+      "dispatch_window_start_utc": "2026-11-05T22:06:07.411624+00:00",
+      "dispatched_at_utc": "2026-11-05T22:06:08.963279+00:00",
+      "run_id": 42118551465,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42118551465",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T22:11:38Z",
+      "run_head_sha": "b703ac6ed6fff0c863bf6a9bf6641566e59112c1",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "Python 3.12 on ubuntu-latest",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T22:06:11Z",
+          "completed_at": "2026-11-05T22:11:37Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m4950/ranking/r01",
+      "repo": "librosa",
+      "mutant": "librosa-m4950",
+      "ref": "mut-librosa-m4950",
+      "sha": "b703ac6ed6fff0c863bf6a9bf6641566e59112c1",
+      "workflow": "ranking",
+      "workflow_file": "ci-ranking.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "librosa@mut-librosa-m4950/ranking",
+      "dispatch_window_start_utc": "2026-11-05T21:53:03.958257+00:00",
+      "dispatched_at_utc": "2026-11-05T21:53:05.773169+00:00",
+      "run_id": 42116631591,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42116631591",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T21:59:04Z",
+      "run_head_sha": "b703ac6ed6fff0c863bf6a9bf6641566e59112c1",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:53:08Z",
+          "completed_at": "2026-11-05T21:58:08Z"
+        },
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:53:08Z",
+          "completed_at": "2026-11-05T21:58:57Z"
+        },
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:53:08Z",
+          "completed_at": "2026-11-05T21:59:03Z"
+        },
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:53:08Z",
+          "completed_at": "2026-11-05T21:58:39Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m4950/ranking/r02",
+      "repo": "librosa",
+      "mutant": "librosa-m4950",
+      "ref": "mut-librosa-m4950",
+      "sha": "b703ac6ed6fff0c863bf6a9bf6641566e59112c1",
+      "workflow": "ranking",
+      "workflow_file": "ci-ranking.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "librosa@mut-librosa-m4950/ranking",
+      "dispatch_window_start_utc": "2026-11-05T21:59:32.591245+00:00",
+      "dispatched_at_utc": "2026-11-05T21:59:34.119143+00:00",
+      "run_id": 42117565064,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42117565064",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T22:05:34Z",
+      "run_head_sha": "b703ac6ed6fff0c863bf6a9bf6641566e59112c1",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:59:36Z",
+          "completed_at": "2026-11-05T22:05:33Z"
+        },
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:59:36Z",
+          "completed_at": "2026-11-05T22:04:10Z"
+        },
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:59:37Z",
+          "completed_at": "2026-11-05T22:05:29Z"
+        },
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:59:36Z",
+          "completed_at": "2026-11-05T22:03:16Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m4950/ranking/r03",
+      "repo": "librosa",
+      "mutant": "librosa-m4950",
+      "ref": "mut-librosa-m4950",
+      "sha": "b703ac6ed6fff0c863bf6a9bf6641566e59112c1",
+      "workflow": "ranking",
+      "workflow_file": "ci-ranking.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "librosa@mut-librosa-m4950/ranking",
+      "dispatch_window_start_utc": "2026-11-05T22:06:09.969709+00:00",
+      "dispatched_at_utc": "2026-11-05T22:06:11.639623+00:00",
+      "run_id": 42118558339,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42118558339",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T22:12:19Z",
+      "run_head_sha": "b703ac6ed6fff0c863bf6a9bf6641566e59112c1",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T22:06:14Z",
+          "completed_at": "2026-11-05T22:12:14Z"
+        },
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T22:06:14Z",
+          "completed_at": "2026-11-05T22:12:18Z"
+        },
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T22:06:14Z",
+          "completed_at": "2026-11-05T22:11:22Z"
+        },
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T22:06:14Z",
+          "completed_at": "2026-11-05T22:10:17Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m4950/regsmart/r01",
+      "repo": "librosa",
+      "mutant": "librosa-m4950",
+      "ref": "mut-librosa-m4950",
+      "sha": "b703ac6ed6fff0c863bf6a9bf6641566e59112c1",
+      "workflow": "regsmart",
+      "workflow_file": "ci-regsmart.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "librosa@mut-librosa-m4950/regsmart",
+      "dispatch_window_start_utc": "2026-11-05T21:53:06.776362+00:00",
+      "dispatched_at_utc": "2026-11-05T21:53:08.781303+00:00",
+      "run_id": 42116639117,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42116639117",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T21:54:35Z",
+      "run_head_sha": "b703ac6ed6fff0c863bf6a9bf6641566e59112c1",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:53:11Z",
+          "completed_at": "2026-11-05T21:54:23Z"
+        },
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:53:11Z",
+          "completed_at": "2026-11-05T21:54:26Z"
+        },
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:53:11Z",
+          "completed_at": "2026-11-05T21:54:35Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m4950/regsmart/r02",
+      "repo": "librosa",
+      "mutant": "librosa-m4950",
+      "ref": "mut-librosa-m4950",
+      "sha": "b703ac6ed6fff0c863bf6a9bf6641566e59112c1",
+      "workflow": "regsmart",
+      "workflow_file": "ci-regsmart.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "librosa@mut-librosa-m4950/regsmart",
+      "dispatch_window_start_utc": "2026-11-05T21:54:49.373139+00:00",
+      "dispatched_at_utc": "2026-11-05T21:54:50.937246+00:00",
+      "run_id": 42116890104,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42116890104",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T21:58:52Z",
+      "run_head_sha": "b703ac6ed6fff0c863bf6a9bf6641566e59112c1",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:56:36Z",
+          "completed_at": "2026-11-05T21:57:32Z"
+        },
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:56:52Z",
+          "completed_at": "2026-11-05T21:57:53Z"
+        },
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:57:35Z",
+          "completed_at": "2026-11-05T21:58:51Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m4950/regsmart/r03",
+      "repo": "librosa",
+      "mutant": "librosa-m4950",
+      "ref": "mut-librosa-m4950",
+      "sha": "b703ac6ed6fff0c863bf6a9bf6641566e59112c1",
+      "workflow": "regsmart",
+      "workflow_file": "ci-regsmart.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "librosa@mut-librosa-m4950/regsmart",
+      "dispatch_window_start_utc": "2026-11-05T21:59:35.123692+00:00",
+      "dispatched_at_utc": "2026-11-05T21:59:36.610436+00:00",
+      "run_id": 42117570746,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42117570746",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T22:00:59Z",
+      "run_head_sha": "b703ac6ed6fff0c863bf6a9bf6641566e59112c1",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:59:39Z",
+          "completed_at": "2026-11-05T22:00:58Z"
+        },
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:59:39Z",
+          "completed_at": "2026-11-05T22:00:51Z"
+        },
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:59:39Z",
+          "completed_at": "2026-11-05T22:00:56Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m4950/regsmart-no-rank/r01",
+      "repo": "librosa",
+      "mutant": "librosa-m4950",
+      "ref": "mut-librosa-m4950",
+      "sha": "b703ac6ed6fff0c863bf6a9bf6641566e59112c1",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "ci-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "librosa@mut-librosa-m4950/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-11-05T21:53:09.783108+00:00",
+      "dispatched_at_utc": "2026-11-05T21:53:11.714911+00:00",
+      "run_id": 42116646790,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42116646790",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T21:54:40Z",
+      "run_head_sha": "b703ac6ed6fff0c863bf6a9bf6641566e59112c1",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test-regsmart-nr (3.12, strict, .github/environment-ci.yml)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:53:14Z",
+          "completed_at": "2026-11-05T21:54:40Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m4950/regsmart-no-rank/r02",
+      "repo": "librosa",
+      "mutant": "librosa-m4950",
+      "ref": "mut-librosa-m4950",
+      "sha": "b703ac6ed6fff0c863bf6a9bf6641566e59112c1",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "ci-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "librosa@mut-librosa-m4950/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-11-05T21:54:51.939567+00:00",
+      "dispatched_at_utc": "2026-11-05T21:54:53.395934+00:00",
+      "run_id": 42116895898,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42116895898",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T21:58:27Z",
+      "run_head_sha": "b703ac6ed6fff0c863bf6a9bf6641566e59112c1",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test-regsmart-nr (3.12, strict, .github/environment-ci.yml)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:56:54Z",
+          "completed_at": "2026-11-05T21:58:26Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m4950/regsmart-no-rank/r03",
+      "repo": "librosa",
+      "mutant": "librosa-m4950",
+      "ref": "mut-librosa-m4950",
+      "sha": "b703ac6ed6fff0c863bf6a9bf6641566e59112c1",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "ci-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "librosa@mut-librosa-m4950/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-11-05T21:59:37.615462+00:00",
+      "dispatched_at_utc": "2026-11-05T21:59:39.191668+00:00",
+      "run_id": 42117576844,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42117576844",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T22:00:58Z",
+      "run_head_sha": "b703ac6ed6fff0c863bf6a9bf6641566e59112c1",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test-regsmart-nr (3.12, strict, .github/environment-ci.yml)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:59:47Z",
+          "completed_at": "2026-11-05T22:00:58Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m7678/baseline/r01",
+      "repo": "librosa",
+      "mutant": "librosa-m7678",
+      "ref": "mut-librosa-m7678",
+      "sha": "5a92645eb728914d4936bb014dfe97c885306b93",
+      "workflow": "baseline",
+      "workflow_file": "ci.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "librosa@mut-librosa-m7678/baseline",
+      "dispatch_window_start_utc": "2026-11-05T21:53:12.718536+00:00",
+      "dispatched_at_utc": "2026-11-05T21:53:14.087927+00:00",
+      "run_id": 42116652210,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42116652210",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T21:57:14Z",
+      "run_head_sha": "5a92645eb728914d4936bb014dfe97c885306b93",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "Python 3.12 on ubuntu-latest",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:53:16Z",
+          "completed_at": "2026-11-05T21:57:13Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m7678/baseline/r02",
+      "repo": "librosa",
+      "mutant": "librosa-m7678",
+      "ref": "mut-librosa-m7678",
+      "sha": "5a92645eb728914d4936bb014dfe97c885306b93",
+      "workflow": "baseline",
+      "workflow_file": "ci.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "librosa@mut-librosa-m7678/baseline",
+      "dispatch_window_start_utc": "2026-11-05T21:57:21.436707+00:00",
+      "dispatched_at_utc": "2026-11-05T21:57:22.968293+00:00",
+      "run_id": 42117257479,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42117257479",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T22:04:02Z",
+      "run_head_sha": "5a92645eb728914d4936bb014dfe97c885306b93",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "Python 3.12 on ubuntu-latest",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:58:11Z",
+          "completed_at": "2026-11-05T22:04:01Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m7678/baseline/r03",
+      "repo": "librosa",
+      "mutant": "librosa-m7678",
+      "ref": "mut-librosa-m7678",
+      "sha": "5a92645eb728914d4936bb014dfe97c885306b93",
+      "workflow": "baseline",
+      "workflow_file": "ci.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "librosa@mut-librosa-m7678/baseline",
+      "dispatch_window_start_utc": "2026-11-05T22:04:14.205892+00:00",
+      "dispatched_at_utc": "2026-11-05T22:04:15.718031+00:00",
+      "run_id": 42118265321,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42118265321",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T22:09:22Z",
+      "run_head_sha": "5a92645eb728914d4936bb014dfe97c885306b93",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "Python 3.12 on ubuntu-latest",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T22:04:19Z",
+          "completed_at": "2026-11-05T22:09:21Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m7678/ranking/r01",
+      "repo": "librosa",
+      "mutant": "librosa-m7678",
+      "ref": "mut-librosa-m7678",
+      "sha": "5a92645eb728914d4936bb014dfe97c885306b93",
+      "workflow": "ranking",
+      "workflow_file": "ci-ranking.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "librosa@mut-librosa-m7678/ranking",
+      "dispatch_window_start_utc": "2026-11-05T21:53:15.091027+00:00",
+      "dispatched_at_utc": "2026-11-05T21:53:16.886931+00:00",
+      "run_id": 42116658777,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42116658777",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T21:59:46Z",
+      "run_head_sha": "5a92645eb728914d4936bb014dfe97c885306b93",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:53:19Z",
+          "completed_at": "2026-11-05T21:59:21Z"
+        },
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:53:19Z",
+          "completed_at": "2026-11-05T21:59:13Z"
+        },
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:53:19Z",
+          "completed_at": "2026-11-05T21:58:09Z"
+        },
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:53:49Z",
+          "completed_at": "2026-11-05T21:59:46Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m7678/ranking/r02",
+      "repo": "librosa",
+      "mutant": "librosa-m7678",
+      "ref": "mut-librosa-m7678",
+      "sha": "5a92645eb728914d4936bb014dfe97c885306b93",
+      "workflow": "ranking",
+      "workflow_file": "ci-ranking.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "librosa@mut-librosa-m7678/ranking",
+      "dispatch_window_start_utc": "2026-11-05T22:00:20.530257+00:00",
+      "dispatched_at_utc": "2026-11-05T22:00:22.042520+00:00",
+      "run_id": 42117684780,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42117684780",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T22:07:01Z",
+      "run_head_sha": "5a92645eb728914d4936bb014dfe97c885306b93",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T22:00:25Z",
+          "completed_at": "2026-11-05T22:06:09Z"
+        },
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T22:00:25Z",
+          "completed_at": "2026-11-05T22:05:53Z"
+        },
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T22:00:24Z",
+          "completed_at": "2026-11-05T22:05:24Z"
+        },
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T22:00:36Z",
+          "completed_at": "2026-11-05T22:07:00Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m7678/ranking/r03",
+      "repo": "librosa",
+      "mutant": "librosa-m7678",
+      "ref": "mut-librosa-m7678",
+      "sha": "5a92645eb728914d4936bb014dfe97c885306b93",
+      "workflow": "ranking",
+      "workflow_file": "ci-ranking.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "librosa@mut-librosa-m7678/ranking",
+      "dispatch_window_start_utc": "2026-11-05T22:07:25.757711+00:00",
+      "dispatched_at_utc": "2026-11-05T22:07:27.627743+00:00",
+      "run_id": 42118744930,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42118744930",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T22:13:52Z",
+      "run_head_sha": "5a92645eb728914d4936bb014dfe97c885306b93",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T22:07:31Z",
+          "completed_at": "2026-11-05T22:13:42Z"
+        },
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T22:07:30Z",
+          "completed_at": "2026-11-05T22:13:51Z"
+        },
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T22:07:30Z",
+          "completed_at": "2026-11-05T22:12:18Z"
+        },
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T22:07:30Z",
+          "completed_at": "2026-11-05T22:13:44Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m7678/regsmart/r01",
+      "repo": "librosa",
+      "mutant": "librosa-m7678",
+      "ref": "mut-librosa-m7678",
+      "sha": "5a92645eb728914d4936bb014dfe97c885306b93",
+      "workflow": "regsmart",
+      "workflow_file": "ci-regsmart.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "librosa@mut-librosa-m7678/regsmart",
+      "dispatch_window_start_utc": "2026-11-05T21:53:17.889944+00:00",
+      "dispatched_at_utc": "2026-11-05T21:53:19.930229+00:00",
+      "run_id": 42116666434,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42116666434",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T21:56:37Z",
+      "run_head_sha": "5a92645eb728914d4936bb014dfe97c885306b93",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:54:25Z",
+          "completed_at": "2026-11-05T21:55:43Z"
+        },
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:54:21Z",
+          "completed_at": "2026-11-05T21:56:16Z"
+        },
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:54:42Z",
+          "completed_at": "2026-11-05T21:56:36Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m7678/regsmart/r02",
+      "repo": "librosa",
+      "mutant": "librosa-m7678",
+      "ref": "mut-librosa-m7678",
+      "sha": "5a92645eb728914d4936bb014dfe97c885306b93",
+      "workflow": "regsmart",
+      "workflow_file": "ci-regsmart.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "librosa@mut-librosa-m7678/regsmart",
+      "dispatch_window_start_utc": "2026-11-05T21:56:43.663679+00:00",
+      "dispatched_at_utc": "2026-11-05T21:56:45.167198+00:00",
+      "run_id": 42117168021,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42117168021",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T22:00:05Z",
+      "run_head_sha": "5a92645eb728914d4936bb014dfe97c885306b93",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:58:02Z",
+          "completed_at": "2026-11-05T21:59:48Z"
+        },
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:58:08Z",
+          "completed_at": "2026-11-05T21:59:48Z"
+        },
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:58:10Z",
+          "completed_at": "2026-11-05T22:00:05Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m7678/regsmart/r03",
+      "repo": "librosa",
+      "mutant": "librosa-m7678",
+      "ref": "mut-librosa-m7678",
+      "sha": "5a92645eb728914d4936bb014dfe97c885306b93",
+      "workflow": "regsmart",
+      "workflow_file": "ci-regsmart.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "librosa@mut-librosa-m7678/regsmart",
+      "dispatch_window_start_utc": "2026-11-05T22:00:23.046966+00:00",
+      "dispatched_at_utc": "2026-11-05T22:00:24.641895+00:00",
+      "run_id": 42117691671,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42117691671",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T22:03:35Z",
+      "run_head_sha": "5a92645eb728914d4936bb014dfe97c885306b93",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T22:00:37Z",
+          "completed_at": "2026-11-05T22:01:46Z"
+        },
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T22:00:50Z",
+          "completed_at": "2026-11-05T22:02:38Z"
+        },
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T22:01:42Z",
+          "completed_at": "2026-11-05T22:03:35Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m7678/regsmart-no-rank/r01",
+      "repo": "librosa",
+      "mutant": "librosa-m7678",
+      "ref": "mut-librosa-m7678",
+      "sha": "5a92645eb728914d4936bb014dfe97c885306b93",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "ci-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "librosa@mut-librosa-m7678/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-11-05T21:53:20.933493+00:00",
+      "dispatched_at_utc": "2026-11-05T21:53:22.715118+00:00",
+      "run_id": 42116672945,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42116672945",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T21:56:35Z",
+      "run_head_sha": "5a92645eb728914d4936bb014dfe97c885306b93",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test-regsmart-nr (3.12, strict, .github/environment-ci.yml)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:54:49Z",
+          "completed_at": "2026-11-05T21:56:35Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m7678/regsmart-no-rank/r02",
+      "repo": "librosa",
+      "mutant": "librosa-m7678",
+      "ref": "mut-librosa-m7678",
+      "sha": "5a92645eb728914d4936bb014dfe97c885306b93",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "ci-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "librosa@mut-librosa-m7678/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-11-05T21:56:46.169954+00:00",
+      "dispatched_at_utc": "2026-11-05T21:56:48.187539+00:00",
+      "run_id": 42117175084,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42117175084",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T21:59:37Z",
+      "run_head_sha": "5a92645eb728914d4936bb014dfe97c885306b93",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test-regsmart-nr (3.12, strict, .github/environment-ci.yml)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T21:57:44Z",
+          "completed_at": "2026-11-05T21:59:36Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/librosa-m7678/regsmart-no-rank/r03",
+      "repo": "librosa",
+      "mutant": "librosa-m7678",
+      "ref": "mut-librosa-m7678",
+      "sha": "5a92645eb728914d4936bb014dfe97c885306b93",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "ci-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "librosa@mut-librosa-m7678/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-11-05T22:00:25.647347+00:00",
+      "dispatched_at_utc": "2026-11-05T22:00:27.265105+00:00",
+      "run_id": 42117698294,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42117698294",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T22:02:29Z",
+      "run_head_sha": "5a92645eb728914d4936bb014dfe97c885306b93",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test-regsmart-nr (3.12, strict, .github/environment-ci.yml)",
+          "conclusion": "failure",
+          "started_at": "2026-11-05T22:00:53Z",
+          "completed_at": "2026-11-05T22:02:29Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/control/baseline/r01",
+      "repo": "librosa",
+      "mutant": "control",
+      "ref": "main",
+      "sha": "b6f2437b7754272536d92e9941f3f90c54d70207",
+      "workflow": "baseline",
+      "workflow_file": "ci.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "librosa@main/baseline",
+      "dispatch_window_start_utc": "2026-11-05T21:53:23.716937+00:00",
+      "dispatched_at_utc": "2026-11-05T21:53:25.383624+00:00",
+      "run_id": 42116679573,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42116679573",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T22:00:16Z",
+      "run_head_sha": "b6f2437b7754272536d92e9941f3f90c54d70207",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "Python 3.12 on ubuntu-latest",
+          "conclusion": "success",
+          "started_at": "2026-11-05T21:54:24Z",
+          "completed_at": "2026-11-05T22:00:15Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/control/baseline/r02",
+      "repo": "librosa",
+      "mutant": "control",
+      "ref": "main",
+      "sha": "b6f2437b7754272536d92e9941f3f90c54d70207",
+      "workflow": "baseline",
+      "workflow_file": "ci.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "librosa@main/baseline",
+      "dispatch_window_start_utc": "2026-11-05T22:01:05.359994+00:00",
+      "dispatched_at_utc": "2026-11-05T22:01:06.971531+00:00",
+      "run_id": 42117803073,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42117803073",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T22:06:15Z",
+      "run_head_sha": "b6f2437b7754272536d92e9941f3f90c54d70207",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "Python 3.12 on ubuntu-latest",
+          "conclusion": "success",
+          "started_at": "2026-11-05T22:01:09Z",
+          "completed_at": "2026-11-05T22:06:14Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/control/baseline/r03",
+      "repo": "librosa",
+      "mutant": "control",
+      "ref": "main",
+      "sha": "b6f2437b7754272536d92e9941f3f90c54d70207",
+      "workflow": "baseline",
+      "workflow_file": "ci.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "librosa@main/baseline",
+      "dispatch_window_start_utc": "2026-11-05T22:06:45.637009+00:00",
+      "dispatched_at_utc": "2026-11-05T22:06:47.783771+00:00",
+      "run_id": 42118651373,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42118651373",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T22:13:08Z",
+      "run_head_sha": "b6f2437b7754272536d92e9941f3f90c54d70207",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "Python 3.12 on ubuntu-latest",
+          "conclusion": "success",
+          "started_at": "2026-11-05T22:06:51Z",
+          "completed_at": "2026-11-05T22:13:08Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/control/ranking/r01",
+      "repo": "librosa",
+      "mutant": "control",
+      "ref": "main",
+      "sha": "b6f2437b7754272536d92e9941f3f90c54d70207",
+      "workflow": "ranking",
+      "workflow_file": "ci-ranking.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "librosa@main/ranking",
+      "dispatch_window_start_utc": "2026-11-05T21:53:26.387058+00:00",
+      "dispatched_at_utc": "2026-11-05T21:53:28.550065+00:00",
+      "run_id": 42116687138,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42116687138",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T22:02:09Z",
+      "run_head_sha": "b6f2437b7754272536d92e9941f3f90c54d70207",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "success",
+          "started_at": "2026-11-05T21:54:00Z",
+          "completed_at": "2026-11-05T21:59:50Z"
+        },
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "success",
+          "started_at": "2026-11-05T21:55:45Z",
+          "completed_at": "2026-11-05T21:59:27Z"
+        },
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "success",
+          "started_at": "2026-11-05T21:53:59Z",
+          "completed_at": "2026-11-05T21:58:43Z"
+        },
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "success",
+          "started_at": "2026-11-05T21:55:59Z",
+          "completed_at": "2026-11-05T22:02:08Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/control/ranking/r02",
+      "repo": "librosa",
+      "mutant": "control",
+      "ref": "main",
+      "sha": "b6f2437b7754272536d92e9941f3f90c54d70207",
+      "workflow": "ranking",
+      "workflow_file": "ci-ranking.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "librosa@main/ranking",
+      "dispatch_window_start_utc": "2026-11-05T22:02:22.211703+00:00",
+      "dispatched_at_utc": "2026-11-05T22:02:23.646060+00:00",
+      "run_id": 42117997608,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42117997608",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T22:08:38Z",
+      "run_head_sha": "b6f2437b7754272536d92e9941f3f90c54d70207",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "success",
+          "started_at": "2026-11-05T22:02:26Z",
+          "completed_at": "2026-11-05T22:07:15Z"
+        },
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "success",
+          "started_at": "2026-11-05T22:02:26Z",
+          "completed_at": "2026-11-05T22:07:30Z"
+        },
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "success",
+          "started_at": "2026-11-05T22:02:26Z",
+          "completed_at": "2026-11-05T22:08:38Z"
+        },
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "success",
+          "started_at": "2026-11-05T22:02:30Z",
+          "completed_at": "2026-11-05T22:08:23Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/control/ranking/r03",
+      "repo": "librosa",
+      "mutant": "control",
+      "ref": "main",
+      "sha": "b6f2437b7754272536d92e9941f3f90c54d70207",
+      "workflow": "ranking",
+      "workflow_file": "ci-ranking.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "librosa@main/ranking",
+      "dispatch_window_start_utc": "2026-11-05T22:09:13.369866+00:00",
+      "dispatched_at_utc": "2026-11-05T22:09:15.138573+00:00",
+      "run_id": 42119003843,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42119003843",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T22:15:25Z",
+      "run_head_sha": "b6f2437b7754272536d92e9941f3f90c54d70207",
+      "jobs_total": 4,
+      "jobs": [
+        {
+          "name": "ranking (rkn_recentfail)",
+          "conclusion": "success",
+          "started_at": "2026-11-05T22:09:18Z",
+          "completed_at": "2026-11-05T22:12:53Z"
+        },
+        {
+          "name": "ranking (rkn_qtf)",
+          "conclusion": "success",
+          "started_at": "2026-11-05T22:09:18Z",
+          "completed_at": "2026-11-05T22:13:17Z"
+        },
+        {
+          "name": "ranking (rkn_simchgpath)",
+          "conclusion": "success",
+          "started_at": "2026-11-05T22:09:18Z",
+          "completed_at": "2026-11-05T22:15:25Z"
+        },
+        {
+          "name": "ranking (rkn_hybrid)",
+          "conclusion": "success",
+          "started_at": "2026-11-05T22:09:18Z",
+          "completed_at": "2026-11-05T22:13:14Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/control/regsmart/r01",
+      "repo": "librosa",
+      "mutant": "control",
+      "ref": "main",
+      "sha": "b6f2437b7754272536d92e9941f3f90c54d70207",
+      "workflow": "regsmart",
+      "workflow_file": "ci-regsmart.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "librosa@main/regsmart",
+      "dispatch_window_start_utc": "2026-11-05T21:53:29.552671+00:00",
+      "dispatched_at_utc": "2026-11-05T21:53:31.375301+00:00",
+      "run_id": 42116694443,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42116694443",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T22:00:36Z",
+      "run_head_sha": "b6f2437b7754272536d92e9941f3f90c54d70207",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "success",
+          "started_at": "2026-11-05T21:54:50Z",
+          "completed_at": "2026-11-05T21:58:55Z"
+        },
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "success",
+          "started_at": "2026-11-05T21:54:37Z",
+          "completed_at": "2026-11-05T22:00:36Z"
+        },
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "success",
+          "started_at": "2026-11-05T21:54:20Z",
+          "completed_at": "2026-11-05T21:59:16Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/control/regsmart/r02",
+      "repo": "librosa",
+      "mutant": "control",
+      "ref": "main",
+      "sha": "b6f2437b7754272536d92e9941f3f90c54d70207",
+      "workflow": "regsmart",
+      "workflow_file": "ci-regsmart.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "librosa@main/regsmart",
+      "dispatch_window_start_utc": "2026-11-05T22:01:07.977578+00:00",
+      "dispatched_at_utc": "2026-11-05T22:01:09.454221+00:00",
+      "run_id": 42117808272,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42117808272",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T22:08:11Z",
+      "run_head_sha": "b6f2437b7754272536d92e9941f3f90c54d70207",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "success",
+          "started_at": "2026-11-05T22:01:12Z",
+          "completed_at": "2026-11-05T22:07:22Z"
+        },
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "success",
+          "started_at": "2026-11-05T22:01:42Z",
+          "completed_at": "2026-11-05T22:08:06Z"
+        },
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "success",
+          "started_at": "2026-11-05T22:01:49Z",
+          "completed_at": "2026-11-05T22:08:09Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/control/regsmart/r03",
+      "repo": "librosa",
+      "mutant": "control",
+      "ref": "main",
+      "sha": "b6f2437b7754272536d92e9941f3f90c54d70207",
+      "workflow": "regsmart",
+      "workflow_file": "ci-regsmart.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "librosa@main/regsmart",
+      "dispatch_window_start_utc": "2026-11-05T22:08:37.365025+00:00",
+      "dispatched_at_utc": "2026-11-05T22:08:39.137486+00:00",
+      "run_id": 42118916821,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42118916821",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T22:14:56Z",
+      "run_head_sha": "b6f2437b7754272536d92e9941f3f90c54d70207",
+      "jobs_total": 3,
+      "jobs": [
+        {
+          "name": "regsmart (rgsm_recentfail)",
+          "conclusion": "success",
+          "started_at": "2026-11-05T22:08:42Z",
+          "completed_at": "2026-11-05T22:14:20Z"
+        },
+        {
+          "name": "regsmart (rgsm_qtf)",
+          "conclusion": "success",
+          "started_at": "2026-11-05T22:08:42Z",
+          "completed_at": "2026-11-05T22:14:56Z"
+        },
+        {
+          "name": "regsmart (rgsm_hybrid)",
+          "conclusion": "success",
+          "started_at": "2026-11-05T22:08:42Z",
+          "completed_at": "2026-11-05T22:12:42Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/control/regsmart-no-rank/r01",
+      "repo": "librosa",
+      "mutant": "control",
+      "ref": "main",
+      "sha": "b6f2437b7754272536d92e9941f3f90c54d70207",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "ci-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 1,
+      "lane": "librosa@main/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-11-05T21:53:32.378906+00:00",
+      "dispatched_at_utc": "2026-11-05T21:53:34.177235+00:00",
+      "run_id": 42116701287,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42116701287",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T22:02:04Z",
+      "run_head_sha": "b6f2437b7754272536d92e9941f3f90c54d70207",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test-regsmart-nr (3.12, strict, .github/environment-ci.yml)",
+          "conclusion": "success",
+          "started_at": "2026-11-05T21:56:03Z",
+          "completed_at": "2026-11-05T22:02:03Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/control/regsmart-no-rank/r02",
+      "repo": "librosa",
+      "mutant": "control",
+      "ref": "main",
+      "sha": "b6f2437b7754272536d92e9941f3f90c54d70207",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "ci-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 2,
+      "lane": "librosa@main/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-11-05T22:02:24.653112+00:00",
+      "dispatched_at_utc": "2026-11-05T22:02:26.562266+00:00",
+      "run_id": 42118003793,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42118003793",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T22:07:31Z",
+      "run_head_sha": "b6f2437b7754272536d92e9941f3f90c54d70207",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test-regsmart-nr (3.12, strict, .github/environment-ci.yml)",
+          "conclusion": "success",
+          "started_at": "2026-11-05T22:02:31Z",
+          "completed_at": "2026-11-05T22:07:30Z"
+        }
+      ]
+    },
+    {
+      "task": "librosa/control/regsmart-no-rank/r03",
+      "repo": "librosa",
+      "mutant": "control",
+      "ref": "main",
+      "sha": "b6f2437b7754272536d92e9941f3f90c54d70207",
+      "workflow": "regsmart-no-rank",
+      "workflow_file": "ci-regsmart-nr.yml",
+      "phase": "rep",
+      "rep": 3,
+      "lane": "librosa@main/regsmart-no-rank",
+      "dispatch_window_start_utc": "2026-11-05T22:08:02.014372+00:00",
+      "dispatched_at_utc": "2026-11-05T22:08:03.470987+00:00",
+      "run_id": 42118833699,
+      "html_url": "https://github.com/leticosta4/librosa/actions/runs/42118833699",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1,
+      "conclusion_at_utc": "2026-11-05T22:12:48Z",
+      "run_head_sha": "b6f2437b7754272536d92e9941f3f90c54d70207",
+      "jobs_total": 1,
+      "jobs": [
+        {
+          "name": "test-regsmart-nr (3.12, strict, .github/environment-ci.yml)",
+          "conclusion": "success",
+          "started_at": "2026-11-05T22:08:09Z",
+          "completed_at": "2026-11-05T22:12:47Z"
+        }
+      ]
+    }
+  ],
+  "wall_clock": {
+    "started_utc": "2026-11-05T21:52:24.846302+00:00",
+    "finished_utc": "2026-11-05T22:15:47.061902+00:00",
+    "total_seconds": 1402.2
+  },
+  "rate_limit": {
+    "initial": {
+      "limit": 5000,
+      "remaining": 4063,
+      "used": 937,
+      "reset_utc": "2026-11-05T22:28:47+00:00"
+    },
+    "final": {
+      "limit": 5000,
+      "remaining": 3954,
+      "used": 1046,
+      "reset_utc": "2026-11-05T22:28:47+00:00"
+    }
+  },
+  "counters": {
+    "get": 120,
+    "post": 72,
+    "retries": 0,
+    "rate_limit": 2
+  }
+}
