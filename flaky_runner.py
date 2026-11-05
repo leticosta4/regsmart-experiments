@@ -111,6 +111,23 @@ TOKEN = (
     or _gh_token()
 )
 
+# Tolerância (s) ao casar run com dispatch: cobre relógio local adiantado em
+# relação ao GitHub. Seguro porque cada lane tem no máximo 1 run em voo.
+MATCH_SLACK_S = 120
+
+
+def gh_env() -> dict:
+    """Env pro `gh api`: o gh não lê GITHUB_TOKEN_REGSMART, então repassa o TOKEN."""
+    env = dict(os.environ)
+    if TOKEN:
+        env["GH_TOKEN"] = TOKEN
+    return env
+
+
+def gh_bytes(path: str) -> bytes | None:
+    res = subprocess.run(["gh", "api", path], capture_output=True, env=gh_env())
+    return res.stdout if res.returncode == 0 else None
+
 
 def now() -> str:
     return datetime.now(timezone.utc).isoformat()
@@ -163,13 +180,17 @@ class Api:
                 retryable = (
                     exc.code == 429
                     or exc.code >= 500
-                    or (exc.code == 403 and (retry_after or "rate limit" in detail.lower()))
+                    or (exc.code == 403 and (retry_after or "rate limit" in detail.lower()
+                                             or exc.headers.get("x-ratelimit-remaining") == "0"))
                 )
                 if not retryable or attempt == self.max_retries:
                     raise RuntimeError(
                         f"{method} {url} -> HTTP {exc.code}: {detail}"
                     ) from exc
                 wait = float(retry_after) if retry_after else delay
+                if exc.headers.get("x-ratelimit-remaining") == "0":
+                    reset = float(exc.headers.get("x-ratelimit-reset") or 0)
+                    wait = max(wait, reset - time.time() + 5)
                 self.counters["retries"] += 1
                 print(f"  ! HTTP {exc.code}, esperando {wait:.0f}s ({attempt + 1})")
                 time.sleep(wait)
@@ -358,10 +379,19 @@ def workflow_id(api: Api, repo: str, workflow_file: str) -> int:
     return _WF_IDS[key]
 
 
-def list_runs(api: Api, repo: str) -> list[dict]:
-    return api.get(
-        f"/repos/{OWNER}/{repo}/actions/runs?event=workflow_dispatch&per_page=100"
-    ).get("workflow_runs", [])
+def list_runs(api: Api, repo: str, since_iso: str | None = None, max_pages: int = 5) -> list[dict]:
+    """Runs de workflow_dispatch do repo, criados a partir de `since_iso` (paginado)."""
+    q = "event=workflow_dispatch&per_page=100"
+    if since_iso:
+        q += "&created=" + urllib.parse.quote(">=" + since_iso)
+    out = []
+    for page in range(1, max_pages + 1):
+        data = api.get(f"/repos/{OWNER}/{repo}/actions/runs?{q}&page={page}")
+        batch = data.get("workflow_runs", [])
+        out.extend(batch)
+        if len(batch) < 100:
+            break
+    return out
 
 
 def dispatch(api: Api, repo: str, workflow_file: str, ref: str) -> None:
@@ -384,13 +414,19 @@ def refresh(api: Api, manifest: dict) -> None:
     watch = [r for r in rows if r.get("dispatched_at_utc")
              and not (r.get("status") == "completed" and "jobs" in r)]
     claimed = {r["run_id"] for r in rows if r.get("run_id")}
+    # runs de tentativas anteriores (--redo) também não podem ser casados de novo
+    claimed |= {h["run_id"] for r in rows for h in r.get("history") or [] if h.get("run_id")}
     for repo in sorted({r["repo"] for r in watch}):
-        listed = list_runs(api, repo)
+        t0 = min(parse_ts(r["dispatch_window_start_utc"]).timestamp() for r in watch
+                 if r["repo"] == repo)
+        since_iso = datetime.fromtimestamp(t0 - 2 * MATCH_SLACK_S, timezone.utc).strftime(
+            "%Y-%m-%dT%H:%M:%SZ")
+        listed = list_runs(api, repo, since_iso)
         by_id = {x["id"]: x for x in listed}
         for r in (r for r in watch if r["repo"] == repo):
             if not r.get("run_id"):
                 wid = workflow_id(api, repo, r["workflow_file"])
-                since = parse_ts(r["dispatch_window_start_utc"]).timestamp() - 2
+                since = parse_ts(r["dispatch_window_start_utc"]).timestamp() - MATCH_SLACK_S
                 hits = sorted(
                     (x for x in listed
                      if x["workflow_id"] == wid and x["head_branch"] == r["ref"]
@@ -415,6 +451,12 @@ def refresh(api: Api, manifest: dict) -> None:
             r["run_attempt"] = run["run_attempt"]
             r["conclusion_at_utc"] = run["updated_at"]
             r["html_url"] = run["html_url"]
+            r["run_head_sha"] = run.get("head_sha")
+            if r.get("sha") and run.get("head_sha") and run["head_sha"] != r["sha"]:
+                if not r.get("sha_mismatch"):
+                    print(f"\n  ! {r['task']}: run {r['run_id']} rodou em {run['head_sha'][:8]}, "
+                          f"esperado {r['sha'][:8]} (branch mudou durante a campanha?)")
+                r["sha_mismatch"] = True
             if run["status"] == "completed" and "jobs" not in r:
                 jobs = api.get(
                     f"/repos/{OWNER}/{repo}/actions/runs/{r['run_id']}/jobs?per_page=100"
@@ -447,7 +489,8 @@ def reset_row(r: dict) -> None:
     })
     for k in ("run_id", "html_url", "status", "conclusion", "run_attempt", "conclusion_at_utc",
               "jobs", "jobs_total", "dispatched_at_utc", "dispatch_window_start_utc",
-              "dispatch_error", "dispatch_failed", "dispatch_attempts"):
+              "dispatch_error", "dispatch_failed", "dispatch_attempts", "run_head_sha",
+              "sha_mismatch", "warmup_missing"):
         r.pop(k, None)
 
 
@@ -621,6 +664,8 @@ def build_report(c: Campaign, manifest: dict, flaky: dict | None,
         ("Canceladas", lambda rs: n(rs, conclusion="cancelled")),
         ("Em andamento", lambda rs: sum(1 for r in rs if r.get("status") in ACTIVE)),
         ("Dispatch falhou / run perdido", lambda rs: sum(1 for r in rs if r.get("dispatch_failed"))),
+        ("SHA do run ≠ SHA do mutante", lambda rs: sum(1 for r in rs if r.get("sha_mismatch"))),
+        ("Rep sem warm-up concluído", lambda rs: sum(1 for r in rs if r.get("warmup_missing"))),
     ]:
         L.append(f"| {label} | {fn([r for r in runs if r['phase'] == 'warmup'])} | "
                  f"{fn([r for r in runs if r['phase'] == 'rep'])} |")
@@ -670,8 +715,10 @@ def build_report(c: Campaign, manifest: dict, flaky: dict | None,
 ANSI = re.compile(r"\x1b\[[0-9;]*m")
 TS = re.compile(r"^\d{4}-\d\d-\d\dT[\d:.]+Z ")
 FAILED = re.compile(r"^(?:FAILED|ERROR) (.+?)(?: - .*)?$")
-SUMMARY = re.compile(r"\d+ (?:failed|passed|errors?).* in [\d.:]+s")
-NO_TESTS = re.compile(r"no tests ran in [\d.:]+s")  # RTS que não selecionou nada
+# Linha final do pytest. Com RTS que deseleciona tudo o pytest imprime
+# "N deselected in Xs" (não "no tests ran"), então deselected/skipped também contam.
+SUMMARY = re.compile(r"\d+ (?:failed|passed|errors?|skipped|deselected|xfailed|xpassed)\b.* in [\d.:]+s")
+NO_TESTS = re.compile(r"no tests ran in [\d.:]+s")
 COUNT = re.compile(r"(\d+) (?:failed|passed|errors?)")
 
 
@@ -684,14 +731,11 @@ def parse_run(c: Campaign, repo: str, run_id: int) -> list[tuple[str, set, int]]
     zpath = c.raw / repo / f"{run_id}.zip"
     if not zpath.exists():
         zpath.parent.mkdir(parents=True, exist_ok=True)
-        res = subprocess.run(
-            ["gh", "api", f"repos/{OWNER}/{repo}/actions/runs/{run_id}/logs"],
-            capture_output=True,
-        )
-        if res.returncode:
+        data = gh_bytes(f"repos/{OWNER}/{repo}/actions/runs/{run_id}/logs")
+        if not data:
             print(f"  ! {repo} run {run_id}: falha ao baixar log")
             return []
-        zpath.write_bytes(res.stdout)
+        zpath.write_bytes(data)
     out = []
     with zipfile.ZipFile(zpath) as z:
         for name in z.namelist():
@@ -846,16 +890,22 @@ def plan_from_args(c: Campaign, args):
     return repo_plan, workflows, mutants, tasks, warmup, warmup_ref, reps
 
 
-def fetch_workflow(api: Api, repo: str, workflow_file: str, ref: str) -> dict:
+def workflow_blob(api: Api, repo: str, workflow_file: str, ref: str) -> dict:
+    return api.get(
+        f"/repos/{OWNER}/{repo}/contents/.github/workflows/"
+        f"{urllib.parse.quote(workflow_file)}?ref={urllib.parse.quote(ref, safe='')}"
+    )
+
+
+def fetch_workflow(api: Api, repo: str, workflow_file: str, ref: str) -> tuple[dict, str]:
+    """(YAML parseado, sha do blob) do workflow em `ref`."""
     try:
         import yaml
     except ImportError:
         sys.exit("verify precisa de PyYAML: pip install pyyaml")
-    d = api.get(
-        f"/repos/{OWNER}/{repo}/contents/.github/workflows/"
-        f"{urllib.parse.quote(workflow_file)}?ref={urllib.parse.quote(ref)}"
-    )
-    return yaml.safe_load(base64.b64decode(d["content"]).decode(errors="replace")) or {}
+    d = workflow_blob(api, repo, workflow_file, ref)
+    doc = yaml.safe_load(base64.b64decode(d["content"]).decode(errors="replace")) or {}
+    return doc, d["sha"]
 
 
 def cmd_verify(api: Api, args) -> int:
@@ -883,7 +933,7 @@ def cmd_verify(api: Api, args) -> int:
         for w, spec in workflows[repo].items():
             key = f"{w} ({spec['file']})"
             try:
-                doc = fetch_workflow(api, repo, spec["file"], base)
+                doc, base_blob = fetch_workflow(api, repo, spec["file"], base)
             except Exception as exc:
                 print(f"  {key:44} FALHOU ao ler em {base}: {str(exc)[:80]}")
                 blockers += 1
@@ -918,6 +968,22 @@ def cmd_verify(api: Api, args) -> int:
             if uses_cache and not spec.get("warmup"):
                 notes.append("usa actions/cache mas sem warm-up no plano")
                 warns += 1
+            # O dispatch roda o workflow da branch do mutante, não o da default:
+            # se a mut-* foi criada antes de um ajuste no workflow, ela roda o antigo.
+            if not args.skip_branch_check:
+                diff_br = []
+                for m in (meta.get("mutants") or {}).values():
+                    if not m.get("published"):
+                        continue
+                    try:
+                        if workflow_blob(api, repo, spec["file"], m["branch"])["sha"] != base_blob:
+                            diff_br.append(m["branch"])
+                    except Exception:
+                        diff_br.append(m["branch"] + " (ausente)")
+                if diff_br:
+                    notes.append(f"workflow DIFERENTE da {base} em {len(diff_br)} branch(es): "
+                                 + ", ".join(diff_br[:3]) + (" ..." if len(diff_br) > 3 else ""))
+                    warns += 1
             print(f"  {key:44} {'ok' if not notes else '; '.join(notes)}"
                   f"  [concurrency={group[:40] or '-'} cache={'sim' if uses_cache else 'não'}]")
         weak = [w for w, g in groups.items() if g and "github.workflow" not in g and "github.ref" in g]
@@ -1001,7 +1067,6 @@ def cmd_run(api: Api, args) -> int:
         while True:
             refresh(api, manifest)
             active = sum(1 for r in rows.values() if r.get("dispatched_at_utc") and not is_done(r))
-            sent = 0
             for t in sel:
                 r = rows[t["task"]]
                 if r.get("dispatched_at_utc") or r.get("dispatch_failed"):
@@ -1010,13 +1075,16 @@ def cmd_run(api: Api, args) -> int:
                     continue
                 if active >= args.max_active:
                     break
+                bad_dep = [d for d in t["deps"] if rows[d]["phase"] == "warmup"
+                           and (rows[d].get("dispatch_failed") or rows[d].get("conclusion") == "cancelled")]
+                if bad_dep:
+                    r["warmup_missing"] = True  # cache do QTF/RecentFail não foi populado
                 r["dispatch_window_start_utc"] = now()
                 try:
                     dispatch(api, t["repo"], t["workflow_file"], t["ref"])
                     r["dispatched_at_utc"] = now()
                     r.pop("dispatch_error", None)
                     active += 1
-                    sent += 1
                     print(f"  {t['repo']:18} {(t['mutant'] or t['ref']):24} {t['workflow']:18} "
                           f"{'warm-up' if t['phase'] == 'warmup' else 'r%02d' % t['rep']}")
                 except Exception as exc:
@@ -1118,7 +1186,10 @@ def main(campaign: str = "flaky") -> None:
     common.add_argument("--reps", type=int, help=f"repetições medidas (padrão {c.reps})")
     sub = parser.add_subparsers(dest="cmd", required=True)
 
-    sub.add_parser("verify", parents=[common], help="confere dispatch/push/concurrency/cache").set_defaults(func=cmd_verify)
+    p = sub.add_parser("verify", parents=[common], help="confere dispatch/push/concurrency/cache")
+    p.add_argument("--skip-branch-check", action="store_true",
+                   help="não compara o workflow de cada branch mut-* com o da default (economiza API)")
+    p.set_defaults(func=cmd_verify)
 
     p = sub.add_parser("run", parents=[common], help="dispara e espera (lanes sequenciais)")
     p.add_argument("--phase", choices=["all", "warmup", "rep"], default="all",
