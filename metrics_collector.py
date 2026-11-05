@@ -4,10 +4,14 @@ e gera as tabelas (linhas = repos, colunas = modos).
 
 Métricas (uma linha por "leg" = job de teste de um run):
   tsr_s       duração do step de teste (API de jobs, steps[])
+  suite_s     tempo de execução da suíte: o "in Xs" da última linha final do pytest no log do
+              job (sessão principal; sem instalação/tox/coverage que o step também mede)
   job_s       duração do job inteiro (setup + testes + post). É o "tempo do workflow" por modo;
               wf_s guarda o tempo do run (1º job iniciado -> último concluído)
   rts_s/rtp_s tempos impressos no resumo do plugin (regex configurável, ver `probe`)
-  ttff_s      time to first fault: custo acumulado (s) até a 1ª falta esperada, na ordem executada
+  ttff_s      time to first fault: RTS + RTP + (fim da 1ª falta esperada detectada - início do
+              1º teste executado), pelos timestamps `start`/`stop` do report-log; vale também
+              com xdist (-n). Nos modos sem RTS/RTP essas parcelas são 0.
   detected / hidden (+ _pct)   faltas esperadas que o modo pegou / deixou escapar
   apfdc       APFDc (Elbaum et al.), 1 falta = 1 teste. Falta oculta contribui 0 e conta no m;
               nos modos com seleção (RTS) o n é só o conjunto selecionado, então o APFDc de
@@ -16,6 +20,10 @@ Métricas (uma linha por "leg" = job de teste de um run):
 "Falta esperada" = teste que falha em TODAS as repetições do baseline do mutante (>= 2).
 "Flaky" = falha em algumas repetições do baseline e passa em outras: fora das faltas, mas
 fica no custo/ordem. Falha que só aparece em modo de plugin vai para `plugin_only`.
+Controle: se a campanha rodou a branch default como o mutante `control`
+(`flaky_runner.py run --control`), todo teste que falhou nela (em qualquer modo) é
+ambiente/pré-existente e sai das faltas e do flaky de todos os mutantes do repo; as
+linhas do controle não entram em runs.csv.
 
 Uso:
   python metrics_collector.py probe     --campaign experiment --repo ipython
@@ -30,6 +38,7 @@ import argparse
 import collections
 import csv
 import json
+import os
 import re
 import statistics
 import subprocess
@@ -44,12 +53,23 @@ from flaky_runner import Api, OWNER, TOKEN, Campaign, load_manifest, parse_ts, s
 WF_ORDER = ["baseline", "ranking", "regsmart", "regsmart-no-rank"]
 ART_PREFIX = "reportlog-"
 DEFAULT_TEST_STEP = r"(?i)^(run .*(test|pytest)|test\b)"
-# Chute: ajuste ao formato real do resumo do plugin (use `probe` pra ver as linhas).
-DEFAULT_RTS = r"(?i)\bRTS\b[^\n\d]*(?P<v>\d+(?:\.\d+)?)\s*(?P<u>ms|s)\b"
-DEFAULT_RTP = r"(?i)\bRTP\b[^\n\d]*(?P<v>\d+(?:\.\d+)?)\s*(?P<u>ms|s)\b"
+# Formato real dos resumos (confira com `probe` se os plugins mudarem):
+#   regsmart:  "Time to run the regression test selection (s): 1234.56 ms (1.23456 s)"
+#              "Time to run the file-level regression test selection (s): ..."   (fallback)
+#              "Time to run the regression test prioritization (s): ..."
+#   pytest-ranking: "Time to reorder tests (s): 0.0123"  (sem unidade; pode vir em notação 1e-05)
+#              + "Time to compute test-change similarity (s)" e "Time to collect test features (s)"
+# Grupo `k` = chave (soma-se a última ocorrência de cada chave); `v` = valor; `u` = unidade.
+_NUM = r"[\d.]+(?:[eE][-+]?\d+)?"
+DEFAULT_RTS = (r"(?P<k>Time to run the (?:file-level )?regression test selection) \(s\): "
+               rf"{_NUM} ms \((?P<v>{_NUM}) (?P<u>s)\)")
+DEFAULT_RTP = (r"(?P<k>Time to run the regression test prioritization) \(s\): "
+               rf"{_NUM} ms \((?P<v>{_NUM}) (?P<u>s)\)"
+               r"|(?P<k2>Time to (?:reorder tests|compute test-change similarity|collect test features))"
+               rf" \(s\): (?P<v2>{_NUM})\s*$")
 
 ID_FIELDS = ["repo", "mutant", "workflow", "mode", "rep", "phase", "run_id", "job_id", "conclusion"]
-VALUE_FIELDS = ["tsr_s", "job_s", "wf_s", "rts_s", "rtp_s", "n_tests", "n_failed", "faults", "flaky",
+VALUE_FIELDS = ["tsr_s", "suite_s", "job_s", "wf_s", "rts_s", "rtp_s", "n_tests", "n_failed", "faults", "flaky",
                 "detected", "hidden", "hidden_not_selected", "detected_pct", "hidden_pct",
                 "ttff_s", "ttff_pos", "apfdc", "plugin_only", "internalerror", "has_reportlog"]
 FIELDS = ID_FIELDS + VALUE_FIELDS
@@ -59,6 +79,7 @@ FAULT_METRICS = ("detected", "hidden", "hidden_not_selected", "detected_pct", "h
 # (campo, título, casas decimais)
 METRICS = [
     ("tsr_s", "TSR time (s)", 2),
+    ("suite_s", "Tempo de execução da suíte (s)", 2),
     ("rts_s", "RTS time (s)", 3),
     ("rtp_s", "RTP time (s)", 3),
     ("ttff_s", "Time to first fault (s)", 2),
@@ -69,7 +90,12 @@ METRICS = [
     ("apfdc", "APFDc", 3),
     ("job_s", "Tempo do workflow por modo (s)", 1),
 ]
-RATIO_METRICS = {"tsr_s", "job_s", "ttff_s"}
+RATIO_METRICS = {"tsr_s", "suite_s", "job_s", "ttff_s"}
+CONTROL = "control"  # mutante de controle do flaky_runner (`run --control`)
+# Linha final de uma sessão do pytest, ancorada (não casa com texto citado em mensagens).
+FINAL_LINE = re.compile(r"^(?:=+ )?(?:\d+ (?:failed|passed|errors?|skipped|deselected|xfailed|"
+                        r"xpassed|warnings?|rerun)\b.*|no tests ran) in (?P<s>[\d.]+)s"
+                        r"(?: \(\d+:\d\d:\d\d\))?(?: =+)?$")
 
 
 def mdir(c: Campaign) -> Path:
@@ -85,7 +111,11 @@ def norm(s: str) -> str:
 
 
 def gh_bytes(path: str):
-    res = subprocess.run(["gh", "api", path], capture_output=True)
+    """`gh api` com o TOKEN do script: o gh não lê GITHUB_TOKEN_REGSMART."""
+    env = dict(os.environ)
+    if TOKEN:
+        env["GH_TOKEN"] = TOKEN
+    res = subprocess.run(["gh", "api", path], capture_output=True, env=env)
     return res.stdout if res.returncode == 0 else None
 
 
@@ -108,8 +138,10 @@ def cached_json(path: Path, fetch):
 # ---------------------------------------------------------------- parsing
 
 def read_reportlog(raw: bytes):
-    """pytest-reportlog (jsonl) -> (ordem dos nodeids, duração por teste, nodeids que falharam)."""
+    """pytest-reportlog (jsonl) -> (ordem dos nodeids, duração por teste, nodeids que falharam,
+    tempos). tempos = {"first_start": menor `start`, "fail_stop": {nodeid: `stop` da 1ª falha}}."""
     order, dur, failed, seen = [], {}, set(), set()
+    first_start, fail_stop = None, {}
     for line in raw.decode("utf-8", "replace").splitlines():
         if not line.startswith("{"):
             continue
@@ -124,11 +156,22 @@ def read_reportlog(raw: bytes):
                 seen.add(nid)
                 order.append(nid)
             dur[nid] = dur.get(nid, 0.0) + float(o.get("duration") or 0)
+            start, stop = o.get("start"), o.get("stop")
+            # `start`/`stop` vêm de time.time(): testes que congelam o relógio (time-machine,
+            # freezegun, no apscheduler) geram valores falsos. Só vale o par coerente com a
+            # `duration`, que vem de um relógio monotônico.
+            d = float(o.get("duration") or 0)
+            if start is None or stop is None or abs((stop - start) - d) > max(1.0, 0.1 * d):
+                start = stop = None
+            if start is not None and (first_start is None or start < first_start):
+                first_start = start
             if o.get("outcome") == "failed":  # setup/call/teardown
                 failed.add(nid)
+                if stop is not None and (nid not in fail_stop or stop < fail_stop[nid]):
+                    fail_stop[nid] = stop
         elif kind == "CollectReport" and o.get("outcome") == "failed":
             failed.add(o.get("nodeid") or "<collect>")
-    return order, dur, failed
+    return order, dur, failed, {"first_start": first_start, "fail_stop": fail_stop}
 
 
 def read_artifact(path):
@@ -150,18 +193,46 @@ def job_log(zlog, job_name: str) -> str:
     return ""
 
 
-def plugin_time(text: str, rx: re.Pattern):
+def suite_time(text: str):
+    """Tempo da sessão principal do pytest (s): o "in Xs" da última linha final do log.
+
+    A última, porque testes que rodam um pytest filho imprimem as linhas finais do filho
+    antes, no meio das falhas."""
     last = None
-    for m in rx.finditer(text):
-        last = m
-    if not last:
-        return None
-    v = float(last.group("v"))
-    return v / 1000 if (last.groupdict().get("u") or "s").lower() == "ms" else v
+    for line in text.splitlines():
+        line = re.sub(r"^\S+Z ", "", re.sub(r"\x1b\[[0-9;]*m", "", line)).strip()
+        m = FINAL_LINE.match(line)
+        if m:
+            last = float(m.group("s"))
+    return last
 
 
-def leg_metrics(order, dur, failed, faults) -> dict:
-    """Métricas de uma execução dado o conjunto de faltas esperadas do mutante."""
+def plugin_time(text: str, rx: re.Pattern):
+    """Soma dos tempos do plugin (s): última ocorrência de cada chave.
+
+    RTS do regsmart = seleção por função + seleção por arquivo (quando há fallback);
+    RTP do pytest-ranking = similaridade + coleta de features + reordenação.
+    Sem grupo `k`, vale só a última ocorrência (regex antigo passado por --rts-re).
+    """
+    by_key = {}
+    for line in text.splitlines():
+        line = re.sub(r"^\S+Z ", "", line).rstrip()
+        for m in rx.finditer(line):
+            g = {k: v for k, v in m.groupdict().items() if v is not None}
+            key = g.get("k") or g.get("k2") or "_"
+            v = g.get("v") or g.get("v2")
+            if v is None:
+                continue
+            v = float(v)
+            by_key[key] = v / 1000 if (g.get("u") or "s").lower() == "ms" else v
+    return sum(by_key.values()) if by_key else None
+
+
+def leg_metrics(order, dur, failed, faults, times=None, overhead=0.0) -> dict:
+    """Métricas de uma execução dado o conjunto de faltas esperadas do mutante.
+
+    overhead = RTS + RTP da execução (s), somado ao TTFF; None = tempo do plugin esperado
+    mas não encontrado no log, e aí o TTFF fica vazio."""
     out = {"n_tests": len(order), "n_failed": len(failed)}
     if not faults:  # mutante sem falta esperada: só as métricas de tempo valem
         return {**out, **{k: None for k in FAULT_METRICS}}
@@ -180,11 +251,21 @@ def leg_metrics(order, dur, failed, faults) -> dict:
         detected=len(detected), hidden=len(missed),
         hidden_not_selected=sum(1 for f in missed if f not in pos),
         detected_pct=100 * len(detected) / m, hidden_pct=100 * len(missed) / m,
-        ttff_s=sum(cost[:positions[0] + 1]) if positions else None,
+        ttff_s=ttff(times, detected, overhead),
         ttff_pos=positions[0] + 1 if positions else None,
         apfdc=num / (total * m) if total > 0 else None,
     )
     return out
+
+
+def ttff(times, detected, overhead):
+    """RTS + RTP + (fim da 1ª falta detectada - início do 1º teste), em segundos."""
+    if not times or overhead is None or times.get("first_start") is None:
+        return None
+    stops = [times["fail_stop"][f] for f in detected if f in times["fail_stop"]]
+    if not stops:
+        return None
+    return overhead + (min(stops) - times["first_start"])
 
 
 # ---------------------------------------------------------------- coleta
@@ -214,26 +295,28 @@ def build_legs(api: Api, c: Campaign, r: dict, step_rx: re.Pattern) -> list[dict
         step = next((s for s in j.get("steps") or [] if step_rx.search(s["name"])), None)
         if step is not None:  # job sem step de teste (lint, etc.) fica de fora
             cands.append((j, step))
-    # Workflow de uma perna só (baseline, no-rank): não depende do nome do job nem do artifact.
-    single = len(cands) == 1 and len(by_label) == 1
+    # O nome do modo (workflow ou workflow:label) é decidido depois, em cmd_collect,
+    # olhando todas as execuções do workflow: se uma perna for cancelada ou perder o
+    # artifact num run, o modo não muda de nome só naquele run.
     legs, seen = [], set()
     for j, step in cands:
         m = re.search(r"\((.*)\)\s*$", j["name"])
-        label = "main" if single else (m.group(1) if m else "main")
+        label = m.group(1) if m else "main"
         if label in seen:
             print(f"\n  ! {r['repo']} run {r['run_id']}: dois jobs com label '{label}', ignorando o 2º")
             continue
         seen.add(label)
         leg = {
             "repo": r["repo"], "mutant": r["mutant"], "workflow": r["workflow"],
-            "mode": r["workflow"] if label == "main" else f"{r['workflow']}:{label}",
+            "label": label,
             "rep": r["rep"], "phase": r["phase"], "run_id": r["run_id"], "job_id": j["id"],
             "conclusion": j["conclusion"], "job_name": j["name"],
             "tsr_s": secs(step.get("started_at"), step.get("completed_at")),
             "job_s": secs(j.get("started_at"), j.get("completed_at")),
             "wf_s": wf_s, "zlog": str(zlog) if zlog.exists() else None, "reportlog": None,
         }
-        art = next(iter(by_label.values())) if single else by_label.get(label)
+        art = by_label.get(label) or (next(iter(by_label.values())) if len(by_label) == 1
+                                      and len(cands) == 1 else None)
         if art:
             p = d / (ART_PREFIX + re.sub(r"[^\w.-]+", "_", label) + ".zip")
             if not p.exists():
@@ -266,6 +349,12 @@ def cmd_collect(args) -> int:
         legs += build_legs(api, c, r, step_rx)
         print(f"  {i}/{len(runs)} runs, {len(legs)} legs", end="\r")
     print()
+    labels = collections.defaultdict(set)
+    for leg in legs:
+        labels[(leg["repo"], leg["workflow"])].add(leg["label"])
+    for leg in legs:
+        one = len(labels[(leg["repo"], leg["workflow"])]) == 1
+        leg["mode"] = leg["workflow"] if one else f"{leg['workflow']}:{leg['label']}"
 
     # Passo 1: faltas esperadas e flaky de cada mutante, a partir do baseline.
     base_failed = collections.defaultdict(list)
@@ -274,11 +363,20 @@ def cmd_collect(args) -> int:
             data = read_artifact(leg["reportlog"])
             if data:
                 base_failed[(leg["repo"], leg["mutant"])].append(data[2])
+    # Controle: o que falha na branch default (qualquer modo) é ambiente, não falta.
+    env = collections.defaultdict(set)
+    for leg in legs:
+        if leg["mutant"] == CONTROL:
+            data = read_artifact(leg["reportlog"])
+            if data:
+                env[leg["repo"]] |= data[2]
     truth = {}
     for key, sets in base_failed.items():
+        if key[1] == CONTROL:
+            continue
         if len(sets) >= 2:
-            faults = set.intersection(*sets)
-            truth[key] = (faults, set.union(*sets) - faults)
+            faults = set.intersection(*sets) - env[key[0]]
+            truth[key] = (faults, set.union(*sets) - faults - env[key[0]])
     skipped = sorted(k for k in base_failed if k not in truth)
     if skipped:
         print(f"  ! {len(skipped)} mutante(s) com < 2 repetições de baseline com report-log: sem métricas de falta")
@@ -286,10 +384,12 @@ def cmd_collect(args) -> int:
     # Passo 2: métricas por leg.
     rows, miss = [], collections.Counter()
     for leg in legs:
+        if leg["mutant"] == CONTROL:
+            continue
         text = job_log(leg["zlog"], leg["job_name"])
         data = read_artifact(leg["reportlog"])
         row = {k: leg[k] for k in ID_FIELDS}
-        row.update(tsr_s=leg["tsr_s"], job_s=leg["job_s"], wf_s=leg["wf_s"],
+        row.update(tsr_s=leg["tsr_s"], suite_s=suite_time(text), job_s=leg["job_s"], wf_s=leg["wf_s"],
                    internalerror=int("INTERNALERROR" in text), has_reportlog=int(data is not None))
         if leg["workflow"].startswith("regsmart"):
             row["rts_s"] = plugin_time(text, rts_rx)
@@ -301,10 +401,14 @@ def cmd_collect(args) -> int:
             miss["tsr"] += 1
         t = truth.get((leg["repo"], leg["mutant"]))
         if data:
-            order, dur, failed = data
+            order, dur, failed, times = data
             if t:
-                row.update(leg_metrics(order, dur, failed, t[0]))
-                row.update(faults=len(t[0]), flaky=len(t[1]), plugin_only=len(failed - t[0] - t[1]))
+                parts = [row.get("rts_s") if leg["workflow"].startswith("regsmart") else 0.0,
+                         row.get("rtp_s") if leg["workflow"] in ("ranking", "regsmart") else 0.0]
+                overhead = None if None in parts else sum(parts)
+                row.update(leg_metrics(order, dur, failed, t[0], times, overhead))
+                row.update(faults=len(t[0]), flaky=len(t[1]),
+                           plugin_only=len(failed - t[0] - t[1] - env[leg["repo"]]))
             else:
                 row.update(n_tests=len(order), n_failed=len(failed))
         else:
@@ -320,6 +424,8 @@ def cmd_collect(args) -> int:
     tj: dict = {}
     for (repo, mut), (faults, flaky) in sorted(truth.items()):
         tj.setdefault(repo, {})[mut] = {"faults": sorted(faults), "flaky": sorted(flaky)}
+    for repo, tests in sorted(env.items()):
+        tj.setdefault(repo, {})["_" + CONTROL] = {"ambiente": sorted(tests)}
     save_json(out / "faults.json", tj)
     print(f"\n{len(rows)} legs -> {out / 'runs.csv'}; faltas/flaky por mutante -> {out / 'faults.json'}")
     print(f"campos ausentes: {dict(miss)} (rts/rtp ausentes = regex não casou; confira com `probe`; "
@@ -491,7 +597,9 @@ def main() -> None:
     common = argparse.ArgumentParser(add_help=False)
     common.add_argument("--campaign", choices=["flaky", "experiment"], default="experiment")
     common.add_argument("--repo", action="append", help="restringe a um repo (repetível)")
-    common.add_argument("--exclude-warmup", action="store_true")
+    common.add_argument("--exclude-warmup", action=argparse.BooleanOptionalAction, default=True,
+                        help="ignora os runs de warm-up (padrão; cache frio distorce TSR/APFDc). "
+                             "--no-exclude-warmup inclui")
     sub = p.add_subparsers(dest="cmd", required=True)
 
     s = sub.add_parser("collect", parents=[common], help="baixa e calcula as métricas por leg")
