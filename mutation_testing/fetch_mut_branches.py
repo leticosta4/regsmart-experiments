@@ -11,10 +11,12 @@ Pra cada repo:
   - branch do registro existe com outro SHA -> atualiza head_sha, guarda o
     original em `original_head_sha` e marca `altered: true`;
   - branch do registro não existe mais -> `published: false`;
-  - branch mut-<repo>-m* no remoto que não está no registro -> entra como
+  - branch mut-<repo>-* no remoto (qualquer sufixo, ex.: mut-trimesh-extra)
+    que não está no registro -> entra como
     `altered: true` (chave = nome sem o prefixo `mut-`);
   - PR (head = a branch) com a label ALT-mutante-alterada -> `altered: true`
     e guarda a url em `pr`;
+  - mutante published cuja branch não tem PR aberto -> só um aviso;
   - head_sha diferente do registro: se a branch só AVANÇOU (o commit antigo
     continua no histórico, ex.: `git merge main` feito pelo sync_regsmart.py),
     só atualiza o head_sha; se foi REESCRITA, marca `altered: true`;
@@ -58,17 +60,29 @@ def paged(api: Api, path: str) -> list:
 
 
 def remote_mutants(api: Api, repo: str) -> dict[str, str]:
-    refs = paged(api, f"/repos/{OWNER}/{repo}/git/matching-refs/heads/{PREFIX}{repo}-m")
+    """{branch: sha} das branches mut-<repo>-<qualquer sufixo> do fork.
+
+    O sufixo não precisa ser `m<n>`: mutantes criados à mão (ex.: `mut-trimesh-extra`)
+    também entram."""
+    refs = paged(api, f"/repos/{OWNER}/{repo}/git/matching-refs/heads/{PREFIX}{repo}-")
     return {x["ref"].removeprefix("refs/heads/"): x["object"]["sha"] for x in refs}
 
 
-def labeled_prs(api: Api, repo: str, label: str) -> dict[str, str]:
+def all_prs(api: Api, repo: str) -> list[dict]:
+    return paged(api, f"/repos/{OWNER}/{repo}/pulls?state=all")
+
+
+def labeled_prs(api: Api, repo: str, label: str, prs: list[dict] | None = None) -> dict[str, str]:
     """{branch head: url} dos PRs (qualquer estado) que têm a label."""
     out = {}
-    for pr in paged(api, f"/repos/{OWNER}/{repo}/pulls?state=all"):
+    for pr in prs if prs is not None else all_prs(api, repo):
         if any(l["name"] == label for l in pr.get("labels", [])):
             out[pr["head"]["ref"]] = pr["html_url"]
     return out
+
+
+def open_pr_heads(prs: list[dict]) -> set[str]:
+    return {pr["head"]["ref"] for pr in prs if pr.get("state") == "open"}
 
 
 def descends_from(api: Api, repo: str, old: str | None, new: str) -> bool:
@@ -90,7 +104,9 @@ def sync_repo(api: Api, repo: str, meta: dict, label: str) -> list[str]:
     meta["base_branch"] = base
     mutants = meta.setdefault("mutants", {})
     remote = remote_mutants(api, repo)
-    prs = labeled_prs(api, repo, label)
+    pulls = all_prs(api, repo)
+    prs = labeled_prs(api, repo, label, pulls)
+    open_heads = open_pr_heads(pulls)
     by_branch = {m["branch"]: k for k, m in mutants.items()}
     notes = []
 
@@ -133,6 +149,9 @@ def sync_repo(api: Api, repo: str, meta: dict, label: str) -> list[str]:
     for key, m in sorted(mutants.items()):  # defasagem em relação à base atual
         if not m.get("published"):
             continue
+        if m["branch"] not in open_heads:  # só avisa: published continua como está
+            notes.append(f"{key}: branch sem PR aberto (PR fechado/inexistente), mas continua "
+                         f"published e entra no flaky_runner/experimento")
         cmp_ = api.get(f"/repos/{OWNER}/{repo}/compare/"
                        f"{urllib.parse.quote(base, safe='')}...{m['head_sha']}")
         m["ahead_base"], m["behind_base"] = cmp_["ahead_by"], cmp_["behind_by"]
