@@ -30,6 +30,7 @@ import argparse
 import collections
 import csv
 import json
+import os
 import re
 import statistics
 import subprocess
@@ -44,9 +45,20 @@ from flaky_runner import Api, OWNER, TOKEN, Campaign, load_manifest, parse_ts, s
 WF_ORDER = ["baseline", "ranking", "regsmart", "regsmart-no-rank"]
 ART_PREFIX = "reportlog-"
 DEFAULT_TEST_STEP = r"(?i)^(run .*(test|pytest)|test\b)"
-# Chute: ajuste ao formato real do resumo do plugin (use `probe` pra ver as linhas).
-DEFAULT_RTS = r"(?i)\bRTS\b[^\n\d]*(?P<v>\d+(?:\.\d+)?)\s*(?P<u>ms|s)\b"
-DEFAULT_RTP = r"(?i)\bRTP\b[^\n\d]*(?P<v>\d+(?:\.\d+)?)\s*(?P<u>ms|s)\b"
+# Formato real dos resumos (confira com `probe` se os plugins mudarem):
+#   regsmart:  "Time to run the regression test selection (s): 1234.56 ms (1.23456 s)"
+#              "Time to run the file-level regression test selection (s): ..."   (fallback)
+#              "Time to run the regression test prioritization (s): ..."
+#   pytest-ranking: "Time to reorder tests (s): 0.0123"  (sem unidade; pode vir em notação 1e-05)
+#              + "Time to compute test-change similarity (s)" e "Time to collect test features (s)"
+# Grupo `k` = chave (soma-se a última ocorrência de cada chave); `v` = valor; `u` = unidade.
+_NUM = r"[\d.]+(?:[eE][-+]?\d+)?"
+DEFAULT_RTS = (r"(?P<k>Time to run the (?:file-level )?regression test selection) \(s\): "
+               rf"{_NUM} ms \((?P<v>{_NUM}) (?P<u>s)\)")
+DEFAULT_RTP = (r"(?P<k>Time to run the regression test prioritization) \(s\): "
+               rf"{_NUM} ms \((?P<v>{_NUM}) (?P<u>s)\)"
+               r"|(?P<k2>Time to (?:reorder tests|compute test-change similarity|collect test features))"
+               rf" \(s\): (?P<v2>{_NUM})\s*$")
 
 ID_FIELDS = ["repo", "mutant", "workflow", "mode", "rep", "phase", "run_id", "job_id", "conclusion"]
 VALUE_FIELDS = ["tsr_s", "job_s", "wf_s", "rts_s", "rtp_s", "n_tests", "n_failed", "faults", "flaky",
@@ -85,7 +97,11 @@ def norm(s: str) -> str:
 
 
 def gh_bytes(path: str):
-    res = subprocess.run(["gh", "api", path], capture_output=True)
+    """`gh api` com o TOKEN do script: o gh não lê GITHUB_TOKEN_REGSMART."""
+    env = dict(os.environ)
+    if TOKEN:
+        env["GH_TOKEN"] = TOKEN
+    res = subprocess.run(["gh", "api", path], capture_output=True, env=env)
     return res.stdout if res.returncode == 0 else None
 
 
@@ -151,13 +167,24 @@ def job_log(zlog, job_name: str) -> str:
 
 
 def plugin_time(text: str, rx: re.Pattern):
-    last = None
-    for m in rx.finditer(text):
-        last = m
-    if not last:
-        return None
-    v = float(last.group("v"))
-    return v / 1000 if (last.groupdict().get("u") or "s").lower() == "ms" else v
+    """Soma dos tempos do plugin (s): última ocorrência de cada chave.
+
+    RTS do regsmart = seleção por função + seleção por arquivo (quando há fallback);
+    RTP do pytest-ranking = similaridade + coleta de features + reordenação.
+    Sem grupo `k`, vale só a última ocorrência (regex antigo passado por --rts-re).
+    """
+    by_key = {}
+    for line in text.splitlines():
+        line = re.sub(r"^\S+Z ", "", line).rstrip()
+        for m in rx.finditer(line):
+            g = {k: v for k, v in m.groupdict().items() if v is not None}
+            key = g.get("k") or g.get("k2") or "_"
+            v = g.get("v") or g.get("v2")
+            if v is None:
+                continue
+            v = float(v)
+            by_key[key] = v / 1000 if (g.get("u") or "s").lower() == "ms" else v
+    return sum(by_key.values()) if by_key else None
 
 
 def leg_metrics(order, dur, failed, faults) -> dict:
@@ -214,26 +241,28 @@ def build_legs(api: Api, c: Campaign, r: dict, step_rx: re.Pattern) -> list[dict
         step = next((s for s in j.get("steps") or [] if step_rx.search(s["name"])), None)
         if step is not None:  # job sem step de teste (lint, etc.) fica de fora
             cands.append((j, step))
-    # Workflow de uma perna só (baseline, no-rank): não depende do nome do job nem do artifact.
-    single = len(cands) == 1 and len(by_label) == 1
+    # O nome do modo (workflow ou workflow:label) é decidido depois, em cmd_collect,
+    # olhando todas as execuções do workflow: se uma perna for cancelada ou perder o
+    # artifact num run, o modo não muda de nome só naquele run.
     legs, seen = [], set()
     for j, step in cands:
         m = re.search(r"\((.*)\)\s*$", j["name"])
-        label = "main" if single else (m.group(1) if m else "main")
+        label = m.group(1) if m else "main"
         if label in seen:
             print(f"\n  ! {r['repo']} run {r['run_id']}: dois jobs com label '{label}', ignorando o 2º")
             continue
         seen.add(label)
         leg = {
             "repo": r["repo"], "mutant": r["mutant"], "workflow": r["workflow"],
-            "mode": r["workflow"] if label == "main" else f"{r['workflow']}:{label}",
+            "label": label,
             "rep": r["rep"], "phase": r["phase"], "run_id": r["run_id"], "job_id": j["id"],
             "conclusion": j["conclusion"], "job_name": j["name"],
             "tsr_s": secs(step.get("started_at"), step.get("completed_at")),
             "job_s": secs(j.get("started_at"), j.get("completed_at")),
             "wf_s": wf_s, "zlog": str(zlog) if zlog.exists() else None, "reportlog": None,
         }
-        art = next(iter(by_label.values())) if single else by_label.get(label)
+        art = by_label.get(label) or (next(iter(by_label.values())) if len(by_label) == 1
+                                      and len(cands) == 1 else None)
         if art:
             p = d / (ART_PREFIX + re.sub(r"[^\w.-]+", "_", label) + ".zip")
             if not p.exists():
@@ -266,6 +295,12 @@ def cmd_collect(args) -> int:
         legs += build_legs(api, c, r, step_rx)
         print(f"  {i}/{len(runs)} runs, {len(legs)} legs", end="\r")
     print()
+    labels = collections.defaultdict(set)
+    for leg in legs:
+        labels[(leg["repo"], leg["workflow"])].add(leg["label"])
+    for leg in legs:
+        one = len(labels[(leg["repo"], leg["workflow"])]) == 1
+        leg["mode"] = leg["workflow"] if one else f"{leg['workflow']}:{leg['label']}"
 
     # Passo 1: faltas esperadas e flaky de cada mutante, a partir do baseline.
     base_failed = collections.defaultdict(list)
@@ -491,7 +526,9 @@ def main() -> None:
     common = argparse.ArgumentParser(add_help=False)
     common.add_argument("--campaign", choices=["flaky", "experiment"], default="experiment")
     common.add_argument("--repo", action="append", help="restringe a um repo (repetível)")
-    common.add_argument("--exclude-warmup", action="store_true")
+    common.add_argument("--exclude-warmup", action=argparse.BooleanOptionalAction, default=True,
+                        help="ignora os runs de warm-up (padrão; cache frio distorce TSR/APFDc). "
+                             "--no-exclude-warmup inclui")
     sub = p.add_subparsers(dest="cmd", required=True)
 
     s = sub.add_parser("collect", parents=[common], help="baixa e calcula as métricas por leg")
