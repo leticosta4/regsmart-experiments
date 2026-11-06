@@ -499,9 +499,14 @@ def cmd_collect(args) -> int:
         if len(sets) >= 2:
             faults = set.intersection(*sets) - env[key[0]]
             truth[key] = (faults, set.union(*sets) - faults - env[key[0]])
-    skipped = sorted(k for k in base_failed if k not in truth)
-    if skipped:
-        print(f"  ! {len(skipped)} mutante(s) com < 2 repetições de baseline com report-log: sem métricas de falta")
+    # o controle nunca entra em `truth` (não tem faltas próprias): não é mutante pulado
+    skipped = sorted(k for k in base_failed if k not in truth and k[1] != CONTROL)
+    no_base = sorted({(leg["repo"], leg["mutant"]) for leg in legs if leg["mutant"] != CONTROL}
+                     - set(base_failed))
+    if skipped or no_base:
+        names = ", ".join(f"{r}/{m}" for r, m in skipped + no_base)
+        print(f"  ! {len(skipped) + len(no_base)} mutante(s) com < 2 repetições de baseline com "
+              f"report-log: sem métricas de falta ({names})")
 
     # Passo 2: métricas por leg.
     rows, miss = [], collections.Counter()
