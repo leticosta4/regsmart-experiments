@@ -1,4 +1,6 @@
 repo,baseline,ranking:rkn_hybrid,ranking:rkn_qtf,ranking:rkn_recentfail,ranking:rkn_simchgpath,regsmart:rgsm_hybrid,regsmart:rgsm_qtf,regsmart:rgsm_recentfail,regsmart-no-rank
 apscheduler,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0
+dask,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0
+ipython,100.0,100.0,92.1,100.0,100.0,94.7,86.8,94.7,94.7
 librosa,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0
-Média entre repos,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0,100.0
+Média entre repos,100.0,100.0,98.0,100.0,100.0,98.7,96.7,98.7,98.7

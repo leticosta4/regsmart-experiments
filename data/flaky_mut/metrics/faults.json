@@ -575,6 +575,217 @@
       "ambiente": []
     }
   },
+  "dask": {
+    "dask-m11282": {
+      "faults": [
+        "dask/array/tests/test_overlap.py::test_sliding_window_view[shape0-chunks0-window_shape0-axis0]",
+        "dask/array/tests/test_overlap.py::test_sliding_window_view[shape1-5-window_shape1-axis1]",
+        "dask/array/tests/test_overlap.py::test_sliding_window_view[shape2-3-window_shape2-axis2]",
+        "dask/array/tests/test_overlap.py::test_sliding_window_view[shape3-3-3-0]",
+        "dask/array/tests/test_overlap.py::test_sliding_window_view[shape4-3-3--1]",
+        "dask/array/tests/test_overlap.py::test_sliding_window_view[shape5-3-3-None]",
+        "dask/array/tests/test_overlap.py::test_sliding_window_view[shape6-3-window_shape6-None]",
+        "dask/array/tests/test_overlap.py::test_sliding_window_view[shape7-3-window_shape7-axis7]",
+        "dask/array/tests/test_overlap.py::test_sliding_window_view[shape8-3-window_shape8-axis8]",
+        "dask/array/tests/test_overlap.py::test_sliding_window_view[shape9-3-window_shape9-axis9]",
+        "dask/array/tests/test_overlap.py::test_sliding_window_view_chunking[output_chunks0-5-0]",
+        "dask/array/tests/test_overlap.py::test_sliding_window_view_chunking[output_chunks1-20-0]",
+        "dask/array/tests/test_overlap.py::test_sliding_window_view_chunking[output_chunks2-40-0]",
+        "dask/array/tests/test_overlap.py::test_sliding_window_view_chunking[output_chunks3-window_shape3-axis3]",
+        "dask/array/tests/test_overlap.py::test_sliding_window_view_chunking[output_chunks4-window_shape4-axis4]",
+        "dask/array/tests/test_overlap.py::test_sliding_window_view_no_chunking"
+      ],
+      "flaky": []
+    },
+    "dask-m12753": {
+      "faults": [
+        "dask/array/tests/test_rechunk.py::test_balance_2d_negative_dimension",
+        "dask/array/tests/test_rechunk.py::test_balance_basics",
+        "dask/array/tests/test_rechunk.py::test_balance_basics_2d",
+        "dask/array/tests/test_rechunk.py::test_balance_chunks_unchanged",
+        "dask/array/tests/test_rechunk.py::test_balance_different_inputs",
+        "dask/array/tests/test_rechunk.py::test_balance_n_chunks_size",
+        "dask/array/tests/test_rechunk.py::test_balance_raises",
+        "dask/array/tests/test_rechunk.py::test_balance_small",
+        "dask/array/tests/test_rechunk.py::test_balance_split_into_n_chunks"
+      ],
+      "flaky": []
+    },
+    "dask-m1940": {
+      "faults": [
+        "dask/diagnostics/tests/test_profiler.py::test_cache_profiler",
+        "dask/diagnostics/tests/test_profiler.py::test_profiler",
+        "dask/diagnostics/tests/test_profiler.py::test_profiler_works_under_error",
+        "dask/diagnostics/tests/test_progress.py::test_array_compute",
+        "dask/diagnostics/tests/test_progress.py::test_clean_exit[get]",
+        "dask/diagnostics/tests/test_progress.py::test_clean_exit[get_sync]",
+        "dask/diagnostics/tests/test_progress.py::test_no_tasks",
+        "dask/diagnostics/tests/test_progress.py::test_progressbar",
+        "dask/diagnostics/tests/test_progress.py::test_store_time",
+        "dask/diagnostics/tests/test_progress.py::test_with_alias",
+        "dask/diagnostics/tests/test_progress.py::test_with_cache",
+        "dask/tests/test_base.py::test_compute_no_opt",
+        "dask/tests/test_base.py::test_num_workers_config[processes]",
+        "dask/tests/test_base.py::test_num_workers_config[threads]",
+        "dask/tests/test_cache.py::test_cache",
+        "dask/tests/test_cache.py::test_prefer_cheap_dependent",
+        "dask/tests/test_callbacks.py::test_add_remove_mutates_not_replaces",
+        "dask/tests/test_callbacks.py::test_finish_always_called",
+        "dask/tests/test_callbacks.py::test_nested_schedulers",
+        "dask/tests/test_callbacks.py::test_start_callback",
+        "dask/tests/test_callbacks.py::test_start_state_callback",
+        "dask/tests/test_local.py::test_complex_ordering",
+        "dask/tests/test_multiprocessing.py::test_optimize_graph_false",
+        "dask/tests/test_threaded.py::test_broken_callback"
+      ],
+      "flaky": []
+    },
+    "dask-m28832": {
+      "faults": [
+        "dask/dataframe/dask_expr/tests/test_distributed.py::test_merge_broadcast[inner-0.6-p2p]",
+        "dask/dataframe/dask_expr/tests/test_distributed.py::test_merge_broadcast[inner-0.6-tasks]",
+        "dask/dataframe/dask_expr/tests/test_distributed.py::test_merge_broadcast[inner-True-p2p]",
+        "dask/dataframe/dask_expr/tests/test_distributed.py::test_merge_broadcast[inner-True-tasks]",
+        "dask/dataframe/dask_expr/tests/test_distributed.py::test_merge_broadcast[left-0.6-p2p]",
+        "dask/dataframe/dask_expr/tests/test_distributed.py::test_merge_broadcast[left-0.6-tasks]",
+        "dask/dataframe/dask_expr/tests/test_distributed.py::test_merge_broadcast[left-True-p2p]",
+        "dask/dataframe/dask_expr/tests/test_distributed.py::test_merge_broadcast[left-True-tasks]",
+        "dask/dataframe/dask_expr/tests/test_merge.py::test_broadcast_merge[22-inner]",
+        "dask/dataframe/dask_expr/tests/test_merge.py::test_broadcast_merge[22-left]",
+        "dask/dataframe/dask_expr/tests/test_merge.py::test_broadcast_merge[None-inner]",
+        "dask/dataframe/dask_expr/tests/test_merge.py::test_broadcast_merge[None-left]",
+        "dask/dataframe/dask_expr/tests/test_merge.py::test_merged_partitions_filtered",
+        "dask/tests/test_distributed.py::test_dataframe_broadcast_merge[True-a]",
+        "dask/tests/test_distributed.py::test_dataframe_broadcast_merge[True-on1]"
+      ],
+      "flaky": []
+    },
+    "dask-m37146": {
+      "faults": [
+        "dask/dataframe/io/tests/test_parquet.py::test_create_metadata_file[None]",
+        "dask/dataframe/io/tests/test_parquet.py::test_create_metadata_file[a]"
+      ],
+      "flaky": []
+    },
+    "_control": {
+      "ambiente": [
+        "dask/array/tests/test_array_core.py::test_from_delayed_future",
+        "dask/array/tests/test_sparse.py::test_basic[<lambda>28]"
+      ]
+    }
+  },
+  "ipython": {
+    "ipython-m1288": {
+      "faults": [
+        "tests/test_completer.py::test_back_unicode_completion"
+      ],
+      "flaky": []
+    },
+    "ipython-m17283": {
+      "faults": [
+        "tests/test_async_helpers.py::test_in_func_no_error",
+        "tests/test_async_helpers.py::test_nonlocal",
+        "tests/test_async_helpers.py::test_top_level_return_error",
+        "tests/test_interactiveshell.py::test_silent_postexec",
+        "tests/test_interactiveshell.py::test_syntax_error",
+        "tests/test_interactiveshell.py::test_syntaxerror_input_transformer",
+        "tests/test_interactiveshell.py::test_user_expression",
+        "tests/test_interactiveshell.py::test_user_variables",
+        "tests/test_interactivshell.py::test_inputtransformer_syntaxerror",
+        "tests/test_interactivshell.py::test_repl_not_plain_text",
+        "tests/test_iplib.py::tests.test_iplib.doctest_tb_plain",
+        "tests/test_iplib.py::tests.test_iplib.doctest_tb_sysexit",
+        "tests/test_magic.py::test_tb_syntaxerror",
+        "tests/test_run.py::test_ignore_sys_exit",
+        "tests/test_ultratb.py::testSyntaxError",
+        "tests/test_ultratb.py::test_direct_cause_error",
+        "tests/test_ultratb.py::test_dynamic_code",
+        "tests/test_ultratb.py::test_exception_during_handling_error",
+        "tests/test_ultratb.py::test_handlers",
+        "tests/test_ultratb.py::test_indentationerror_shows_line",
+        "tests/test_ultratb.py::test_jsondecodeerror_message",
+        "tests/test_ultratb.py::test_nested_genexpr",
+        "tests/test_ultratb.py::test_non_syntaxerror",
+        "tests/test_ultratb.py::test_nonascii_msg[minimal-Exception: \\xe9]",
+        "tests/test_ultratb.py::test_nonascii_msg[plain-Exception('\\xe9')]",
+        "tests/test_ultratb.py::test_plain_direct_cause_error",
+        "tests/test_ultratb.py::test_plain_exception_during_handling_error",
+        "tests/test_ultratb.py::test_plain_reports_notes",
+        "tests/test_ultratb.py::test_plain_suppress_exception_chaining",
+        "tests/test_ultratb.py::test_suppress_exception_chaining",
+        "tests/test_ultratb.py::test_syntax_error_changing_py_file",
+        "tests/test_ultratb.py::test_syntaxerror_no_stacktrace_at_compile_time",
+        "tests/test_ultratb.py::test_syntaxerror_stacktrace_when_running_compiled_code",
+        "tests/test_ultratb.py::test_sysexit_while_handling_error"
+      ],
+      "flaky": []
+    },
+    "ipython-m22324": {
+      "faults": [
+        "tests/test_ipapp.py::test_locate_profile_subcommand"
+      ],
+      "flaky": []
+    },
+    "ipython-m22732": {
+      "faults": [
+        "tests/test_magic_terminal.py::test_paste_echo"
+      ],
+      "flaky": []
+    },
+    "ipython-m4267": {
+      "faults": [
+        "tests/test_oinspect.py::test_find_file"
+      ],
+      "flaky": []
+    },
+    "_control": {
+      "ambiente": [
+        "IPython/core/magics/config.py::IPython.core.magics.config.ConfigMagics.config",
+        "IPython/testing/plugin/dtexample.py::IPython.testing.plugin.dtexample.ipos",
+        "tests/test_application.py::test_initialize_stops_at_subapp",
+        "tests/test_completer.py::test_dict_key_completion_contexts",
+        "tests/test_completer.py::test_dict_key_completion_string",
+        "tests/test_completer.py::test_dict_key_completion_unicode_py3",
+        "tests/test_completer.py::test_dict_key_restrict_to_dicts",
+        "tests/test_completer.py::test_func_kw_completions",
+        "tests/test_completer.py::test_magic_completion_shadowing",
+        "tests/test_completer.py::test_matcher_disabling",
+        "tests/test_completer.py::test_mix_terms",
+        "tests/test_completer.py::test_quoted_file_completions",
+        "tests/test_completer.py::test_undefined_variables[t = []\\nif condition_1:\\n    if condition_2:\\n        t = 'nested'\\nt.-insert_text30-False-limited]",
+        "tests/test_completer.py::test_undefined_variables[t = []\\nif condition_1:\\n    t = 'string'\\nelif condition_2:\\n    t = 1\\nelif condition_3:\\n    t = {}\\nt.-insert_text29-False-limited]",
+        "tests/test_completer.py::test_undefined_variables[t = []\\nif some_condition:\\n    t = 'string'\\nelse:\\n    t = 1\\nt.-insert_text27-False-limited]",
+        "tests/test_completer.py::test_undefined_variables[t = []\\nif some_condition:\\n    t = 'string'\\nt.-insert_text25-False-limited]",
+        "tests/test_completer.py::test_undefined_variables[t = []\\nwhile condition_1:\\n    while condition_2:\\n        t = 'str'\\nt.-insert_text33-False-limited]",
+        "tests/test_display_2.py::test_matplotlib_positioning",
+        "tests/test_displayhook.py::test_underscore_no_overwrite_user",
+        "tests/test_editorhooks.py::test_install_editor",
+        "tests/test_editorhooks.py::test_line_none_defaults_to_zero",
+        "tests/test_historyapp.py::test_history_app_trim_subcommand",
+        "tests/test_interactiveshell.py::test_naked_string_cells",
+        "tests/test_interactiveshell.py::test_run_cell_asyncio_run",
+        "tests/test_interactiveshell.py::test_run_cell_await",
+        "tests/test_ipapp.py::test_locate_subcommand",
+        "tests/test_magic.py::test_cell_magic_class",
+        "tests/test_magic.py::test_cell_magic_class2",
+        "tests/test_magic.py::test_cell_magic_func_deco",
+        "tests/test_magic.py::test_cell_magic_reg",
+        "tests/test_magic.py::test_config_available_configs",
+        "tests/test_magic.py::test_line_cell_info",
+        "tests/test_magic.py::test_multiline_time",
+        "tests/test_magic.py::test_notebook_export_json_with_output",
+        "tests/test_magic.py::test_reset_in",
+        "tests/test_magic.py::tests.test_magic.doctest_hist_f",
+        "tests/test_magic.py::tests.test_magic.doctest_who",
+        "tests/test_magic.py::tests.test_magic.test_debug_magic",
+        "tests/test_magic.py::tests.test_magic.test_debug_magic_locals",
+        "tests/test_magics_pylab.py::test_matplotlib_no_arg_prints_backend",
+        "tests/test_profile.py::test_profile_app_list_subcommand",
+        "tests/test_run.py::test_run_tb",
+        "tests/test_storemagic.py::test_store_restore"
+      ]
+    }
+  },
   "librosa": {
     "librosa-m0035": {
       "faults": [
