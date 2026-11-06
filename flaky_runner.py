@@ -469,6 +469,9 @@ def refresh(api: Api, manifest: dict) -> None:
     claimed = {r["run_id"] for r in rows if r.get("run_id")}
     # runs de tentativas anteriores (--redo) também não podem ser casados de novo
     claimed |= {h["run_id"] for r in rows for h in r.get("history") or [] if h.get("run_id")}
+    # runs duplicados já vistos também não casam com nenhuma outra tarefa
+    claimed |= {d for r in rows for d in r.get("duplicate_runs") or []}
+    claimed |= {d for r in rows for h in r.get("history") or [] for d in h.get("duplicate_runs") or []}
     for repo in sorted({r["repo"] for r in watch}):
         t0 = min(parse_ts(r["dispatch_window_start_utc"]).timestamp() for r in watch
                  if r["repo"] == repo)
@@ -496,6 +499,15 @@ def refresh(api: Api, manifest: dict) -> None:
                 r["run_id"] = hits[0]["id"]
                 r["html_url"] = hits[0]["html_url"]
                 claimed.add(r["run_id"])
+                if len(hits) > 1:
+                    # lane sequencial: mais de um run novo = dispatch duplicado (ex.: 5xx
+                    # que criou o run mesmo assim). Um costuma cancelar o outro pelo
+                    # `concurrency`, e o cancelado ainda salva cache (`if: always()`).
+                    r["duplicate_runs"] = [x["id"] for x in hits[1:]]
+                    claimed.update(r["duplicate_runs"])
+                    print(f"\n  ! {r['task']}: {len(hits)} runs para um dispatch "
+                          f"({', '.join(str(x['id']) for x in hits)}); usando {hits[0]['id']}. "
+                          f"Veja 'Despacho duplicado' no report.")
             run = by_id.get(r["run_id"]) or api.get(
                 f"/repos/{OWNER}/{repo}/actions/runs/{r['run_id']}"
             )
@@ -538,12 +550,12 @@ def reset_row(r: dict) -> None:
     """Zera uma tarefa pra ser despachada de novo, guardando o histórico."""
     r.setdefault("history", []).append({
         k: r.get(k) for k in ("run_id", "html_url", "status", "conclusion", "dispatched_at_utc",
-                              "dispatch_error")
+                              "dispatch_error", "duplicate_runs")
     })
     for k in ("run_id", "html_url", "status", "conclusion", "run_attempt", "conclusion_at_utc",
               "jobs", "jobs_total", "dispatched_at_utc", "dispatch_window_start_utc",
               "dispatch_error", "dispatch_failed", "dispatch_attempts", "run_head_sha",
-              "sha_mismatch", "warmup_missing", "dispatch_5xx"):
+              "sha_mismatch", "warmup_missing", "dispatch_5xx", "duplicate_runs"):
         r.pop(k, None)
 
 
@@ -754,6 +766,19 @@ def build_report(c: Campaign, manifest: dict, flaky: dict | None,
         for r in bad:
             L.append(f"| {r['repo']} | {r.get('mutant') or r['ref']} | {r['workflow']} | "
                      f"r{r['rep']:02d} | {r.get('run_id', '-')} |")
+        L.append("")
+    dup = [r for r in runs if r.get("duplicate_runs")]
+    if dup:
+        L += ["## Despacho duplicado (investigar o cache da lane)", "",
+              "Mais de um run para a mesma tarefa. O `concurrency` cancela um deles, e o "
+              "cancelado ainda salva o cache (`if: always()`): as repetições seguintes da lane "
+              "herdam uma execução parcial a mais. Para refazer limpo, apague os caches salvos "
+              "por esses runs (a chave termina no run_id) e rode `run --redo` na tarefa.", "",
+              "| repo | mutante | workflow | rep | run usado | duplicados |", "|---|---|---|---|---|---|"]
+        for r in dup:
+            L.append(f"| {r['repo']} | {r.get('mutant') or r['ref']} | {r['workflow']} | "
+                     f"r{r['rep']:02d} | {r.get('run_id', '-')} | "
+                     f"{', '.join(str(d) for d in r['duplicate_runs'])} |")
         L.append("")
     lost = [r for r in runs if r.get("dispatch_failed")]
     if lost:
@@ -1215,7 +1240,18 @@ def cmd_run(api: Api, args) -> int:
                            and (rows[d].get("dispatch_failed") or rows[d].get("conclusion") == "cancelled")]
                 if bad_dep:
                     r["warmup_missing"] = True  # cache do QTF/RecentFail não foi populado
-                r["dispatch_window_start_utc"] = now()
+                if r.get("dispatch_5xx"):
+                    # houve 5xx/falha de rede antes: o GitHub pode ter criado o run com
+                    # atraso. Confere de novo (com a janela da 1ª tentativa) antes de
+                    # disparar outra vez, senão a lane ganha um run duplicado.
+                    if run_created_anyway(api, rows, r):
+                        r["dispatched_at_utc"] = now()
+                        active += 1
+                        print(f"  {t['task']}: o run do dispatch que deu erro apareceu; seguindo sem redisparar")
+                        save_json(c.manifest_path, manifest)
+                        continue
+                else:
+                    r["dispatch_window_start_utc"] = now()
                 try:
                     dispatch(api, t["repo"], t["workflow_file"], t["ref"])
                     r["dispatched_at_utc"] = now()
