@@ -12981,15 +12981,15 @@
     },
     "final": {
       "limit": 5000,
-      "remaining": 4886,
-      "used": 114,
+      "remaining": 4885,
+      "used": 115,
       "reset_utc": "2026-11-06T14:25:38+00:00"
     }
   },
   "counters": {
-    "get": 912,
+    "get": 913,
     "post": 414,
     "retries": 30,
-    "rate_limit": 22
+    "rate_limit": 23
   }
 }
