@@ -34,6 +34,7 @@ também reduz o tempo de fila embutido nas medições de makespan.
 import argparse
 import base64
 import collections
+import http.client
 import json
 import os
 import re
@@ -46,6 +47,11 @@ import urllib.request
 import zipfile
 from datetime import datetime, timezone
 from pathlib import Path
+
+# Falhas de transporte (conexão caiu, resposta truncada, timeout, JSON cortado): são
+# transitórias como um 5xx, mas não chegam como HTTPError.
+NETWORK_ERRORS = (http.client.HTTPException, ConnectionError, TimeoutError, json.JSONDecodeError)
+NETWORK_MARK = "falha de rede"
 
 OWNER = "leticosta4"
 API = "https://api.github.com"
@@ -199,10 +205,14 @@ class Api:
                 print(f"  ! HTTP {exc.code}, esperando {wait:.0f}s ({attempt + 1})")
                 time.sleep(wait)
                 delay = min(delay * 2, 60)
-            except urllib.error.URLError as exc:
-                if attempt == self.max_retries:
-                    raise RuntimeError(f"{method} {url} -> {exc.reason}") from exc
+            except (urllib.error.URLError, *NETWORK_ERRORS) as exc:
+                reason = getattr(exc, "reason", None) or f"{type(exc).__name__}: {exc}"
+                # POST sem retry de 5xx (dispatch): o pedido pode ter chegado ao GitHub;
+                # quem decide é o loop do `run`, que confere se o run foi criado
+                if attempt == self.max_retries or (method != "GET" and not retry_5xx):
+                    raise RuntimeError(f"{method} {url} -> {NETWORK_MARK} ({reason})") from exc
                 self.counters["retries"] += 1
+                print(f"  ! {NETWORK_MARK} ({str(reason)[:80]}), esperando {delay:.0f}s ({attempt + 1})")
                 time.sleep(delay)
                 delay = min(delay * 2, 60)
 
@@ -413,8 +423,8 @@ def dispatch(api: Api, repo: str, workflow_file: str, ref: str) -> None:
 
 
 def server_error(exc: Exception) -> bool:
-    """Erro 5xx do GitHub (instabilidade do lado deles, não da tarefa)."""
-    return bool(re.search(r"HTTP 5\d\d\b", str(exc)))
+    """Erro 5xx do GitHub ou falha de rede (instabilidade, não problema da tarefa)."""
+    return bool(re.search(r"HTTP 5\d\d\b", str(exc))) or NETWORK_MARK in str(exc)
 
 
 def run_created_anyway(api: Api, rows: dict, r: dict) -> bool:
@@ -1176,7 +1186,15 @@ def cmd_run(api: Api, args) -> int:
     pause_until, n_5xx = 0.0, 0  # backoff global depois de 5xx do GitHub
     try:
         while True:
-            refresh(api, manifest)
+            try:
+                refresh(api, manifest)
+            except RuntimeError as exc:
+                # instabilidade da API/rede ao consultar os runs: nada foi despachado
+                # nesta passada; espera e tenta de novo em vez de derrubar a campanha
+                print(f"\n  ! falha ao atualizar os runs ({str(exc)[:160]}); tentando de novo em 60s")
+                save_json(c.manifest_path, manifest)
+                time.sleep(60)
+                continue
             active = sum(1 for r in rows.values() if r.get("dispatched_at_utc") and not is_done(r))
             for t in sel:
                 r = rows[t["task"]]
@@ -1212,7 +1230,7 @@ def cmd_run(api: Api, args) -> int:
                             n_5xx += 1
                             wait = min(300, 15 * 2 ** (min(n_5xx, 6) - 1))
                             pause_until = time.time() + wait
-                            print(f"  {t['task']}: HTTP 5xx do GitHub, pausando os dispatches por "
+                            print(f"  {t['task']}: HTTP 5xx/falha de rede, pausando os dispatches por "
                                   f"{wait}s (não conta nas 3 tentativas)")
                         save_json(c.manifest_path, manifest)
                         break
