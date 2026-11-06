@@ -603,7 +603,8 @@ def span(rows: list[dict]) -> float | None:
 WF_ORDER = ["baseline", "ranking", "regsmart", "regsmart-no-rank"]
 MAX_ROWS = 40  # linhas de detalhe por mutante; o resto fica no flaky_tests.json
 LEGEND = [
-    ("ambiente (controle)", "também falha na branch default sem mutante (`run --control`): ambiente ou falha pré-existente, não é efeito do mutante"),
+    ("ambiente (controle)", "também falha no baseline da branch default sem mutante (`run --control`): ambiente ou falha pré-existente, não é efeito do mutante"),
+    ("dependente de ordem (controle)", "na branch default sem mutante, falha só sob plugin (nunca no baseline): dependência de ordem exposta pelo reordenamento, não é efeito do mutante nem do ambiente"),
     ("flaky", "falha em algumas execuções do baseline e passa em outras"),
     ("só no plugin (flaky)", "baseline nunca falhou; falha às vezes sob plugin (provável dependência de ordem exposta pelo reordenamento)"),
     ("só no plugin (fixa)", "baseline nunca falhou; falha em todas as execuções de algum plugin (investigar o plugin)"),
@@ -621,12 +622,13 @@ def flaky_section(flaky: dict, show_expected: bool) -> list[str]:
          "", "| classe | significado |", "|---|---|"]
     L += [f"| {k} | {v} |" for k, v in LEGEND]
     L += ["", "### Resumo", "",
-          "| repo | mutante | ambiente | flaky | só plugin (flaky) | só plugin (fixa) | esperada, diverge | esperada | outros |",
-          "|---|---|---|---|---|---|---|---|---|"]
+          "| repo | mutante | ambiente | dep. ordem (controle) | flaky | só plugin (flaky) | só plugin (fixa) | esperada, diverge | esperada | outros |",
+          "|---|---|---|---|---|---|---|---|---|---|"]
     for repo, muts in sorted(flaky.items()):
         for mut, info in sorted(muts.items()):
             k = collections.Counter(t["class"] for t in info["tests"].values())
-            L.append(f"| {repo} | {mut} | {k['ambiente (controle)']} | {k['flaky']} | {k['só no plugin (flaky)']} | "
+            L.append(f"| {repo} | {mut} | {k['ambiente (controle)']} | {k['dependente de ordem (controle)']} | "
+                     f"{k['flaky']} | {k['só no plugin (flaky)']} | "
                      f"{k['só no plugin (fixa)']} | {k['esperada, diverge']} | {k['esperada']} | "
                      f"{k['indeterminado'] + k['sem baseline']} |")
     combos = sorted({k for muts in flaky.values() for info in muts.values()
@@ -858,7 +860,7 @@ def parse_run(c: Campaign, repo: str, run_id: int) -> list[tuple[str, set, int]]
     return out
 
 
-CLASS_ORDER = ["ambiente (controle)", "flaky", "só no plugin (flaky)", "só no plugin (fixa)", "esperada, diverge",
+CLASS_ORDER = ["ambiente (controle)", "dependente de ordem (controle)", "flaky", "só no plugin (flaky)", "só no plugin (fixa)", "esperada, diverge",
                "indeterminado", "sem baseline", "esperada"]
 
 
@@ -961,18 +963,23 @@ def analyze_flaky(c: Campaign, manifest: dict, exclude_warmup: bool,
                         cur["failed"], cur["runs"] = k, n
         prepared[(repo, mut)] = (runs, total_seen, cells)
 
-    # Falhou ao menos uma vez na branch de controle (qualquer workflow) = ambiente.
-    env = collections.defaultdict(set)
+    # Falhou ao menos uma vez na branch de controle (qualquer workflow): não é efeito do
+    # mutante. Se falhou no baseline do controle é ambiente/pré-existente; se falhou só
+    # sob plugin (ranking/regsmart reordenam), é dependência de ordem.
+    env = collections.defaultdict(dict)  # repo -> {nodeid: classe}
     for (repo, mut), (_, _, cells) in prepared.items():
         if mut == CONTROL:
-            env[repo].update(cells)
+            for nid, cs in cells.items():
+                env[repo][nid] = "ambiente (controle)" if "baseline" in cs else "dependente de ordem (controle)"
 
     out: dict = {}
     for (repo, mut), (runs, total_seen, cells) in sorted(prepared.items()):
         tests = {}
         for nid, cs in sorted(cells.items()):
             if mut != CONTROL and nid in env[repo]:
-                cls, why = "ambiente (controle)", "também falha na branch default, sem mutante"
+                cls = env[repo][nid]
+                why = ("também falha no baseline da branch default, sem mutante" if cls == "ambiente (controle)"
+                       else "na branch default sem mutante, falha só sob plugin (reordenamento)")
             else:
                 cls, why = classify(cs, runs)
             tests[nid] = {"class": cls, "why": why, "wf": cs}
