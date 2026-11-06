@@ -1,0 +1,5 @@
+repo,baseline,ranking:rkn_hybrid,ranking:rkn_qtf,ranking:rkn_recentfail,ranking:rkn_simchgpath,regsmart:rgsm_hybrid,regsmart:rgsm_qtf,regsmart:rgsm_recentfail,regsmart-no-rank
+apscheduler,79.00,74.20,78.60,76.00,76.80,65.20,64.60,67.20,68.20
+librosa,265.40,248.80,267.40,298.60,268.00,74.20,65.80,86.40,88.20
+Média entre repos,172.20,161.50,173.00,187.30,172.40,69.70,65.20,76.80,78.20
+Razão média vs baseline,1.00,0.94,1.00,1.04,0.99,0.55,0.53,0.59,0.60

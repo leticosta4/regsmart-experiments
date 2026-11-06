@@ -1,0 +1,19 @@
+\begin{table}[htbp]
+\centering
+\small
+\caption{Tempo de execução da suíte (s): mean entre mutantes (median entre repetições)}
+\label{tab:suite_s}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrrrrrr}
+\toprule
+Repositório & baseline & ranking:rkn\_hybrid & ranking:rkn\_qtf & ranking:rkn\_recentfail & ranking:rkn\_simchgpath & regsmart:rgsm\_hybrid & regsmart:rgsm\_qtf & regsmart:rgsm\_recentfail & regsmart-no-rank \\
+\midrule
+apscheduler & 75.33 & 70.49 & 74.24 & 72.51 & 73.45 & 62.03 & 60.93 & 63.07 & 64.48 \\
+librosa & 258.61 & 242.40 & 260.79 & 292.53 & 261.25 & 71.12 & 62.58 & 83.24 & 84.88 \\
+\midrule
+Média entre repos & 166.97 & 156.45 & 167.51 & 182.52 & 167.35 & 66.58 & 61.75 & 73.16 & 74.68 \\
+Razão média vs baseline & 1.00 & 0.94 & 1.00 & 1.05 & 0.99 & 0.55 & 0.53 & 0.58 & 0.59 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}

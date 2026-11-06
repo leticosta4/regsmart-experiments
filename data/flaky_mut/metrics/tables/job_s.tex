@@ -1,0 +1,19 @@
+\begin{table}[htbp]
+\centering
+\small
+\caption{Tempo do workflow por modo (s): mean entre mutantes (median entre repetições)}
+\label{tab:job_s}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrrrrrr}
+\toprule
+Repositório & baseline & ranking:rkn\_hybrid & ranking:rkn\_qtf & ranking:rkn\_recentfail & ranking:rkn\_simchgpath & regsmart:rgsm\_hybrid & regsmart:rgsm\_qtf & regsmart:rgsm\_recentfail & regsmart-no-rank \\
+\midrule
+apscheduler & 134.8 & 133.8 & 136.8 & 131.6 & 131.4 & 126.4 & 125.4 & 126.8 & 130.4 \\
+librosa & 309.8 & 293.4 & 311.6 & 348.8 & 314.8 & 123.8 & 109.8 & 135.4 & 139.4 \\
+\midrule
+Média entre repos & 222.3 & 213.6 & 224.2 & 240.2 & 223.1 & 125.1 & 117.6 & 131.1 & 134.9 \\
+Razão média vs baseline & 1.00 & 0.97 & 1.01 & 1.05 & 1.00 & 0.67 & 0.64 & 0.69 & 0.71 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}

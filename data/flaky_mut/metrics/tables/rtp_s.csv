@@ -1,0 +1,4 @@
+repo,baseline,ranking:rkn_hybrid,ranking:rkn_qtf,ranking:rkn_recentfail,ranking:rkn_simchgpath,regsmart:rgsm_hybrid,regsmart:rgsm_qtf,regsmart:rgsm_recentfail,regsmart-no-rank
+apscheduler,-,0.045,0.046,0.044,0.044,0.011,0.011,0.012,-
+librosa,-,0.318,0.351,0.386,0.336,0.026,0.021,0.048,-
+Média entre repos,-,0.182,0.198,0.215,0.190,0.019,0.016,0.030,-
