@@ -767,6 +767,14 @@ COUNT = re.compile(r"(\d+) (?:failed|passed|errors?)")
 FINAL_LINE = re.compile(r"^(?:=+ )?(?:\d+ (?:failed|passed|errors?|skipped|deselected|xfailed|"
                         r"xpassed|warnings?|rerun)\b.*|no tests ran) in [\d.:]+s(?: \(\d+:\d\d:\d\d\))?(?: =+)?$")
 SHORT_SUMMARY = re.compile(r"^=+ short test summary info =+$")
+SESSION_START = re.compile(r"^=+ test session starts =+$")
+SECTION = re.compile(r"^=+ (?:FAILURES|ERRORS|warnings summary|short test summary info|"
+                     r"PASSES|rerun test summary info) =+$")
+# Linha de progresso do `-v`: `tests/x.py::test_y[p] FAILED   [ 86%]`; com xdist
+# `[gw0] [ 86%] FAILED tests/x.py::test_y`.
+VERBOSE = re.compile(r"^(?P<id>\S[^\s]*::.*?) (?:FAILED|ERROR)(?: +\[ *\d+%\])?$")
+VERBOSE_XDIST = re.compile(r"^\[gw\d+\] \[ *\d+%\] (?:FAILED|ERROR) (?P<id>\S.*?)\s*$")
+FAILED_COUNT = re.compile(r"(\d+) (?:failed|errors?)\b")
 
 
 def outer_session(lines: list[str]):
@@ -778,6 +786,8 @@ def outer_session(lines: list[str]):
     termina por último, então vale só a última linha final, e as falhas são as do último
     bloco `short test summary info` antes dela, desde que esse bloco venha depois da linha
     final anterior (senão ele é de um filho e a sessão principal não teve falhas).
+    Se a linha final conta falhas mas o resumo não lista nenhuma (`-r` sem `f`/`E`), usa as
+    linhas de progresso do `-v` da sessão principal.
     """
     finals = [i for i, line in enumerate(lines) if FINAL_LINE.match(line)]
     if not finals:
@@ -792,6 +802,20 @@ def outer_session(lines: list[str]):
             if m:
                 failed.add(m.group(1))
     total = sum(int(n) for n in COUNT.findall(lines[last]))
+    n_fail = sum(int(n) for n in FAILED_COUNT.findall(lines[last]))
+    if n_fail and not failed:
+        # O resumo não lista FAILED quando o projeto troca o `-r` padrão (ex.: apscheduler
+        # usa addopts "-rsx"). Com `-v`, as falhas estão nas linhas de progresso da sessão
+        # principal: do 1º "test session starts" até a 1ª seção (FAILURES/ERRORS/...). A
+        # saída de pytest filho só aparece dentro dessas seções, então fica de fora.
+        start = next((i for i in range(prev + 1, last) if SESSION_START.match(lines[i])), None)
+        if start is not None:
+            for line in lines[start + 1:last]:
+                if SECTION.match(line):
+                    break
+                m = VERBOSE.match(line) or VERBOSE_XDIST.match(line)
+                if m:
+                    failed.add(m.group("id"))
     return failed, total, True
 
 
