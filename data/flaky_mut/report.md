@@ -11,9 +11,9 @@
 
 ## API / rate limit
 
-- Requisições: 404 GET, 246 POST
+- Requisições: 405 GET, 246 POST
 - Retries: 20
-- Rate limit (final): 140/5000 consumidos, reseta em `2026-11-06T00:30:55+00:00`
+- Rate limit (final): 10/5000 consumidos, reseta em `2026-11-06T02:57:12+00:00`
 
 ## Saúde da execução
 
@@ -64,11 +64,11 @@ Cada teste que falhou é classificado comparando o **baseline** com os workflows
 
 | repo | mutante | ambiente | flaky | só plugin (flaky) | só plugin (fixa) | esperada, diverge | esperada | outros |
 |---|---|---|---|---|---|---|---|---|
-| apscheduler | apscheduler-m0316 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-| apscheduler | apscheduler-m0753 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-| apscheduler | apscheduler-m1399 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-| apscheduler | apscheduler-m2144 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-| apscheduler | apscheduler-m2213 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| apscheduler | apscheduler-m0316 | 0 | 0 | 0 | 0 | 0 | 295 | 0 |
+| apscheduler | apscheduler-m0753 | 0 | 0 | 0 | 0 | 0 | 238 | 0 |
+| apscheduler | apscheduler-m1399 | 0 | 0 | 0 | 0 | 0 | 4 | 0 |
+| apscheduler | apscheduler-m2144 | 0 | 0 | 0 | 0 | 0 | 3 | 0 |
+| apscheduler | apscheduler-m2213 | 0 | 0 | 0 | 0 | 0 | 6 | 0 |
 | apscheduler | control | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | librosa | control | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | librosa | librosa-m0035 | 0 | 0 | 0 | 0 | 0 | 149 | 0 |
