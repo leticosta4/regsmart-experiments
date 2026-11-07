@@ -18578,6 +18578,6067 @@
       }
     }
   },
+  "dvc": {
+    "control": {
+      "runs": {
+        "baseline": 3,
+        "ranking": 3,
+        "regsmart": 3,
+        "regsmart-no-rank": 3
+      },
+      "total_seen": {
+        "baseline": 3050,
+        "ranking": 12200,
+        "regsmart": 9150,
+        "regsmart-no-rank": 3050
+      },
+      "tests": {}
+    },
+    "dvc-m11576": {
+      "runs": {
+        "baseline": 3,
+        "ranking": 3,
+        "regsmart": 3,
+        "regsmart-no-rank": 3
+      },
+      "total_seen": {
+        "baseline": 3050,
+        "ranking": 12202,
+        "regsmart": 9102,
+        "regsmart-no-rank": 3034
+      },
+      "tests": {
+        "tests/func/repro/test_repro.py::test_repro_pulls_continue_without_run_cache": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/func/repro/test_repro.py::test_repro_pulls_missing_data_source": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/func/repro/test_repro.py::test_repro_skip_pull_if_no_run_cache_is_passed": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/func/repro/test_repro_pull.py::test_repro_pulls_allow_missing[False]": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/func/repro/test_repro_pull.py::test_repro_pulls_missing_data_source": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/func/repro/test_repro_pull.py::test_repro_pulls_missing_import": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/func/repro/test_repro_pull.py::test_repro_pulls_persisted_output": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/func/repro/test_repro_pull.py::test_repro_skip_pull_if_no_run_cache_is_passed": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/func/test_checkout.py::test_checkout": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/func/test_checkout.py::test_checkout_cli": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/func/test_checkout.py::test_checkout_stats[False-expected_lines1]": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/func/test_checkout.py::test_checkout_stats[True-expected_lines0]": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/func/test_checkout.py::test_checkout_stats_on_failure": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/func/test_checkout.py::test_checkout_with_deps_cli": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/func/test_checkout.py::test_gitignore_when_checkout": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/func/test_checkout.py::test_stats_on_removed_file_from_tracked_dir": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/func/test_checkout.py::test_stats_on_updated_file_from_tracked_dir": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/func/test_data_cloud.py::TestRemote::test_pull_00_prefix": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/func/test_data_cloud.py::TestRemote::test_pull_no_00_prefix": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/func/test_data_cloud.py::test_pull_external_dvc_imports": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/func/test_data_cloud.py::test_pull_external_dvc_imports_mixed": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/func/test_data_cloud.py::test_pull_git_imports[git_dir]": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/func/test_data_cloud.py::test_pull_granular_excluding_import_that_cannot_be_pulled": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/func/test_data_cloud.py::test_pull_partial_import_missing": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/func/test_data_cloud.py::test_push_pull_fetch_pipeline_stages": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/func/test_data_cloud.py::test_target_remote": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/func/test_import.py::test_pull_imported_directory_stage[dir/]": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/func/test_import.py::test_pull_imported_directory_stage[dir]": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/func/test_import.py::test_pull_imported_stage": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/func/test_import.py::test_pull_no_rev_lock": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/func/test_import_url.py::test_import_url_to_remote_status": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/func/test_update.py::test_update_import_url_to_remote_directory_changed_contents": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": true
+            }
+          }
+        },
+        "tests/unit/utils/test_humanize.py::test_truncate_text": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        }
+      }
+    },
+    "dvc-m12545": {
+      "runs": {
+        "baseline": 3,
+        "ranking": 3,
+        "regsmart": 3,
+        "regsmart-no-rank": 3
+      },
+      "total_seen": {
+        "baseline": 3050,
+        "ranking": 12200,
+        "regsmart": 9102,
+        "regsmart-no-rank": 3034
+      },
+      "tests": {
+        "tests/func/api/test_experiments.py::test_exp_save": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_apply.py::test_apply": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_apply.py::test_apply_unchanged_head": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_apply.py::test_apply_untracked": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_diff.py::test_diff_exp": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_diff.py::test_diff_head": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_experiments.py::test_branch": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_experiments.py::test_checkout_targets_deps": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_experiments.py::test_copy_paths[False]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_experiments.py::test_copy_paths[True]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_experiments.py::test_copy_paths_errors": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_experiments.py::test_custom_commit_message[False]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_experiments.py::test_custom_commit_message[True]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_experiments.py::test_detached_parent": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_experiments.py::test_exp_run_recursive": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_experiments.py::test_experiment_exists[False]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_experiments.py::test_experiment_exists[True]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_experiments.py::test_experiment_run_dry": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_experiments.py::test_experiment_unchanged": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_experiments.py::test_experiments_run_in_linked_git_worktree": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_experiments.py::test_experiments_run_with_submodule_dependencies[submodule/file]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_experiments.py::test_experiments_run_with_submodule_dependencies[submodule]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_experiments.py::test_experiments_workspace_not_log_exception": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_experiments.py::test_failed_exp_workspace": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_experiments.py::test_file_permissions": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_experiments.py::test_get_baseline": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_experiments.py::test_list": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_experiments.py::test_local_config_is_propagated_to_tmp": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_experiments.py::test_mixed_git_dvc_out": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_experiments.py::test_modified_data_dep[False-foo: 1-False]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_experiments.py::test_modified_data_dep[False-foo: 1-True]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_experiments.py::test_modified_data_dep[False-foo: 2-False]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_experiments.py::test_modified_data_dep[False-foo: 2-True]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_experiments.py::test_modified_data_dep[True-foo: 1-False]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_experiments.py::test_modified_data_dep[True-foo: 1-True]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_experiments.py::test_modified_data_dep[True-foo: 2-False]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_experiments.py::test_modified_data_dep[True-foo: 2-True]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_experiments.py::test_new_simple[False-None]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_experiments.py::test_new_simple[False-foo]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_experiments.py::test_new_simple[True-None]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_experiments.py::test_new_simple[True-foo]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_experiments.py::test_packed_args_exists": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_experiments.py::test_run_celery": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_experiments.py::test_run_env": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_experiments.py::test_subdir[False]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_experiments.py::test_subdir[True]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_experiments.py::test_subrepo[False]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_experiments.py::test_subrepo[True]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_experiments.py::test_untracked[False]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_experiments.py::test_untracked[True]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_experiments.py::test_untracked_top_level_files_are_included_in_exp[False]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_experiments.py::test_untracked_top_level_files_are_included_in_exp[True]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_experiments.py::test_update_py_params": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_queue.py::test_celery_logs[False]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_queue.py::test_celery_logs[True]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_queue.py::test_copy_paths_queue": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_queue.py::test_custom_commit_message_queue": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_remote.py::test_auth_error_push": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_remote.py::test_auto_push_misconfigured": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_remote.py::test_auto_push_on_run[False-success]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_remote.py::test_auto_push_on_run[True-up_to_date]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_remote.py::test_auto_push_on_save[False-success]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_remote.py::test_auto_push_on_save[True-up_to_date]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_remote.py::test_auto_push_tmp_dir": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_remote.py::test_get[False]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_remote.py::test_get[True]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_remote.py::test_list_remote[False]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_remote.py::test_list_remote[True]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_remote.py::test_pull[False]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_remote.py::test_pull[True]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_remote.py::test_pull_ambiguous_name": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_remote.py::test_pull_args[False-True-None]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_remote.py::test_pull_args[True-False-True]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_remote.py::test_pull_diverged": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_remote.py::test_pull_multi_rev": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_remote.py::test_push[False]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_remote.py::test_push[True]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_remote.py::test_push_ambiguous_name": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_remote.py::test_push_args[False-True-None]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_remote.py::test_push_args[True-False-True]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_remote.py::test_push_diverged": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_remote.py::test_push_multi_rev": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_remote.py::test_push_pull_invalid_workspace": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_remove.py::test_keep_selected_by_name[keep0-expected_removed0]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_remove.py::test_keep_selected_by_name[keep1-expected_removed1]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_remove.py::test_keep_selected_by_name[keep2-expected_removed2]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_remove.py::test_keep_selected_by_rev[1-None-1-expected_removed7]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_remove.py::test_keep_selected_by_rev[2-exp1-1-expected_removed0]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_remove.py::test_keep_selected_by_rev[3-exp2-2-expected_removed4]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_remove.py::test_keep_selected_by_rev[3-exp3-1-expected_removed1]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_remove.py::test_keep_selected_by_rev[3-exp3-2-expected_removed2]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_remove.py::test_keep_selected_by_rev[3-exp3-3-expected_removed3]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_remove.py::test_keep_selected_by_rev[4-exp2-2-expected_removed5]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_remove.py::test_keep_selected_by_rev[4-exp4-2-expected_removed6]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_remove.py::test_remove_all": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_remove.py::test_remove_all_experiments_queued_and_completed": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_remove.py::test_remove_all_queued_experiments": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_remove.py::test_remove_experiments_by_ref": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_remove.py::test_remove_experiments_by_rev": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_remove.py::test_remove_multi_rev": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_remove.py::test_remove_remote[False]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_remove.py::test_remove_remote[True]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_remove.py::test_remove_special_queued_experiments": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_rename.py::test_existing_name": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_rename.py::test_invalid_name": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_rename.py::test_rename_experiment_by_name": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_rename.py::test_same_name": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_save.py::test_exp_save[None]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_save.py::test_exp_save[test]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_save.py::test_exp_save_after_commit": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_save.py::test_exp_save_custom_message": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_save.py::test_exp_save_include_untracked": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_save.py::test_exp_save_include_untracked_force": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_save.py::test_exp_save_include_untracked_warning": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_save.py::test_exp_save_overwrite_experiment": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_save.py::test_exp_save_target": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_save.py::test_exp_save_unchanged": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_save.py::test_exp_save_with_staged_changes": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_save.py::test_untracked_dvclock_is_included_in_exp": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_save.py::test_untracked_top_level_files_are_included_in_exp": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_set_params.py::test_hydra_compose_and_dump[False-None-None-False]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_set_params.py::test_hydra_compose_and_dump[False-None-None-True]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_set_params.py::test_hydra_compose_and_dump[False-None-bar-False]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_set_params.py::test_hydra_compose_and_dump[False-None-bar-True]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_set_params.py::test_hydra_compose_and_dump[False-conf-bar-False]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_set_params.py::test_hydra_compose_and_dump[False-conf-bar-True]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_set_params.py::test_hydra_compose_and_dump[True-None-None-False]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_set_params.py::test_hydra_compose_and_dump[True-None-None-True]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_set_params.py::test_hydra_compose_and_dump[True-None-bar-False]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_set_params.py::test_hydra_compose_and_dump[True-None-bar-True]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_set_params.py::test_hydra_compose_and_dump[True-conf-bar-False]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_set_params.py::test_hydra_compose_and_dump[True-conf-bar-True]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_set_params.py::test_mixing_no_hydra_and_params_flags": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_set_params.py::test_modify_params[changes0-foo: baz\\ngoo:\\n  bag: 3.0\\nlorem: false]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_set_params.py::test_modify_params[changes1-foo: baz\\ngoo:\\n  bag: 3.0\\nlorem: false]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_show.py::test_show_baseline_error": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_show.py::test_show_completed_error": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_show.py::test_show_csv": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_show.py::test_show_experiment[False]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_show.py::test_show_experiment[True]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_show.py::test_show_failed_experiment": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_show.py::test_show_only_changed": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_show.py::test_show_sort": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_show.py::test_show_sort_metric_sep": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_show.py::test_show_with_broken_repo": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_stash_exp.py::test_deleted[False-False]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_stash_exp.py::test_deleted[False-True]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_stash_exp.py::test_deleted[True-False]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_stash_exp.py::test_deleted[True-True]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_stash_exp.py::test_modified[False-False]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_stash_exp.py::test_modified[False-True]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_stash_exp.py::test_modified[True-False]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_stash_exp.py::test_modified[True-True]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_stash_exp.py::test_staged_new_file[False]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_stash_exp.py::test_staged_new_file[True]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/func/experiments/test_utils.py::test_generate_random_exp_name": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/integration/test_studio_live_experiments.py::test_post_to_studio[DVC_EXP_GIT_REMOTE-False-False]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/integration/test_studio_live_experiments.py::test_post_to_studio[DVC_EXP_GIT_REMOTE-False-True]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/integration/test_studio_live_experiments.py::test_post_to_studio[DVC_EXP_GIT_REMOTE-True-False]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/integration/test_studio_live_experiments.py::test_post_to_studio[DVC_EXP_GIT_REMOTE-True-True]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/integration/test_studio_live_experiments.py::test_post_to_studio[None-False-False]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/integration/test_studio_live_experiments.py::test_post_to_studio[None-False-True]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/integration/test_studio_live_experiments.py::test_post_to_studio[None-True-False]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/integration/test_studio_live_experiments.py::test_post_to_studio[None-True-True]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/integration/test_studio_live_experiments.py::test_post_to_studio_subdir[False]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/integration/test_studio_live_experiments.py::test_post_to_studio_subdir[True]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/unit/command/test_experiments.py::test_experiments_save": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/unit/command/test_experiments.py::test_experiments_save_message[--message]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/unit/command/test_experiments.py::test_experiments_save_message[-M]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/unit/command/test_experiments.py::test_experiments_save_message[-m]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/unit/repo/experiments/queue/test_remove.py::test_remove_done": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/unit/repo/experiments/test_executor_status.py::test_celery_queue_failure_status": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/unit/repo/experiments/test_executor_status.py::test_celery_queue_success_status": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/unit/repo/experiments/test_executor_status.py::test_workspace_executor_failed_status[tempdir_queue]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/unit/repo/experiments/test_executor_status.py::test_workspace_executor_failed_status[workspace_queue]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/unit/repo/experiments/test_executor_status.py::test_workspace_executor_success_status[tempdir_queue]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/unit/repo/experiments/test_executor_status.py::test_workspace_executor_success_status[workspace_queue]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        }
+      }
+    },
+    "dvc-m16845": {
+      "runs": {
+        "baseline": 3,
+        "ranking": 3,
+        "regsmart": 3,
+        "regsmart-no-rank": 3
+      },
+      "total_seen": {
+        "baseline": 3050,
+        "ranking": 12200,
+        "regsmart": 9102,
+        "regsmart-no-rank": 3034
+      },
+      "tests": {
+        "tests/unit/test_rwlock.py::test_corrupted_rwlock[False]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/unit/test_rwlock.py::test_corrupted_rwlock[True]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/unit/test_rwlock.py::test_rwlock": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/unit/test_rwlock.py::test_rwlock_subdirs": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        }
+      }
+    },
+    "dvc-m19066": {
+      "runs": {
+        "baseline": 3,
+        "ranking": 3,
+        "regsmart": 3,
+        "regsmart-no-rank": 3
+      },
+      "total_seen": {
+        "baseline": 3050,
+        "ranking": 12200,
+        "regsmart": 9102,
+        "regsmart-no-rank": 3034
+      },
+      "tests": {
+        "tests/func/utils/test_strict_yaml.py::test_on_revision[stages:\\n  stage1:\\n    cmd: {}\\n-'./dvc.yaml' validation failed in revision '{short_rev}'.]": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        }
+      }
+    },
+    "dvc-m6852": {
+      "runs": {
+        "baseline": 3,
+        "ranking": 3,
+        "regsmart": 3,
+        "regsmart-no-rank": 3
+      },
+      "total_seen": {
+        "baseline": 3050,
+        "ranking": 12200,
+        "regsmart": 9102,
+        "regsmart-no-rank": 3034
+      },
+      "tests": {
+        "tests/unit/ui/test_pager.py::test_find_pager_uses_custom_pager_when_dvc_pager_env_var_is_defined": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/unit/ui/test_pager.py::test_find_pager_uses_custom_pager_when_pager_env_is_defined": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/unit/ui/test_pager.py::test_pager": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        }
+      }
+    }
+  },
   "ipython": {
     "control": {
       "runs": {
@@ -83230,6 +89291,379 @@
               "failed": 3,
               "runs": 3,
               "jobs": 1,
+              "intermittent": false
+            }
+          }
+        }
+      }
+    }
+  },
+  "trimesh": {
+    "control": {
+      "runs": {
+        "baseline": 3,
+        "ranking": 3,
+        "regsmart": 3,
+        "regsmart-no-rank": 3
+      },
+      "total_seen": {
+        "baseline": 754,
+        "ranking": 3016,
+        "regsmart": 2262,
+        "regsmart-no-rank": 754
+      },
+      "tests": {}
+    },
+    "trimesh-extra": {
+      "runs": {
+        "baseline": 3,
+        "ranking": 3,
+        "regsmart": 3,
+        "regsmart-no-rank": 3
+      },
+      "total_seen": {
+        "baseline": 754,
+        "ranking": 3016,
+        "regsmart": 2262,
+        "regsmart-no-rank": 754
+      },
+      "tests": {
+        "tests/test_sample.py::SampleTest::test_sample_volume": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        }
+      }
+    },
+    "trimesh-m13478": {
+      "runs": {
+        "baseline": 3,
+        "ranking": 3,
+        "regsmart": 3,
+        "regsmart-no-rank": 3
+      },
+      "total_seen": {
+        "baseline": 754,
+        "ranking": 3016,
+        "regsmart": 3,
+        "regsmart-no-rank": 1
+      },
+      "tests": {
+        "tests/test_polygons.py::test_second_moment": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        }
+      }
+    },
+    "trimesh-m21160": {
+      "runs": {
+        "baseline": 3,
+        "ranking": 3,
+        "regsmart": 3,
+        "regsmart-no-rank": 3
+      },
+      "total_seen": {
+        "baseline": 754,
+        "ranking": 3016,
+        "regsmart": 30,
+        "regsmart-no-rank": 10
+      },
+      "tests": {
+        "tests/test_transformations.py::TransformTest::test_angle": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_transformations.py::TransformTest::test_doctest": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        }
+      }
+    },
+    "trimesh-m25103": {
+      "runs": {
+        "baseline": 3,
+        "ranking": 3,
+        "regsmart": 3,
+        "regsmart-no-rank": 3
+      },
+      "total_seen": {
+        "baseline": 754,
+        "ranking": 3016,
+        "regsmart": 387,
+        "regsmart-no-rank": 129
+      },
+      "tests": {
+        "tests/test_dae.py::DAETest::test_invalid_shininess": {
+          "class": "esperada, diverge",
+          "why": "não falhou sempre em: regsmart, regsmart-no-rank",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_dae.py::DAETest::test_material_round": {
+          "class": "esperada, diverge",
+          "why": "não falhou sempre em: regsmart, regsmart-no-rank",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_gltf.py::GLTFTest::test_spec_gloss_factors_only": {
+          "class": "esperada, diverge",
+          "why": "não falhou sempre em: regsmart, regsmart-no-rank",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_gltf.py::GLTFTest::test_specular_glossiness": {
+          "class": "esperada, diverge",
+          "why": "não falhou sempre em: regsmart, regsmart-no-rank",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_pbr.py::PBRTest::test_storage": {
+          "class": "esperada",
+          "why": "falha sempre, em todos os workflows",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            },
+            "regsmart": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 3,
+              "intermittent": false
+            },
+            "regsmart-no-rank": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_pbr_concatenate.py::PBRConcatenateTest::test_pbr_identical_materials": {
+          "class": "esperada, diverge",
+          "why": "não falhou sempre em: regsmart, regsmart-no-rank",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            }
+          }
+        },
+        "tests/test_texture.py::TextureTest::test_pbr_nouv_export": {
+          "class": "esperada, diverge",
+          "why": "não falhou sempre em: regsmart, regsmart-no-rank",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
+              "intermittent": false
+            }
+          }
+        }
+      }
+    },
+    "trimesh-m3147": {
+      "runs": {
+        "baseline": 3,
+        "ranking": 3,
+        "regsmart": 3,
+        "regsmart-no-rank": 3
+      },
+      "total_seen": {
+        "baseline": 754,
+        "ranking": 3016,
+        "regsmart": 387,
+        "regsmart-no-rank": 129
+      },
+      "tests": {
+        "tests/test_inertia.py::test_points_inertia_sample": {
+          "class": "esperada, diverge",
+          "why": "não falhou sempre em: regsmart, regsmart-no-rank",
+          "wf": {
+            "baseline": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 1,
+              "intermittent": false
+            },
+            "ranking": {
+              "failed": 3,
+              "runs": 3,
+              "jobs": 4,
               "intermittent": false
             }
           }

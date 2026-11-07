@@ -1,7 +1,9 @@
 repo,baseline,ranking:rkn_hybrid,ranking:rkn_qtf,ranking:rkn_recentfail,ranking:rkn_simchgpath,regsmart:rgsm_hybrid,regsmart:rgsm_qtf,regsmart:rgsm_recentfail,regsmart-no-rank
 apscheduler,47.67,0.06,1.32,0.10,46.36,3.45,3.49,3.83,40.14
 dask,406.26,100.38,155.58,23.88,506.22,143.88,159.97,103.45,481.79
+dvc,46.05,0.34,15.14,0.31,50.61,25.85,41.55,25.82,74.39
 ipython,86.17,0.77,8.65,0.69,84.09,12.34,20.39,11.05,97.40
 librosa,46.04,16.43,20.82,5.14,46.80,12.15,11.38,10.36,15.89
-Média entre repos,146.54,29.41,46.59,7.45,170.87,42.96,48.81,32.17,158.81
-Razão média vs baseline,1.00,0.15,0.24,0.05,1.05,0.21,0.24,0.17,0.88
+trimesh,146.34,0.53,1.13,0.23,178.92,8.36,10.06,9.33,60.24
+Média entre repos,129.76,19.75,33.77,5.06,152.17,34.34,41.14,27.31,128.31
+Razão média vs baseline,1.00,0.10,0.22,0.03,1.09,0.24,0.32,0.22,0.92

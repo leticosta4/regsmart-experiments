@@ -674,6 +674,222 @@
       ]
     }
   },
+  "dvc": {
+    "dvc-m11576": {
+      "faults": [
+        "tests/unit/utils/test_humanize.py::test_truncate_text"
+      ],
+      "flaky": []
+    },
+    "dvc-m12545": {
+      "faults": [
+        "tests/func/api/test_experiments.py::test_exp_save",
+        "tests/func/experiments/test_apply.py::test_apply",
+        "tests/func/experiments/test_apply.py::test_apply_unchanged_head",
+        "tests/func/experiments/test_apply.py::test_apply_untracked",
+        "tests/func/experiments/test_diff.py::test_diff_exp",
+        "tests/func/experiments/test_diff.py::test_diff_head",
+        "tests/func/experiments/test_experiments.py::test_branch",
+        "tests/func/experiments/test_experiments.py::test_checkout_targets_deps",
+        "tests/func/experiments/test_experiments.py::test_copy_paths[False]",
+        "tests/func/experiments/test_experiments.py::test_copy_paths[True]",
+        "tests/func/experiments/test_experiments.py::test_copy_paths_errors",
+        "tests/func/experiments/test_experiments.py::test_custom_commit_message[False]",
+        "tests/func/experiments/test_experiments.py::test_custom_commit_message[True]",
+        "tests/func/experiments/test_experiments.py::test_detached_parent",
+        "tests/func/experiments/test_experiments.py::test_exp_run_recursive",
+        "tests/func/experiments/test_experiments.py::test_experiment_exists[False]",
+        "tests/func/experiments/test_experiments.py::test_experiment_exists[True]",
+        "tests/func/experiments/test_experiments.py::test_experiment_run_dry",
+        "tests/func/experiments/test_experiments.py::test_experiment_unchanged",
+        "tests/func/experiments/test_experiments.py::test_experiments_run_in_linked_git_worktree",
+        "tests/func/experiments/test_experiments.py::test_experiments_run_with_submodule_dependencies[submodule/file]",
+        "tests/func/experiments/test_experiments.py::test_experiments_run_with_submodule_dependencies[submodule]",
+        "tests/func/experiments/test_experiments.py::test_experiments_workspace_not_log_exception",
+        "tests/func/experiments/test_experiments.py::test_failed_exp_workspace",
+        "tests/func/experiments/test_experiments.py::test_file_permissions",
+        "tests/func/experiments/test_experiments.py::test_get_baseline",
+        "tests/func/experiments/test_experiments.py::test_list",
+        "tests/func/experiments/test_experiments.py::test_local_config_is_propagated_to_tmp",
+        "tests/func/experiments/test_experiments.py::test_mixed_git_dvc_out",
+        "tests/func/experiments/test_experiments.py::test_modified_data_dep[False-foo: 1-False]",
+        "tests/func/experiments/test_experiments.py::test_modified_data_dep[False-foo: 1-True]",
+        "tests/func/experiments/test_experiments.py::test_modified_data_dep[False-foo: 2-False]",
+        "tests/func/experiments/test_experiments.py::test_modified_data_dep[False-foo: 2-True]",
+        "tests/func/experiments/test_experiments.py::test_modified_data_dep[True-foo: 1-False]",
+        "tests/func/experiments/test_experiments.py::test_modified_data_dep[True-foo: 1-True]",
+        "tests/func/experiments/test_experiments.py::test_modified_data_dep[True-foo: 2-False]",
+        "tests/func/experiments/test_experiments.py::test_modified_data_dep[True-foo: 2-True]",
+        "tests/func/experiments/test_experiments.py::test_new_simple[False-None]",
+        "tests/func/experiments/test_experiments.py::test_new_simple[False-foo]",
+        "tests/func/experiments/test_experiments.py::test_new_simple[True-None]",
+        "tests/func/experiments/test_experiments.py::test_new_simple[True-foo]",
+        "tests/func/experiments/test_experiments.py::test_packed_args_exists",
+        "tests/func/experiments/test_experiments.py::test_run_celery",
+        "tests/func/experiments/test_experiments.py::test_run_env",
+        "tests/func/experiments/test_experiments.py::test_subdir[False]",
+        "tests/func/experiments/test_experiments.py::test_subdir[True]",
+        "tests/func/experiments/test_experiments.py::test_subrepo[False]",
+        "tests/func/experiments/test_experiments.py::test_subrepo[True]",
+        "tests/func/experiments/test_experiments.py::test_untracked[False]",
+        "tests/func/experiments/test_experiments.py::test_untracked[True]",
+        "tests/func/experiments/test_experiments.py::test_untracked_top_level_files_are_included_in_exp[False]",
+        "tests/func/experiments/test_experiments.py::test_untracked_top_level_files_are_included_in_exp[True]",
+        "tests/func/experiments/test_experiments.py::test_update_py_params",
+        "tests/func/experiments/test_queue.py::test_celery_logs[False]",
+        "tests/func/experiments/test_queue.py::test_celery_logs[True]",
+        "tests/func/experiments/test_queue.py::test_copy_paths_queue",
+        "tests/func/experiments/test_queue.py::test_custom_commit_message_queue",
+        "tests/func/experiments/test_remote.py::test_auth_error_push",
+        "tests/func/experiments/test_remote.py::test_auto_push_misconfigured",
+        "tests/func/experiments/test_remote.py::test_auto_push_on_run[False-success]",
+        "tests/func/experiments/test_remote.py::test_auto_push_on_run[True-up_to_date]",
+        "tests/func/experiments/test_remote.py::test_auto_push_on_save[False-success]",
+        "tests/func/experiments/test_remote.py::test_auto_push_on_save[True-up_to_date]",
+        "tests/func/experiments/test_remote.py::test_auto_push_tmp_dir",
+        "tests/func/experiments/test_remote.py::test_get[False]",
+        "tests/func/experiments/test_remote.py::test_get[True]",
+        "tests/func/experiments/test_remote.py::test_list_remote[False]",
+        "tests/func/experiments/test_remote.py::test_list_remote[True]",
+        "tests/func/experiments/test_remote.py::test_pull[False]",
+        "tests/func/experiments/test_remote.py::test_pull[True]",
+        "tests/func/experiments/test_remote.py::test_pull_ambiguous_name",
+        "tests/func/experiments/test_remote.py::test_pull_args[False-True-None]",
+        "tests/func/experiments/test_remote.py::test_pull_args[True-False-True]",
+        "tests/func/experiments/test_remote.py::test_pull_diverged",
+        "tests/func/experiments/test_remote.py::test_pull_multi_rev",
+        "tests/func/experiments/test_remote.py::test_push[False]",
+        "tests/func/experiments/test_remote.py::test_push[True]",
+        "tests/func/experiments/test_remote.py::test_push_ambiguous_name",
+        "tests/func/experiments/test_remote.py::test_push_args[False-True-None]",
+        "tests/func/experiments/test_remote.py::test_push_args[True-False-True]",
+        "tests/func/experiments/test_remote.py::test_push_diverged",
+        "tests/func/experiments/test_remote.py::test_push_multi_rev",
+        "tests/func/experiments/test_remote.py::test_push_pull_invalid_workspace",
+        "tests/func/experiments/test_remove.py::test_keep_selected_by_name[keep0-expected_removed0]",
+        "tests/func/experiments/test_remove.py::test_keep_selected_by_name[keep1-expected_removed1]",
+        "tests/func/experiments/test_remove.py::test_keep_selected_by_name[keep2-expected_removed2]",
+        "tests/func/experiments/test_remove.py::test_keep_selected_by_rev[1-None-1-expected_removed7]",
+        "tests/func/experiments/test_remove.py::test_keep_selected_by_rev[2-exp1-1-expected_removed0]",
+        "tests/func/experiments/test_remove.py::test_keep_selected_by_rev[3-exp2-2-expected_removed4]",
+        "tests/func/experiments/test_remove.py::test_keep_selected_by_rev[3-exp3-1-expected_removed1]",
+        "tests/func/experiments/test_remove.py::test_keep_selected_by_rev[3-exp3-2-expected_removed2]",
+        "tests/func/experiments/test_remove.py::test_keep_selected_by_rev[3-exp3-3-expected_removed3]",
+        "tests/func/experiments/test_remove.py::test_keep_selected_by_rev[4-exp2-2-expected_removed5]",
+        "tests/func/experiments/test_remove.py::test_keep_selected_by_rev[4-exp4-2-expected_removed6]",
+        "tests/func/experiments/test_remove.py::test_remove_all",
+        "tests/func/experiments/test_remove.py::test_remove_all_experiments_queued_and_completed",
+        "tests/func/experiments/test_remove.py::test_remove_all_queued_experiments",
+        "tests/func/experiments/test_remove.py::test_remove_experiments_by_ref",
+        "tests/func/experiments/test_remove.py::test_remove_experiments_by_rev",
+        "tests/func/experiments/test_remove.py::test_remove_multi_rev",
+        "tests/func/experiments/test_remove.py::test_remove_remote[False]",
+        "tests/func/experiments/test_remove.py::test_remove_remote[True]",
+        "tests/func/experiments/test_remove.py::test_remove_special_queued_experiments",
+        "tests/func/experiments/test_rename.py::test_existing_name",
+        "tests/func/experiments/test_rename.py::test_invalid_name",
+        "tests/func/experiments/test_rename.py::test_rename_experiment_by_name",
+        "tests/func/experiments/test_rename.py::test_same_name",
+        "tests/func/experiments/test_save.py::test_exp_save[None]",
+        "tests/func/experiments/test_save.py::test_exp_save[test]",
+        "tests/func/experiments/test_save.py::test_exp_save_after_commit",
+        "tests/func/experiments/test_save.py::test_exp_save_custom_message",
+        "tests/func/experiments/test_save.py::test_exp_save_include_untracked",
+        "tests/func/experiments/test_save.py::test_exp_save_include_untracked_force",
+        "tests/func/experiments/test_save.py::test_exp_save_include_untracked_warning",
+        "tests/func/experiments/test_save.py::test_exp_save_overwrite_experiment",
+        "tests/func/experiments/test_save.py::test_exp_save_target",
+        "tests/func/experiments/test_save.py::test_exp_save_unchanged",
+        "tests/func/experiments/test_save.py::test_exp_save_with_staged_changes",
+        "tests/func/experiments/test_save.py::test_untracked_dvclock_is_included_in_exp",
+        "tests/func/experiments/test_save.py::test_untracked_top_level_files_are_included_in_exp",
+        "tests/func/experiments/test_set_params.py::test_hydra_compose_and_dump[False-None-None-False]",
+        "tests/func/experiments/test_set_params.py::test_hydra_compose_and_dump[False-None-None-True]",
+        "tests/func/experiments/test_set_params.py::test_hydra_compose_and_dump[False-None-bar-False]",
+        "tests/func/experiments/test_set_params.py::test_hydra_compose_and_dump[False-None-bar-True]",
+        "tests/func/experiments/test_set_params.py::test_hydra_compose_and_dump[False-conf-bar-False]",
+        "tests/func/experiments/test_set_params.py::test_hydra_compose_and_dump[False-conf-bar-True]",
+        "tests/func/experiments/test_set_params.py::test_hydra_compose_and_dump[True-None-None-False]",
+        "tests/func/experiments/test_set_params.py::test_hydra_compose_and_dump[True-None-None-True]",
+        "tests/func/experiments/test_set_params.py::test_hydra_compose_and_dump[True-None-bar-False]",
+        "tests/func/experiments/test_set_params.py::test_hydra_compose_and_dump[True-None-bar-True]",
+        "tests/func/experiments/test_set_params.py::test_hydra_compose_and_dump[True-conf-bar-False]",
+        "tests/func/experiments/test_set_params.py::test_hydra_compose_and_dump[True-conf-bar-True]",
+        "tests/func/experiments/test_set_params.py::test_mixing_no_hydra_and_params_flags",
+        "tests/func/experiments/test_set_params.py::test_modify_params[changes0-foo: baz\\ngoo:\\n  bag: 3.0\\nlorem: false]",
+        "tests/func/experiments/test_set_params.py::test_modify_params[changes1-foo: baz\\ngoo:\\n  bag: 3.0\\nlorem: false]",
+        "tests/func/experiments/test_show.py::test_show_baseline_error",
+        "tests/func/experiments/test_show.py::test_show_completed_error",
+        "tests/func/experiments/test_show.py::test_show_csv",
+        "tests/func/experiments/test_show.py::test_show_experiment[False]",
+        "tests/func/experiments/test_show.py::test_show_experiment[True]",
+        "tests/func/experiments/test_show.py::test_show_failed_experiment",
+        "tests/func/experiments/test_show.py::test_show_only_changed",
+        "tests/func/experiments/test_show.py::test_show_sort",
+        "tests/func/experiments/test_show.py::test_show_sort_metric_sep",
+        "tests/func/experiments/test_show.py::test_show_with_broken_repo",
+        "tests/func/experiments/test_stash_exp.py::test_deleted[False-False]",
+        "tests/func/experiments/test_stash_exp.py::test_deleted[False-True]",
+        "tests/func/experiments/test_stash_exp.py::test_deleted[True-False]",
+        "tests/func/experiments/test_stash_exp.py::test_deleted[True-True]",
+        "tests/func/experiments/test_stash_exp.py::test_modified[False-False]",
+        "tests/func/experiments/test_stash_exp.py::test_modified[False-True]",
+        "tests/func/experiments/test_stash_exp.py::test_modified[True-False]",
+        "tests/func/experiments/test_stash_exp.py::test_modified[True-True]",
+        "tests/func/experiments/test_stash_exp.py::test_staged_new_file[False]",
+        "tests/func/experiments/test_stash_exp.py::test_staged_new_file[True]",
+        "tests/func/experiments/test_utils.py::test_generate_random_exp_name",
+        "tests/integration/test_studio_live_experiments.py::test_post_to_studio[DVC_EXP_GIT_REMOTE-False-False]",
+        "tests/integration/test_studio_live_experiments.py::test_post_to_studio[DVC_EXP_GIT_REMOTE-False-True]",
+        "tests/integration/test_studio_live_experiments.py::test_post_to_studio[DVC_EXP_GIT_REMOTE-True-False]",
+        "tests/integration/test_studio_live_experiments.py::test_post_to_studio[DVC_EXP_GIT_REMOTE-True-True]",
+        "tests/integration/test_studio_live_experiments.py::test_post_to_studio[None-False-False]",
+        "tests/integration/test_studio_live_experiments.py::test_post_to_studio[None-False-True]",
+        "tests/integration/test_studio_live_experiments.py::test_post_to_studio[None-True-False]",
+        "tests/integration/test_studio_live_experiments.py::test_post_to_studio[None-True-True]",
+        "tests/integration/test_studio_live_experiments.py::test_post_to_studio_subdir[False]",
+        "tests/integration/test_studio_live_experiments.py::test_post_to_studio_subdir[True]",
+        "tests/unit/command/test_experiments.py::test_experiments_save",
+        "tests/unit/command/test_experiments.py::test_experiments_save_message[--message]",
+        "tests/unit/command/test_experiments.py::test_experiments_save_message[-M]",
+        "tests/unit/command/test_experiments.py::test_experiments_save_message[-m]",
+        "tests/unit/repo/experiments/queue/test_remove.py::test_remove_done",
+        "tests/unit/repo/experiments/test_executor_status.py::test_celery_queue_failure_status",
+        "tests/unit/repo/experiments/test_executor_status.py::test_celery_queue_success_status",
+        "tests/unit/repo/experiments/test_executor_status.py::test_workspace_executor_failed_status[tempdir_queue]",
+        "tests/unit/repo/experiments/test_executor_status.py::test_workspace_executor_failed_status[workspace_queue]",
+        "tests/unit/repo/experiments/test_executor_status.py::test_workspace_executor_success_status[tempdir_queue]",
+        "tests/unit/repo/experiments/test_executor_status.py::test_workspace_executor_success_status[workspace_queue]"
+      ],
+      "flaky": []
+    },
+    "dvc-m16845": {
+      "faults": [
+        "tests/unit/test_rwlock.py::test_corrupted_rwlock[False]",
+        "tests/unit/test_rwlock.py::test_corrupted_rwlock[True]",
+        "tests/unit/test_rwlock.py::test_rwlock",
+        "tests/unit/test_rwlock.py::test_rwlock_subdirs"
+      ],
+      "flaky": []
+    },
+    "dvc-m19066": {
+      "faults": [
+        "tests/func/utils/test_strict_yaml.py::test_on_revision[stages:\\n  stage1:\\n    cmd: {}\\n-'./dvc.yaml' validation failed in revision '{short_rev}'.]"
+      ],
+      "flaky": []
+    },
+    "dvc-m6852": {
+      "faults": [
+        "tests/unit/ui/test_pager.py::test_find_pager_uses_custom_pager_when_dvc_pager_env_var_is_defined",
+        "tests/unit/ui/test_pager.py::test_find_pager_uses_custom_pager_when_pager_env_is_defined",
+        "tests/unit/ui/test_pager.py::test_pager"
+      ],
+      "flaky": []
+    },
+    "_control": {
+      "ambiente": []
+    }
+  },
   "ipython": {
     "ipython-m1288": {
       "faults": [
@@ -2761,6 +2977,48 @@
         "tests/test_segment.py::test_subsegment[4]",
         "tests/test_segment.py::test_subsegment_badn[-1]",
         "tests/test_segment.py::test_subsegment_badn[0]"
+      ],
+      "flaky": []
+    },
+    "_control": {
+      "ambiente": []
+    }
+  },
+  "trimesh": {
+    "trimesh-extra": {
+      "faults": [
+        "tests/test_sample.py::SampleTest::test_sample_volume"
+      ],
+      "flaky": []
+    },
+    "trimesh-m13478": {
+      "faults": [
+        "tests/test_polygons.py::test_second_moment"
+      ],
+      "flaky": []
+    },
+    "trimesh-m21160": {
+      "faults": [
+        "tests/test_transformations.py::TransformTest::test_angle",
+        "tests/test_transformations.py::TransformTest::test_doctest"
+      ],
+      "flaky": []
+    },
+    "trimesh-m25103": {
+      "faults": [
+        "tests/test_dae.py::DAETest::test_invalid_shininess",
+        "tests/test_dae.py::DAETest::test_material_round",
+        "tests/test_gltf.py::GLTFTest::test_spec_gloss_factors_only",
+        "tests/test_gltf.py::GLTFTest::test_specular_glossiness",
+        "tests/test_pbr.py::PBRTest::test_storage",
+        "tests/test_pbr_concatenate.py::PBRConcatenateTest::test_pbr_identical_materials",
+        "tests/test_texture.py::TextureTest::test_pbr_nouv_export"
+      ],
+      "flaky": []
+    },
+    "trimesh-m3147": {
+      "faults": [
+        "tests/test_inertia.py::test_points_inertia_sample"
       ],
       "flaky": []
     },
