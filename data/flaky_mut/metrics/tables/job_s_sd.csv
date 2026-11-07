@@ -1,3 +1,7 @@
 repo,baseline,ranking:rkn_hybrid,ranking:rkn_qtf,ranking:rkn_recentfail,ranking:rkn_simchgpath,regsmart:rgsm_hybrid,regsmart:rgsm_qtf,regsmart:rgsm_recentfail,regsmart-no-rank
 apscheduler,20.3,9.0,12.4,13.5,14.8,20.9,19.0,26.2,19.8
+dask,286.7,217.4,161.2,181.4,139.9,789.3,712.0,796.1,854.9
+dvc,271.0,238.3,244.0,215.9,264.7,226.5,252.3,219.2,261.3
+ipython,4.2,3.4,7.2,4.6,6.4,8.1,7.9,6.6,3.0
 librosa,62.8,59.7,47.7,40.7,61.5,67.0,54.0,86.8,85.0
+trimesh,31.3,63.4,47.3,46.5,66.2,80.1,112.1,86.2,90.0

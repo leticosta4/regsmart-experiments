@@ -34,6 +34,7 @@ também reduz o tempo de fila embutido nas medições de makespan.
 import argparse
 import base64
 import collections
+import http.client
 import json
 import os
 import re
@@ -46,6 +47,11 @@ import urllib.request
 import zipfile
 from datetime import datetime, timezone
 from pathlib import Path
+
+# Falhas de transporte (conexão caiu, resposta truncada, timeout, JSON cortado): são
+# transitórias como um 5xx, mas não chegam como HTTPError.
+NETWORK_ERRORS = (http.client.HTTPException, ConnectionError, TimeoutError, json.JSONDecodeError)
+NETWORK_MARK = "falha de rede"
 
 OWNER = "leticosta4"
 API = "https://api.github.com"
@@ -199,10 +205,14 @@ class Api:
                 print(f"  ! HTTP {exc.code}, esperando {wait:.0f}s ({attempt + 1})")
                 time.sleep(wait)
                 delay = min(delay * 2, 60)
-            except urllib.error.URLError as exc:
-                if attempt == self.max_retries:
-                    raise RuntimeError(f"{method} {url} -> {exc.reason}") from exc
+            except (urllib.error.URLError, *NETWORK_ERRORS) as exc:
+                reason = getattr(exc, "reason", None) or f"{type(exc).__name__}: {exc}"
+                # POST sem retry de 5xx (dispatch): o pedido pode ter chegado ao GitHub;
+                # quem decide é o loop do `run`, que confere se o run foi criado
+                if attempt == self.max_retries or (method != "GET" and not retry_5xx):
+                    raise RuntimeError(f"{method} {url} -> {NETWORK_MARK} ({reason})") from exc
                 self.counters["retries"] += 1
+                print(f"  ! {NETWORK_MARK} ({str(reason)[:80]}), esperando {delay:.0f}s ({attempt + 1})")
                 time.sleep(delay)
                 delay = min(delay * 2, 60)
 
@@ -413,8 +423,8 @@ def dispatch(api: Api, repo: str, workflow_file: str, ref: str) -> None:
 
 
 def server_error(exc: Exception) -> bool:
-    """Erro 5xx do GitHub (instabilidade do lado deles, não da tarefa)."""
-    return bool(re.search(r"HTTP 5\d\d\b", str(exc)))
+    """Erro 5xx do GitHub ou falha de rede (instabilidade, não problema da tarefa)."""
+    return bool(re.search(r"HTTP 5\d\d\b", str(exc))) or NETWORK_MARK in str(exc)
 
 
 def run_created_anyway(api: Api, rows: dict, r: dict) -> bool:
@@ -459,6 +469,9 @@ def refresh(api: Api, manifest: dict) -> None:
     claimed = {r["run_id"] for r in rows if r.get("run_id")}
     # runs de tentativas anteriores (--redo) também não podem ser casados de novo
     claimed |= {h["run_id"] for r in rows for h in r.get("history") or [] if h.get("run_id")}
+    # runs duplicados já vistos também não casam com nenhuma outra tarefa
+    claimed |= {d for r in rows for d in r.get("duplicate_runs") or []}
+    claimed |= {d for r in rows for h in r.get("history") or [] for d in h.get("duplicate_runs") or []}
     for repo in sorted({r["repo"] for r in watch}):
         t0 = min(parse_ts(r["dispatch_window_start_utc"]).timestamp() for r in watch
                  if r["repo"] == repo)
@@ -486,6 +499,15 @@ def refresh(api: Api, manifest: dict) -> None:
                 r["run_id"] = hits[0]["id"]
                 r["html_url"] = hits[0]["html_url"]
                 claimed.add(r["run_id"])
+                if len(hits) > 1:
+                    # lane sequencial: mais de um run novo = dispatch duplicado (ex.: 5xx
+                    # que criou o run mesmo assim). Um costuma cancelar o outro pelo
+                    # `concurrency`, e o cancelado ainda salva cache (`if: always()`).
+                    r["duplicate_runs"] = [x["id"] for x in hits[1:]]
+                    claimed.update(r["duplicate_runs"])
+                    print(f"\n  ! {r['task']}: {len(hits)} runs para um dispatch "
+                          f"({', '.join(str(x['id']) for x in hits)}); usando {hits[0]['id']}. "
+                          f"Veja 'Despacho duplicado' no report.")
             run = by_id.get(r["run_id"]) or api.get(
                 f"/repos/{OWNER}/{repo}/actions/runs/{r['run_id']}"
             )
@@ -528,12 +550,12 @@ def reset_row(r: dict) -> None:
     """Zera uma tarefa pra ser despachada de novo, guardando o histórico."""
     r.setdefault("history", []).append({
         k: r.get(k) for k in ("run_id", "html_url", "status", "conclusion", "dispatched_at_utc",
-                              "dispatch_error")
+                              "dispatch_error", "duplicate_runs")
     })
     for k in ("run_id", "html_url", "status", "conclusion", "run_attempt", "conclusion_at_utc",
               "jobs", "jobs_total", "dispatched_at_utc", "dispatch_window_start_utc",
               "dispatch_error", "dispatch_failed", "dispatch_attempts", "run_head_sha",
-              "sha_mismatch", "warmup_missing", "dispatch_5xx"):
+              "sha_mismatch", "warmup_missing", "dispatch_5xx", "duplicate_runs"):
         r.pop(k, None)
 
 
@@ -593,7 +615,8 @@ def span(rows: list[dict]) -> float | None:
 WF_ORDER = ["baseline", "ranking", "regsmart", "regsmart-no-rank"]
 MAX_ROWS = 40  # linhas de detalhe por mutante; o resto fica no flaky_tests.json
 LEGEND = [
-    ("ambiente (controle)", "também falha na branch default sem mutante (`run --control`): ambiente ou falha pré-existente, não é efeito do mutante"),
+    ("ambiente (controle)", "também falha no baseline da branch default sem mutante (`run --control`): ambiente ou falha pré-existente, não é efeito do mutante"),
+    ("dependente de ordem (controle)", "na branch default sem mutante, falha só sob plugin (nunca no baseline): dependência de ordem exposta pelo reordenamento, não é efeito do mutante nem do ambiente"),
     ("flaky", "falha em algumas execuções do baseline e passa em outras"),
     ("só no plugin (flaky)", "baseline nunca falhou; falha às vezes sob plugin (provável dependência de ordem exposta pelo reordenamento)"),
     ("só no plugin (fixa)", "baseline nunca falhou; falha em todas as execuções de algum plugin (investigar o plugin)"),
@@ -611,12 +634,13 @@ def flaky_section(flaky: dict, show_expected: bool) -> list[str]:
          "", "| classe | significado |", "|---|---|"]
     L += [f"| {k} | {v} |" for k, v in LEGEND]
     L += ["", "### Resumo", "",
-          "| repo | mutante | ambiente | flaky | só plugin (flaky) | só plugin (fixa) | esperada, diverge | esperada | outros |",
-          "|---|---|---|---|---|---|---|---|---|"]
+          "| repo | mutante | ambiente | dep. ordem (controle) | flaky | só plugin (flaky) | só plugin (fixa) | esperada, diverge | esperada | outros |",
+          "|---|---|---|---|---|---|---|---|---|---|"]
     for repo, muts in sorted(flaky.items()):
         for mut, info in sorted(muts.items()):
             k = collections.Counter(t["class"] for t in info["tests"].values())
-            L.append(f"| {repo} | {mut} | {k['ambiente (controle)']} | {k['flaky']} | {k['só no plugin (flaky)']} | "
+            L.append(f"| {repo} | {mut} | {k['ambiente (controle)']} | {k['dependente de ordem (controle)']} | "
+                     f"{k['flaky']} | {k['só no plugin (flaky)']} | "
                      f"{k['só no plugin (fixa)']} | {k['esperada, diverge']} | {k['esperada']} | "
                      f"{k['indeterminado'] + k['sem baseline']} |")
     combos = sorted({k for muts in flaky.values() for info in muts.values()
@@ -743,6 +767,19 @@ def build_report(c: Campaign, manifest: dict, flaky: dict | None,
             L.append(f"| {r['repo']} | {r.get('mutant') or r['ref']} | {r['workflow']} | "
                      f"r{r['rep']:02d} | {r.get('run_id', '-')} |")
         L.append("")
+    dup = [r for r in runs if r.get("duplicate_runs")]
+    if dup:
+        L += ["## Despacho duplicado (investigar o cache da lane)", "",
+              "Mais de um run para a mesma tarefa. O `concurrency` cancela um deles, e o "
+              "cancelado ainda salva o cache (`if: always()`): as repetições seguintes da lane "
+              "herdam uma execução parcial a mais. Para refazer limpo, apague os caches salvos "
+              "por esses runs (a chave termina no run_id) e rode `run --redo` na tarefa.", "",
+              "| repo | mutante | workflow | rep | run usado | duplicados |", "|---|---|---|---|---|---|"]
+        for r in dup:
+            L.append(f"| {r['repo']} | {r.get('mutant') or r['ref']} | {r['workflow']} | "
+                     f"r{r['rep']:02d} | {r.get('run_id', '-')} | "
+                     f"{', '.join(str(d) for d in r['duplicate_runs'])} |")
+        L.append("")
     lost = [r for r in runs if r.get("dispatch_failed")]
     if lost:
         L += ["## Dispatch falhou / run perdido", "",
@@ -848,7 +885,7 @@ def parse_run(c: Campaign, repo: str, run_id: int) -> list[tuple[str, set, int]]
     return out
 
 
-CLASS_ORDER = ["ambiente (controle)", "flaky", "só no plugin (flaky)", "só no plugin (fixa)", "esperada, diverge",
+CLASS_ORDER = ["ambiente (controle)", "dependente de ordem (controle)", "flaky", "só no plugin (flaky)", "só no plugin (fixa)", "esperada, diverge",
                "indeterminado", "sem baseline", "esperada"]
 
 
@@ -951,18 +988,23 @@ def analyze_flaky(c: Campaign, manifest: dict, exclude_warmup: bool,
                         cur["failed"], cur["runs"] = k, n
         prepared[(repo, mut)] = (runs, total_seen, cells)
 
-    # Falhou ao menos uma vez na branch de controle (qualquer workflow) = ambiente.
-    env = collections.defaultdict(set)
+    # Falhou ao menos uma vez na branch de controle (qualquer workflow): não é efeito do
+    # mutante. Se falhou no baseline do controle é ambiente/pré-existente; se falhou só
+    # sob plugin (ranking/regsmart reordenam), é dependência de ordem.
+    env = collections.defaultdict(dict)  # repo -> {nodeid: classe}
     for (repo, mut), (_, _, cells) in prepared.items():
         if mut == CONTROL:
-            env[repo].update(cells)
+            for nid, cs in cells.items():
+                env[repo][nid] = "ambiente (controle)" if "baseline" in cs else "dependente de ordem (controle)"
 
     out: dict = {}
     for (repo, mut), (runs, total_seen, cells) in sorted(prepared.items()):
         tests = {}
         for nid, cs in sorted(cells.items()):
             if mut != CONTROL and nid in env[repo]:
-                cls, why = "ambiente (controle)", "também falha na branch default, sem mutante"
+                cls = env[repo][nid]
+                why = ("também falha no baseline da branch default, sem mutante" if cls == "ambiente (controle)"
+                       else "na branch default sem mutante, falha só sob plugin (reordenamento)")
             else:
                 cls, why = classify(cs, runs)
             tests[nid] = {"class": cls, "why": why, "wf": cs}
@@ -1176,7 +1218,15 @@ def cmd_run(api: Api, args) -> int:
     pause_until, n_5xx = 0.0, 0  # backoff global depois de 5xx do GitHub
     try:
         while True:
-            refresh(api, manifest)
+            try:
+                refresh(api, manifest)
+            except RuntimeError as exc:
+                # instabilidade da API/rede ao consultar os runs: nada foi despachado
+                # nesta passada; espera e tenta de novo em vez de derrubar a campanha
+                print(f"\n  ! falha ao atualizar os runs ({str(exc)[:160]}); tentando de novo em 60s")
+                save_json(c.manifest_path, manifest)
+                time.sleep(60)
+                continue
             active = sum(1 for r in rows.values() if r.get("dispatched_at_utc") and not is_done(r))
             for t in sel:
                 r = rows[t["task"]]
@@ -1190,7 +1240,18 @@ def cmd_run(api: Api, args) -> int:
                            and (rows[d].get("dispatch_failed") or rows[d].get("conclusion") == "cancelled")]
                 if bad_dep:
                     r["warmup_missing"] = True  # cache do QTF/RecentFail não foi populado
-                r["dispatch_window_start_utc"] = now()
+                if r.get("dispatch_5xx"):
+                    # houve 5xx/falha de rede antes: o GitHub pode ter criado o run com
+                    # atraso. Confere de novo (com a janela da 1ª tentativa) antes de
+                    # disparar outra vez, senão a lane ganha um run duplicado.
+                    if run_created_anyway(api, rows, r):
+                        r["dispatched_at_utc"] = now()
+                        active += 1
+                        print(f"  {t['task']}: o run do dispatch que deu erro apareceu; seguindo sem redisparar")
+                        save_json(c.manifest_path, manifest)
+                        continue
+                else:
+                    r["dispatch_window_start_utc"] = now()
                 try:
                     dispatch(api, t["repo"], t["workflow_file"], t["ref"])
                     r["dispatched_at_utc"] = now()
@@ -1212,7 +1273,7 @@ def cmd_run(api: Api, args) -> int:
                             n_5xx += 1
                             wait = min(300, 15 * 2 ** (min(n_5xx, 6) - 1))
                             pause_until = time.time() + wait
-                            print(f"  {t['task']}: HTTP 5xx do GitHub, pausando os dispatches por "
+                            print(f"  {t['task']}: HTTP 5xx/falha de rede, pausando os dispatches por "
                                   f"{wait}s (não conta nas 3 tentativas)")
                         save_json(c.manifest_path, manifest)
                         break
