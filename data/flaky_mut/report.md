@@ -3,27 +3,27 @@
 ## Custo
 
 - Início: `2026-11-05T21:52:24.846302+00:00`
-- Fim: `2026-11-07T02:10:46.868996+00:00`
-- Tempo ativo do script: **6h13m29s**
-- Janela real dos runs (1º dispatch → última conclusão): **28h18m02s** (inclui fila)
-- Minutos de runner somados: **8749.8 min**
+- Fim: `2026-11-07T18:41:41.259429+00:00`
+- Tempo ativo do script: **10h18m08s**
+- Janela real dos runs (1º dispatch → última conclusão): **44h48m45s** (inclui fila)
+- Minutos de runner somados: **14313.8 min**
 - Pico de concorrência medido: **40** jobs (teto do plano Free: 20)
 
 ## API / rate limit
 
-- Requisições: 1506 GET, 755 POST
+- Requisições: 2156 GET, 1037 POST
 - Retries: 44
-- Rate limit (final): 222/5000 consumidos, reseta em `2026-11-07T02:32:27+00:00`
+- Rate limit (final): 35/5000 consumidos, reseta em `2026-11-07T19:25:39+00:00`
 
 ## Saúde da execução
 
 | Métrica | warm-up | repetições |
 |---|---|---|
-| Tarefas no plano | 96 | 576 |
-| Despachadas | 96 | 576 |
-| Com run_id | 96 | 576 |
-| Sucesso | 15 | 82 |
-| Falha (testes falharam) | 81 | 494 |
+| Tarefas no plano | 120 | 720 |
+| Despachadas | 120 | 720 |
+| Com run_id | 120 | 720 |
+| Sucesso | 17 | 94 |
+| Falha (testes falharam) | 103 | 626 |
 | Canceladas | 0 | 0 |
 | Em andamento | 0 | 0 |
 | Dispatch falhou / run perdido | 0 | 0 |
@@ -41,16 +41,18 @@
 | librosa | 84 | 14 | 70 | 0 | 0 | 1h55m03s | 835.7 |
 | pytest-django | 84 | 14 | 70 | 0 | 0 | 14m42s | 381.8 |
 | pytest-xdist | 84 | 0 | 84 | 0 | 0 | 12m14s | 306.5 |
+| pytorch-lightning | 84 | 14 | 70 | 0 | 0 | 3h16m18s | 3583.0 |
 | trimesh | 84 | 21 | 63 | 0 | 0 | 9h14m34s | 886.7 |
+| ultralytics | 84 | 0 | 84 | 0 | 0 | 1h10m18s | 1981.0 |
 
 ## Por workflow
 
 | workflow | runs | min runner |
 |---|---|---|
-| baseline | 144 | 835.7 |
-| ranking | 192 | 4522.2 |
-| regsmart | 192 | 2690.2 |
-| regsmart-no-rank | 144 | 701.7 |
+| baseline | 180 | 1328.5 |
+| ranking | 240 | 7136.6 |
+| regsmart | 240 | 4699.5 |
+| regsmart-no-rank | 180 | 1149.2 |
 
 ## Testes flaky
 
@@ -113,12 +115,24 @@ Cada teste que falhou é classificado comparando o **baseline** com os workflows
 | pytest-xdist | pytest-xdist-m1214 | 5 | 9 | 0 | 1 | 0 | 0 | 1 | 0 |
 | pytest-xdist | pytest-xdist-m1461 | 5 | 9 | 0 | 1 | 0 | 0 | 8 | 0 |
 | pytest-xdist | pytest-xdist-m1537 | 5 | 9 | 0 | 1 | 0 | 0 | 2 | 0 |
+| pytorch-lightning | control | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| pytorch-lightning | pytorch-lightning-m0766 | 0 | 0 | 0 | 0 | 0 | 0 | 6 | 0 |
+| pytorch-lightning | pytorch-lightning-m14490 | 0 | 0 | 0 | 1 | 0 | 0 | 2 | 0 |
+| pytorch-lightning | pytorch-lightning-m15854 | 0 | 0 | 0 | 0 | 0 | 0 | 7 | 0 |
+| pytorch-lightning | pytorch-lightning-m20410 | 0 | 0 | 0 | 1 | 0 | 0 | 6 | 0 |
+| pytorch-lightning | pytorch-lightning-m9476 | 0 | 0 | 0 | 1 | 0 | 0 | 10 | 0 |
 | trimesh | control | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | trimesh | trimesh-extra | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 |
 | trimesh | trimesh-m13478 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 |
 | trimesh | trimesh-m21160 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 0 |
 | trimesh | trimesh-m25103 | 0 | 0 | 0 | 0 | 0 | 6 | 1 | 0 |
 | trimesh | trimesh-m3147 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 |
+| ultralytics | control | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 0 |
+| ultralytics | ultralytics-m23817 | 4 | 0 | 0 | 0 | 0 | 11 | 38 | 0 |
+| ultralytics | ultralytics-m2383 | 4 | 0 | 0 | 0 | 0 | 33 | 129 | 0 |
+| ultralytics | ultralytics-m34570 | 4 | 0 | 0 | 0 | 0 | 0 | 1 | 0 |
+| ultralytics | ultralytics-m36889 | 4 | 0 | 0 | 0 | 0 | 0 | 2 | 0 |
+| ultralytics | ultralytics-m5380 | 4 | 0 | 0 | 0 | 0 | 2 | 4 | 0 |
 
 ### Só no plugin: em quais workflows falhou
 
@@ -168,12 +182,24 @@ Testes que nunca falharam no baseline (flaky + fixa), cada um contado uma vez, n
 | pytest-xdist | pytest-xdist-m1214 | 0 | 0 | 1 | 0 | 1 |
 | pytest-xdist | pytest-xdist-m1461 | 0 | 0 | 1 | 0 | 1 |
 | pytest-xdist | pytest-xdist-m1537 | 0 | 1 | 0 | 0 | 1 |
+| pytorch-lightning | control | 0 | 0 | 0 | 0 | 0 |
+| pytorch-lightning | pytorch-lightning-m0766 | 0 | 0 | 0 | 0 | 0 |
+| pytorch-lightning | pytorch-lightning-m14490 | 1 | 0 | 0 | 0 | 1 |
+| pytorch-lightning | pytorch-lightning-m15854 | 0 | 0 | 0 | 0 | 0 |
+| pytorch-lightning | pytorch-lightning-m20410 | 0 | 1 | 0 | 0 | 1 |
+| pytorch-lightning | pytorch-lightning-m9476 | 0 | 0 | 1 | 0 | 1 |
 | trimesh | control | 0 | 0 | 0 | 0 | 0 |
 | trimesh | trimesh-extra | 0 | 0 | 0 | 0 | 0 |
 | trimesh | trimesh-m13478 | 0 | 0 | 0 | 0 | 0 |
 | trimesh | trimesh-m21160 | 0 | 0 | 0 | 0 | 0 |
 | trimesh | trimesh-m25103 | 0 | 0 | 0 | 0 | 0 |
 | trimesh | trimesh-m3147 | 0 | 0 | 0 | 0 | 0 |
+| ultralytics | control | 0 | 0 | 0 | 0 | 0 |
+| ultralytics | ultralytics-m23817 | 0 | 0 | 0 | 0 | 0 |
+| ultralytics | ultralytics-m2383 | 0 | 0 | 0 | 0 | 0 |
+| ultralytics | ultralytics-m34570 | 0 | 0 | 0 | 0 | 0 |
+| ultralytics | ultralytics-m36889 | 0 | 0 | 0 | 0 | 0 |
+| ultralytics | ultralytics-m5380 | 0 | 0 | 0 | 0 | 0 |
 
 ### dask
 
@@ -623,6 +649,27 @@ Testes que nunca falharam no baseline (flaky + fixa), cada um contado uma vez, n
 | `testing/acceptance_test.py::TestLoadScope::test_workqueue_ordered_by_input` | 0/3 | 0/3 | 1/3 | 0/3 | só no plugin (flaky) |
 
 
+### pytorch-lightning
+
+#### pytorch-lightning-m14490
+
+| teste | baseline | ranking | regsmart | regsmart-no-rank | classe |
+|---|---|---|---|---|---|
+| `strategies/test_ddp_integration.py::test_ddp_cpu` | 0/3 | 1/3 | 0/3 | 0/3 | só no plugin (flaky) |
+
+#### pytorch-lightning-m20410
+
+| teste | baseline | ranking | regsmart | regsmart-no-rank | classe |
+|---|---|---|---|---|---|
+| `callbacks/test_stochastic_weight_avg.py::test_swa_callback_ddp_cpu` | 0/3 | 0/3 | 1/3 | 0/3 | só no plugin (flaky) |
+
+#### pytorch-lightning-m9476
+
+| teste | baseline | ranking | regsmart | regsmart-no-rank | classe |
+|---|---|---|---|---|---|
+| `callbacks/test_stochastic_weight_avg.py::test_swa_callback_ddp_cpu` | 0/3 | 1/3 | 1/3 | 0/2 | só no plugin (flaky) |
+
+
 ### trimesh
 
 #### trimesh-m25103
@@ -641,5 +688,99 @@ Testes que nunca falharam no baseline (flaky + fixa), cada um contado uma vez, n
 | teste | baseline | ranking | regsmart | regsmart-no-rank | classe |
 |---|---|---|---|---|---|
 | `tests/test_inertia.py::test_points_inertia_sample` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+
+
+### ultralytics
+
+#### ultralytics-m23817
+
+| teste | baseline | ranking | regsmart | regsmart-no-rank | classe |
+|---|---|---|---|---|---|
+| `tests/test_cli.py::test_predict[classify-model0-imagenet10]` | 3/3 | 3/3 | 0/3 | 0/3 | ambiente (controle) |
+| `tests/test_engine.py::test_task[ClassificationTrainer-ClassificationValidator-ClassificationPredictor-imagenet10-yolo26n-cls.yaml-None]` | 3/3 | 3/3 | 3/3 | 3/3 | ambiente (controle) |
+| `tests/test_python.py::test_predict_img[yolo26n-cls.pt]` | 3/3 | 3/3 | 3/3 | 3/3 | ambiente (controle) |
+| `tests/test_python.py::test_results[yolo26n-cls.pt]` | 3/3 | 3/3 | 3/3 | 3/3 | ambiente (controle) |
+| `tests/test_cli.py::test_distill[detect-coco8.yaml-yolo26n.yaml-teacher0]` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+| `tests/test_cli.py::test_distill[obb-dota8.yaml-yolo26n-obb.yaml-teacher3]` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+| `tests/test_cli.py::test_distill[pose-coco8-pose.yaml-yolo26n-pose.yaml-teacher2]` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+| `tests/test_cli.py::test_distill[segment-coco8-seg.yaml-yolo26n-seg.yaml-teacher1]` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+| `tests/test_cli.py::test_train[classify-model0-imagenet10]` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+| `tests/test_cli.py::test_train[depth-model1-depth8.yaml]` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+| `tests/test_cli.py::test_train[detect-model2-coco8.yaml]` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+| `tests/test_cli.py::test_train[obb-model3-dota8.yaml]` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+| `tests/test_cli.py::test_train[pose-model4-coco8-pose.yaml]` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+| `tests/test_cli.py::test_train[segment-model5-coco8-seg.yaml]` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+| `tests/test_cli.py::test_train[semantic-model6-cityscapes8.yaml]` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+
+#### ultralytics-m2383
+
+| teste | baseline | ranking | regsmart | regsmart-no-rank | classe |
+|---|---|---|---|---|---|
+| `tests/test_cli.py::test_predict[classify-model0-imagenet10]` | 3/3 | 3/3 | 0/3 | 0/3 | ambiente (controle) |
+| `tests/test_engine.py::test_task[ClassificationTrainer-ClassificationValidator-ClassificationPredictor-imagenet10-yolo26n-cls.yaml-None]` | 3/3 | 3/3 | 3/3 | 3/3 | ambiente (controle) |
+| `tests/test_python.py::test_predict_img[yolo26n-cls.pt]` | 3/3 | 3/3 | 3/3 | 3/3 | ambiente (controle) |
+| `tests/test_python.py::test_results[yolo26n-cls.pt]` | 3/3 | 3/3 | 3/3 | 3/3 | ambiente (controle) |
+| `tests/test_cli.py::test_distill[detect-coco8.yaml-yolo26n.yaml-teacher0]` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+| `tests/test_cli.py::test_distill[obb-dota8.yaml-yolo26n-obb.yaml-teacher3]` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+| `tests/test_cli.py::test_distill[pose-coco8-pose.yaml-yolo26n-pose.yaml-teacher2]` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+| `tests/test_cli.py::test_distill[segment-coco8-seg.yaml-yolo26n-seg.yaml-teacher1]` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+| `tests/test_cli.py::test_predict[depth-model1-depth8.yaml]` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+| `tests/test_cli.py::test_predict[detect-model2-coco8.yaml]` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+| `tests/test_cli.py::test_predict[obb-model3-dota8.yaml]` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+| `tests/test_cli.py::test_predict[pose-model4-coco8-pose.yaml]` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+| `tests/test_cli.py::test_predict[segment-model5-coco8-seg.yaml]` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+| `tests/test_cli.py::test_predict[semantic-model6-cityscapes8.yaml]` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+| `tests/test_cli.py::test_rtdetr` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+| `tests/test_cli.py::test_solutions[analytics]` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+| `tests/test_cli.py::test_solutions[blur]` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+| `tests/test_cli.py::test_solutions[count]` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+| `tests/test_cli.py::test_solutions[heatmap]` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+| `tests/test_cli.py::test_solutions[isegment]` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+| `tests/test_cli.py::test_solutions[queue]` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+| `tests/test_cli.py::test_solutions[speed]` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+| `tests/test_cli.py::test_solutions[trackzone]` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+| `tests/test_cli.py::test_solutions[visioneye]` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+| `tests/test_cli.py::test_solutions[workout]` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+| `tests/test_cli.py::test_train[depth-model1-depth8.yaml]` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+| `tests/test_cli.py::test_train[detect-model2-coco8.yaml]` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+| `tests/test_cli.py::test_train[obb-model3-dota8.yaml]` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+| `tests/test_cli.py::test_train[pose-model4-coco8-pose.yaml]` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+| `tests/test_cli.py::test_train[segment-model5-coco8-seg.yaml]` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+| `tests/test_cli.py::test_train[semantic-model6-cityscapes8.yaml]` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+| `tests/test_cli.py::test_val[depth-model1-depth8.yaml]` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+| `tests/test_cli.py::test_val[detect-model2-coco8.yaml]` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+| `tests/test_cli.py::test_val[obb-model3-dota8.yaml]` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+| `tests/test_cli.py::test_val[pose-model4-coco8-pose.yaml]` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+| `tests/test_cli.py::test_val[segment-model5-coco8-seg.yaml]` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+| `tests/test_cli.py::test_val[semantic-model6-cityscapes8.yaml]` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+
+#### ultralytics-m34570
+
+| teste | baseline | ranking | regsmart | regsmart-no-rank | classe |
+|---|---|---|---|---|---|
+| `tests/test_cli.py::test_predict[classify-model0-imagenet10]` | 3/3 | 3/3 | 0/3 | 0/3 | ambiente (controle) |
+| `tests/test_engine.py::test_task[ClassificationTrainer-ClassificationValidator-ClassificationPredictor-imagenet10-yolo26n-cls.yaml-None]` | 3/3 | 3/3 | 3/3 | 3/3 | ambiente (controle) |
+| `tests/test_python.py::test_predict_img[yolo26n-cls.pt]` | 3/3 | 3/3 | 3/3 | 3/3 | ambiente (controle) |
+| `tests/test_python.py::test_results[yolo26n-cls.pt]` | 3/3 | 3/3 | 3/3 | 3/3 | ambiente (controle) |
+
+#### ultralytics-m36889
+
+| teste | baseline | ranking | regsmart | regsmart-no-rank | classe |
+|---|---|---|---|---|---|
+| `tests/test_cli.py::test_predict[classify-model0-imagenet10]` | 3/3 | 3/3 | 0/3 | 0/3 | ambiente (controle) |
+| `tests/test_engine.py::test_task[ClassificationTrainer-ClassificationValidator-ClassificationPredictor-imagenet10-yolo26n-cls.yaml-None]` | 3/3 | 3/3 | 3/3 | 3/3 | ambiente (controle) |
+| `tests/test_python.py::test_predict_img[yolo26n-cls.pt]` | 3/3 | 3/3 | 3/3 | 3/3 | ambiente (controle) |
+| `tests/test_python.py::test_results[yolo26n-cls.pt]` | 3/3 | 3/3 | 3/3 | 3/3 | ambiente (controle) |
+
+#### ultralytics-m5380
+
+| teste | baseline | ranking | regsmart | regsmart-no-rank | classe |
+|---|---|---|---|---|---|
+| `tests/test_cli.py::test_predict[classify-model0-imagenet10]` | 3/3 | 3/3 | 0/3 | 0/3 | ambiente (controle) |
+| `tests/test_engine.py::test_task[ClassificationTrainer-ClassificationValidator-ClassificationPredictor-imagenet10-yolo26n-cls.yaml-None]` | 3/3 | 3/3 | 3/3 | 3/3 | ambiente (controle) |
+| `tests/test_python.py::test_predict_img[yolo26n-cls.pt]` | 3/3 | 3/3 | 3/3 | 3/3 | ambiente (controle) |
+| `tests/test_python.py::test_results[yolo26n-cls.pt]` | 3/3 | 3/3 | 3/3 | 3/3 | ambiente (controle) |
+| `tests/test_cli.py::test_train[depth-model1-depth8.yaml]` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+| `tests/test_cli.py::test_val[depth-model1-depth8.yaml]` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
 
 

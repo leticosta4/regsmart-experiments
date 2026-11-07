@@ -6,4 +6,6 @@ ipython,-,-,-,-,-,-,-,-,-
 librosa,-,-,-,-,-,-,-,-,-
 pytest-django,-,-,-,-,-,-,-,-,-
 pytest-xdist,-,-,-,-,-,-,-,-,-
+pytorch-lightning,-,-,-,-,-,-,-,-,-
 trimesh,-,-,-,-,-,-,-,-,-
+ultralytics,-,-,-,-,-,-,-,-,-
