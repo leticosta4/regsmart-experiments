@@ -231,6 +231,32 @@ def suite_time(text: str):
     return last
 
 
+_SECTION = re.compile(r"^=+ (?:FAILURES|ERRORS|warnings summary|short test summary info|"
+                      r"PASSES|rerun test summary info) =+$")
+
+
+def outer_internalerror(text: str) -> bool:
+    """INTERNALERROR da sessão principal do pytest (plugin, coleta, hooks).
+
+    Testes que rodam um pytest filho (pytester; comum no pytest-xdist) imprimem a
+    saída do filho, com eventuais `INTERNALERROR>`, dentro das seções FAILURES/ERRORS
+    da sessão principal. Isso é efeito do mutante no código testado, não erro do plugin
+    (aparece também no baseline). Conta só o INTERNALERROR fora dessas seções: antes da
+    primeira seção ou depois da última linha final.
+    """
+    lines = [re.sub(r"^\ufeff?\S+Z ", "", re.sub(r"\x1b\[[0-9;]*m", "", ln)).strip()
+             for ln in text.splitlines()]
+    first_section = next((i for i, ln in enumerate(lines) if _SECTION.match(ln)), None)
+    finals = [i for i, ln in enumerate(lines) if FINAL_LINE.match(ln)]
+    last_final = finals[-1] if finals else None
+    for i, ln in enumerate(lines):
+        if not ln.startswith("INTERNALERROR"):
+            continue
+        if first_section is None or i < first_section or (last_final is not None and i > last_final):
+            return True
+    return False
+
+
 def plugin_time(text: str, rx: re.Pattern):
     """Soma dos tempos do plugin (s): última ocorrência de cada chave.
 
@@ -527,7 +553,7 @@ def cmd_collect(args) -> int:
         data = read_artifact(leg["reportlog"])
         row = {k: leg[k] for k in ID_FIELDS}
         row.update(tsr_s=leg["tsr_s"], suite_s=suite_time(text), job_s=leg["job_s"], wf_s=leg["wf_s"],
-                   internalerror=int("INTERNALERROR" in text), has_reportlog=int(data is not None))
+                   internalerror=int(outer_internalerror(text)), has_reportlog=int(data is not None))
         if leg["workflow"].startswith("regsmart"):
             row["rts_s"] = plugin_time(text, rts_rx)
             if row["rts_s"] is None and RTS_SKIPPED.search(text):
