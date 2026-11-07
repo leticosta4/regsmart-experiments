@@ -2984,6 +2984,185 @@
       "ambiente": []
     }
   },
+  "pytest-django": {
+    "pytest-django-m0049": {
+      "faults": [
+        "tests/test_fixtures.py::test_django_assert_num_queries_db",
+        "tests/test_fixtures.py::test_django_assert_num_queries_output_verbose",
+        "tests/test_fixtures.py::test_django_assert_num_queries_transactional_db"
+      ],
+      "flaky": []
+    },
+    "pytest-django-m0192": {
+      "faults": [
+        "tests/test_fixtures.py::test_admin_client",
+        "tests/test_fixtures.py::test_admin_client_no_db_marker",
+        "tests/test_fixtures.py::test_admin_user",
+        "tests/test_fixtures.py::test_admin_user_no_db_marker"
+      ],
+      "flaky": []
+    },
+    "pytest-django-m0376": {
+      "faults": [
+        "tests/test_fixtures.py::test_admin_client",
+        "tests/test_fixtures.py::test_admin_client_existing_user",
+        "tests/test_fixtures.py::test_admin_client_no_db_marker",
+        "tests/test_fixtures.py::test_custom_user_model[email]",
+        "tests/test_fixtures.py::test_custom_user_model[identifier]"
+      ],
+      "flaky": []
+    },
+    "pytest-django-m0491": {
+      "faults": [
+        "tests/test_database.py::TestDatabaseFixtures::test_serialized_rollback",
+        "tests/test_fixtures.py::test_async_client"
+      ],
+      "flaky": []
+    },
+    "pytest-django-m0604": {
+      "faults": [
+        "tests/test_environment.py::test_clear_site_cache_check_site_cache_size[site1]",
+        "tests/test_environment.py::test_clear_site_cache_check_site_cache_size[site2]",
+        "tests/test_fixtures.py::TestSettings::test_modification_signal",
+        "tests/test_fixtures.py::TestSettings::test_modify_existing",
+        "tests/test_fixtures.py::TestSettings::test_new",
+        "tests/test_fixtures.py::TestSettings::test_signals"
+      ],
+      "flaky": []
+    },
+    "_control": {
+      "ambiente": []
+    }
+  },
+  "pytest-xdist": {
+    "pytest-xdist-m0722": {
+      "faults": [
+        "testing/acceptance_test.py::TestAPI::test_get_xdist_worker_id",
+        "testing/acceptance_test.py::test_worker_id_fixture[0]"
+      ],
+      "flaky": []
+    },
+    "pytest-xdist-m1049": {
+      "faults": [
+        "testing/acceptance_test.py::TestDistribution::test_basetemp_in_subprocesses",
+        "testing/acceptance_test.py::TestDistribution::test_data_exchange",
+        "testing/acceptance_test.py::TestDistribution::test_dist_ini_specified",
+        "testing/acceptance_test.py::TestDistribution::test_dist_tests_with_crash",
+        "testing/acceptance_test.py::TestDistribution::test_distribution_rsyncdirs_example",
+        "testing/acceptance_test.py::TestDistribution::test_exitfirst_waits_for_workers_to_finish",
+        "testing/acceptance_test.py::TestDistribution::test_keyboardinterrupt_hooks_issue79",
+        "testing/acceptance_test.py::TestDistribution::test_manytests_to_one_popen",
+        "testing/acceptance_test.py::TestDistribution::test_n1_fail",
+        "testing/acceptance_test.py::TestDistribution::test_n1_import_error",
+        "testing/acceptance_test.py::TestDistribution::test_n1_pass",
+        "testing/acceptance_test.py::TestDistribution::test_n1_skip",
+        "testing/acceptance_test.py::TestDistribution::test_ramp_reports_ramp_period",
+        "testing/acceptance_test.py::TestLocking::test_multi_file[load]",
+        "testing/acceptance_test.py::TestLocking::test_multi_file[no]",
+        "testing/acceptance_test.py::TestLocking::test_single_file[load]",
+        "testing/acceptance_test.py::TestLocking::test_single_file[no]",
+        "testing/acceptance_test.py::TestNodeFailure::test_disable_restart",
+        "testing/acceptance_test.py::TestNodeFailure::test_load_multiple",
+        "testing/acceptance_test.py::TestNodeFailure::test_load_single",
+        "testing/acceptance_test.py::TestNodeFailure::test_max_worker_restart",
+        "testing/acceptance_test.py::TestNodeFailure::test_max_worker_restart_tests_queued",
+        "testing/acceptance_test.py::TestTerminalReporting::test_fail_platinfo",
+        "testing/acceptance_test.py::TestTerminalReporting::test_logfinish_hook",
+        "testing/acceptance_test.py::TestTerminalReporting::test_pass_skip_fail",
+        "testing/acceptance_test.py::TestWarnings::test_custom_subclass[-n1]",
+        "testing/acceptance_test.py::TestWarnings::test_unserializable_arguments[-n1]",
+        "testing/acceptance_test.py::TestWarnings::test_unserializable_warning_details[-n1]",
+        "testing/acceptance_test.py::TestWarnings::test_warnings[-n1]",
+        "testing/acceptance_test.py::test_collection_crash",
+        "testing/acceptance_test.py::test_config_initialization",
+        "testing/acceptance_test.py::test_crashing_item[call]",
+        "testing/acceptance_test.py::test_crashing_item[setup]",
+        "testing/acceptance_test.py::test_crashing_item[teardown]",
+        "testing/acceptance_test.py::test_error_report_styles[auto]",
+        "testing/acceptance_test.py::test_error_report_styles[line]",
+        "testing/acceptance_test.py::test_error_report_styles[long]",
+        "testing/acceptance_test.py::test_error_report_styles[native]",
+        "testing/acceptance_test.py::test_error_report_styles[no]",
+        "testing/acceptance_test.py::test_error_report_styles[short]",
+        "testing/acceptance_test.py::test_fixture_scope_caching_issue503",
+        "testing/acceptance_test.py::test_fixture_teardown_failure",
+        "testing/acceptance_test.py::test_internal_error_with_maxfail",
+        "testing/acceptance_test.py::test_internal_errors_propagate_to_controller",
+        "testing/acceptance_test.py::test_maxfail_causes_early_termination",
+        "testing/acceptance_test.py::test_multiple_log_reports",
+        "testing/acceptance_test.py::test_session_testscollected",
+        "testing/acceptance_test.py::test_skipping",
+        "testing/acceptance_test.py::test_sub_plugins_disabled[xdist.looponfail]",
+        "testing/acceptance_test.py::test_teardownfails_one_function",
+        "testing/acceptance_test.py::test_testrun_uid_fixture[2]",
+        "testing/acceptance_test.py::test_tmpdir_disabled",
+        "testing/acceptance_test.py::test_without_terminal_plugin",
+        "testing/acceptance_test.py::test_worker_id_fixture[2]",
+        "testing/test_dsession.py::TestLoadScheduling::test_add_remove_node",
+        "testing/test_dsession.py::TestLoadScheduling::test_schedule_batch_size",
+        "testing/test_dsession.py::TestLoadScheduling::test_schedule_fewer_tests_than_nodes",
+        "testing/test_dsession.py::TestLoadScheduling::test_schedule_fewer_than_two_tests_per_node",
+        "testing/test_dsession.py::TestLoadScheduling::test_schedule_load_simple",
+        "testing/test_dsession.py::TestLoadScheduling::test_schedule_maxchunk_1",
+        "testing/test_dsession.py::TestLoadScheduling::test_schedule_maxchunk_none",
+        "testing/test_newhooks.py::TestCrashItem::test_handlecrashitem",
+        "testing/test_newhooks.py::TestCrashItem::test_handlecrashitem_one",
+        "testing/test_newhooks.py::TestHooks::test_node_collection_finished",
+        "testing/test_newhooks.py::TestHooks::test_runtest_logreport",
+        "testing/test_remote.py::test_remote_env_vars",
+        "testing/test_remote.py::test_remote_inner_argv",
+        "testing/test_remote.py::test_remote_mainargv",
+        "testing/test_remote.py::test_remote_sys_path",
+        "testing/test_remote.py::test_remote_usage_prog",
+        "testing/test_workermanage.py::TestNodeManager::test_proxy_gateway"
+      ],
+      "flaky": []
+    },
+    "pytest-xdist-m1214": {
+      "faults": [
+        "testing/acceptance_test.py::TestNodeFailure::test_loadgroup_does_not_hang_after_restart"
+      ],
+      "flaky": []
+    },
+    "pytest-xdist-m1461": {
+      "faults": [
+        "testing/acceptance_test.py::TestDistribution::test_distribution_rsyncdirs_example",
+        "testing/test_workermanage.py::TestNodeManager::test_init_rsync_roots",
+        "testing/test_workermanage.py::TestNodeManager::test_popen_rsync_subdir",
+        "testing/test_workermanage.py::TestNodeManager::test_rsync_report[-False]",
+        "testing/test_workermanage.py::TestNodeManager::test_rsync_report[-q-False]",
+        "testing/test_workermanage.py::TestNodeManager::test_rsync_report[-v-True]",
+        "testing/test_workermanage.py::TestNodeManager::test_rsyncignore",
+        "testing/test_workermanage.py::TestNodeManagerPopen::test_rsync_popen_with_path"
+      ],
+      "flaky": []
+    },
+    "pytest-xdist-m1537": {
+      "faults": [
+        "testing/test_dsession.py::test_get_workers_status_line[status_and_items5-ready: 1/2 workers]",
+        "testing/test_dsession.py::test_get_workers_status_line[status_and_items6-ready: 2/2 workers]"
+      ],
+      "flaky": []
+    },
+    "_control": {
+      "ambiente": [
+        "testing/acceptance_test.py::TestGroupScope::test_by_class",
+        "testing/acceptance_test.py::TestGroupScope::test_by_module",
+        "testing/acceptance_test.py::TestGroupScope::test_module_single_start",
+        "testing/acceptance_test.py::TestGroupScope::test_multiple_group_marks",
+        "testing/acceptance_test.py::TestGroupScope::test_multiple_group_order",
+        "testing/acceptance_test.py::TestLoadScope::test_workqueue_ordered_by_size",
+        "testing/test_looponfail.py::TestLooponFailing::test_looponfail_from_fail_to_ok",
+        "testing/test_looponfail.py::TestLooponFailing::test_looponfail_from_one_to_two_tests",
+        "testing/test_looponfail.py::TestLooponFailing::test_looponfail_multiple_errors",
+        "testing/test_looponfail.py::TestRemoteControl::test_failure_change",
+        "testing/test_looponfail.py::TestRemoteControl::test_failure_subdir_no_init",
+        "testing/test_looponfail.py::TestRemoteControl::test_failures_somewhere",
+        "testing/test_looponfail.py::TestRemoteControl::test_ignore_sys_path_hook_entry",
+        "testing/test_looponfail.py::TestRemoteControl::test_nofailures"
+      ]
+    }
+  },
   "trimesh": {
     "trimesh-extra": {
       "faults": [
