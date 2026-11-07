@@ -74,8 +74,17 @@ DEFAULT_RTP = (r"(?P<k>Time to run the regression test prioritization) \(s\): "
 ID_FIELDS = ["repo", "mutant", "workflow", "mode", "rep", "phase", "run_id", "job_id", "conclusion"]
 VALUE_FIELDS = ["tsr_s", "suite_s", "job_s", "wf_s", "rts_s", "rtp_s", "n_tests", "n_failed", "faults", "flaky",
                 "detected", "hidden", "hidden_not_selected", "detected_pct", "hidden_pct",
-                "ttff_s", "ttff_pos", "apfdc", "plugin_only", "internalerror", "has_reportlog"]
+                "ttff_s", "ttff_pos", "apfdc", "plugin_only", "internalerror", "has_reportlog",
+                "rts_skipped", "rtp_skipped"]
 FIELDS = ID_FIELDS + VALUE_FIELDS
+
+# Avisos do pytest-regsmart (runner.py) em que a etapa não roda, e por isso o resumo
+# não imprime o tempo dela: o tempo da etapa é 0, não ausente (sem isso o TTFF da leg
+# também sai vazio). Ex.: trimesh m13478 seleciona 1 teste -> "RTP skipped".
+RTS_SKIPPED = re.compile(r"WARNING: (?:No diff detected in Python files|conftest\.py changed|"
+                         r"No shared history with base branch|RTS and RTP skipped|"
+                         r"Regression test selection failed)")
+RTP_SKIPPED = re.compile(r"WARNING: (?:RTP skipped|RTS and RTP skipped|Test prioritization failed)")
 FAULT_METRICS = ("detected", "hidden", "hidden_not_selected", "detected_pct", "hidden_pct",
                  "ttff_s", "ttff_pos", "apfdc")
 
@@ -509,7 +518,7 @@ def cmd_collect(args) -> int:
               f"report-log: sem métricas de falta ({names})")
 
     # Passo 2: métricas por leg.
-    rows, miss = [], collections.Counter()
+    rows, miss, skipped_steps = [], collections.Counter(), collections.Counter()
     for leg in legs:
         if leg["mutant"] == CONTROL:
             continue
@@ -521,9 +530,16 @@ def cmd_collect(args) -> int:
                    internalerror=int("INTERNALERROR" in text), has_reportlog=int(data is not None))
         if leg["workflow"].startswith("regsmart"):
             row["rts_s"] = plugin_time(text, rts_rx)
+            if row["rts_s"] is None and RTS_SKIPPED.search(text):
+                row.update(rts_s=0.0, rts_skipped=1)
+                skipped_steps["rts"] += 1
             miss["rts"] += row["rts_s"] is None
         if leg["workflow"] in ("ranking", "regsmart"):
             row["rtp_s"] = plugin_time(text, rtp_rx)
+            if (row["rtp_s"] is None and leg["workflow"] == "regsmart"
+                    and RTP_SKIPPED.search(text)):
+                row.update(rtp_s=0.0, rtp_skipped=1)
+                skipped_steps["rtp"] += 1
             miss["rtp"] += row["rtp_s"] is None
         if leg["tsr_s"] is None:
             miss["tsr"] += 1
@@ -556,6 +572,9 @@ def cmd_collect(args) -> int:
         tj.setdefault(repo, {})["_" + CONTROL] = {"ambiente": sorted(tests)}
     save_json(out / "faults.json", tj)
     print(f"\n{len(rows)} legs -> {out / 'runs.csv'}; faltas/flaky por mutante -> {out / 'faults.json'}")
+    if skipped_steps:
+        print(f"etapas puladas pelo plugin (tempo = 0, coluna rts_skipped/rtp_skipped): "
+              f"{dict(skipped_steps)}")
     print(f"campos ausentes: {dict(miss)} (rts/rtp ausentes = regex não casou; confira com `probe`; "
           f"tsr ausente = ajuste --test-step; sem_reportlog = artifact faltando)")
     flagged = sum(1 for r in rows if r.get("internalerror"))
