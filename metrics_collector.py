@@ -658,6 +658,14 @@ def write_tex(path: Path, title: str, label: str, modes, rows) -> None:
 
 
 def cmd_aggregate(args) -> int:
+    if args.mut_stat == "both":
+        # média e mediana entre mutantes numa execução só, em subpastas separadas
+        import copy
+        for stat_name, subdir in (("mean", "media"), ("median", "mediana")):
+            sub_args = copy.copy(args)
+            sub_args.mut_stat, sub_args.tables_subdir = stat_name, subdir
+            cmd_aggregate(sub_args)
+        return 0
     c = Campaign(args.campaign)
     src = mdir(c) / "runs.csv"
     if not src.exists():
@@ -698,7 +706,7 @@ def cmd_aggregate(args) -> int:
                     vals = [d[m] for d in ds]
                     table[m][repo][mode] = (stat(vals, args.mut_stat), sd(vals))
 
-    out = mdir(c) / "tables"
+    out = mdir(c) / "tables" / getattr(args, "tables_subdir", "")
     out.mkdir(parents=True, exist_ok=True)
     for m, title, dec in METRICS:
         body, body_sd = [], []
@@ -765,7 +773,8 @@ def main() -> None:
 
     s = sub.add_parser("aggregate", parents=[common], help="gera as tabelas CSV/LaTeX")
     s.add_argument("--rep-stat", choices=["mean", "median"], default="median", help="entre repetições")
-    s.add_argument("--mut-stat", choices=["mean", "median"], default="mean", help="entre mutantes")
+    s.add_argument("--mut-stat", choices=["mean", "median", "both"], default="mean",
+                   help="entre mutantes; both = gera as duas, em tables/media/ e tables/mediana/")
     s.set_defaults(func=cmd_aggregate)
 
     args = p.parse_args()
