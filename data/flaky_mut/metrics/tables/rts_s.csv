@@ -1,0 +1,10 @@
+repo,baseline,ranking:rkn_hybrid,ranking:rkn_qtf,ranking:rkn_recentfail,ranking:rkn_simchgpath,regsmart:rgsm_hybrid,regsmart:rgsm_qtf,regsmart:rgsm_recentfail,regsmart-no-rank
+apscheduler,-,-,-,-,-,3.373,3.262,3.605,3.572
+dask,-,-,-,-,-,84.246,83.949,83.769,89.994
+dvc,-,-,-,-,-,25.498,28.993,25.478,26.115
+ipython,-,-,-,-,-,11.721,11.356,10.591,12.053
+librosa,-,-,-,-,-,8.390,7.726,9.300,9.590
+pytest-django,-,-,-,-,-,1.344,1.324,1.384,1.455
+pytest-xdist,-,-,-,-,-,1.021,0.955,1.153,1.039
+trimesh,-,-,-,-,-,8.040,9.822,9.142,8.533
+Média entre repos,-,-,-,-,-,17.954,18.423,18.053,19.044

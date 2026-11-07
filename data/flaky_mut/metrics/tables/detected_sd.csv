@@ -1,0 +1,9 @@
+repo,baseline,ranking:rkn_hybrid,ranking:rkn_qtf,ranking:rkn_recentfail,ranking:rkn_simchgpath,regsmart:rgsm_hybrid,regsmart:rgsm_qtf,regsmart:rgsm_recentfail,regsmart-no-rank
+apscheduler,145.0,145.0,145.0,145.0,145.0,145.0,145.0,145.0,145.0
+dask,8.2,8.2,8.2,8.2,8.2,8.2,8.2,8.2,8.2
+dvc,78.2,78.2,78.2,78.2,78.2,78.2,78.2,78.2,78.2
+ipython,14.8,14.8,13.4,14.8,14.8,13.9,12.5,13.9,13.9
+librosa,299.4,299.4,299.4,299.4,299.4,299.4,299.4,299.4,299.4
+pytest-django,1.6,1.6,1.6,1.6,1.6,1.6,1.6,1.6,1.6
+pytest-xdist,30.4,30.4,30.4,30.4,30.4,29.7,29.7,29.7,29.7
+trimesh,2.6,2.6,2.6,2.6,2.6,0.7,0.7,0.7,0.7

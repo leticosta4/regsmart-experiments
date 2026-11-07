@@ -1,0 +1,24 @@
+\begin{table}[htbp]
+\centering
+\small
+\caption{Faltas detectadas (média): mean entre mutantes (median entre repetições)}
+\label{tab:detected}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrrrrrr}
+\toprule
+Repositório & baseline & ranking:rkn\_hybrid & ranking:rkn\_qtf & ranking:rkn\_recentfail & ranking:rkn\_simchgpath & regsmart:rgsm\_hybrid & regsmart:rgsm\_qtf & regsmart:rgsm\_recentfail & regsmart-no-rank \\
+\midrule
+apscheduler & 109.2 & 109.2 & 109.2 & 109.2 & 109.2 & 109.2 & 109.2 & 109.2 & 109.2 \\
+dask & 13.2 & 13.2 & 13.2 & 13.2 & 13.2 & 13.2 & 13.2 & 13.2 & 13.2 \\
+dvc & 37.2 & 37.2 & 37.2 & 37.2 & 37.2 & 37.2 & 37.2 & 37.2 & 37.2 \\
+ipython & 7.6 & 7.6 & 7.0 & 7.6 & 7.6 & 7.2 & 6.6 & 7.2 & 7.2 \\
+librosa & 390.4 & 390.4 & 390.4 & 390.4 & 390.4 & 390.4 & 390.4 & 390.4 & 390.4 \\
+pytest-django & 4.0 & 4.0 & 4.0 & 4.0 & 4.0 & 4.0 & 4.0 & 4.0 & 4.0 \\
+pytest-xdist & 16.8 & 16.8 & 16.8 & 16.8 & 16.8 & 16.2 & 16.2 & 16.2 & 16.2 \\
+trimesh & 2.4 & 2.4 & 2.4 & 2.4 & 2.4 & 1.0 & 1.0 & 1.0 & 1.0 \\
+\midrule
+Média entre repos & 72.6 & 72.6 & 72.5 & 72.6 & 72.6 & 72.3 & 72.2 & 72.3 & 72.3 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
