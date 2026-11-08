@@ -122,13 +122,21 @@ def norm(s: str) -> str:
     return re.sub(r"[^a-z0-9]", "", s.lower())
 
 
-def gh_bytes(path: str):
-    """`gh api` com o TOKEN do script: o gh não lê GITHUB_TOKEN_REGSMART."""
+def gh_bytes(path: str, allow_escapes: bool = False):
+    """`gh api` com o TOKEN do script: o gh não lê GITHUB_TOKEN_REGSMART.
+
+    `allow_escapes`: logs de job com cor (ANSI) só saem com --allow-escape-sequences;
+    sem a flag o gh recusa a resposta. Se o gh for antigo e não conhecer a flag, tenta
+    de novo sem ela."""
     env = dict(os.environ)
     if TOKEN:
         env["GH_TOKEN"] = TOKEN
-    res = subprocess.run(["gh", "api", path], capture_output=True, env=env)
-    return res.stdout if res.returncode == 0 else None
+    cmds = ([["gh", "api", "--allow-escape-sequences", path]] if allow_escapes else []) + [["gh", "api", path]]
+    for cmd in cmds:
+        res = subprocess.run(cmd, capture_output=True, env=env)
+        if res.returncode == 0:
+            return res.stdout
+    return None
 
 
 def throttle(api: Api, min_left: int = 150) -> None:
@@ -205,16 +213,20 @@ def job_log(zlog, job_name: str, started_at: str | None = None) -> str:
     with zipfile.ZipFile(zlog) as z:
         texts = [z.read(n).decode("utf-8", "replace") for n in z.namelist()
                  if "/" not in n and norm(re.sub(r"^\d+_", "", n).removesuffix(".txt")) == key]
-    if len(texts) <= 1 or not started_at:
+    if len(texts) <= 1:
         return texts[0] if texts else ""
+    if not started_at:  # nome repetido sem horário: não dá pra saber qual é
+        return ""
     t0 = parse_ts(started_at).timestamp()
 
     def gap(text):
         m = re.match(r"^\ufeff?(\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d)", text)
         return abs(parse_ts(m.group(1) + "Z").timestamp() - t0) if m else float("inf")
 
-    best = min(texts, key=gap)
-    return best if gap(best) <= 120 else ""
+    gaps = sorted(gap(t) for t in texts)
+    if gaps[0] > 120 or gaps[1] - gaps[0] < 1:  # longe demais, ou empate (jobs no mesmo segundo)
+        return ""
+    return min(texts, key=gap)
 
 
 def suite_time(text: str):
@@ -379,16 +391,28 @@ def build_legs(api: Api, c: Campaign, r: dict, step_rx: re.Pattern, pyver: dict 
     arts = [a for a in arts if a["name"].startswith(ART_PREFIX) and not a.get("expired")]
     suffixes = {a["name"][len(ART_PREFIX):] for a in arts}
 
+    name_count = collections.Counter(j["name"] for j in jobs)
+
     def log_of(j) -> Path | None:
-        """Log do job salvo em cache: sai do zip do run (nome repetido: pelo horário de
-        início); se não estiver lá, log individual do job pela API."""
-        f = d / f"job-{j['id']}.txt"
+        """Log do job salvo em cache.
+
+        Nome único no run: sai do zip do run (ou da API do job, se faltar no zip).
+        Nome repetido (matriz cujo nome não inclui a versão, como no aeon): sempre o
+        log individual do job pela API, porque jobs de mesmo nome podem começar no
+        mesmo segundo e o horário não distingue os arquivos do zip. Esses logs ficam em
+        `job-<id>.byid.txt`, para não reaproveitar `job-<id>.txt` de coletas antigas,
+        que podem ter recebido o log de outro job."""
+        dup = name_count[j["name"]] > 1
+        f = d / (f"job-{j['id']}.byid.txt" if dup else f"job-{j['id']}.txt")
         if not f.exists():
-            text = job_log(zlog, j["name"], j.get("started_at"))
+            text = "" if dup else job_log(zlog, j["name"], j.get("started_at"))
             if not text:
-                raw = gh_bytes(f"repos/{OWNER}/{r['repo']}/actions/jobs/{j['id']}/logs")
+                raw = gh_bytes(f"repos/{OWNER}/{r['repo']}/actions/jobs/{j['id']}/logs", allow_escapes=True)
                 text = raw.decode("utf-8", "replace") if raw else ""
             if not text:
+                if dup:
+                    print(f"\n  ! {r['repo']} run {r['run_id']}: log do job {j['id']} ('{j['name']}') "
+                          f"não baixou pela API; leg sem log")
                 return None
             f.write_text(text, encoding="utf-8")
         return f
