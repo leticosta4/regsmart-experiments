@@ -34,11 +34,13 @@
 
 | repo | runs | success | failure | cancelled | em andamento | makespan | min runner |
 |---|---|---|---|---|---|---|---|
+| aeon | 84 | 0 | 84 | 0 | 0 | 4h42m37s | 10172.6 |
 | apscheduler | 84 | 14 | 70 | 0 | 0 | 1h30m20s | 452.9 |
 | dask | 84 | 12 | 72 | 0 | 0 | 2h30m43s | 4246.2 |
 | dvc | 84 | 14 | 70 | 0 | 0 | 53m30s | 922.5 |
 | ipython | 84 | 8 | 76 | 0 | 0 | 32m32s | 717.4 |
 | librosa | 84 | 14 | 70 | 0 | 0 | 1h55m03s | 835.7 |
+| networkx | 84 | 14 | 70 | 0 | 0 | 12m22s | 314.5 |
 | pytest-django | 84 | 14 | 70 | 0 | 0 | 14m42s | 381.8 |
 | pytest-xdist | 84 | 0 | 84 | 0 | 0 | 12m14s | 306.5 |
 | pytorch-lightning | 84 | 14 | 70 | 0 | 0 | 3h16m18s | 3583.0 |
@@ -73,6 +75,12 @@ Cada teste que falhou é classificado comparando o **baseline** com os workflows
 
 | repo | mutante | ambiente | dep. ordem (controle) | flaky | só plugin (flaky) | só plugin (fixa) | esperada, diverge | esperada | outros |
 |---|---|---|---|---|---|---|---|---|---|
+| aeon | aeon-m22318 | 2 | 0 | 0 | 0 | 0 | 0 | 86 | 0 |
+| aeon | aeon-m24470 | 2 | 0 | 15 | 2 | 0 | 2 | 44 | 0 |
+| aeon | aeon-m30584 | 2 | 0 | 0 | 0 | 0 | 0 | 16 | 0 |
+| aeon | aeon-m6601 | 2 | 0 | 0 | 0 | 0 | 0 | 11 | 0 |
+| aeon | aeon-m6969 | 2 | 0 | 2 | 0 | 0 | 73 | 891 | 0 |
+| aeon | control | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 0 |
 | apscheduler | apscheduler-m0316 | 0 | 0 | 0 | 0 | 0 | 0 | 295 | 0 |
 | apscheduler | apscheduler-m0753 | 0 | 0 | 0 | 0 | 0 | 0 | 238 | 0 |
 | apscheduler | apscheduler-m1399 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 0 |
@@ -103,6 +111,12 @@ Cada teste que falhou é classificado comparando o **baseline** com os workflows
 | librosa | librosa-m2885 | 0 | 0 | 0 | 0 | 0 | 0 | 566 | 0 |
 | librosa | librosa-m4950 | 0 | 0 | 0 | 0 | 0 | 0 | 15 | 0 |
 | librosa | librosa-m7678 | 0 | 0 | 0 | 0 | 0 | 0 | 736 | 0 |
+| networkx | control | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| networkx | networkx-m1096 | 0 | 0 | 0 | 0 | 0 | 2 | 9 | 0 |
+| networkx | networkx-m14277 | 0 | 0 | 0 | 0 | 0 | 1 | 346 | 0 |
+| networkx | networkx-m17565 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 0 |
+| networkx | networkx-m25405 | 0 | 0 | 0 | 0 | 0 | 4 | 19 | 0 |
+| networkx | networkx-m6449 | 0 | 0 | 0 | 0 | 0 | 0 | 3 | 0 |
 | pytest-django | control | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | pytest-django | pytest-django-m0049 | 0 | 0 | 0 | 0 | 0 | 0 | 3 | 0 |
 | pytest-django | pytest-django-m0192 | 0 | 0 | 0 | 0 | 0 | 0 | 4 | 0 |
@@ -140,6 +154,12 @@ Testes que nunca falharam no baseline (flaky + fixa), cada um contado uma vez, n
 
 | repo | mutante | ranking | regsmart | ranking+regsmart | ranking+regsmart+regsmart-no-rank | total |
 |---|---|---|---|---|---|---|
+| aeon | aeon-m22318 | 0 | 0 | 0 | 0 | 0 |
+| aeon | aeon-m24470 | 2 | 0 | 0 | 0 | 2 |
+| aeon | aeon-m30584 | 0 | 0 | 0 | 0 | 0 |
+| aeon | aeon-m6601 | 0 | 0 | 0 | 0 | 0 |
+| aeon | aeon-m6969 | 0 | 0 | 0 | 0 | 0 |
+| aeon | control | 0 | 0 | 0 | 0 | 0 |
 | apscheduler | apscheduler-m0316 | 0 | 0 | 0 | 0 | 0 |
 | apscheduler | apscheduler-m0753 | 0 | 0 | 0 | 0 | 0 |
 | apscheduler | apscheduler-m1399 | 0 | 0 | 0 | 0 | 0 |
@@ -170,6 +190,12 @@ Testes que nunca falharam no baseline (flaky + fixa), cada um contado uma vez, n
 | librosa | librosa-m2885 | 0 | 0 | 0 | 0 | 0 |
 | librosa | librosa-m4950 | 0 | 0 | 0 | 0 | 0 |
 | librosa | librosa-m7678 | 0 | 0 | 0 | 0 | 0 |
+| networkx | control | 0 | 0 | 0 | 0 | 0 |
+| networkx | networkx-m1096 | 0 | 0 | 0 | 0 | 0 |
+| networkx | networkx-m14277 | 0 | 0 | 0 | 0 | 0 |
+| networkx | networkx-m17565 | 0 | 0 | 0 | 0 | 0 |
+| networkx | networkx-m25405 | 0 | 0 | 0 | 0 | 0 |
+| networkx | networkx-m6449 | 0 | 0 | 0 | 0 | 0 |
 | pytest-django | control | 0 | 0 | 0 | 0 | 0 |
 | pytest-django | pytest-django-m0049 | 0 | 0 | 0 | 0 | 0 |
 | pytest-django | pytest-django-m0192 | 0 | 0 | 0 | 0 | 0 |
@@ -200,6 +226,102 @@ Testes que nunca falharam no baseline (flaky + fixa), cada um contado uma vez, n
 | ultralytics | ultralytics-m34570 | 0 | 0 | 0 | 0 | 0 |
 | ultralytics | ultralytics-m36889 | 0 | 0 | 0 | 0 | 0 |
 | ultralytics | ultralytics-m5380 | 0 | 0 | 0 | 0 | 0 |
+
+### aeon
+
+#### aeon-m22318
+
+| teste | baseline | ranking | regsmart | regsmart-no-rank | classe |
+|---|---|---|---|---|---|
+| `aeon/transformations/collection/feature_based/tests/test_catch22.py::test_catch22_wrapper_on_basic_motions` | 3/3 | 9/9 | 0/9 | 0/3 | ambiente (controle) |
+| `aeon/transformations/collection/feature_based/tests/test_catch22_optimisations.py::test_matches_pycatch22_reference_on_scale_invariant_features` | 3/3 | 9/9 | 0/9 | 0/3 | ambiente (controle) |
+
+#### aeon-m24470
+
+| teste | baseline | ranking | regsmart | regsmart-no-rank | classe |
+|---|---|---|---|---|---|
+| `aeon/transformations/collection/feature_based/tests/test_catch22.py::test_catch22_wrapper_on_basic_motions` | 3/3 | 9/9 | 9/9 | 3/3 | ambiente (controle) |
+| `aeon/transformations/collection/feature_based/tests/test_catch22_optimisations.py::test_matches_pycatch22_reference_on_scale_invariant_features` | 3/3 | 9/9 | 9/9 | 3/3 | ambiente (controle) |
+| `aeon/classification/distance_based/tests/test_proximity_tree.py::test_get_best_splitter` | 1/3 | 2/9 | 4/9 | 0/3 | flaky |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_classifier_output(estimator=ProximityForest(max_depth=3,n_splitters=3,n_trees=3),datatype=EqualLengthMultivariate-Classification-np-list)]` | 3/3 | 7/9 | 8/9 | 2/3 | flaky |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_classifier_output(estimator=ProximityForest(max_depth=3,n_splitters=3,n_trees=3),datatype=EqualLengthUnivariate-Classification-np-list)]` | 2/3 | 8/9 | 7/9 | 3/3 | flaky |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_classifier_output(estimator=ProximityForest(max_depth=3,n_splitters=3,n_trees=3),datatype=EqualLengthUnivariate-Classification-numpy3D)]` | 2/3 | 5/9 | 7/9 | 3/3 | flaky |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_classifier_output(estimator=ProximityForest(max_depth=3,n_splitters=3,n_trees=3),datatype=UnequalLengthMultivariate-Classification-np-list)]` | 2/3 | 7/9 | 8/9 | 3/3 | flaky |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_classifier_output(estimator=ProximityForest(max_depth=3,n_splitters=3,n_trees=3),datatype=UnequalLengthUnivariate-Classification-np-list)]` | 3/3 | 9/9 | 8/9 | 2/3 | flaky |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_classifier_output(estimator=ProximityTree(n_splitters=3),datatype=EqualLengthMultivariate-Classification-np-list)]` | 1/3 | 7/9 | 5/9 | 3/3 | flaky |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_classifier_output(estimator=ProximityTree(n_splitters=3),datatype=EqualLengthMultivariate-Classification-numpy3D)]` | 1/3 | 4/9 | 4/9 | 2/3 | flaky |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_classifier_output(estimator=ProximityTree(n_splitters=3),datatype=EqualLengthUnivariate-Classification-np-list)]` | 1/3 | 3/9 | 5/9 | 3/3 | flaky |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_classifier_output(estimator=ProximityTree(n_splitters=3),datatype=EqualLengthUnivariate-Classification-numpy3D)]` | 1/3 | 5/9 | 3/9 | 2/3 | flaky |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_classifier_output(estimator=ProximityTree(n_splitters=3),datatype=UnequalLengthMultivariate-Classification-np-list)]` | 3/3 | 4/9 | 3/9 | 2/3 | flaky |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_classifier_output(estimator=ProximityTree(n_splitters=3),datatype=UnequalLengthUnivariate-Classification-np-list)]` | 2/3 | 6/9 | 4/9 | 1/3 | flaky |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_fit_updates_state_and_cloning(estimator=ProximityTree(n_splitters=3),datatype=EqualLengthUnivariate-Classification-np-list)]` | 2/3 | 3/9 | 4/9 | 3/3 | flaky |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_non_state_changing_method(estimator=ProximityForest(max_depth=3,n_splitters=3,n_trees=3),datatype=EqualLengthUnivariate-Classification-np-list)]` | 2/3 | 6/9 | 9/9 | 3/3 | flaky |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_non_state_changing_method(estimator=ProximityTree(n_splitters=3),datatype=EqualLengthUnivariate-Classification-np-list)]` | 1/3 | 4/9 | 7/9 | 2/3 | flaky |
+| `aeon/datasets/tests/test_data_loaders.py::test_load_classification_from_repo` | 0/3 | 1/9 | 0/9 | 0/3 | só no plugin (flaky) |
+| `aeon/datasets/tests/test_data_loaders.py::test_load_regression_from_repo` | 0/3 | 1/9 | 0/9 | 0/3 | só no plugin (flaky) |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_classifier_output(estimator=ProximityForest(max_depth=3,n_splitters=3,n_trees=3),datatype=EqualLengthMultivariate-Classification-numpy3D)]` | 3/3 | 9/9 | 7/9 | 3/3 | esperada, diverge |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_fit_updates_state_and_cloning(estimator=ProximityForest(max_depth=3,n_splitters=3,n_trees=3),datatype=EqualLengthUnivariate-Classification-np-list)]` | 3/3 | 6/9 | 7/9 | 2/3 | esperada, diverge |
+
+#### aeon-m30584
+
+| teste | baseline | ranking | regsmart | regsmart-no-rank | classe |
+|---|---|---|---|---|---|
+| `aeon/transformations/collection/feature_based/tests/test_catch22.py::test_catch22_wrapper_on_basic_motions` | 3/3 | 9/9 | 0/9 | 0/3 | ambiente (controle) |
+| `aeon/transformations/collection/feature_based/tests/test_catch22_optimisations.py::test_matches_pycatch22_reference_on_scale_invariant_features` | 3/3 | 9/9 | 0/9 | 0/3 | ambiente (controle) |
+
+#### aeon-m6601
+
+| teste | baseline | ranking | regsmart | regsmart-no-rank | classe |
+|---|---|---|---|---|---|
+| `aeon/transformations/collection/feature_based/tests/test_catch22.py::test_catch22_wrapper_on_basic_motions` | 3/3 | 9/9 | 9/9 | 3/3 | ambiente (controle) |
+| `aeon/transformations/collection/feature_based/tests/test_catch22_optimisations.py::test_matches_pycatch22_reference_on_scale_invariant_features` | 3/3 | 9/9 | 9/9 | 3/3 | ambiente (controle) |
+
+#### aeon-m6969
+
+| teste | baseline | ranking | regsmart | regsmart-no-rank | classe |
+|---|---|---|---|---|---|
+| `aeon/transformations/collection/feature_based/tests/test_catch22.py::test_catch22_wrapper_on_basic_motions` | 3/3 | 9/9 | 9/9 | 3/3 | ambiente (controle) |
+| `aeon/transformations/collection/feature_based/tests/test_catch22_optimisations.py::test_matches_pycatch22_reference_on_scale_invariant_features` | 3/3 | 9/9 | 9/9 | 3/3 | ambiente (controle) |
+| `aeon/datasets/tests/test_data_loaders.py::test_load_classification_from_repo` | 1/3 | 1/9 | 0/9 | 0/3 | flaky |
+| `aeon/datasets/tests/test_data_loaders.py::test_load_regression_from_repo` | 1/3 | 0/9 | 0/9 | 0/3 | flaky |
+| `aeon/classification/deep_learning/tests/test_deep_classifier_base.py::test_dummy_deep_classifier` | 3/3 | 6/9 | 6/9 | 3/3 | esperada, diverge |
+| `aeon/classification/deep_learning/tests/test_inception_time.py::test_save_load_inceptiontime` | 3/3 | 6/9 | 6/9 | 3/3 | esperada, diverge |
+| `aeon/classification/deep_learning/tests/test_lite_time.py::test_save_load_litetim` | 3/3 | 6/9 | 6/9 | 3/3 | esperada, diverge |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_classifier_output(estimator=DisjointCNNClassifier(batch_size=4,kernel_size=[2,2],metrics=['accuracy'],n_epochs=3,n_filters=2,n_layers=2,use_bias=False,use_mini_batch_size=True,verbose=True),datatype=EqualLengthMultivariate-Classification-numpy3D)]` | 3/3 | 6/9 | 6/9 | 3/3 | esperada, diverge |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_classifier_output(estimator=DisjointCNNClassifier(batch_size=4,kernel_size=[2,2],metrics=['accuracy'],n_epochs=3,n_filters=2,n_layers=2,use_bias=False,use_mini_batch_size=True,verbose=True),datatype=EqualLengthUnivariate-Classification-numpy3D)]` | 3/3 | 6/9 | 6/9 | 3/3 | esperada, diverge |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_classifier_output(estimator=DisjointCNNClassifier(batch_size=4,kernel_size=[2,2],n_epochs=3,n_filters=2,n_layers=2,use_bias=False),datatype=EqualLengthMultivariate-Classification-numpy3D)]` | 3/3 | 6/9 | 6/9 | 3/3 | esperada, diverge |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_classifier_output(estimator=DisjointCNNClassifier(batch_size=4,kernel_size=[2,2],n_epochs=3,n_filters=2,n_layers=2,use_bias=False),datatype=EqualLengthUnivariate-Classification-numpy3D)]` | 3/3 | 6/9 | 6/9 | 3/3 | esperada, diverge |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_classifier_output(estimator=EncoderClassifier(batch_size=4,dropout_proba=0,fc_units=8,n_epochs=8,strides=2,use_bias=False),datatype=EqualLengthMultivariate-Classification-numpy3D)]` | 3/3 | 6/9 | 6/9 | 3/3 | esperada, diverge |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_classifier_output(estimator=EncoderClassifier(batch_size=4,dropout_proba=0,fc_units=8,n_epochs=8,strides=2,use_bias=False),datatype=EqualLengthUnivariate-Classification-numpy3D)]` | 3/3 | 6/9 | 6/9 | 3/3 | esperada, diverge |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_classifier_output(estimator=FCNClassifier(batch_size=4,kernel_size=3,n_epochs=10,n_filters=4,n_layers=1,padding='valid',strides=2,use_bias=False),datatype=EqualLengthMultivariate-Classification-numpy3D)]` | 3/3 | 6/9 | 6/9 | 3/3 | esperada, diverge |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_classifier_output(estimator=FCNClassifier(batch_size=4,kernel_size=3,n_epochs=10,n_filters=4,n_layers=1,padding='valid',strides=2,use_bias=False),datatype=EqualLengthUnivariate-Classification-numpy3D)]` | 3/3 | 6/9 | 6/9 | 3/3 | esperada, diverge |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_classifier_output(estimator=InceptionTimeClassifier(batch_size=4,depth=1,kernel_size=4,n_classifiers=1,n_epochs=10,use_residual=False),datatype=EqualLengthMultivariate-Classification-numpy3D)]` | 3/3 | 6/9 | 6/9 | 3/3 | esperada, diverge |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_classifier_output(estimator=InceptionTimeClassifier(batch_size=4,depth=1,kernel_size=4,n_classifiers=1,n_epochs=10,use_residual=False),datatype=EqualLengthUnivariate-Classification-numpy3D)]` | 3/3 | 6/9 | 6/9 | 3/3 | esperada, diverge |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_classifier_output(estimator=IndividualInceptionClassifier(batch_size=4,depth=1,kernel_size=4,n_epochs=10,use_residual=False),datatype=EqualLengthMultivariate-Classification-numpy3D)]` | 3/3 | 6/9 | 6/9 | 3/3 | esperada, diverge |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_classifier_output(estimator=IndividualInceptionClassifier(batch_size=4,depth=1,kernel_size=4,n_epochs=10,use_residual=False),datatype=EqualLengthUnivariate-Classification-numpy3D)]` | 3/3 | 6/9 | 6/9 | 3/3 | esperada, diverge |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_classifier_output(estimator=IndividualLITEClassifier(batch_size=4,kernel_size=4,metrics=['accuracy'],n_epochs=2,use_litemv=True,use_mini_batch_size=True,verbose=True),datatype=EqualLengthMultivariate-Classification-numpy3D)]` | 3/3 | 6/9 | 6/9 | 3/3 | esperada, diverge |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_classifier_output(estimator=IndividualLITEClassifier(batch_size=4,kernel_size=4,metrics=['accuracy'],n_epochs=2,use_litemv=True,use_mini_batch_size=True,verbose=True),datatype=EqualLengthUnivariate-Classification-numpy3D)]` | 3/3 | 6/9 | 6/9 | 3/3 | esperada, diverge |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_classifier_output(estimator=IndividualLITEClassifier(batch_size=4,kernel_size=4,n_epochs=2),datatype=EqualLengthMultivariate-Classification-numpy3D)]` | 3/3 | 6/9 | 6/9 | 3/3 | esperada, diverge |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_classifier_output(estimator=IndividualLITEClassifier(batch_size=4,kernel_size=4,n_epochs=2),datatype=EqualLengthUnivariate-Classification-numpy3D)]` | 3/3 | 6/9 | 6/9 | 3/3 | esperada, diverge |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_classifier_output(estimator=LITETimeClassifier(batch_size=4,kernel_size=4,metrics=['accuracy'],n_classifiers=1,n_epochs=2,use_litemv=True,use_mini_batch_size=True,verbose=True),datatype=EqualLengthMultivariate-Classification-numpy3D)]` | 3/3 | 6/9 | 6/9 | 3/3 | esperada, diverge |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_classifier_output(estimator=LITETimeClassifier(batch_size=4,kernel_size=4,metrics=['accuracy'],n_classifiers=1,n_epochs=2,use_litemv=True,use_mini_batch_size=True,verbose=True),datatype=EqualLengthUnivariate-Classification-numpy3D)]` | 3/3 | 6/9 | 6/9 | 3/3 | esperada, diverge |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_classifier_output(estimator=LITETimeClassifier(batch_size=4,kernel_size=4,n_classifiers=1,n_epochs=2),datatype=EqualLengthMultivariate-Classification-numpy3D)]` | 3/3 | 6/9 | 6/9 | 3/3 | esperada, diverge |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_classifier_output(estimator=LITETimeClassifier(batch_size=4,kernel_size=4,n_classifiers=1,n_epochs=2),datatype=EqualLengthUnivariate-Classification-numpy3D)]` | 3/3 | 6/9 | 6/9 | 3/3 | esperada, diverge |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_classifier_output(estimator=MLPClassifier(batch_size=4,n_epochs=10,use_bias=False),datatype=EqualLengthMultivariate-Classification-numpy3D)]` | 3/3 | 6/9 | 6/9 | 3/3 | esperada, diverge |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_classifier_output(estimator=MLPClassifier(batch_size=4,n_epochs=10,use_bias=False),datatype=EqualLengthUnivariate-Classification-numpy3D)]` | 3/3 | 6/9 | 6/9 | 3/3 | esperada, diverge |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_classifier_output(estimator=ResNetClassifier(batch_size=4,kernel_size=3,n_conv_per_residual_block=1,n_epochs=10,n_filters=5,n_residual_blocks=1),datatype=EqualLengthMultivariate-Classification-numpy3D)]` | 3/3 | 6/9 | 6/9 | 3/3 | esperada, diverge |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_classifier_output(estimator=ResNetClassifier(batch_size=4,kernel_size=3,n_conv_per_residual_block=1,n_epochs=10,n_filters=5,n_residual_blocks=1),datatype=EqualLengthUnivariate-Classification-numpy3D)]` | 3/3 | 6/9 | 6/9 | 3/3 | esperada, diverge |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_classifier_output(estimator=TimeCNNClassifier(avg_pool_size=4,batch_size=4,n_epochs=10),datatype=EqualLengthMultivariate-Classification-numpy3D)]` | 3/3 | 6/9 | 6/9 | 3/3 | esperada, diverge |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_classifier_output(estimator=TimeCNNClassifier(avg_pool_size=4,batch_size=4,n_epochs=10),datatype=EqualLengthUnivariate-Classification-numpy3D)]` | 3/3 | 6/9 | 6/9 | 3/3 | esperada, diverge |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_classifier_random_state_deep_learning(estimator=DisjointCNNClassifier(batch_size=4,kernel_size=[2,2],metrics=['accuracy'],n_epochs=3,n_filters=2,n_layers=2,use_bias=False,use_mini_batch_size=True,verbose=True),datatype=EqualLengthUnivariate-Classification-numpy3D)]` | 3/3 | 6/9 | 6/9 | 3/3 | esperada, diverge |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_classifier_random_state_deep_learning(estimator=DisjointCNNClassifier(batch_size=4,kernel_size=[2,2],n_epochs=3,n_filters=2,n_layers=2,use_bias=False),datatype=EqualLengthUnivariate-Classification-numpy3D)]` | 3/3 | 6/9 | 6/9 | 3/3 | esperada, diverge |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_classifier_random_state_deep_learning(estimator=EncoderClassifier(batch_size=4,dropout_proba=0,fc_units=8,n_epochs=8,strides=2,use_bias=False),datatype=EqualLengthUnivariate-Classification-numpy3D)]` | 3/3 | 6/9 | 6/9 | 3/3 | esperada, diverge |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_classifier_random_state_deep_learning(estimator=FCNClassifier(batch_size=4,kernel_size=3,n_epochs=10,n_filters=4,n_layers=1,padding='valid',strides=2,use_bias=False),datatype=EqualLengthUnivariate-Classification-numpy3D)]` | 3/3 | 6/9 | 6/9 | 3/3 | esperada, diverge |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_classifier_random_state_deep_learning(estimator=IndividualInceptionClassifier(batch_size=4,depth=1,kernel_size=4,n_epochs=10,use_residual=False),datatype=EqualLengthUnivariate-Classification-numpy3D)]` | 3/3 | 6/9 | 6/9 | 3/3 | esperada, diverge |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_classifier_random_state_deep_learning(estimator=IndividualLITEClassifier(batch_size=4,kernel_size=4,metrics=['accuracy'],n_epochs=2,use_litemv=True,use_mini_batch_size=True,verbose=True),datatype=EqualLengthUnivariate-Classification-numpy3D)]` | 3/3 | 6/9 | 6/9 | 3/3 | esperada, diverge |
+| `aeon/testing/tests/test_all_estimators.py::test_all_estimators[check_classifier_random_state_deep_learning(estimator=IndividualLITEClassifier(batch_size=4,kernel_size=4,n_epochs=2),datatype=EqualLengthUnivariate-Classification-numpy3D)]` | 3/3 | 6/9 | 6/9 | 3/3 | esperada, diverge |
+| _+37 teste(s), ver flaky_tests.json_ | | | | | |
+
 
 ### dask
 
@@ -528,6 +650,37 @@ Testes que nunca falharam no baseline (flaky + fixa), cada um contado uma vez, n
 | `tests/test_profile.py::test_profile_app_list_subcommand` | 0/3 | 0/3 | 1/3 | 0/3 | dependente de ordem (controle) |
 | `tests/test_run.py::test_run_tb` | 0/3 | 1/3 | 0/3 | 0/3 | dependente de ordem (controle) |
 | _+4 teste(s), ver flaky_tests.json_ | | | | | |
+
+
+### networkx
+
+#### networkx-m1096
+
+| teste | baseline | ranking | regsmart | regsmart-no-rank | classe |
+|---|---|---|---|---|---|
+| `networkx/algorithms/dag.py::networkx.algorithms.dag.descendants` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+| `networkx/algorithms/dag.py::networkx.algorithms.dag.transitive_closure` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+
+#### networkx-m14277
+
+| teste | baseline | ranking | regsmart | regsmart-no-rank | classe |
+|---|---|---|---|---|---|
+| `networkx/algorithms/isomorphism/vf2pp.py::networkx.algorithms.isomorphism.vf2pp` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+
+#### networkx-m17565
+
+| teste | baseline | ranking | regsmart | regsmart-no-rank | classe |
+|---|---|---|---|---|---|
+| `networkx/algorithms/cluster.py::networkx.algorithms.cluster.transitivity` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+
+#### networkx-m25405
+
+| teste | baseline | ranking | regsmart | regsmart-no-rank | classe |
+|---|---|---|---|---|---|
+| `networkx/algorithms/bipartite/basic.py::networkx.algorithms.bipartite.basic.is_bipartite` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+| `networkx/algorithms/bipartite/cluster.py::networkx.algorithms.bipartite.cluster.average_clustering` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+| `networkx/algorithms/bipartite/cluster.py::networkx.algorithms.bipartite.cluster.latapy_clustering` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
+| `networkx/classes/function.py::networkx.classes.function.describe` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
 
 
 ### pytest-xdist
