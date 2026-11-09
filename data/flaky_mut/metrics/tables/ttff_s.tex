@@ -1,0 +1,29 @@
+\begin{table}[htbp]
+\centering
+\small
+\caption{Time to first fault (s): mean entre mutantes (median entre repetições)}
+\label{tab:ttff_s}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrrrrrr}
+\toprule
+Repositório & baseline & ranking:rkn\_hybrid & ranking:rkn\_qtf & ranking:rkn\_recentfail & ranking:rkn\_simchgpath & regsmart:rgsm\_hybrid & regsmart:rgsm\_qtf & regsmart:rgsm\_recentfail & regsmart-no-rank \\
+\midrule
+aeon & 108.53 & 46.73 & 11.04 & 116.04 & 35.70 & 179.37 & 39.01 & 34.40 & 63.34 \\
+apscheduler & 47.67 & 0.06 & 1.32 & 0.10 & 46.36 & 3.45 & 3.49 & 3.83 & 40.14 \\
+dask & 406.26 & 100.38 & 155.58 & 23.88 & 506.22 & 143.88 & 159.97 & 103.45 & 481.79 \\
+dvc & 46.05 & 0.34 & 15.14 & 0.31 & 50.61 & 25.85 & 41.55 & 25.82 & 74.39 \\
+ipython & 86.17 & 0.77 & 8.65 & 0.69 & 84.09 & 12.34 & 20.39 & 11.05 & 97.40 \\
+librosa & 46.04 & 16.43 & 20.82 & 5.14 & 46.80 & 12.15 & 11.38 & 10.36 & 15.89 \\
+networkx & 6.15 & 2.03 & 2.90 & 0.08 & 6.69 & 40.30 & 42.13 & 40.38 & 43.70 \\
+pytest-django & 2.61 & 0.39 & 1.51 & 0.76 & 2.82 & 1.73 & 2.33 & 1.94 & 4.18 \\
+pytest-xdist & 15.09 & 2.31 & 14.12 & 1.60 & 20.30 & 3.57 & 16.21 & 2.88 & 25.11 \\
+pytorch-lightning & 336.55 & 2.09 & 114.81 & 108.23 & 331.99 & 32.42 & 173.01 & 37.92 & 467.67 \\
+trimesh & 146.34 & 0.53 & 1.13 & 0.23 & 178.92 & 8.36 & 10.06 & 9.33 & 60.24 \\
+ultralytics & 71.73 & 0.02 & 0.29 & 0.85 & 70.79 & 27.68 & 24.38 & 29.57 & 75.52 \\
+\midrule
+Média entre repos & 109.93 & 14.34 & 28.94 & 21.49 & 115.11 & 40.93 & 45.33 & 25.91 & 120.78 \\
+Razão média vs baseline & 1.00 & 0.14 & 0.31 & 0.17 & 1.03 & 0.92 & 1.00 & 0.80 & 1.58 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}

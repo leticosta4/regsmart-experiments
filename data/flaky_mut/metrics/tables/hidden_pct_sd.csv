@@ -1,0 +1,13 @@
+repo,baseline,ranking:rkn_hybrid,ranking:rkn_qtf,ranking:rkn_recentfail,ranking:rkn_simchgpath,regsmart:rgsm_hybrid,regsmart:rgsm_qtf,regsmart:rgsm_recentfail,regsmart-no-rank
+aeon,-,-,-,-,-,-,-,-,-
+apscheduler,-,-,-,-,-,-,-,-,-
+dask,-,-,-,-,-,-,-,-,-
+dvc,-,-,-,-,-,-,-,-,-
+ipython,-,-,-,-,-,-,-,-,-
+librosa,-,-,-,-,-,-,-,-,-
+networkx,-,-,-,-,-,-,-,-,-
+pytest-django,-,-,-,-,-,-,-,-,-
+pytest-xdist,-,-,-,-,-,-,-,-,-
+pytorch-lightning,-,-,-,-,-,-,-,-,-
+trimesh,-,-,-,-,-,-,-,-,-
+ultralytics,-,-,-,-,-,-,-,-,-
