@@ -136339,14 +136339,14 @@
             }
           }
         },
-        "testing/acceptance_test.py::TestLoadScope::test_workqueue_ordered_by_size": {
+        "testing/acceptance_test.py::TestLoadScope::test_workqueue_ordered_by_input": {
           "class": "só no plugin (flaky)",
           "why": "baseline nunca falhou; intermitente sob plugin, em: regsmart",
           "wf": {
             "regsmart": {
               "failed": 1,
               "runs": 3,
-              "jobs": 1,
+              "jobs": 2,
               "intermittent": true
             }
           }
@@ -136727,26 +136727,20 @@
             }
           }
         },
-        "testing/acceptance_test.py::TestLoadScope::test_workqueue_ordered_by_input": {
+        "testing/acceptance_test.py::TestLoadScope::test_workqueue_ordered_by_size": {
           "class": "só no plugin (flaky)",
-          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking, regsmart",
           "wf": {
             "ranking": {
               "failed": 1,
               "runs": 3,
               "jobs": 2,
               "intermittent": true
-            }
-          }
-        },
-        "testing/acceptance_test.py::TestLoadScope::test_workqueue_ordered_by_size": {
-          "class": "dependente de ordem (controle)",
-          "why": "na branch default sem mutante, falha só sob plugin (reordenamento)",
-          "wf": {
-            "ranking": {
+            },
+            "regsmart": {
               "failed": 1,
               "runs": 3,
-              "jobs": 2,
+              "jobs": 1,
               "intermittent": true
             }
           }
@@ -137434,13 +137428,13 @@
           }
         },
         "testing/acceptance_test.py::TestLoadScope::test_workqueue_ordered_by_size": {
-          "class": "dependente de ordem (controle)",
-          "why": "na branch default sem mutante, falha só sob plugin (reordenamento)",
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
           "wf": {
-            "regsmart": {
-              "failed": 2,
+            "ranking": {
+              "failed": 1,
               "runs": 3,
-              "jobs": 1,
+              "jobs": 2,
               "intermittent": true
             }
           }
@@ -139424,16 +139418,10 @@
           }
         },
         "testing/acceptance_test.py::TestLoadScope::test_workqueue_ordered_by_input": {
-          "class": "só no plugin (flaky)",
-          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking, regsmart",
+          "class": "dependente de ordem (controle)",
+          "why": "na branch default sem mutante, falha só sob plugin (reordenamento)",
           "wf": {
             "ranking": {
-              "failed": 1,
-              "runs": 3,
-              "jobs": 1,
-              "intermittent": true
-            },
-            "regsmart": {
               "failed": 1,
               "runs": 3,
               "jobs": 1,
@@ -139442,13 +139430,13 @@
           }
         },
         "testing/acceptance_test.py::TestLoadScope::test_workqueue_ordered_by_size": {
-          "class": "dependente de ordem (controle)",
-          "why": "na branch default sem mutante, falha só sob plugin (reordenamento)",
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
           "wf": {
             "ranking": {
               "failed": 1,
               "runs": 3,
-              "jobs": 1,
+              "jobs": 2,
               "intermittent": true
             }
           }
@@ -139776,24 +139764,6 @@
           }
         },
         "testing/acceptance_test.py::TestLoadScope::test_workqueue_ordered_by_input": {
-          "class": "só no plugin (flaky)",
-          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking, regsmart",
-          "wf": {
-            "ranking": {
-              "failed": 1,
-              "runs": 3,
-              "jobs": 1,
-              "intermittent": true
-            },
-            "regsmart": {
-              "failed": 1,
-              "runs": 3,
-              "jobs": 1,
-              "intermittent": true
-            }
-          }
-        },
-        "testing/acceptance_test.py::TestLoadScope::test_workqueue_ordered_by_size": {
           "class": "dependente de ordem (controle)",
           "why": "na branch default sem mutante, falha só sob plugin (reordenamento)",
           "wf": {
@@ -139802,11 +139772,17 @@
               "runs": 3,
               "jobs": 1,
               "intermittent": true
-            },
-            "regsmart": {
+            }
+          }
+        },
+        "testing/acceptance_test.py::TestLoadScope::test_workqueue_ordered_by_size": {
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking, regsmart-no-rank",
+          "wf": {
+            "ranking": {
               "failed": 1,
               "runs": 3,
-              "jobs": 1,
+              "jobs": 2,
               "intermittent": true
             },
             "regsmart-no-rank": {
@@ -140290,9 +140266,15 @@
           }
         },
         "testing/acceptance_test.py::TestLoadScope::test_workqueue_ordered_by_input": {
-          "class": "só no plugin (flaky)",
-          "why": "baseline nunca falhou; intermitente sob plugin, em: regsmart",
+          "class": "dependente de ordem (controle)",
+          "why": "na branch default sem mutante, falha só sob plugin (reordenamento)",
           "wf": {
+            "ranking": {
+              "failed": 1,
+              "runs": 3,
+              "jobs": 2,
+              "intermittent": true
+            },
             "regsmart": {
               "failed": 1,
               "runs": 3,
@@ -140302,8 +140284,8 @@
           }
         },
         "testing/acceptance_test.py::TestLoadScope::test_workqueue_ordered_by_size": {
-          "class": "dependente de ordem (controle)",
-          "why": "na branch default sem mutante, falha só sob plugin (reordenamento)",
+          "class": "só no plugin (flaky)",
+          "why": "baseline nunca falhou; intermitente sob plugin, em: ranking",
           "wf": {
             "ranking": {
               "failed": 1,
@@ -140475,7 +140457,7 @@
   "pytorch-lightning": {
     "control": {
       "runs": {
-        "baseline": 2,
+        "baseline": 3,
         "ranking": 3,
         "regsmart": 3,
         "regsmart-no-rank": 3
@@ -141211,7 +141193,7 @@
         "baseline": 3,
         "ranking": 3,
         "regsmart": 3,
-        "regsmart-no-rank": 2
+        "regsmart-no-rank": 3
       },
       "total_seen": {
         "baseline": 3317,
@@ -141261,8 +141243,8 @@
               "intermittent": false
             },
             "regsmart-no-rank": {
-              "failed": 2,
-              "runs": 2,
+              "failed": 3,
+              "runs": 3,
               "jobs": 1,
               "intermittent": false
             }
@@ -141291,8 +141273,8 @@
               "intermittent": false
             },
             "regsmart-no-rank": {
-              "failed": 2,
-              "runs": 2,
+              "failed": 3,
+              "runs": 3,
               "jobs": 1,
               "intermittent": false
             }
@@ -141321,8 +141303,8 @@
               "intermittent": false
             },
             "regsmart-no-rank": {
-              "failed": 2,
-              "runs": 2,
+              "failed": 3,
+              "runs": 3,
               "jobs": 1,
               "intermittent": false
             }
@@ -141351,8 +141333,8 @@
               "intermittent": false
             },
             "regsmart-no-rank": {
-              "failed": 2,
-              "runs": 2,
+              "failed": 3,
+              "runs": 3,
               "jobs": 1,
               "intermittent": false
             }
@@ -141381,8 +141363,8 @@
               "intermittent": false
             },
             "regsmart-no-rank": {
-              "failed": 2,
-              "runs": 2,
+              "failed": 3,
+              "runs": 3,
               "jobs": 1,
               "intermittent": false
             }
@@ -141411,8 +141393,8 @@
               "intermittent": false
             },
             "regsmart-no-rank": {
-              "failed": 2,
-              "runs": 2,
+              "failed": 3,
+              "runs": 3,
               "jobs": 1,
               "intermittent": false
             }
@@ -141441,8 +141423,8 @@
               "intermittent": false
             },
             "regsmart-no-rank": {
-              "failed": 2,
-              "runs": 2,
+              "failed": 3,
+              "runs": 3,
               "jobs": 1,
               "intermittent": false
             }
@@ -141471,8 +141453,8 @@
               "intermittent": false
             },
             "regsmart-no-rank": {
-              "failed": 2,
-              "runs": 2,
+              "failed": 3,
+              "runs": 3,
               "jobs": 1,
               "intermittent": false
             }
@@ -141501,8 +141483,8 @@
               "intermittent": false
             },
             "regsmart-no-rank": {
-              "failed": 2,
-              "runs": 2,
+              "failed": 3,
+              "runs": 3,
               "jobs": 1,
               "intermittent": false
             }
@@ -141531,8 +141513,8 @@
               "intermittent": false
             },
             "regsmart-no-rank": {
-              "failed": 2,
-              "runs": 2,
+              "failed": 3,
+              "runs": 3,
               "jobs": 1,
               "intermittent": false
             }

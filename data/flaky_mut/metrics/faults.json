@@ -4736,7 +4736,7 @@
         "testing/acceptance_test.py::TestGroupScope::test_module_single_start",
         "testing/acceptance_test.py::TestGroupScope::test_multiple_group_marks",
         "testing/acceptance_test.py::TestGroupScope::test_multiple_group_order",
-        "testing/acceptance_test.py::TestLoadScope::test_workqueue_ordered_by_size",
+        "testing/acceptance_test.py::TestLoadScope::test_workqueue_ordered_by_input",
         "testing/test_looponfail.py::TestLooponFailing::test_looponfail_from_fail_to_ok",
         "testing/test_looponfail.py::TestLooponFailing::test_looponfail_from_one_to_two_tests",
         "testing/test_looponfail.py::TestLooponFailing::test_looponfail_multiple_errors",

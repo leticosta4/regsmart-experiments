@@ -3,27 +3,27 @@
 ## Custo
 
 - Início: `2026-11-05T21:52:24.846302+00:00`
-- Fim: `2026-11-07T18:41:41.259429+00:00`
-- Tempo ativo do script: **10h18m08s**
-- Janela real dos runs (1º dispatch → última conclusão): **44h48m45s** (inclui fila)
-- Minutos de runner somados: **14313.8 min**
+- Fim: `2026-11-08T23:11:42.503254+00:00`
+- Tempo ativo do script: **15h30m57s**
+- Janela real dos runs (1º dispatch → última conclusão): **73h18m52s** (inclui fila)
+- Minutos de runner somados: **24808.7 min**
 - Pico de concorrência medido: **40** jobs (teto do plano Free: 20)
 
 ## API / rate limit
 
-- Requisições: 2156 GET, 1037 POST
+- Requisições: 3050 GET, 1301 POST
 - Retries: 44
-- Rate limit (final): 35/5000 consumidos, reseta em `2026-11-07T19:25:39+00:00`
+- Rate limit (final): 55/5000 consumidos, reseta em `2026-11-09T00:44:16+00:00`
 
 ## Saúde da execução
 
 | Métrica | warm-up | repetições |
 |---|---|---|
-| Tarefas no plano | 120 | 720 |
-| Despachadas | 120 | 720 |
-| Com run_id | 120 | 720 |
-| Sucesso | 17 | 94 |
-| Falha (testes falharam) | 103 | 626 |
+| Tarefas no plano | 144 | 864 |
+| Despachadas | 144 | 864 |
+| Com run_id | 144 | 864 |
+| Sucesso | 19 | 106 |
+| Falha (testes falharam) | 125 | 758 |
 | Canceladas | 0 | 0 |
 | Em andamento | 0 | 0 |
 | Dispatch falhou / run perdido | 0 | 0 |
@@ -41,8 +41,8 @@
 | ipython | 84 | 8 | 76 | 0 | 0 | 32m32s | 717.4 |
 | librosa | 84 | 14 | 70 | 0 | 0 | 1h55m03s | 835.7 |
 | networkx | 84 | 14 | 70 | 0 | 0 | 12m22s | 314.5 |
-| pytest-django | 84 | 14 | 70 | 0 | 0 | 14m42s | 381.8 |
-| pytest-xdist | 84 | 0 | 84 | 0 | 0 | 12m14s | 306.5 |
+| pytest-django | 84 | 14 | 70 | 0 | 0 | 45h15m32s | 390.9 |
+| pytest-xdist | 84 | 0 | 84 | 0 | 0 | 45h37m38s | 305.3 |
 | pytorch-lightning | 84 | 14 | 70 | 0 | 0 | 3h16m18s | 3583.0 |
 | trimesh | 84 | 21 | 63 | 0 | 0 | 9h14m34s | 886.7 |
 | ultralytics | 84 | 0 | 84 | 0 | 0 | 1h10m18s | 1981.0 |
@@ -51,10 +51,10 @@
 
 | workflow | runs | min runner |
 |---|---|---|
-| baseline | 180 | 1328.5 |
-| ranking | 240 | 7136.6 |
-| regsmart | 240 | 4699.5 |
-| regsmart-no-rank | 180 | 1149.2 |
+| baseline | 216 | 2276.2 |
+| ranking | 288 | 12583.8 |
+| regsmart | 288 | 7989.3 |
+| regsmart-no-rank | 216 | 1959.5 |
 
 ## Testes flaky
 
@@ -124,8 +124,8 @@ Cada teste que falhou é classificado comparando o **baseline** com os workflows
 | pytest-django | pytest-django-m0491 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 0 |
 | pytest-django | pytest-django-m0604 | 0 | 0 | 0 | 0 | 0 | 0 | 6 | 0 |
 | pytest-xdist | control | 0 | 0 | 0 | 1 | 8 | 0 | 5 | 0 |
-| pytest-xdist | pytest-xdist-m0722 | 5 | 9 | 0 | 1 | 0 | 1 | 1 | 0 |
-| pytest-xdist | pytest-xdist-m1049 | 5 | 9 | 0 | 0 | 0 | 2 | 69 | 0 |
+| pytest-xdist | pytest-xdist-m0722 | 5 | 8 | 0 | 1 | 0 | 1 | 1 | 0 |
+| pytest-xdist | pytest-xdist-m1049 | 5 | 8 | 0 | 1 | 0 | 2 | 69 | 0 |
 | pytest-xdist | pytest-xdist-m1214 | 5 | 9 | 0 | 1 | 0 | 0 | 1 | 0 |
 | pytest-xdist | pytest-xdist-m1461 | 5 | 9 | 0 | 1 | 0 | 0 | 8 | 0 |
 | pytest-xdist | pytest-xdist-m1537 | 5 | 9 | 0 | 1 | 0 | 0 | 2 | 0 |
@@ -152,80 +152,80 @@ Cada teste que falhou é classificado comparando o **baseline** com os workflows
 
 Testes que nunca falharam no baseline (flaky + fixa), cada um contado uma vez, na combinação exata de workflows em que falhou. `ranking+regsmart` = falhou nos dois.
 
-| repo | mutante | ranking | regsmart | ranking+regsmart | ranking+regsmart+regsmart-no-rank | total |
-|---|---|---|---|---|---|---|
-| aeon | aeon-m22318 | 0 | 0 | 0 | 0 | 0 |
-| aeon | aeon-m24470 | 2 | 0 | 0 | 0 | 2 |
-| aeon | aeon-m30584 | 0 | 0 | 0 | 0 | 0 |
-| aeon | aeon-m6601 | 0 | 0 | 0 | 0 | 0 |
-| aeon | aeon-m6969 | 0 | 0 | 0 | 0 | 0 |
-| aeon | control | 0 | 0 | 0 | 0 | 0 |
-| apscheduler | apscheduler-m0316 | 0 | 0 | 0 | 0 | 0 |
-| apscheduler | apscheduler-m0753 | 0 | 0 | 0 | 0 | 0 |
-| apscheduler | apscheduler-m1399 | 0 | 0 | 0 | 0 | 0 |
-| apscheduler | apscheduler-m2144 | 0 | 0 | 0 | 0 | 0 |
-| apscheduler | apscheduler-m2213 | 0 | 0 | 0 | 0 | 0 |
-| apscheduler | control | 0 | 0 | 0 | 0 | 0 |
-| dask | control | 2 | 0 | 0 | 0 | 2 |
-| dask | dask-m11282 | 0 | 0 | 0 | 0 | 0 |
-| dask | dask-m12753 | 0 | 0 | 0 | 0 | 0 |
-| dask | dask-m1940 | 0 | 0 | 0 | 0 | 0 |
-| dask | dask-m28832 | 0 | 0 | 0 | 0 | 0 |
-| dask | dask-m37146 | 0 | 0 | 0 | 0 | 0 |
-| dvc | control | 0 | 0 | 0 | 0 | 0 |
-| dvc | dvc-m11576 | 32 | 0 | 0 | 0 | 32 |
-| dvc | dvc-m12545 | 0 | 0 | 0 | 0 | 0 |
-| dvc | dvc-m16845 | 0 | 0 | 0 | 0 | 0 |
-| dvc | dvc-m19066 | 0 | 0 | 0 | 0 | 0 |
-| dvc | dvc-m6852 | 0 | 0 | 0 | 0 | 0 |
-| ipython | control | 4 | 1 | 38 | 0 | 43 |
-| ipython | ipython-m1288 | 6 | 3 | 1 | 0 | 10 |
-| ipython | ipython-m17283 | 12 | 5 | 12 | 0 | 29 |
-| ipython | ipython-m22324 | 0 | 5 | 1 | 0 | 6 |
-| ipython | ipython-m22732 | 4 | 1 | 1 | 0 | 6 |
-| ipython | ipython-m4267 | 3 | 0 | 0 | 0 | 3 |
-| librosa | control | 0 | 0 | 0 | 0 | 0 |
-| librosa | librosa-m0035 | 0 | 0 | 0 | 0 | 0 |
-| librosa | librosa-m0265 | 0 | 0 | 0 | 0 | 0 |
-| librosa | librosa-m2885 | 0 | 0 | 0 | 0 | 0 |
-| librosa | librosa-m4950 | 0 | 0 | 0 | 0 | 0 |
-| librosa | librosa-m7678 | 0 | 0 | 0 | 0 | 0 |
-| networkx | control | 0 | 0 | 0 | 0 | 0 |
-| networkx | networkx-m1096 | 0 | 0 | 0 | 0 | 0 |
-| networkx | networkx-m14277 | 0 | 0 | 0 | 0 | 0 |
-| networkx | networkx-m17565 | 0 | 0 | 0 | 0 | 0 |
-| networkx | networkx-m25405 | 0 | 0 | 0 | 0 | 0 |
-| networkx | networkx-m6449 | 0 | 0 | 0 | 0 | 0 |
-| pytest-django | control | 0 | 0 | 0 | 0 | 0 |
-| pytest-django | pytest-django-m0049 | 0 | 0 | 0 | 0 | 0 |
-| pytest-django | pytest-django-m0192 | 0 | 0 | 0 | 0 | 0 |
-| pytest-django | pytest-django-m0376 | 0 | 0 | 0 | 0 | 0 |
-| pytest-django | pytest-django-m0491 | 0 | 0 | 0 | 0 | 0 |
-| pytest-django | pytest-django-m0604 | 0 | 0 | 0 | 0 | 0 |
-| pytest-xdist | control | 0 | 1 | 0 | 8 | 9 |
-| pytest-xdist | pytest-xdist-m0722 | 1 | 0 | 0 | 0 | 1 |
-| pytest-xdist | pytest-xdist-m1049 | 0 | 0 | 0 | 0 | 0 |
-| pytest-xdist | pytest-xdist-m1214 | 0 | 0 | 1 | 0 | 1 |
-| pytest-xdist | pytest-xdist-m1461 | 0 | 0 | 1 | 0 | 1 |
-| pytest-xdist | pytest-xdist-m1537 | 0 | 1 | 0 | 0 | 1 |
-| pytorch-lightning | control | 0 | 0 | 0 | 0 | 0 |
-| pytorch-lightning | pytorch-lightning-m0766 | 0 | 0 | 0 | 0 | 0 |
-| pytorch-lightning | pytorch-lightning-m14490 | 1 | 0 | 0 | 0 | 1 |
-| pytorch-lightning | pytorch-lightning-m15854 | 0 | 0 | 0 | 0 | 0 |
-| pytorch-lightning | pytorch-lightning-m20410 | 0 | 1 | 0 | 0 | 1 |
-| pytorch-lightning | pytorch-lightning-m9476 | 0 | 0 | 1 | 0 | 1 |
-| trimesh | control | 0 | 0 | 0 | 0 | 0 |
-| trimesh | trimesh-extra | 0 | 0 | 0 | 0 | 0 |
-| trimesh | trimesh-m13478 | 0 | 0 | 0 | 0 | 0 |
-| trimesh | trimesh-m21160 | 0 | 0 | 0 | 0 | 0 |
-| trimesh | trimesh-m25103 | 0 | 0 | 0 | 0 | 0 |
-| trimesh | trimesh-m3147 | 0 | 0 | 0 | 0 | 0 |
-| ultralytics | control | 0 | 0 | 0 | 0 | 0 |
-| ultralytics | ultralytics-m23817 | 0 | 0 | 0 | 0 | 0 |
-| ultralytics | ultralytics-m2383 | 0 | 0 | 0 | 0 | 0 |
-| ultralytics | ultralytics-m34570 | 0 | 0 | 0 | 0 | 0 |
-| ultralytics | ultralytics-m36889 | 0 | 0 | 0 | 0 | 0 |
-| ultralytics | ultralytics-m5380 | 0 | 0 | 0 | 0 | 0 |
+| repo | mutante | ranking | regsmart | ranking+regsmart | ranking+regsmart-no-rank | ranking+regsmart+regsmart-no-rank | total |
+|---|---|---|---|---|---|---|---|
+| aeon | aeon-m22318 | 0 | 0 | 0 | 0 | 0 | 0 |
+| aeon | aeon-m24470 | 2 | 0 | 0 | 0 | 0 | 2 |
+| aeon | aeon-m30584 | 0 | 0 | 0 | 0 | 0 | 0 |
+| aeon | aeon-m6601 | 0 | 0 | 0 | 0 | 0 | 0 |
+| aeon | aeon-m6969 | 0 | 0 | 0 | 0 | 0 | 0 |
+| aeon | control | 0 | 0 | 0 | 0 | 0 | 0 |
+| apscheduler | apscheduler-m0316 | 0 | 0 | 0 | 0 | 0 | 0 |
+| apscheduler | apscheduler-m0753 | 0 | 0 | 0 | 0 | 0 | 0 |
+| apscheduler | apscheduler-m1399 | 0 | 0 | 0 | 0 | 0 | 0 |
+| apscheduler | apscheduler-m2144 | 0 | 0 | 0 | 0 | 0 | 0 |
+| apscheduler | apscheduler-m2213 | 0 | 0 | 0 | 0 | 0 | 0 |
+| apscheduler | control | 0 | 0 | 0 | 0 | 0 | 0 |
+| dask | control | 2 | 0 | 0 | 0 | 0 | 2 |
+| dask | dask-m11282 | 0 | 0 | 0 | 0 | 0 | 0 |
+| dask | dask-m12753 | 0 | 0 | 0 | 0 | 0 | 0 |
+| dask | dask-m1940 | 0 | 0 | 0 | 0 | 0 | 0 |
+| dask | dask-m28832 | 0 | 0 | 0 | 0 | 0 | 0 |
+| dask | dask-m37146 | 0 | 0 | 0 | 0 | 0 | 0 |
+| dvc | control | 0 | 0 | 0 | 0 | 0 | 0 |
+| dvc | dvc-m11576 | 32 | 0 | 0 | 0 | 0 | 32 |
+| dvc | dvc-m12545 | 0 | 0 | 0 | 0 | 0 | 0 |
+| dvc | dvc-m16845 | 0 | 0 | 0 | 0 | 0 | 0 |
+| dvc | dvc-m19066 | 0 | 0 | 0 | 0 | 0 | 0 |
+| dvc | dvc-m6852 | 0 | 0 | 0 | 0 | 0 | 0 |
+| ipython | control | 4 | 1 | 38 | 0 | 0 | 43 |
+| ipython | ipython-m1288 | 6 | 3 | 1 | 0 | 0 | 10 |
+| ipython | ipython-m17283 | 12 | 5 | 12 | 0 | 0 | 29 |
+| ipython | ipython-m22324 | 0 | 5 | 1 | 0 | 0 | 6 |
+| ipython | ipython-m22732 | 4 | 1 | 1 | 0 | 0 | 6 |
+| ipython | ipython-m4267 | 3 | 0 | 0 | 0 | 0 | 3 |
+| librosa | control | 0 | 0 | 0 | 0 | 0 | 0 |
+| librosa | librosa-m0035 | 0 | 0 | 0 | 0 | 0 | 0 |
+| librosa | librosa-m0265 | 0 | 0 | 0 | 0 | 0 | 0 |
+| librosa | librosa-m2885 | 0 | 0 | 0 | 0 | 0 | 0 |
+| librosa | librosa-m4950 | 0 | 0 | 0 | 0 | 0 | 0 |
+| librosa | librosa-m7678 | 0 | 0 | 0 | 0 | 0 | 0 |
+| networkx | control | 0 | 0 | 0 | 0 | 0 | 0 |
+| networkx | networkx-m1096 | 0 | 0 | 0 | 0 | 0 | 0 |
+| networkx | networkx-m14277 | 0 | 0 | 0 | 0 | 0 | 0 |
+| networkx | networkx-m17565 | 0 | 0 | 0 | 0 | 0 | 0 |
+| networkx | networkx-m25405 | 0 | 0 | 0 | 0 | 0 | 0 |
+| networkx | networkx-m6449 | 0 | 0 | 0 | 0 | 0 | 0 |
+| pytest-django | control | 0 | 0 | 0 | 0 | 0 | 0 |
+| pytest-django | pytest-django-m0049 | 0 | 0 | 0 | 0 | 0 | 0 |
+| pytest-django | pytest-django-m0192 | 0 | 0 | 0 | 0 | 0 | 0 |
+| pytest-django | pytest-django-m0376 | 0 | 0 | 0 | 0 | 0 | 0 |
+| pytest-django | pytest-django-m0491 | 0 | 0 | 0 | 0 | 0 | 0 |
+| pytest-django | pytest-django-m0604 | 0 | 0 | 0 | 0 | 0 | 0 |
+| pytest-xdist | control | 0 | 1 | 0 | 0 | 8 | 9 |
+| pytest-xdist | pytest-xdist-m0722 | 0 | 0 | 1 | 0 | 0 | 1 |
+| pytest-xdist | pytest-xdist-m1049 | 1 | 0 | 0 | 0 | 0 | 1 |
+| pytest-xdist | pytest-xdist-m1214 | 1 | 0 | 0 | 0 | 0 | 1 |
+| pytest-xdist | pytest-xdist-m1461 | 0 | 0 | 0 | 1 | 0 | 1 |
+| pytest-xdist | pytest-xdist-m1537 | 1 | 0 | 0 | 0 | 0 | 1 |
+| pytorch-lightning | control | 0 | 0 | 0 | 0 | 0 | 0 |
+| pytorch-lightning | pytorch-lightning-m0766 | 0 | 0 | 0 | 0 | 0 | 0 |
+| pytorch-lightning | pytorch-lightning-m14490 | 1 | 0 | 0 | 0 | 0 | 1 |
+| pytorch-lightning | pytorch-lightning-m15854 | 0 | 0 | 0 | 0 | 0 | 0 |
+| pytorch-lightning | pytorch-lightning-m20410 | 0 | 1 | 0 | 0 | 0 | 1 |
+| pytorch-lightning | pytorch-lightning-m9476 | 0 | 0 | 1 | 0 | 0 | 1 |
+| trimesh | control | 0 | 0 | 0 | 0 | 0 | 0 |
+| trimesh | trimesh-extra | 0 | 0 | 0 | 0 | 0 | 0 |
+| trimesh | trimesh-m13478 | 0 | 0 | 0 | 0 | 0 | 0 |
+| trimesh | trimesh-m21160 | 0 | 0 | 0 | 0 | 0 | 0 |
+| trimesh | trimesh-m25103 | 0 | 0 | 0 | 0 | 0 | 0 |
+| trimesh | trimesh-m3147 | 0 | 0 | 0 | 0 | 0 | 0 |
+| ultralytics | control | 0 | 0 | 0 | 0 | 0 | 0 |
+| ultralytics | ultralytics-m23817 | 0 | 0 | 0 | 0 | 0 | 0 |
+| ultralytics | ultralytics-m2383 | 0 | 0 | 0 | 0 | 0 | 0 |
+| ultralytics | ultralytics-m34570 | 0 | 0 | 0 | 0 | 0 | 0 |
+| ultralytics | ultralytics-m36889 | 0 | 0 | 0 | 0 | 0 | 0 |
+| ultralytics | ultralytics-m5380 | 0 | 0 | 0 | 0 | 0 | 0 |
 
 ### aeon
 
@@ -689,7 +689,7 @@ Testes que nunca falharam no baseline (flaky + fixa), cada um contado uma vez, n
 
 | teste | baseline | ranking | regsmart | regsmart-no-rank | classe |
 |---|---|---|---|---|---|
-| `testing/acceptance_test.py::TestLoadScope::test_workqueue_ordered_by_size` | 0/3 | 0/3 | 1/3 | 0/3 | só no plugin (flaky) |
+| `testing/acceptance_test.py::TestLoadScope::test_workqueue_ordered_by_input` | 0/3 | 0/3 | 1/3 | 0/3 | só no plugin (flaky) |
 | `testing/test_looponfail.py::TestLooponFailing::test_looponfail_from_fail_to_ok` | 0/3 | 3/3 | 3/3 | 3/3 | só no plugin (fixa) |
 | `testing/test_looponfail.py::TestLooponFailing::test_looponfail_from_one_to_two_tests` | 0/3 | 3/3 | 3/3 | 3/3 | só no plugin (fixa) |
 | `testing/test_looponfail.py::TestLooponFailing::test_looponfail_multiple_errors` | 0/3 | 3/3 | 3/3 | 3/3 | só no plugin (fixa) |
@@ -708,7 +708,6 @@ Testes que nunca falharam no baseline (flaky + fixa), cada um contado uma vez, n
 | `testing/acceptance_test.py::TestGroupScope::test_module_single_start` | 3/3 | 3/3 | 3/3 | 3/3 | ambiente (controle) |
 | `testing/acceptance_test.py::TestGroupScope::test_multiple_group_marks` | 3/3 | 3/3 | 3/3 | 3/3 | ambiente (controle) |
 | `testing/acceptance_test.py::TestGroupScope::test_multiple_group_order` | 3/3 | 3/3 | 3/3 | 3/3 | ambiente (controle) |
-| `testing/acceptance_test.py::TestLoadScope::test_workqueue_ordered_by_size` | 0/3 | 1/3 | 0/3 | 0/3 | dependente de ordem (controle) |
 | `testing/test_looponfail.py::TestLooponFailing::test_looponfail_from_fail_to_ok` | 0/3 | 3/3 | 0/3 | 0/3 | dependente de ordem (controle) |
 | `testing/test_looponfail.py::TestLooponFailing::test_looponfail_from_one_to_two_tests` | 0/3 | 3/3 | 0/3 | 0/3 | dependente de ordem (controle) |
 | `testing/test_looponfail.py::TestLooponFailing::test_looponfail_multiple_errors` | 0/3 | 3/3 | 0/3 | 0/3 | dependente de ordem (controle) |
@@ -717,7 +716,7 @@ Testes que nunca falharam no baseline (flaky + fixa), cada um contado uma vez, n
 | `testing/test_looponfail.py::TestRemoteControl::test_failures_somewhere` | 0/3 | 3/3 | 0/3 | 0/3 | dependente de ordem (controle) |
 | `testing/test_looponfail.py::TestRemoteControl::test_ignore_sys_path_hook_entry` | 0/3 | 3/3 | 0/3 | 0/3 | dependente de ordem (controle) |
 | `testing/test_looponfail.py::TestRemoteControl::test_nofailures` | 0/3 | 3/3 | 0/3 | 0/3 | dependente de ordem (controle) |
-| `testing/acceptance_test.py::TestLoadScope::test_workqueue_ordered_by_input` | 0/3 | 1/3 | 0/3 | 0/3 | só no plugin (flaky) |
+| `testing/acceptance_test.py::TestLoadScope::test_workqueue_ordered_by_size` | 0/3 | 1/3 | 1/3 | 0/3 | só no plugin (flaky) |
 | `testing/acceptance_test.py::TestAPI::test_get_xdist_worker_id` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
 
 #### pytest-xdist-m1049
@@ -729,7 +728,6 @@ Testes que nunca falharam no baseline (flaky + fixa), cada um contado uma vez, n
 | `testing/acceptance_test.py::TestGroupScope::test_module_single_start` | 3/3 | 3/3 | 3/3 | 3/3 | ambiente (controle) |
 | `testing/acceptance_test.py::TestGroupScope::test_multiple_group_marks` | 3/3 | 3/3 | 3/3 | 3/3 | ambiente (controle) |
 | `testing/acceptance_test.py::TestGroupScope::test_multiple_group_order` | 3/3 | 3/3 | 3/3 | 3/3 | ambiente (controle) |
-| `testing/acceptance_test.py::TestLoadScope::test_workqueue_ordered_by_size` | 0/3 | 0/3 | 2/3 | 0/3 | dependente de ordem (controle) |
 | `testing/test_looponfail.py::TestLooponFailing::test_looponfail_from_fail_to_ok` | 0/3 | 3/3 | 0/3 | 0/3 | dependente de ordem (controle) |
 | `testing/test_looponfail.py::TestLooponFailing::test_looponfail_from_one_to_two_tests` | 0/3 | 3/3 | 0/3 | 0/3 | dependente de ordem (controle) |
 | `testing/test_looponfail.py::TestLooponFailing::test_looponfail_multiple_errors` | 0/3 | 3/3 | 0/3 | 0/3 | dependente de ordem (controle) |
@@ -738,6 +736,7 @@ Testes que nunca falharam no baseline (flaky + fixa), cada um contado uma vez, n
 | `testing/test_looponfail.py::TestRemoteControl::test_failures_somewhere` | 0/3 | 3/3 | 0/3 | 0/3 | dependente de ordem (controle) |
 | `testing/test_looponfail.py::TestRemoteControl::test_ignore_sys_path_hook_entry` | 0/3 | 3/3 | 0/3 | 0/3 | dependente de ordem (controle) |
 | `testing/test_looponfail.py::TestRemoteControl::test_nofailures` | 0/3 | 3/3 | 0/3 | 0/3 | dependente de ordem (controle) |
+| `testing/acceptance_test.py::TestLoadScope::test_workqueue_ordered_by_size` | 0/3 | 1/3 | 0/3 | 0/3 | só no plugin (flaky) |
 | `testing/acceptance_test.py::test_session_testscollected` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
 | `testing/test_workermanage.py::TestNodeManager::test_proxy_gateway` | 3/3 | 3/3 | 0/3 | 0/3 | esperada, diverge |
 
@@ -750,7 +749,7 @@ Testes que nunca falharam no baseline (flaky + fixa), cada um contado uma vez, n
 | `testing/acceptance_test.py::TestGroupScope::test_module_single_start` | 3/3 | 3/3 | 3/3 | 3/3 | ambiente (controle) |
 | `testing/acceptance_test.py::TestGroupScope::test_multiple_group_marks` | 3/3 | 3/3 | 3/3 | 3/3 | ambiente (controle) |
 | `testing/acceptance_test.py::TestGroupScope::test_multiple_group_order` | 3/3 | 3/3 | 3/3 | 3/3 | ambiente (controle) |
-| `testing/acceptance_test.py::TestLoadScope::test_workqueue_ordered_by_size` | 0/3 | 1/3 | 0/3 | 0/3 | dependente de ordem (controle) |
+| `testing/acceptance_test.py::TestLoadScope::test_workqueue_ordered_by_input` | 0/3 | 1/3 | 0/3 | 0/3 | dependente de ordem (controle) |
 | `testing/test_looponfail.py::TestLooponFailing::test_looponfail_from_fail_to_ok` | 0/3 | 3/3 | 0/3 | 0/3 | dependente de ordem (controle) |
 | `testing/test_looponfail.py::TestLooponFailing::test_looponfail_from_one_to_two_tests` | 0/3 | 3/3 | 0/3 | 0/3 | dependente de ordem (controle) |
 | `testing/test_looponfail.py::TestLooponFailing::test_looponfail_multiple_errors` | 0/3 | 3/3 | 0/3 | 0/3 | dependente de ordem (controle) |
@@ -759,7 +758,7 @@ Testes que nunca falharam no baseline (flaky + fixa), cada um contado uma vez, n
 | `testing/test_looponfail.py::TestRemoteControl::test_failures_somewhere` | 0/3 | 3/3 | 0/3 | 0/3 | dependente de ordem (controle) |
 | `testing/test_looponfail.py::TestRemoteControl::test_ignore_sys_path_hook_entry` | 0/3 | 3/3 | 0/3 | 0/3 | dependente de ordem (controle) |
 | `testing/test_looponfail.py::TestRemoteControl::test_nofailures` | 0/3 | 3/3 | 0/3 | 0/3 | dependente de ordem (controle) |
-| `testing/acceptance_test.py::TestLoadScope::test_workqueue_ordered_by_input` | 0/3 | 1/3 | 1/3 | 0/3 | só no plugin (flaky) |
+| `testing/acceptance_test.py::TestLoadScope::test_workqueue_ordered_by_size` | 0/3 | 1/3 | 0/3 | 0/3 | só no plugin (flaky) |
 
 #### pytest-xdist-m1461
 
@@ -770,7 +769,7 @@ Testes que nunca falharam no baseline (flaky + fixa), cada um contado uma vez, n
 | `testing/acceptance_test.py::TestGroupScope::test_module_single_start` | 3/3 | 3/3 | 3/3 | 3/3 | ambiente (controle) |
 | `testing/acceptance_test.py::TestGroupScope::test_multiple_group_marks` | 3/3 | 3/3 | 3/3 | 3/3 | ambiente (controle) |
 | `testing/acceptance_test.py::TestGroupScope::test_multiple_group_order` | 3/3 | 3/3 | 3/3 | 3/3 | ambiente (controle) |
-| `testing/acceptance_test.py::TestLoadScope::test_workqueue_ordered_by_size` | 0/3 | 1/3 | 1/3 | 1/3 | dependente de ordem (controle) |
+| `testing/acceptance_test.py::TestLoadScope::test_workqueue_ordered_by_input` | 0/3 | 1/3 | 0/3 | 0/3 | dependente de ordem (controle) |
 | `testing/test_looponfail.py::TestLooponFailing::test_looponfail_from_fail_to_ok` | 0/3 | 3/3 | 0/3 | 0/3 | dependente de ordem (controle) |
 | `testing/test_looponfail.py::TestLooponFailing::test_looponfail_from_one_to_two_tests` | 0/3 | 3/3 | 0/3 | 0/3 | dependente de ordem (controle) |
 | `testing/test_looponfail.py::TestLooponFailing::test_looponfail_multiple_errors` | 0/3 | 3/3 | 0/3 | 0/3 | dependente de ordem (controle) |
@@ -779,7 +778,7 @@ Testes que nunca falharam no baseline (flaky + fixa), cada um contado uma vez, n
 | `testing/test_looponfail.py::TestRemoteControl::test_failures_somewhere` | 0/3 | 3/3 | 0/3 | 0/3 | dependente de ordem (controle) |
 | `testing/test_looponfail.py::TestRemoteControl::test_ignore_sys_path_hook_entry` | 0/3 | 3/3 | 0/3 | 0/3 | dependente de ordem (controle) |
 | `testing/test_looponfail.py::TestRemoteControl::test_nofailures` | 0/3 | 3/3 | 0/3 | 0/3 | dependente de ordem (controle) |
-| `testing/acceptance_test.py::TestLoadScope::test_workqueue_ordered_by_input` | 0/3 | 1/3 | 1/3 | 0/3 | só no plugin (flaky) |
+| `testing/acceptance_test.py::TestLoadScope::test_workqueue_ordered_by_size` | 0/3 | 1/3 | 0/3 | 1/3 | só no plugin (flaky) |
 
 #### pytest-xdist-m1537
 
@@ -790,7 +789,7 @@ Testes que nunca falharam no baseline (flaky + fixa), cada um contado uma vez, n
 | `testing/acceptance_test.py::TestGroupScope::test_module_single_start` | 3/3 | 3/3 | 3/3 | 3/3 | ambiente (controle) |
 | `testing/acceptance_test.py::TestGroupScope::test_multiple_group_marks` | 3/3 | 3/3 | 3/3 | 3/3 | ambiente (controle) |
 | `testing/acceptance_test.py::TestGroupScope::test_multiple_group_order` | 3/3 | 3/3 | 3/3 | 3/3 | ambiente (controle) |
-| `testing/acceptance_test.py::TestLoadScope::test_workqueue_ordered_by_size` | 0/3 | 1/3 | 0/3 | 0/3 | dependente de ordem (controle) |
+| `testing/acceptance_test.py::TestLoadScope::test_workqueue_ordered_by_input` | 0/3 | 1/3 | 1/3 | 0/3 | dependente de ordem (controle) |
 | `testing/test_looponfail.py::TestLooponFailing::test_looponfail_from_fail_to_ok` | 0/3 | 3/3 | 0/3 | 0/3 | dependente de ordem (controle) |
 | `testing/test_looponfail.py::TestLooponFailing::test_looponfail_from_one_to_two_tests` | 0/3 | 3/3 | 0/3 | 0/3 | dependente de ordem (controle) |
 | `testing/test_looponfail.py::TestLooponFailing::test_looponfail_multiple_errors` | 0/3 | 3/3 | 0/3 | 0/3 | dependente de ordem (controle) |
@@ -799,7 +798,7 @@ Testes que nunca falharam no baseline (flaky + fixa), cada um contado uma vez, n
 | `testing/test_looponfail.py::TestRemoteControl::test_failures_somewhere` | 0/3 | 3/3 | 0/3 | 0/3 | dependente de ordem (controle) |
 | `testing/test_looponfail.py::TestRemoteControl::test_ignore_sys_path_hook_entry` | 0/3 | 3/3 | 0/3 | 0/3 | dependente de ordem (controle) |
 | `testing/test_looponfail.py::TestRemoteControl::test_nofailures` | 0/3 | 3/3 | 0/3 | 0/3 | dependente de ordem (controle) |
-| `testing/acceptance_test.py::TestLoadScope::test_workqueue_ordered_by_input` | 0/3 | 0/3 | 1/3 | 0/3 | só no plugin (flaky) |
+| `testing/acceptance_test.py::TestLoadScope::test_workqueue_ordered_by_size` | 0/3 | 1/3 | 0/3 | 0/3 | só no plugin (flaky) |
 
 
 ### pytorch-lightning
@@ -820,7 +819,7 @@ Testes que nunca falharam no baseline (flaky + fixa), cada um contado uma vez, n
 
 | teste | baseline | ranking | regsmart | regsmart-no-rank | classe |
 |---|---|---|---|---|---|
-| `callbacks/test_stochastic_weight_avg.py::test_swa_callback_ddp_cpu` | 0/3 | 1/3 | 1/3 | 0/2 | só no plugin (flaky) |
+| `callbacks/test_stochastic_weight_avg.py::test_swa_callback_ddp_cpu` | 0/3 | 1/3 | 1/3 | 0/3 | só no plugin (flaky) |
 
 
 ### trimesh

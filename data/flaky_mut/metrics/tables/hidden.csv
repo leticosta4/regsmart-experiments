@@ -1,12 +1,14 @@
 repo,baseline,ranking:rkn_hybrid,ranking:rkn_qtf,ranking:rkn_recentfail,ranking:rkn_simchgpath,regsmart:rgsm_hybrid,regsmart:rgsm_qtf,regsmart:rgsm_recentfail,regsmart-no-rank
+aeon,0.0,0.2,0.0,0.2,0.2,0.2,0.0,0.0,0.4
 apscheduler,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
 dask,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
 dvc,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
 ipython,0.0,0.0,0.6,0.0,0.0,0.4,1.0,0.4,0.4
 librosa,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+networkx,0.0,0.0,0.0,0.0,0.0,1.6,1.6,1.6,1.6
 pytest-django,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
 pytest-xdist,0.0,0.0,0.0,0.0,0.0,0.6,0.6,0.6,0.6
 pytorch-lightning,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
 trimesh,0.0,0.0,0.0,0.0,0.0,1.4,1.4,1.4,1.4
 ultralytics,0.0,0.0,0.0,0.0,0.0,9.2,9.2,9.2,9.2
-Média entre repos,0.0,0.0,0.1,0.0,0.0,1.2,1.2,1.2,1.2
+Média entre repos,0.0,0.0,0.0,0.0,0.0,1.1,1.1,1.1,1.1
