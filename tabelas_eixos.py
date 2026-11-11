@@ -6,7 +6,8 @@ Tabelas (padrão em data/<campanha>/metrics/tables/eixos/):
   tab_selecao.tex      Segurança da RTS (baseline + 4 modos do regsmart, blocos lado a lado)
   tab_instaveis.tex    Testes flaky (intermitentes e dependentes de ordem) por plugin; projetos sem flaky vão para a nota
   tab_tempo.tex        Tempo da suíte e do job por projeto e modo
-  tab_overhead.tex     Tempo de RTS e de RTP como % do tempo da suíte, por projeto e modo
+  tab_overhead_rts.tex Tempo de RTS como % do tempo da suíte (4 modos do pytest-regsmart)
+  tab_overhead_rtp.tex Tempo de RTP como % do tempo da suíte (modos que priorizam)
   tab_priorizacao.tex  APFDc e TTFF por projeto e modo
   tabelas_cap7.tex     todas as anteriores, na ordem do capítulo
   tabelas_eixos.csv    números sem formatação, para conferência
@@ -273,14 +274,20 @@ def main() -> int:
                 spec=[("RTS (% do tempo da suíte)", "rts_pct", 1, False, "agg"),
                         ("RTP (% do tempo da suíte)", "rtp_pct", 2, False, "agg")],
                 extra=("rts_pct", "rtp_pct"))
-    t_ovh = mode_table({b["col"]: b for b in ovb},
-                       [("rts_pct", "Tempo de seleção -- RTS (% do tempo da suíte)", True),
-                        ("rtp_pct", "Tempo de priorização -- RTP (% do tempo da suíte)", True)],
-                       rf"Custo das etapas de RTS e RTP em relação ao tempo da suíte, por projeto e modo ({agg})",
-                       "tab:overhead", a.fontsize, a.tabcolsep,
-                       "percentual do tempo de execução da suíte do próprio modo ocupado por cada etapa, calculado em cada "
+    ovc = {b["col"]: b for b in ovb}
+    t_ovs = mode_table(ovc, [("rts_pct", "Tempo de seleção -- RTS (% do tempo da suíte)", True)],
+                       rf"Custo da seleção (RTS) em relação ao tempo da suíte, por projeto e modo ({agg})",
+                       "tab:overhead-rts", a.fontsize, a.tabcolsep,
+                       "percentual do tempo de execução da suíte do próprio modo ocupado pela seleção, calculado em cada "
                        "execução. A seleção ocorre na coleta dos testes, dentro da sessão do \\textit{pytest}, e por isso "
-                       "faz parte do tempo da suíte. Os valores em segundos constam da Tabela~\\ref{tab:resultados-completos}.")
+                       "faz parte do tempo da suíte. Só os modos do \\textit{pytest-regsmart} executam RTS. Os valores em "
+                       "segundos constam da Tabela~\\ref{tab:resultados-completos}.", keys=RTS_MODES)
+    t_ovp = mode_table(ovc, [("rtp_pct", "Tempo de priorização -- RTP (% do tempo da suíte)", True)],
+                       rf"Custo da priorização (RTP) em relação ao tempo da suíte, por projeto e modo ({agg})",
+                       "tab:overhead-rtp", a.fontsize, a.tabcolsep,
+                       "percentual do tempo de execução da suíte do próprio modo ocupado pela priorização, calculado em "
+                       "cada execução; 0,00 indica valor abaixo de 0,005\\%. O \\textit{baseline} e o modo RTS não priorizam e por isso não aparecem. Os valores "
+                       "em segundos constam da Tabela~\\ref{tab:resultados-completos}.", keys=RANK_MODES + RTS_RANK_MODES)
     t_pri = mode_table(byc, [("apfdc", "APFDc", True), ("ttff_s", "Tempo até a primeira falha -- TTFF (s)", True)],
                        rf"APFDc e TTFF por projeto e modo ({agg})", "tab:priorizacao", a.fontsize, a.tabcolsep,
                        "nos modos do \\textit{pytest-regsmart}, o APFDc é calculado sobre os testes selecionados e "
@@ -288,7 +295,8 @@ def main() -> int:
     files = [("tab_selecao.tex", t_sel, "Segurança da RTS"),
              ("tab_instaveis.tex", t_ins, "Segurança da RTS > Testes flaky"),
              ("tab_tempo.tex", t_tmp, "Impacto no tempo de execução"),
-             ("tab_overhead.tex", t_ovh, "Impacto no tempo de execução"),
+             ("tab_overhead_rts.tex", t_ovs, "Impacto no tempo de execução"),
+             ("tab_overhead_rtp.tex", t_ovp, "Impacto no tempo de execução"),
              ("tab_priorizacao.tex", t_pri, "Eficácia da RTP")]
     allx = []
     for name, tex, where in files:
