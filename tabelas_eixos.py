@@ -284,6 +284,8 @@ def main() -> int:
     (out / "tabelas_cap7.tex").write_text("\n".join(allx), encoding="utf-8")
     with (out / "tabelas_eixos.csv").open("w", newline="", encoding="utf-8") as f:
         wcsv = csv.writer(f, lineterminator="\n")
+        wcsv.writerow(["tabela", "projeto", "flaky_intermitentes", "od_so_ranking", "od_ambos", "od_so_regsmart",
+                       "od_total", "od_tambem_regsmart_sem_rtp", "so_com_plugin_sempre", "ambiente"])
         for r in c_ins:
             wcsv.writerow([("" if v is None else (round(v, 4) if isinstance(v, float) else v)) for v in r])
     print(f"{len(rows)} legs, {len(repos)} repos -> {out}")
