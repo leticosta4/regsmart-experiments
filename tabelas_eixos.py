@@ -239,13 +239,14 @@ def main() -> int:
     agg = f"{w[a.rep_stat]} das repetições, {w[a.mut_stat]} entre os mutantes"
     t_sel = side_table(byc, [[("n_tests", "Testes executados (por mutante)"),
                               ("detected_pct", "Falhas detectadas (%)")],
-                             [("hidden", "Falhas omitidas (soma dos mutantes)"),
-                              ("hidden_not_selected", r"\ldots{} das quais não selecionadas")]],
+                             [("hidden", "Falhas omitidas (total)"),
+                              ("hidden_not_selected", "Falhas omitidas por não seleção da RTS")]],
                        rf"Segurança da RTS por projeto: \textit{{baseline}} e modos do \textit{{pytest-regsmart}} ({agg})",
                        "tab:selecao-rts", a.fontsize, a.tabcolsep,
                        "o \\textit{pytest-ranking} não aparece porque executa a suíte completa (ver Tabela~\\ref{tab:resultados-completos}). "
-                       "Os quatro modos do \\textit{pytest-regsmart} selecionam os mesmos testes; as diferenças entre eles nas falhas "
-                       "omitidas vêm de testes \\textit{flaky} (em geral, dependentes de ordem), e não da seleção.")
+                       "Falhas omitidas são falhas esperadas que não ocorreram no modo; as omitidas por não seleção são aquelas "
+                       "cujo teste não foi selecionado pela RTS. As demais vêm de testes \\textit{flaky}. Os quatro modos do "
+                       "\\textit{pytest-regsmart} selecionam os mesmos testes; falhas somadas entre os cinco mutantes.")
     t_ins, c_ins = instaveis(base / "flaky_tests.json", repos)
     t_tmp = mode_table(byc, [("suite_s", "Tempo de execução da suíte (s)", True),
                              ("job_s", "Tempo total do job (s)", True)],

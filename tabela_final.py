@@ -59,7 +59,7 @@ BLOCKS = [
     ("Overhead: tempo de priorização -- RTP (s)", "rtp_s", 3, False, "agg"),
     ("Falhas da mutação detectadas (%)", "detected_pct", 1, False, "pct"),
     ("Falhas da mutação omitidas (soma dos mutantes)", "hidden", 0, False, "sum"),
-    (r"\ldots{} das quais não selecionadas pelo RTS", "hidden_not_selected", 0, False, "sum"),
+    ("Falhas omitidas por não seleção da RTS (soma dos mutantes)", "hidden_not_selected", 0, False, "sum"),
     ("APFDc", "apfdc", 2, False, "agg"),
 ]
 NUMERIC = {"n_tests", "suite_s", "job_s", "ttff_s", "rts_s", "rtp_s", "faults", "detected",
