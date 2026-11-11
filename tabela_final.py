@@ -34,15 +34,15 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 CAMPAIGN_DIRS = {"flaky": "flaky_mut", "experiment": "experiment"}
 
-# (chave no runs.csv, nome na tabela, grupo) na ordem da Tabela 3 da monografia
+# (chave no runs.csv, nome na tabela, grupo) na ordem da tabela de modos (tab:modos-exec) da monografia
 MODES = [
     ("baseline", "Padrão", "Baseline"),
-    ("ranking:rkn_qtf", "QTF", "pytest-ranking"),
     ("ranking:rkn_recentfail", "RecentFail", "pytest-ranking"),
-    ("ranking:rkn_simchgpath", "SimChgPath", "pytest-ranking"),
+    ("ranking:rkn_qtf", "QTF", "pytest-ranking"),
     ("ranking:rkn_hybrid", "Hybrid", "pytest-ranking"),
-    ("regsmart:rgsm_qtf", "RTS + QTF", "pytest-regsmart"),
+    ("ranking:rkn_simchgpath", "SimChgPath", "pytest-ranking"),
     ("regsmart:rgsm_recentfail", "RTS + RecentFail", "pytest-regsmart"),
+    ("regsmart:rgsm_qtf", "RTS + QTF", "pytest-regsmart"),
     ("regsmart:rgsm_hybrid", "RTS + Hybrid", "pytest-regsmart"),
     ("regsmart-no-rank", "RTS", "pytest-regsmart"),
 ]
@@ -59,7 +59,7 @@ BLOCKS = [
     ("Overhead: tempo de priorização -- RTP (s)", "rtp_s", 3, False, "agg"),
     ("Falhas da mutação detectadas (%)", "detected_pct", 1, False, "pct"),
     ("Falhas da mutação omitidas (soma dos mutantes)", "hidden", 0, False, "sum"),
-    ("\u2026 das quais não selecionadas pelo RTS", "hidden_not_selected", 0, False, "sum"),
+    (r"\ldots{} das quais não selecionadas pelo RTS", "hidden_not_selected", 0, False, "sum"),
     ("APFDc", "apfdc", 2, False, "agg"),
 ]
 NUMERIC = {"n_tests", "suite_s", "job_s", "ttff_s", "rts_s", "rtp_s", "faults", "detected",
