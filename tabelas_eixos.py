@@ -4,7 +4,7 @@ prontas para colar na monografia. Usa a mesma agregação do tabela_final.py
 
 Tabelas (padrão em data/<campanha>/metrics/tables/eixos/):
   tab_selecao.tex      Segurança da RTS (baseline + 4 modos do regsmart, blocos lado a lado)
-  tab_instaveis.tex    Testes flaky (intermitentes e dependentes de ordem) por plugin (flaky_tests.json)
+  tab_instaveis.tex    Testes flaky (intermitentes e dependentes de ordem) por plugin; projetos sem flaky vão para a nota
   tab_tempo.tex        Tempo da suíte e do job por projeto e modo
   tab_overhead.tex     Tempo de RTS e de RTP por projeto e modo
   tab_priorizacao.tex  APFDc e TTFF por projeto e modo
@@ -167,7 +167,7 @@ def instaveis(path: Path, repos):
     data = json.loads(path.read_text(encoding="utf-8"))
     prio = ["fixa", "flaky", "amb", "od"]
     cols = [("flaky",), ("od", "rk"), ("od", "rp"), ("od", "rts"), ("fixa",), ("amb",)]
-    lines, csvrows, tot = [], [], defaultdict(int)
+    lines, csvrows, tot, zeros = [], [], defaultdict(int), []
     for repo in repos:
         cls, wfs = {}, defaultdict(set)
         for mut, v in data.get(repo, {}).items():
@@ -193,26 +193,26 @@ def instaveis(path: Path, repos):
                 n[(k,)] += 1
         for c in cols:
             tot[c] += n[c]
-        lines.append(row([r"\quad " + tex_escape(repo)] + [str(n[c]) for c in cols]))
+        show = [("flaky",), ("od", "rk"), ("od", "rp"), ("od", "rts")]
         csvrows.append(["instaveis", repo] + [n[c] for c in cols])
+        if any(n[c] for c in show):
+            lines.append(row([r"\quad " + tex_escape(repo)] + [str(n[c]) for c in show]))
+        else:
+            zeros.append(repo)
     csvrows.append(["instaveis", "Total"] + [tot[c] for c in cols])
+    show = [("flaky",), ("od", "rk"), ("od", "rp"), ("od", "rts")]
     head = [r"\toprule",
-            r" & \multicolumn{4}{c}{\textbf{Testes \textit{flaky}}} & & \\",
-            r"\cmidrule(lr){2-5}",
-            r" & \textbf{Intermitentes} & \multicolumn{3}{c}{\textbf{Dependentes de ordem}} & "
-            r"\textbf{\shortstack[r]{Falham só com\\\textit{plugin}, em todas}} & \textbf{Controle} \\",
+            r" & & \multicolumn{3}{c}{\textbf{Dependentes de ordem}} \\",
             r"\cmidrule(lr){3-5}",
-            r" & & \textbf{\textit{pytest-ranking}} & \multicolumn{2}{c}{\textbf{\textit{pytest-regsmart}}} & "
-            r"\textbf{as execuções} & \\",
-            r"\cmidrule(lr){4-5}",
-            row([r"\textbf{Projeto}", r"\textbf{no \textit{baseline}}", r"\textbf{4 modos}", r"\textbf{RTS + RTP}",
-                 r"\textbf{RTS}", "", r"\textbf{Ambiente}"]), r"\midrule"]
-    last = row([r"\textbf{Total}"] + [rf"\textbf{{{tot[c]}}}" for c in cols])
-    nota = ("número de testes distintos por projeto, somando as \\textit{branches} de mutante e a de controle. "
-            "Os dependentes de ordem são \\textit{flaky} que só falham quando a ordem dos testes muda; nessas colunas, "
-            "um teste pode aparecer em mais de um \\textit{plugin}.")
-    tex = wrap(r"Testes \textit{flaky} e falhas de ambiente por projeto e \textit{plugin}",
-               "tab:testes-instaveis", "lrrrrrr", head + lines + [r"\midrule", last], r"\scriptsize", "2pt", nota)
+            row([r"\textbf{Projeto}", r"\textbf{Intermitentes}", r"\textbf{\textit{ranking}}",
+                 r"\textbf{\textit{regsmart}}", r"\textbf{\textit{regsmart} sem RTP}"]), r"\midrule"]
+    last = row([r"\textbf{Total}"] + [rf"\textbf{{{tot[c]}}}" for c in show])
+    nomes = ", ".join(rf"\textit{{{tex_escape(z)}}}" for z in zeros[:-1]) + (rf" e \textit{{{tex_escape(zeros[-1])}}}" if zeros else "")
+    nota = ("número de testes \\textit{flaky} distintos por projeto, somando as \\textit{branches} de mutante e a de "
+            "controle; um teste dependente de ordem pode aparecer em mais de um \\textit{plugin}. "
+            + (f"Os projetos {nomes} não tiveram testes \\textit{{flaky}} e foram omitidos." if zeros else ""))
+    tex = wrap(r"Testes \textit{flaky} por projeto e \textit{plugin}", "tab:testes-flaky",
+               "lrrrr", head + lines + [r"\midrule", last], r"\small", "5pt", nota)
     return tex, csvrows
 
 
