@@ -166,7 +166,7 @@ def instaveis(path: Path, repos):
     (um teste pode aparecer em mais de uma coluna)."""
     data = json.loads(path.read_text(encoding="utf-8"))
     prio = ["fixa", "flaky", "amb", "od"]
-    cols = [("flaky",), ("od", "rk"), ("od", "rp"), ("od", "rts"), ("fixa",), ("amb",)]
+    cols = [("flaky",), ("od", "rk"), ("od", "ambos"), ("od", "rp"), ("od", "tot"), ("od", "rts"), ("fixa",), ("amb",)]
     lines, csvrows, tot, zeros = [], [], defaultdict(int), []
     for repo in repos:
         cls, wfs = {}, defaultdict(set)
@@ -187,32 +187,41 @@ def instaveis(path: Path, repos):
         n = defaultdict(int)
         for t, k in cls.items():
             if k == "od":
-                for w in wfs[t]:
-                    n[(k, w)] += 1
+                w = wfs[t]
+                g = ("od", "rk") if w == {"rk"} else ("od", "rp") if "rk" not in w else ("od", "ambos")
+                n[g] += 1
+                n[("od", "tot")] += 1
+                if "rts" in w:
+                    n[("od", "rts")] += 1
             else:
                 n[(k,)] += 1
         for c in cols:
             tot[c] += n[c]
-        show = [("flaky",), ("od", "rk"), ("od", "rp"), ("od", "rts")]
+        show = [("flaky",), ("od", "rk"), ("od", "ambos"), ("od", "rp"), ("od", "tot")]
         csvrows.append(["instaveis", repo] + [n[c] for c in cols])
         if any(n[c] for c in show):
-            lines.append(row([r"\quad " + tex_escape(repo)] + [str(n[c]) for c in show]))
+            lines.append(row([r"\quad " + tex_escape(repo)] + [str(n[c]) for c in show]
+                             + [str(n[("flaky",)] + n[("od", "tot")])]))
         else:
             zeros.append(repo)
     csvrows.append(["instaveis", "Total"] + [tot[c] for c in cols])
-    show = [("flaky",), ("od", "rk"), ("od", "rp"), ("od", "rts")]
+    show = [("flaky",), ("od", "rk"), ("od", "ambos"), ("od", "rp"), ("od", "tot")]
     head = [r"\toprule",
-            r" & & \multicolumn{3}{c}{\textbf{Dependentes de ordem}} \\",
-            r"\cmidrule(lr){3-5}",
-            row([r"\textbf{Projeto}", r"\textbf{Intermitentes}", r"\textbf{\textit{ranking}}",
-                 r"\textbf{\textit{regsmart}}", r"\textbf{\textit{regsmart} sem RTP}"]), r"\midrule"]
-    last = row([r"\textbf{Total}"] + [rf"\textbf{{{tot[c]}}}" for c in show])
+            r" & & \multicolumn{4}{c}{\textbf{Dependentes de ordem}} & \\",
+            r"\cmidrule(lr){3-6}",
+            row([r"\textbf{Projeto}", r"\textbf{Intermitentes}", r"\textbf{só \textit{ranking}}",
+                 r"\textbf{ambos}", r"\textbf{só \textit{regsmart}}", r"\textbf{total}", r"\textbf{Total \textit{flaky}}"]),
+            r"\midrule"]
+    last = row([r"\textbf{Total}"] + [rf"\textbf{{{tot[c]}}}" for c in show]
+               + [rf"\textbf{{{tot[('flaky',)] + tot[('od', 'tot')]}}}"])
     nomes = ", ".join(rf"\textit{{{tex_escape(z)}}}" for z in zeros[:-1]) + (rf" e \textit{{{tex_escape(zeros[-1])}}}" if zeros else "")
     nota = ("número de testes \\textit{flaky} distintos por projeto, somando as \\textit{branches} de mutante e a de "
-            "controle; um teste dependente de ordem pode aparecer em mais de um \\textit{plugin}. "
+            "controle; cada teste é contado uma única vez. Entre os dependentes de ordem, \\textit{ambos} indica os que "
+            f"falharam sob os dois \\textit{{plugins}}; {tot[('od', 'rts')]} deles também falhou no modo do "
+            "\\textit{pytest-regsmart} sem RTP. "
             + (f"Os projetos {nomes} não tiveram testes \\textit{{flaky}} e foram omitidos." if zeros else ""))
     tex = wrap(r"Testes \textit{flaky} por projeto e \textit{plugin}", "tab:testes-flaky",
-               "lrrrr", head + lines + [r"\midrule", last], r"\small", "5pt", nota)
+               "lrrrrrr", head + lines + [r"\midrule", last], r"\small", "3pt", nota)
     return tex, csvrows
 
 
