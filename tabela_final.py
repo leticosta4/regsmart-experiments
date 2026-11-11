@@ -6,12 +6,12 @@ Lê o runs.csv do metrics_collector.py (uma linha por leg) e agrega em duas etap
   2. por (repo, modo): estatística entre os mutantes (--mut-stat, padrão média).
      Faltas omitidas são SOMADAS entre os mutantes, e a % de faltas detectadas é
      100 × Σ detectadas / Σ faltas do repo (as duas a partir dos valores da etapa 1).
-A linha "Média" é a média entre os repos; "Razão vs. baseline" é a média, entre os
+A linha "Média" é a média entre os repos; "Relativo ao baseline" é a média, entre os
 repos, da razão modo/baseline de cada repo (não a razão das médias).
 
 Saídas (padrão em data/<campanha>/metrics/tables/final/):
   tabela_final.tex          tabela completa (longtable): um bloco por métrica, uma linha por repo
-  tabela_final_resumo.tex   só as linhas Média/Total/Razão de cada bloco (cabe em uma página)
+  tabela_final_resumo.tex   só as linhas Média/Total/Relativo ao baseline de cada bloco (cabe em uma página)
   tabela_final.csv          mesmos números da completa, sem formatação (ponto decimal)
   tabela_final_resumo.csv   mesmos números do resumo
 
@@ -87,18 +87,19 @@ def total(vals):
     return sum(vals) if vals else None
 
 
-def build(rows: list[dict], repos: list[str], rep_stat: str, mut_stat: str) -> list[dict]:
-    """Devolve os blocos: {title, col, dec, kind, rows: [(rótulo, {modo: valor}), ...], summary: [...]}"""
+def build(rows: list[dict], repos: list[str], rep_stat: str, mut_stat: str, spec=None, extra=()) -> list[dict]:
+    """Devolve os blocos: {title, col, dec, kind, rows: [(rótulo, {modo: valor}), ...], summary: [...]}.
+    spec substitui BLOCKS; extra lista colunas derivadas (além de NUMERIC) presentes nas linhas."""
     by_leg = defaultdict(list)
     for r in rows:
         by_leg[(r["repo"], r["mutant"], r["mode"])].append(r)
     # etapa 1: entre repetições
     per_mut = defaultdict(dict)  # (repo, modo) -> {mutante: {col: valor}}
     for (repo, mut, mode), legs in by_leg.items():
-        per_mut[(repo, mode)][mut] = {c: stat([num(l.get(c)) for l in legs], rep_stat) for c in NUMERIC}
+        per_mut[(repo, mode)][mut] = {c: stat([num(l.get(c)) for l in legs], rep_stat) for c in NUMERIC | set(extra)}
 
     blocks = []
-    for title, col, dec, ratio, kind in BLOCKS:
+    for title, col, dec, ratio, kind in (spec or BLOCKS):
         table = {}
         for repo in repos:
             line = {}
@@ -123,7 +124,7 @@ def build(rows: list[dict], repos: list[str], rep_stat: str, mut_stat: str) -> l
                 vals = [table[r][m] / table[r]["baseline"] for r in repos
                         if table[r][m] is not None and table[r]["baseline"]]
                 rr[m] = stat(vals, "mean")
-            summary.append(("Razão vs. baseline", rr))
+            summary.append(("Relativo ao baseline", rr))
         blocks.append(dict(title=title, col=col, dec=dec, kind=kind, rows=body, summary=summary))
     return blocks
 
@@ -191,8 +192,8 @@ def write_tex(path: Path, blocks: list[dict], caption: str, label: str, full: bo
             for repo, vals in b["rows"]:
                 out.append(tex_row(r"\quad " + tex_escape(repo), vals, b["dec"]))
         for j, (lab, vals) in enumerate(b["summary"]):
-            out.append(tex_row(r"\quad " + lab, vals, 2 if lab.startswith("Razão") else b["dec"],
-                               "bf" if j == 0 and full else ("it" if lab.startswith("Razão") else "")))
+            out.append(tex_row(r"\quad " + lab, vals, 2 if lab.startswith("Relativo") else b["dec"],
+                               "bf" if j == 0 and full else ("it" if lab.startswith("Relativo") else "")))
     if full:
         out += [r"\end{longtable}", "}"]
     else:

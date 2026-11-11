@@ -6,7 +6,7 @@ Tabelas (padrão em data/<campanha>/metrics/tables/eixos/):
   tab_selecao.tex      Segurança da RTS (baseline + 4 modos do regsmart, blocos lado a lado)
   tab_instaveis.tex    Testes flaky (intermitentes e dependentes de ordem) por plugin; projetos sem flaky vão para a nota
   tab_tempo.tex        Tempo da suíte e do job por projeto e modo
-  tab_overhead.tex     Tempo de RTS e de RTP por projeto e modo
+  tab_overhead.tex     Tempo de RTS e de RTP como % do tempo da suíte, por projeto e modo
   tab_priorizacao.tex  APFDc e TTFF por projeto e modo
   tabelas_cap7.tex     todas as anteriores, na ordem do capítulo
   tabelas_eixos.csv    números sem formatação, para conferência
@@ -29,7 +29,7 @@ from collections import defaultdict
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from tabela_final import CAMPAIGN_DIRS, MODES, MODE_KEYS, ROOT, build, fmt, tex_escape, tex_header  # noqa: E402
+from tabela_final import CAMPAIGN_DIRS, MODES, MODE_KEYS, ROOT, build, fmt, num, tex_escape, tex_header  # noqa: E402
 
 RTS_MODES = [m for m in MODE_KEYS if m.startswith("regsmart")]           # 4 modos com RTS
 RTS_ONLY = "regsmart-no-rank"
@@ -109,8 +109,8 @@ def mode_table(blocks_by_col, spec, caption, label, fontsize, tabcolsep, nota=No
             for repo, vals in b["rows"]:
                 body.append(line(r"\quad " + tex_escape(repo), vals, b["dec"]))
         for lab, vals in b["summary"]:
-            body.append(line(r"\quad " + lab, vals, 2 if lab.startswith("Razão") else b["dec"],
-                             "it" if lab.startswith("Razão") else ("bf" if full else "")))
+            body.append(line(r"\quad " + lab, vals, 2 if lab.startswith("Relativo") else b["dec"],
+                             "it" if lab.startswith("Relativo") else ("bf" if full else "")))
     return wrap(caption, label, "l" + "r" * len(keys), body, fontsize, tabcolsep, nota)
 
 
@@ -261,13 +261,26 @@ def main() -> int:
                              ("job_s", "Tempo total do job (s)", True)],
                        rf"Tempo de execução da suíte e do \textit{{job}} por projeto e modo ({agg})", "tab:tempo",
                        a.fontsize, a.tabcolsep,
-                       "a razão é a média, entre os projetos, da razão de cada modo em relação ao \\textit{baseline}.")
-    t_ovh = mode_table(byc, [("rts_s", "Tempo de seleção -- RTS (s)", True),
-                             ("rtp_s", "Tempo de priorização -- RTP (s)", True)],
-                       rf"Custo das etapas de RTS e RTP por projeto e modo ({agg})", "tab:overhead",
-                       a.fontsize, a.tabcolsep,
-                       "a seleção ocorre na coleta dos testes, dentro da sessão do \\textit{pytest}; por isso, o tempo "
-                       "da suíte nos modos do \\textit{pytest-regsmart} já inclui o tempo de RTS.")
+                       "a linha \\textit{Relativo ao baseline} é a média, entre os projetos, do tempo do modo dividido pelo tempo do "
+                       "\\textit{baseline} no mesmo projeto; valores abaixo de 1 indicam execução mais rápida que o \\textit{baseline}.")
+    # overhead em % do tempo da suíte do próprio modo, calculado por execução e agregado como as demais métricas
+    for r in rows:
+        su = num(r.get("suite_s"))
+        for c in ("rts", "rtp"):
+            v = num(r.get(f"{c}_s"))
+            r[f"{c}_pct"] = "" if v is None or not su else str(100 * v / su)
+    ovb = build(rows, repos, a.rep_stat, a.mut_stat,
+                spec=[("RTS (% do tempo da suíte)", "rts_pct", 1, False, "agg"),
+                        ("RTP (% do tempo da suíte)", "rtp_pct", 2, False, "agg")],
+                extra=("rts_pct", "rtp_pct"))
+    t_ovh = mode_table({b["col"]: b for b in ovb},
+                       [("rts_pct", "Tempo de seleção -- RTS (% do tempo da suíte)", True),
+                        ("rtp_pct", "Tempo de priorização -- RTP (% do tempo da suíte)", True)],
+                       rf"Custo das etapas de RTS e RTP em relação ao tempo da suíte, por projeto e modo ({agg})",
+                       "tab:overhead", a.fontsize, a.tabcolsep,
+                       "percentual do tempo de execução da suíte do próprio modo ocupado por cada etapa, calculado em cada "
+                       "execução. A seleção ocorre na coleta dos testes, dentro da sessão do \\textit{pytest}, e por isso "
+                       "faz parte do tempo da suíte. Os valores em segundos constam da Tabela~\\ref{tab:resultados-completos}.")
     t_pri = mode_table(byc, [("apfdc", "APFDc", True), ("ttff_s", "Tempo até a primeira falha -- TTFF (s)", True)],
                        rf"APFDc e TTFF por projeto e modo ({agg})", "tab:priorizacao", a.fontsize, a.tabcolsep,
                        "nos modos do \\textit{pytest-regsmart}, o APFDc é calculado sobre os testes selecionados e "
