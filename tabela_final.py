@@ -10,12 +10,12 @@ A linha "Média" é a média entre os repos; "Relativo ao baseline" é a média,
 repos, da razão modo/baseline de cada repo (não a razão das médias).
 
 Saídas (padrão em data/<campanha>/metrics/tables/final/):
-  tabela_final.tex          tabela completa (longtable): um bloco por métrica, uma linha por repo
-  tabela_final_resumo.tex   só as linhas Média/Total/Relativo ao baseline de cada bloco (cabe em uma página)
-  tabela_final.csv          mesmos números da completa, sem formatação (ponto decimal)
-  tabela_final_resumo.csv   mesmos números do resumo
+  tabela_final.tex          tabela completa do apêndice (longtable, label tab:resultados-completos):
+                            um bloco por métrica, na ordem do Cap. 7, uma linha por repo
+  tabela_final.csv          mesmos números, sem formatação (ponto decimal)
+A tabela-resumo do capítulo (tab:resultados-resumo) é gerada pelo tabelas_eixos.py.
 
-No preâmbulo da monografia: \\usepackage{booktabs} e \\usepackage{longtable}.
+No preâmbulo da monografia: \\usepackage{booktabs}, \\usepackage{longtable} e \\usepackage{caption}.
 
 Uso:
   python3 tabela_final.py                                   # campanha flaky, mediana/média
@@ -61,6 +61,18 @@ BLOCKS = [
     ("Falhas da mutação omitidas (soma dos mutantes)", "hidden", 0, False, "sum"),
     ("Falhas omitidas por não seleção da RTS (soma dos mutantes)", "hidden_not_selected", 0, False, "sum"),
     ("APFDc", "apfdc", 2, False, "agg"),
+]
+# Blocos da tabela completa do apêndice, na ordem do Cap. 7 e com os mesmos nomes das tabelas do capítulo.
+APPENDIX_BLOCKS = [
+    ("Testes por mutante", "n_tests", 0, False, "agg"),
+    ("Falhas não selecionadas (soma)", "hidden_not_selected", 0, False, "sum"),
+    ("Falhas detectadas (%)", "detected_pct", 1, False, "pct"),
+    ("Tempo da TSR (s)", "suite_s", 1, True, "agg"),
+    ("Tempo do job (s)", "job_s", 1, True, "agg"),
+    ("Tempo da RTS (s)", "rts_s", 2, False, "agg"),
+    ("Tempo da RTP (s)", "rtp_s", 2, False, "agg"),
+    ("APFDc", "apfdc", 2, False, "agg"),
+    ("Tempo até a primeira falha -- TTFF (s)", "ttff_s", 2, True, "agg"),
 ]
 NUMERIC = {"n_tests", "suite_s", "job_s", "ttff_s", "rts_s", "rtp_s", "faults", "detected",
            "hidden", "hidden_not_selected", "apfdc"}
@@ -176,18 +188,19 @@ def write_tex(path: Path, blocks: list[dict], caption: str, label: str, full: bo
     size = [fontsize, rf"\setlength{{\tabcolsep}}{{{tabcolsep}}}"]
     out = ["% gerado por tabela_final.py; não edite à mão", "{"]
     if full:
-        out += size + [rf"\begin{{longtable}}{{{colspec}}}",
+        out += [r"\captionsetup{font=normalsize}"] + size + [rf"\begin{{longtable}}{{{colspec}}}",
                 rf"\caption{{{caption}}}\label{{{label}}}\\"] + head + [r"\endfirsthead",
-                rf"\multicolumn{{{ncol}}}{{l}}{{\small\textit{{(continuação)}}}}\\"] + head + [r"\endhead",
-                r"\midrule", rf"\multicolumn{{{ncol}}}{{r}}{{\small\textit{{(continua)}}}}\\", r"\endfoot",
-                r"\bottomrule", r"\endlastfoot"]
+                r"\caption[]{continuação}\\"] + head + [r"\endhead",
+                r"\endfoot", r"\bottomrule",
+                rf"\multicolumn{{{ncol}}}{{c}}{{\small Fonte: Elaborado pela autora (2026).}} \\", r"\endlastfoot"]
     else:
         out += [r"\begin{table}[htbp]", r"\centering", rf"\caption{{{caption}}}\label{{{label}}}"] + size + [
                 rf"\begin{{tabular}}{{{colspec}}}"] + head
     for i, b in enumerate(blocks):
         if i:
             out.append(r"\midrule")
-        out.append(rf"\multicolumn{{{ncol}}}{{l}}{{\textbf{{\textit{{{tex_escape(b['title'])}}}}}}} \\")
+        title = tex_escape(b['title']).replace("job", r"\textit{job}")
+        out.append(rf"\multicolumn{{{ncol}}}{{l}}{{\textbf{{\textit{{{title}}}}}}} \\")
         if full:
             for repo, vals in b["rows"]:
                 out.append(tex_row(r"\quad " + tex_escape(repo), vals, b["dec"]))
@@ -240,19 +253,16 @@ def main() -> int:
     if unknown:
         print(f"aviso: modos ignorados (fora da Tabela 3): {', '.join(unknown)}")
 
-    blocks = build(rows, repos, args.rep_stat, args.mut_stat)
+    blocks = build(rows, repos, args.rep_stat, args.mut_stat, spec=APPENDIX_BLOCKS)
     nmut = len({(r["repo"], r["mutant"]) for r in rows if r["repo"] in repos})
     word = {"median": "mediana", "mean": "média"}
-    caption = (f"Comparação dos nove modos em {len(repos)} projetos ({word[args.rep_stat]} das repetições, "
+    caption = (f"Resultados completos por projeto e modo de execução ({word[args.rep_stat]} das repetições, "
                f"{word[args.mut_stat]} entre os mutantes de cada projeto)")
     out.mkdir(parents=True, exist_ok=True)
     write_tex(out / "tabela_final.tex", blocks, caption, "tab:resultados-completos", True, args.fontsize,
               args.tabcolsep)
-    write_tex(out / "tabela_final_resumo.tex", blocks, caption.replace("Comparação", "Resumo da comparação"),
-              "tab:resultados-resumo", False, args.fontsize, args.tabcolsep)
     write_csv(out / "tabela_final.csv", blocks, True)
-    write_csv(out / "tabela_final_resumo.csv", blocks, False)
-    print(f"{len(rows)} legs, {len(repos)} repos, {nmut} mutantes -> {out}/tabela_final{{,_resumo}}.{{tex,csv}}")
+    print(f"{len(rows)} legs, {len(repos)} repos, {nmut} mutantes -> {out}/tabela_final.{{tex,csv}}")
     return 0
 
 
