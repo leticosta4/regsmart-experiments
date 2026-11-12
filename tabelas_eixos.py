@@ -3,17 +3,18 @@ prontas para colar na monografia. Usa a mesma agregação do tabela_final.py
 (mediana entre repetições, média entre mutantes; ver --rep-stat/--mut-stat).
 
 Tabelas (padrão em data/<campanha>/metrics/tables/eixos/):
-  tab_selecao.tex      Segurança da RTS (baseline + 4 modos do regsmart, blocos lado a lado)
+  tab_selecao.tex      Segurança da RTS: testes por mutante (baseline, RTS, % da suíte), falhas não selecionadas e detecção nos 4 modos
   tab_instaveis.tex    Testes flaky (intermitentes e dependentes de ordem) por plugin; projetos sem flaky vão para a nota
-  tab_tempo.tex        Tempo da suíte e do job por projeto e modo
-  tab_overhead_rts.tex Tempo de RTS como % do tempo da suíte (4 modos do pytest-regsmart)
-  tab_overhead_rtp.tex Tempo de RTP como % do tempo da suíte (modos que priorizam)
+  tab_tempo.tex        Tempo da TSR por projeto e modo (o do job fica na tabela completa do apêndice)
+  tab_overhead.tex     Custo da RTS e da RTP em % da TSR, por projeto (média dos modos de cada plugin)
   tab_priorizacao.tex  APFDc e TTFF por projeto e modo
+  tab_resumo.tex       Síntese: uma linha por métrica, nove modos, só valores relativos e percentuais
+  tab_perfil.tex       Síntese: projetos agrupados por perfil (TSR relativa, detecção do modo RTS, fator principal)
   tabelas_cap7.tex     todas as anteriores, na ordem do capítulo
   tabelas_eixos.csv    números sem formatação, para conferência
 
 Formato: \\begin{center} + minipage (mantém título e tabela juntos) + \\captionof{table} + \\caption*{Fonte}, como a tab:modos-exec.
-No preâmbulo: booktabs e caption (para \\captionof).
+No preâmbulo: booktabs, caption (para \\captionof) e array (colunas da tab_perfil).
 
 Uso:
   python3 tabelas_eixos.py
@@ -226,6 +227,121 @@ def instaveis(path: Path, repos):
     return tex, csvrows
 
 
+
+# ---------------------------------------------------------------- tabelas compactas (revisão do Cap. 7)
+def _names():
+    return {k: n for k, n, _ in MODES}
+
+
+def _h(n):
+    if " + " in n:
+        a, b = n.split(" + ")
+        return rf"\textbf{{\shortstack[r]{{{a} +\\{b}}}}}"
+    return rf"\textbf{{{n}}}"
+
+
+def _det(v):
+    return "100" if v is not None and round(v, 1) >= 100 else fmt(v, 1)
+
+
+def selecao_compacta(byc, repos, caption, label, fontsize, tabcolsep, nota):
+    """Um bloco: testes por mutante (baseline, RTS, % da suíte), falhas não selecionadas (soma) e detecção nos 4 modos."""
+    names = _names()
+    nt, hn, dp = (dict(byc[c]["rows"]) for c in ("n_tests", "hidden_not_selected", "detected_pct"))
+    body = [r"\toprule",
+            r" & \multicolumn{3}{c}{\textbf{Testes por mutante}} & \textbf{\shortstack[r]{Falhas não\\selecionadas}} & "
+            r"\multicolumn{4}{c}{\textbf{Falhas detectadas (\%)}} \\",
+            r"\cmidrule(lr){2-4}\cmidrule(lr){6-9}",
+            row([r"\textbf{Projeto}", r"\textbf{Baseline}", r"\textbf{RTS}", r"\textbf{\% da suíte}", ""]
+                + [_h(names[k]) for k in RTS_MODES]), r"\midrule"]
+    pcts, tot = [], 0
+    for rp in repos:
+        b, s = nt[rp]["baseline"], nt[rp][RTS_ONLY]
+        pct = 100 * s / b if b else None
+        pcts.append(pct)
+        tot += hn[rp][RTS_ONLY] or 0
+        body.append(row([r"\textit{" + tex_escape(rp) + "}", fmt(b, 0), fmt(s, 0), fmt(pct, 1),
+                         fmt(hn[rp][RTS_ONLY], 0)] + [_det(dp[rp][k]) for k in RTS_MODES]))
+    ntm, dpm = dict(byc["n_tests"]["summary"])["Média"], dict(byc["detected_pct"]["summary"])["Média"]
+    body += [r"\midrule", row([r"\textbf{Média / Total}"] + [rf"\textbf{{{c}}}" for c in
+             [fmt(ntm["baseline"], 0), fmt(ntm[RTS_ONLY], 0), fmt(mean(pcts), 1), fmt(tot, 0)]
+             + [_det(dpm[k]) for k in RTS_MODES]])]
+    return wrap(caption, label, "lrrrrrrrr", body, fontsize, tabcolsep, nota)
+
+
+def overhead_unificada(ovc, repos, caption, label, fontsize, tabcolsep, nota):
+    """RTS (média dos 4 modos do regsmart) e RTP (média dos modos de cada plugin), em % da TSR."""
+    rts, rtp = dict(ovc["rts_pct"]["rows"]), dict(ovc["rtp_pct"]["rows"])
+    body = [r"\toprule", r" & \textbf{RTS} & \multicolumn{2}{c}{\textbf{RTP}} \\", r"\cmidrule(lr){3-4}",
+            row([r"\textbf{Projeto}", r"\textbf{\textit{pytest-regsmart}}", r"\textbf{\textit{pytest-ranking}}",
+                 r"\textbf{\textit{pytest-regsmart}}"]), r"\midrule"]
+    cols = [[], [], []]
+    for rp in repos:
+        v = [mean([rts[rp][k] for k in RTS_MODES]), mean([rtp[rp][k] for k in RANK_MODES]),
+             mean([rtp[rp][k] for k in RTS_RANK_MODES])]
+        for c, x in zip(cols, v):
+            c.append(x)
+        body.append(row([r"\textit{" + tex_escape(rp) + "}", fmt(v[0], 1), fmt(v[1], 2), fmt(v[2], 2)]))
+    body += [r"\midrule", row([r"\textbf{Média}", rf"\textbf{{{fmt(mean(cols[0]), 1)}}}",
+                               rf"\textbf{{{fmt(mean(cols[1]), 2)}}}", rf"\textbf{{{fmt(mean(cols[2]), 2)}}}"])]
+    return wrap(caption, label, "lrrr", body, fontsize, tabcolsep, nota)
+
+
+def resumo_modos(byc, ovc, caption, label, fontsize, tabcolsep, nota):
+    """Uma linha por métrica, nove modos; só valores relativos, percentuais e o número de testes."""
+    head, ncol = tex_header("Métrica")
+    S = lambda b, lab: dict(b["summary"])[lab]
+    spec = [("Testes por mutante", S(byc["n_tests"], "Média"), 0, None),
+            ("Tempo da TSR (relativo)", S(byc["suite_s"], "Relativo ao baseline"), 2, None),
+            (r"Tempo do \textit{job} (relativo)", S(byc["job_s"], "Relativo ao baseline"), 2, None),
+            (r"Falhas detectadas (\%)", S(byc["detected_pct"], "Média"), 1, _det),
+            ("APFDc", S(byc["apfdc"], "Média"), 2, None),
+            ("TTFF (relativo)", S(byc["ttff_s"], "Relativo ao baseline"), 2, None),
+            (r"Custo da RTS (\% da TSR)", S(ovc["rts_pct"], "Média"), 1, None),
+            (r"Custo da RTP (\% da TSR)", S(ovc["rtp_pct"], "Média"), 2, None)]
+    body = list(head)
+    for lab, vals, dec, f in spec:
+        body.append(row([lab] + [("--" if vals[m] is None else (f(vals[m]) if f else fmt(vals[m], dec))) for m in MODE_KEYS]))
+    return wrap(caption, label, "l" + "r" * len(MODE_KEYS), body, fontsize, tabcolsep, nota)
+
+
+# Perfis da 7.5: a classificação e o fator são análise qualitativa (casos discutidos nas Seções 7.2 a 7.4);
+# os números vêm dos dados. Projetos fora deste dicionário não entram na tabela.
+PERFIS = [
+    ("Ganho sem perda", [("librosa", r"Seleção reduz a suíte a cerca de 9\%"),
+                         ("dask", r"Seleção reduz a suíte a cerca de 60\% em uma suíte longa"),
+                         ("aeon", r"Seleção reduz a suíte a cerca de 60\%; custo da RTS baixo"),
+                         ("apscheduler", "Custo da RTS baixo")]),
+    ("Ganho com perda", [("trimesh", "Importação de módulo auxiliar por nome simples"),
+                         ("ultralytics", "Testes executam o código em subprocessos"),
+                         ("networkx", r"Grafo ocupa cerca de 70\% da TSR e o \textit{job} leva o mesmo tempo do "
+                                      r"\textit{baseline}; \textit{doctests}")]),
+    ("Sem ganho de tempo", [("dvc", "Mudanças alcançam quase toda a suíte"),
+                            ("ipython", r"Mudanças alcançam quase toda a suíte; \textit{doctests} não selecionados"),
+                            ("pytorch-lightning", r"Seleção manteve 100\% da suíte")]),
+    ("Mais lento", [("pytest-django", r"Carregamento do \textit{plugin} em cada sessão interna do \textit{pytest}"),
+                    ("pytest-xdist", r"Carregamento do \textit{plugin}; testes via \textit{pytester} não selecionados")]),
+]
+
+
+def perfil_projetos(byc, repos, caption, label, fontsize, tabcolsep, nota):
+    """TSR relativa (faixa nos 4 modos do regsmart) e detecção do modo RTS, agrupadas por perfil."""
+    su, dp = dict(byc["suite_s"]["rows"]), dict(byc["detected_pct"]["rows"])
+    body = [r"\toprule", row([r"\textbf{Perfil}", r"\textbf{Projeto}", r"\textbf{\shortstack[r]{TSR\\(relativa)}}",
+                              r"\textbf{\shortstack[r]{Detecção\\(\%)}}", r"\textbf{Fator principal}"]), r"\midrule"]
+    for gi, (g, items) in enumerate(PERFIS):
+        items = [(rp, f) for rp, f in items if rp in su]
+        if gi:
+            body.append(r"\midrule")
+        for i, (rp, fac) in enumerate(items):
+            r_ = [su[rp][k] / su[rp]["baseline"] for k in RTS_MODES]
+            a, b = fmt(min(r_), 2), fmt(max(r_), 2)
+            body.append(row([g if i == 0 else "", r"\textit{" + tex_escape(rp) + "}", a if a == b else f"{a}--{b}",
+                             _det(dp[rp][RTS_ONLY]), fac]))
+    spec = r">{\raggedright\arraybackslash}p{1.6cm}lrr>{\raggedright\arraybackslash}p{5.3cm}"
+    return wrap(caption, label, spec, body, fontsize, "3pt", nota)
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--campaign", choices=sorted(CAMPAIGN_DIRS), default="flaky")
@@ -247,23 +363,20 @@ def main() -> int:
 
     w = {"median": "mediana", "mean": "média"}
     agg = f"{w[a.rep_stat]} das repetições, {w[a.mut_stat]} entre os mutantes"
-    t_sel = side_table(byc, [[("n_tests", "Testes executados (por mutante)"),
-                              ("detected_pct", "Falhas detectadas (%)")],
-                             [("hidden", "Falhas omitidas (total)"),
-                              ("hidden_not_selected", "Falhas omitidas por não seleção da RTS")]],
-                       rf"Segurança da RTS por projeto: \textit{{baseline}} e modos do \textit{{pytest-regsmart}} ({agg})",
-                       "tab:selecao-rts", a.fontsize, a.tabcolsep,
-                       "o \\textit{pytest-ranking} não aparece porque executa a suíte completa (ver Tabela~\\ref{tab:resultados-completos}). "
-                       "Falhas omitidas são falhas esperadas que não ocorreram no modo; as omitidas por não seleção são aquelas "
-                       "cujo teste não foi selecionado pela RTS. As demais vêm de testes \\textit{flaky}. Os quatro modos do "
-                       "\\textit{pytest-regsmart} selecionam os mesmos testes; falhas somadas entre os cinco mutantes.")
+    t_sel = selecao_compacta(byc, repos,
+                             rf"Segurança da RTS por projeto: testes executados, falhas não selecionadas e detecção por modo do \textit{{pytest-regsmart}} ({agg})",
+                             "tab:selecao-rts", a.fontsize, "3pt",
+                             "o \\textit{pytest-ranking} não aparece porque executa a suíte completa. A seleção é a mesma nos quatro "
+                             "modos; as pequenas diferenças na detecção vêm de testes \\textit{flaky}. As falhas não selecionadas são a "
+                             "soma dos cinco mutantes. A média da coluna \\% da suíte é a dos percentuais por projeto e, por isso, "
+                             "difere da razão entre as médias de testes, em que os projetos maiores pesam mais.")
     t_ins, c_ins = instaveis(base / "flaky_tests.json", repos)
-    t_tmp = mode_table(byc, [("suite_s", "Tempo de execução da suíte (s)", True),
-                             ("job_s", "Tempo total do job (s)", True)],
-                       rf"Tempo de execução da suíte e do \textit{{job}} por projeto e modo ({agg})", "tab:tempo",
+    t_tmp = mode_table(byc, [("suite_s", "Tempo da TSR (s)", True)],
+                       rf"Tempo da TSR por projeto e modo, em segundos ({agg})", "tab:analise-tempo-geral",
                        a.fontsize, a.tabcolsep,
                        "a linha \\textit{Relativo ao baseline} é a média, entre os projetos, do tempo do modo dividido pelo tempo do "
-                       "\\textit{baseline} no mesmo projeto; valores abaixo de 1 indicam execução mais rápida que o \\textit{baseline}.")
+                       "\\textit{baseline} no mesmo projeto; valores abaixo de 1 indicam execução mais rápida que o \\textit{baseline}. "
+                       "O tempo do \\textit{job} por projeto consta da Tabela~\\ref{tab:resultados-completos}.")
     # overhead em % do tempo da suíte do próprio modo, calculado por execução e agregado como as demais métricas
     for r in rows:
         su = num(r.get("suite_s"))
@@ -275,29 +388,34 @@ def main() -> int:
                         ("RTP (% do tempo da suíte)", "rtp_pct", 2, False, "agg")],
                 extra=("rts_pct", "rtp_pct"))
     ovc = {b["col"]: b for b in ovb}
-    t_ovs = mode_table(ovc, [("rts_pct", "Tempo de seleção -- RTS (% do tempo da suíte)", True)],
-                       rf"Custo da seleção (RTS) em relação ao tempo da suíte, por projeto e modo ({agg})",
-                       "tab:overhead-rts", a.fontsize, a.tabcolsep,
-                       "percentual do tempo de execução da suíte do próprio modo ocupado pela seleção, calculado em cada "
-                       "execução. A seleção ocorre na coleta dos testes, dentro da sessão do \\textit{pytest}, e por isso "
-                       "faz parte do tempo da suíte. Só os modos do \\textit{pytest-regsmart} executam RTS. Os valores em "
-                       "segundos constam da Tabela~\\ref{tab:resultados-completos}.", keys=RTS_MODES)
-    t_ovp = mode_table(ovc, [("rtp_pct", "Tempo de priorização -- RTP (% do tempo da suíte)", True)],
-                       rf"Custo da priorização (RTP) em relação ao tempo da suíte, por projeto e modo ({agg})",
-                       "tab:overhead-rtp", a.fontsize, a.tabcolsep,
-                       "percentual do tempo de execução da suíte do próprio modo ocupado pela priorização, calculado em "
-                       "cada execução; 0,00 indica valor abaixo de 0,005\\%. O \\textit{baseline} e o modo RTS não priorizam e por isso não aparecem. Os valores "
-                       "em segundos constam da Tabela~\\ref{tab:resultados-completos}.", keys=RANK_MODES + RTS_RANK_MODES)
+    t_ovh = overhead_unificada(ovc, repos,
+                               rf"Custo percentual da RTS e da RTP em relação ao tempo da TSR, por projeto (média entre os modos de cada \textit{{plugin}}; {agg})",
+                               "tab:overhead", a.fontsize, "4pt",
+                               "percentual do tempo da TSR do próprio modo ocupado por cada etapa, calculado em cada execução; 0,00 indica "
+                               "valor abaixo de 0,005\\%. A RTS é a média dos quatro modos do \\textit{pytest-regsmart}; a RTP, a dos modos "
+                               "que priorizam em cada \\textit{plugin}. Os valores em segundos constam da Tabela~\\ref{tab:resultados-completos}.")
     t_pri = mode_table(byc, [("apfdc", "APFDc", True), ("ttff_s", "Tempo até a primeira falha -- TTFF (s)", True)],
                        rf"APFDc e TTFF por projeto e modo ({agg})", "tab:priorizacao", a.fontsize, a.tabcolsep,
                        "nos modos do \\textit{pytest-regsmart}, o APFDc é calculado sobre os testes selecionados e "
                        "o TTFF inclui os tempos de RTS e RTP.")
+    t_res = resumo_modos(byc, ovc,
+                         "Resumo da comparação dos nove modos de execução (mediana das repetições, média entre os mutantes e entre os projetos)",
+                         "tab:resultados-resumo", a.fontsize, a.tabcolsep,
+                         "os valores relativos são a média, entre os projetos, da razão entre o modo e o \\textit{baseline}; abaixo de 1, "
+                         "o modo foi mais rápido (no TTFF, a primeira falha surgiu antes). Os custos de RTS e RTP são o percentual do "
+                         "tempo da TSR do próprio modo.")
+    t_perf = perfil_projetos(byc, repos, r"Resultado do \textit{pytest-regsmart} por projeto, agrupado por perfil",
+                             "tab:perfil-projetos", a.fontsize, "3pt",
+                             "a TSR relativa é a faixa, entre os quatro modos do \\textit{pytest-regsmart}, da razão entre o tempo do modo "
+                             "e o do \\textit{baseline}. A detecção é a do modo RTS, sem reordenação, que reflete apenas a seleção; no "
+                             "\\textit{aeon}, a diferença para 100\\% vem de testes \\textit{flaky} intermitentes.")
     files = [("tab_selecao.tex", t_sel, "Segurança da RTS"),
              ("tab_instaveis.tex", t_ins, "Segurança da RTS > Testes flaky"),
              ("tab_tempo.tex", t_tmp, "Impacto no tempo de execução"),
-             ("tab_overhead_rts.tex", t_ovs, "Impacto no tempo de execução"),
-             ("tab_overhead_rtp.tex", t_ovp, "Impacto no tempo de execução"),
-             ("tab_priorizacao.tex", t_pri, "Eficácia da RTP")]
+             ("tab_overhead.tex", t_ovh, "Impacto no tempo de execução"),
+             ("tab_priorizacao.tex", t_pri, "Eficácia da RTP"),
+             ("tab_resumo.tex", t_res, "Síntese dos resultados"),
+             ("tab_perfil.tex", t_perf, "Síntese dos resultados")]
     allx = []
     for name, tex, where in files:
         (out / name).write_text(tex, encoding="utf-8")
