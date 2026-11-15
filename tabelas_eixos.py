@@ -6,7 +6,8 @@ Tabelas (padrão em data/<campanha>/metrics/tables/eixos/):
   tab_selecao.tex      Segurança da RTS: testes por mutante (baseline, RTS, % da suíte), falhas não selecionadas e detecção nos 4 modos
   tab_instaveis.tex    Testes flaky (intermitentes e dependentes de ordem) por plugin; projetos sem flaky vão para a nota
   tab_tempo.tex        Tempo da TSR por projeto e modo (o do job fica na tabela completa do apêndice)
-  tab_overhead.tex     Custo da RTS e da RTP em % da TSR, por projeto (média dos modos de cada plugin)
+  tab_overhead_rts.tex Custo da RTS em % do tempo da suíte, por projeto e modo (4 modos do pytest-regsmart)
+  tab_overhead_rtp.tex Custo da RTP em % do tempo da suíte, por projeto e modo (modos que priorizam)
   tab_priorizacao.tex  APFDc e TTFF por projeto e modo
   tab_resumo.tex       Síntese: uma linha por métrica, nove modos, só valores relativos e percentuais
   tab_perfil.tex       Síntese: projetos agrupados por perfil (TSR relativa, detecção do modo RTS, fator principal)
@@ -168,7 +169,7 @@ def instaveis(path: Path, repos):
     (um teste pode aparecer em mais de uma coluna)."""
     data = json.loads(path.read_text(encoding="utf-8"))
     prio = ["fixa", "flaky", "amb", "od"]
-    cols = [("flaky",), ("od", "rk"), ("od", "ambos"), ("od", "rp"), ("od", "tot"), ("od", "rts"), ("fixa",), ("amb",)]
+    cols = [("flaky",), ("od", "rk"), ("od", "rp"), ("od", "ambos"), ("od", "tot"), ("od", "rts"), ("fixa",), ("amb",)]
     lines, csvrows, tot, zeros = [], [], defaultdict(int), []
     for repo in repos:
         cls, wfs = {}, defaultdict(set)
@@ -199,7 +200,7 @@ def instaveis(path: Path, repos):
                 n[(k,)] += 1
         for c in cols:
             tot[c] += n[c]
-        show = [("flaky",), ("od", "rk"), ("od", "ambos"), ("od", "rp"), ("od", "tot")]
+        show = [("flaky",), ("od", "rk"), ("od", "rp"), ("od", "ambos"), ("od", "tot")]
         csvrows.append(["instaveis", repo] + [n[c] for c in cols])
         if any(n[c] for c in show):
             lines.append(row([r"\quad " + tex_escape(repo)] + [str(n[c]) for c in show]
@@ -207,20 +208,18 @@ def instaveis(path: Path, repos):
         else:
             zeros.append(repo)
     csvrows.append(["instaveis", "Total"] + [tot[c] for c in cols])
-    show = [("flaky",), ("od", "rk"), ("od", "ambos"), ("od", "rp"), ("od", "tot")]
+    show = [("flaky",), ("od", "rk"), ("od", "rp"), ("od", "ambos"), ("od", "tot")]
     head = [r"\toprule",
             r" & & \multicolumn{4}{c}{\textbf{Dependentes de ordem}} & \\",
             r"\cmidrule(lr){3-6}",
             row([r"\textbf{Projeto}", r"\textbf{Intermitentes}", r"\textbf{só \textit{ranking}}",
-                 r"\textbf{ambos}", r"\textbf{só \textit{regsmart}}", r"\textbf{total}", r"\textbf{Total \textit{flaky}}"]),
+                 r"\textbf{só \textit{regsmart}}", r"\textbf{ambos}", r"\textbf{total}", r"\textbf{Total \textit{flaky}}"]),
             r"\midrule"]
     last = row([r"\textbf{Total}"] + [rf"\textbf{{{tot[c]}}}" for c in show]
                + [rf"\textbf{{{tot[('flaky',)] + tot[('od', 'tot')]}}}"])
     nomes = ", ".join(rf"\textit{{{tex_escape(z)}}}" for z in zeros[:-1]) + (rf" e \textit{{{tex_escape(zeros[-1])}}}" if zeros else "")
-    nota = ("número de testes \\textit{flaky} distintos por projeto, somando as \\textit{branches} de mutante e a de "
-            "controle; cada teste é contado uma única vez. Entre os dependentes de ordem, \\textit{ambos} indica os que "
-            f"falharam sob os dois \\textit{{plugins}}; {tot[('od', 'rts')]} deles também falhou no modo do "
-            "\\textit{pytest-regsmart} sem RTP. "
+    nota = ("esse número de testes \\textit{flaky} distintos por projeto considera a soma das \\textit{branches} de "
+            "mutante e a de controle; cada teste é contado uma única vez. "
             + (f"Os projetos {nomes} não tiveram testes \\textit{{flaky}} e foram omitidos." if zeros else ""))
     tex = wrap(r"Testes \textit{flaky} por projeto e \textit{plugin}", "tab:testes-flaky",
                "lrrrrrr", head + lines + [r"\midrule", last], r"\small", "3pt", nota)
@@ -267,24 +266,6 @@ def selecao_compacta(byc, repos, caption, label, fontsize, tabcolsep, nota):
              [fmt(ntm["baseline"], 0), fmt(ntm[RTS_ONLY], 0), fmt(mean(pcts), 1), fmt(tot, 0)]
              + [_det(dpm[k]) for k in RTS_MODES]])]
     return wrap(caption, label, "lrrrrrrrr", body, fontsize, tabcolsep, nota)
-
-
-def overhead_unificada(ovc, repos, caption, label, fontsize, tabcolsep, nota):
-    """RTS (média dos 4 modos do regsmart) e RTP (média dos modos de cada plugin), em % da TSR."""
-    rts, rtp = dict(ovc["rts_pct"]["rows"]), dict(ovc["rtp_pct"]["rows"])
-    body = [r"\toprule", r" & \textbf{RTS} & \multicolumn{2}{c}{\textbf{RTP}} \\", r"\cmidrule(lr){3-4}",
-            row([r"\textbf{Projeto}", r"\textbf{\textit{pytest-regsmart}}", r"\textbf{\textit{pytest-ranking}}",
-                 r"\textbf{\textit{pytest-regsmart}}"]), r"\midrule"]
-    cols = [[], [], []]
-    for rp in repos:
-        v = [mean([rts[rp][k] for k in RTS_MODES]), mean([rtp[rp][k] for k in RANK_MODES]),
-             mean([rtp[rp][k] for k in RTS_RANK_MODES])]
-        for c, x in zip(cols, v):
-            c.append(x)
-        body.append(row([r"\textit{" + tex_escape(rp) + "}", fmt(v[0], 1), fmt(v[1], 2), fmt(v[2], 2)]))
-    body += [r"\midrule", row([r"\textbf{Média}", rf"\textbf{{{fmt(mean(cols[0]), 1)}}}",
-                               rf"\textbf{{{fmt(mean(cols[1]), 2)}}}", rf"\textbf{{{fmt(mean(cols[2]), 2)}}}"])]
-    return wrap(caption, label, "lrrr", body, fontsize, tabcolsep, nota)
 
 
 def resumo_modos(byc, ovc, caption, label, fontsize, tabcolsep, nota):
@@ -388,12 +369,12 @@ def main() -> int:
                         ("RTP (% do tempo da suíte)", "rtp_pct", 2, False, "agg")],
                 extra=("rts_pct", "rtp_pct"))
     ovc = {b["col"]: b for b in ovb}
-    t_ovh = overhead_unificada(ovc, repos,
-                               rf"Custo percentual da RTS e da RTP em relação ao tempo da TSR, por projeto (média entre os modos de cada \textit{{plugin}}; {agg})",
-                               "tab:overhead", a.fontsize, "4pt",
-                               "percentual do tempo da TSR do próprio modo ocupado por cada etapa, calculado em cada execução; 0,00 indica "
-                               "valor abaixo de 0,005\\%. A RTS é a média dos quatro modos do \\textit{pytest-regsmart}; a RTP, a dos modos "
-                               "que priorizam em cada \\textit{plugin}. Os valores em segundos constam da Tabela~\\ref{tab:resultados-completos}.")
+    t_ovs = mode_table(ovc, [("rts_pct", "Tempo de seleção -- RTS (% do tempo da suíte)", True)],
+                       "Custo percentual da RTS em relação ao tempo da suíte, por projeto e modo (\\%)",
+                       "tab:overhead-rts", a.fontsize, a.tabcolsep, keys=RTS_MODES)
+    t_ovp = mode_table(ovc, [("rtp_pct", "Tempo de priorização -- RTP (% do tempo da suíte)", True)],
+                       "Custo percentual da RTP em relação ao tempo da suíte, por projeto e modo (\\%)",
+                       "tab:overhead-rtp", a.fontsize, a.tabcolsep, keys=RANK_MODES + RTS_RANK_MODES)
     t_pri = mode_table(byc, [("apfdc", "APFDc", True), ("ttff_s", "Tempo até a primeira falha -- TTFF (s)", True)],
                        rf"APFDc e TTFF por projeto e modo ({agg})", "tab:priorizacao", a.fontsize, a.tabcolsep,
                        "nos modos do \\textit{pytest-regsmart}, o APFDc é calculado sobre os testes selecionados e "
@@ -412,7 +393,8 @@ def main() -> int:
     files = [("tab_selecao.tex", t_sel, "Segurança da RTS"),
              ("tab_instaveis.tex", t_ins, "Segurança da RTS > Testes flaky"),
              ("tab_tempo.tex", t_tmp, "Impacto no tempo de execução"),
-             ("tab_overhead.tex", t_ovh, "Impacto no tempo de execução"),
+             ("tab_overhead_rts.tex", t_ovs, "Impacto no tempo de execução"),
+             ("tab_overhead_rtp.tex", t_ovp, "Impacto no tempo de execução"),
              ("tab_priorizacao.tex", t_pri, "Eficácia da RTP"),
              ("tab_resumo.tex", t_res, "Síntese dos resultados"),
              ("tab_perfil.tex", t_perf, "Síntese dos resultados")]
@@ -423,7 +405,7 @@ def main() -> int:
     (out / "tabelas_cap7.tex").write_text("\n".join(allx), encoding="utf-8")
     with (out / "tabelas_eixos.csv").open("w", newline="", encoding="utf-8") as f:
         wcsv = csv.writer(f, lineterminator="\n")
-        wcsv.writerow(["tabela", "projeto", "flaky_intermitentes", "od_so_ranking", "od_ambos", "od_so_regsmart",
+        wcsv.writerow(["tabela", "projeto", "flaky_intermitentes", "od_so_ranking", "od_so_regsmart", "od_ambos",
                        "od_total", "od_tambem_regsmart_sem_rtp", "so_com_plugin_sempre", "ambiente"])
         for r in c_ins:
             wcsv.writerow([("" if v is None else (round(v, 4) if isinstance(v, float) else v)) for v in r])
