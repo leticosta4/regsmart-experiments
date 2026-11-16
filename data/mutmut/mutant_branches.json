@@ -801,65 +801,65 @@
     "mutants": {
       "pytest-xdist-m1214": {
         "branch": "mut-pytest-xdist-m1214",
-        "head_sha": "8dccea29533b79da232c11785c8c833d3ea7fe35",
+        "head_sha": "637cb486fea1679e97d40fef3eda03af87c6e193",
         "file": "src/xdist/scheduler/loadscope.py",
         "line": 249,
         "patch": "data/mutmut/patches/pytest-xdist/pytest-xdist-m1214.patch",
         "published": true,
         "pr": "https://github.com/leticosta4/pytest-xdist/pull/2",
-        "ahead_base": 12,
+        "ahead_base": 13,
         "behind_base": 0,
         "previous_head_sha": "94e4b9ca61e9aa881d409279fc1f4774e1267acc",
         "base_sha": "b823256afe88f4b135d7d53ae9a0dc1d6699eec0"
       },
       "pytest-xdist-m1461": {
         "branch": "mut-pytest-xdist-m1461",
-        "head_sha": "ad26821c6bc8eccfffbb58e675304cfacf12a2c0",
+        "head_sha": "600588e67bce295a4bf2d5e4ec998ef45a7c5081",
         "file": "src/xdist/workermanage.py",
         "line": 168,
         "patch": "data/mutmut/patches/pytest-xdist/pytest-xdist-m1461.patch",
         "published": true,
         "pr": "https://github.com/leticosta4/pytest-xdist/pull/3",
-        "ahead_base": 12,
+        "ahead_base": 13,
         "behind_base": 0,
         "previous_head_sha": "ab32318b343958dc15efc5ec5781c7f331530b07",
         "base_sha": "b823256afe88f4b135d7d53ae9a0dc1d6699eec0"
       },
       "pytest-xdist-m1049": {
         "branch": "mut-pytest-xdist-m1049",
-        "head_sha": "09adeddfb00b34acefac24e0f9e6f451dbde081b",
+        "head_sha": "9be20af370f7e2e3543c4b5b332b90594bfd8ba9",
         "file": "src/xdist/scheduler/load.py",
         "line": 61,
         "patch": "data/mutmut/patches/pytest-xdist/pytest-xdist-m1049.patch",
         "published": true,
         "pr": "https://github.com/leticosta4/pytest-xdist/pull/4",
-        "ahead_base": 12,
+        "ahead_base": 13,
         "behind_base": 0,
         "previous_head_sha": "bd648d7962e7e72878195b59029455a6a84dd01f",
         "base_sha": "b823256afe88f4b135d7d53ae9a0dc1d6699eec0"
       },
       "pytest-xdist-m0722": {
         "branch": "mut-pytest-xdist-m0722",
-        "head_sha": "96d68c233dc7b3595d4b8da63c23e384b2234ea8",
+        "head_sha": "1e1e7ea5c8bc2e6be4aca51c60d5297189df3a41",
         "file": "src/xdist/plugin.py",
         "line": 425,
         "patch": "data/mutmut/patches/pytest-xdist/pytest-xdist-m0722.patch",
         "published": true,
         "pr": "https://github.com/leticosta4/pytest-xdist/pull/5",
-        "ahead_base": 13,
+        "ahead_base": 14,
         "behind_base": 0,
         "previous_head_sha": "e1971e2970dba57cd485856ef6f73c800a7ab7ec",
         "base_sha": "b823256afe88f4b135d7d53ae9a0dc1d6699eec0"
       },
       "pytest-xdist-m1537": {
         "branch": "mut-pytest-xdist-m1537",
-        "head_sha": "f020281e656d555b2e1a90d16427498edfc2e1c3",
+        "head_sha": "0ca1b906496a08226de28532a4eddd2f62661db7",
         "file": "src/xdist/workermanage.py",
         "line": 316,
         "patch": "data/mutmut/patches/pytest-xdist/pytest-xdist-m1537.patch",
         "published": true,
         "pr": "https://github.com/leticosta4/pytest-xdist/pull/6",
-        "ahead_base": 13,
+        "ahead_base": 15,
         "behind_base": 0,
         "previous_head_sha": "147d8d2590b6b9ccae2a717d7440f518825ebea2",
         "base_sha": "b823256afe88f4b135d7d53ae9a0dc1d6699eec0"
@@ -872,7 +872,7 @@
     "mutants": {
       "pytest-django-m0376": {
         "branch": "mut-pytest-django-m0376",
-        "head_sha": "87439df16ec7ffddbaa9a223ec9708229d087154",
+        "head_sha": "080c57a0af28fd24bbbf7fa7f1b499835b930380",
         "file": "pytest_django/plugin.py",
         "line": 153,
         "patch": "data/mutmut/patches/pytest-django/pytest-django-m0376.patch",
@@ -881,11 +881,11 @@
         "previous_head_sha": "2934c2aab4ec342a9730bed4c2e115a96f705200",
         "base_sha": "061f9007a75a0ac93a596301a373e55ba23aa146",
         "behind_base": 0,
-        "ahead_base": 15
+        "ahead_base": 16
       },
       "pytest-django-m0491": {
         "branch": "mut-pytest-django-m0491",
-        "head_sha": "ce82255d7d87454da49f909fc547bbf3b9fce14a",
+        "head_sha": "e185fbb5352a64709bed6adb87f8237a48cc0ee7",
         "file": "pytest_django/plugin.py",
         "line": 399,
         "patch": "data/mutmut/patches/pytest-django/pytest-django-m0491.patch",
@@ -894,11 +894,11 @@
         "previous_head_sha": "1a446e32ec873501faf9d3b9a9bdc89439b06402",
         "base_sha": "061f9007a75a0ac93a596301a373e55ba23aa146",
         "behind_base": 0,
-        "ahead_base": 16
+        "ahead_base": 17
       },
       "pytest-django-m0604": {
         "branch": "mut-pytest-django-m0604",
-        "head_sha": "90b97e379dfab349e620660a77d3990699b738f6",
+        "head_sha": "0289af7773de086e4bdac3cd67839bf0a8088383",
         "file": "pytest_django/plugin.py",
         "line": 679,
         "patch": "data/mutmut/patches/pytest-django/pytest-django-m0604.patch",
@@ -907,11 +907,11 @@
         "previous_head_sha": "f1dab3afaae0e7c118e209e66ebc30830d9579f8",
         "base_sha": "061f9007a75a0ac93a596301a373e55ba23aa146",
         "behind_base": 0,
-        "ahead_base": 15
+        "ahead_base": 16
       },
       "pytest-django-m0049": {
         "branch": "mut-pytest-django-m0049",
-        "head_sha": "5681c28e0e3473c7cc76744720443c1d79d8dfd3",
+        "head_sha": "c52d25ae052e37e088e2fdd9dd518df3c0233c1e",
         "file": "pytest_django/fixtures.py",
         "line": 105,
         "patch": "data/mutmut/patches/pytest-django/pytest-django-m0049.patch",
@@ -920,11 +920,11 @@
         "previous_head_sha": "ceadb61c2f5883256084257ac36d3693772e253e",
         "base_sha": "061f9007a75a0ac93a596301a373e55ba23aa146",
         "behind_base": 0,
-        "ahead_base": 15
+        "ahead_base": 16
       },
       "pytest-django-m0192": {
         "branch": "mut-pytest-django-m0192",
-        "head_sha": "cdfd014b3f9b2f15a7f3e9176a0050ba3c4b5d2c",
+        "head_sha": "6e829d4a4142a30264cf255cfde0de0b078d2c9f",
         "file": "pytest_django/fixtures.py",
         "line": 505,
         "patch": "data/mutmut/patches/pytest-django/pytest-django-m0192.patch",
@@ -933,7 +933,7 @@
         "previous_head_sha": "c6054199a4c925b94428da524e7383f742fe33d4",
         "base_sha": "061f9007a75a0ac93a596301a373e55ba23aa146",
         "behind_base": 0,
-        "ahead_base": 14
+        "ahead_base": 15
       }
     }
   }

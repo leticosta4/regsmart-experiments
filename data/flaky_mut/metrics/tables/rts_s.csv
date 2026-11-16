@@ -1,0 +1,14 @@
+repo,baseline,ranking:rkn_hybrid,ranking:rkn_qtf,ranking:rkn_recentfail,ranking:rkn_simchgpath,regsmart:rgsm_hybrid,regsmart:rgsm_qtf,regsmart:rgsm_recentfail,regsmart-no-rank
+aeon,-,-,-,-,-,41.616,34.926,33.815,34.649
+apscheduler,-,-,-,-,-,3.373,3.262,3.605,3.572
+dask,-,-,-,-,-,84.246,83.949,83.769,89.994
+dvc,-,-,-,-,-,25.498,28.993,25.478,26.115
+ipython,-,-,-,-,-,11.721,11.356,10.591,12.053
+librosa,-,-,-,-,-,8.390,7.726,9.300,9.590
+networkx,-,-,-,-,-,40.277,42.095,40.358,43.686
+pytest-django,-,-,-,-,-,1.462,1.431,1.379,1.455
+pytest-xdist,-,-,-,-,-,1.094,1.165,1.012,1.039
+pytorch-lightning,-,-,-,-,-,30.644,34.881,32.122,32.441
+trimesh,-,-,-,-,-,8.040,9.822,9.142,8.533
+ultralytics,-,-,-,-,-,27.652,24.264,28.853,24.230
+Média entre repos,-,-,-,-,-,23.668,23.656,23.285,23.946
