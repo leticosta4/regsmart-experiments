@@ -14,13 +14,12 @@ Os números saem da mesma agregação das tabelas (tabela_final.build): estatís
 média). Faltas e detectadas são somadas entre os mutantes, e a % detectada é 100 × Σ detectadas / Σ faltas.
 O tempo relativo é a razão tempo do modo / tempo do baseline no mesmo projeto.
 
-Saídas (padrão em data/<campanha>/metrics/figures/): <figura>.pdf (para o LaTeX) e <figura>.png (300 dpi).
+Saídas (padrão em data/<campanha>/metrics/figures/): <figura>.png (300 dpi).
 
 Requer matplotlib (pip install matplotlib). Importa o tabela_final.py, que precisa estar na mesma pasta.
 
 Uso:
-  python3 graficos_monografia.py                       # campanha flaky, mediana/média, PDF e PNG
-  python3 graficos_monografia.py --formato pdf         # só PDF
+  python3 graficos_monografia.py                       # campanha flaky, mediana/média
   python3 graficos_monografia.py --out /tmp/figs
 """
 from __future__ import annotations
@@ -61,13 +60,13 @@ ESTILO_BARRAS = {
     "xtick.major.size": 3, "ytick.major.size": 3, "xtick.major.width": 0.6, "ytick.major.width": 0.6,
     "axes.spines.top": False, "axes.spines.right": False, "axes.grid": False,
     "legend.frameon": False, "savefig.dpi": 300, "axes.titlelocation": "left",
-    "lines.linewidth": 1.2, "patch.linewidth": 0.6, "pdf.fonttype": 42, "ps.fonttype": 42,
+    "lines.linewidth": 1.2, "patch.linewidth": 0.6,
 }
 # estilo da figura 3 (fonte 9 pt em tudo, eixos abertos)
 ESTILO_DISPERSAO = {
     "font.family": "serif", "font.serif": SERIFA, "font.size": 9,
     "axes.spines.top": False, "axes.spines.right": False,
-    "savefig.dpi": 300, "pdf.fonttype": 42, "ps.fonttype": 42,
+    "savefig.dpi": 300,
 }
 
 
@@ -93,13 +92,12 @@ def dados(rows: list[dict], repos: list[str], rep_stat: str, mut_stat: str) -> d
     return out
 
 
-def salvar(fig, out: Path, nome: str, formatos: list[str]):
-    for fmt in formatos:
-        fig.savefig(out / f"{nome}.{fmt}", bbox_inches="tight")
+def salvar(fig, out: Path, nome: str):
+    fig.savefig(out / f"{nome}.png", bbox_inches="tight")
     plt.close(fig)
 
 
-def fig_tempos_log(D: dict, out: Path, formatos: list[str]):
+def fig_tempos_log(D: dict, out: Path):
     yy = list(range(len(ORDEM)))
     with mpl.rc_context(ESTILO_BARRAS):
         fig, ax = plt.subplots(figsize=(6.3, 4.2))
@@ -126,10 +124,10 @@ def fig_tempos_log(D: dict, out: Path, formatos: list[str]):
         ax.legend([h_b, h_rk, h_rg], [h.get_label() for h in (h_b, h_rk, h_rg)], loc="lower left",
                   bbox_to_anchor=(0, 1.0), ncol=3, frameon=False, fontsize=7.5, handletextpad=0.3,
                   columnspacing=1.0)
-        salvar(fig, out, "fig_tempos_log", formatos)
+        salvar(fig, out, "fig_tempos_log")
 
 
-def fig_falhas_detectadas(D: dict, out: Path, formatos: list[str]):
+def fig_falhas_detectadas(D: dict, out: Path):
     yy = list(range(len(ORDEM)))
     with mpl.rc_context(ESTILO_BARRAS):
         fig, ax = plt.subplots(figsize=(6.3, 4.2))
@@ -159,7 +157,7 @@ def fig_falhas_detectadas(D: dict, out: Path, formatos: list[str]):
         ax.set_xlabel("Falhas esperadas dos mutantes (%) — pytest-regsmart (RTS + RecentFail)")
         ax.spines["right"].set_visible(False)
         ax.legend(loc="lower left", bbox_to_anchor=(0, 1.02), ncol=2, frameon=False, fontsize=8)
-        salvar(fig, out, "fig_falhas_detectadas", formatos)
+        salvar(fig, out, "fig_falhas_detectadas")
 
 
 # posição de cada rótulo na dispersão: (x do texto, y do texto, alinhamento, linha de chamada)
@@ -176,7 +174,7 @@ ROTULOS = {
 }
 
 
-def fig_tempo_deteccao(D: dict, out: Path, formatos: list[str]):
+def fig_tempo_deteccao(D: dict, out: Path):
     with mpl.rc_context(ESTILO_DISPERSAO):
         fig, ax = plt.subplots(figsize=(6.3, 4.2))
         ax.axvline(1, color="#555", lw=0.9, ls="--", zorder=0)
@@ -199,7 +197,7 @@ def fig_tempo_deteccao(D: dict, out: Path, formatos: list[str]):
         ax.set_ylabel("Falhas detectadas (%)")
         ax.text(0.98, 36.5, "← mais rápido que o baseline", ha="right", fontsize=7, color="#555")
         ax.set_title("pytest-regsmart (RTS + RecentFail)", fontsize=8.5, loc="left")
-        salvar(fig, out, "fig_tempo_deteccao", formatos)
+        salvar(fig, out, "fig_tempo_deteccao")
 
 
 def main() -> int:
@@ -209,7 +207,6 @@ def main() -> int:
     ap.add_argument("--out", type=Path, help="padrão: data/<campanha>/metrics/figures/")
     ap.add_argument("--rep-stat", choices=["median", "mean"], default="median", help="entre repetições")
     ap.add_argument("--mut-stat", choices=["mean", "median"], default="mean", help="entre mutantes")
-    ap.add_argument("--formato", choices=["pdf", "png", "ambos"], default="ambos")
     a = ap.parse_args()
 
     mdir = ROOT / "data" / CAMPAIGN_DIRS[a.campaign] / "metrics"
@@ -221,13 +218,12 @@ def main() -> int:
     if faltando:
         raise SystemExit(f"repo(s) sem linhas em {src}: {', '.join(faltando)}")
     out.mkdir(parents=True, exist_ok=True)
-    formatos = ["pdf", "png"] if a.formato == "ambos" else [a.formato]
 
     D = dados(rows, ORDEM, a.rep_stat, a.mut_stat)
-    fig_tempos_log(D, out, formatos)
-    fig_falhas_detectadas(D, out, formatos)
-    fig_tempo_deteccao(D, out, formatos)
-    print(f"3 figuras ({', '.join(formatos)}) -> {out}/")
+    fig_tempos_log(D, out)
+    fig_falhas_detectadas(D, out)
+    fig_tempo_deteccao(D, out)
+    print(f"3 figuras (png) -> {out}/")
     return 0
 
 
