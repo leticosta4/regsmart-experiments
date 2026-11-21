@@ -1,15 +1,18 @@
-"""tabelas_eixos.py: gera as tabelas do Cap. 7 (Validação Experimental), uma por eixo,
+"""tabelas_eixos.py: gera as tabelas do Cap. 7 (Avaliação Experimental), uma por eixo,
 prontas para colar na monografia. Usa a mesma agregação do tabela_final.py
 (mediana entre repetições, média entre mutantes; ver --rep-stat/--mut-stat).
 
 Tabelas (padrão em data/<campanha>/metrics/tables/eixos/):
-  tab_selecao.tex      Segurança da RTS: testes por mutante (baseline, RTS, % da suíte), falhas não selecionadas e detecção nos 4 modos
+  tab_selecao.tex      Segurança da RTS: testes por mutante (baseline, RTS, % da suíte), falhas não selecionadas e detecção nos 4 modos;
+                       na linha Média / Total, só a % da suíte tem média (contagens absolutas ficam com --)
   tab_instaveis.tex    Testes flaky (intermitentes e dependentes de ordem) por plugin; projetos sem flaky vão para a nota
-  tab_tempo.tex        Tempo da TSR por projeto e modo (o do job fica na tabela completa do apêndice)
+  tab_tempo.tex        Tempo da TSR por projeto e modo, com a linha Relativo ao baseline (sem média em segundos;
+                       o tempo do job fica na tabela completa do apêndice)
   tab_overhead_rts.tex Custo da RTS em % do tempo da suíte, por projeto e modo (4 modos do pytest-regsmart)
   tab_overhead_rtp.tex Custo da RTP em % do tempo da suíte, por projeto e modo (modos que priorizam)
-  tab_priorizacao.tex  APFDc e TTFF por projeto e modo
-  tab_resumo.tex       Síntese: uma linha por métrica, nove modos, só valores relativos e percentuais
+  tab_priorizacao.tex  APFDc (com média) e TTFF (só Relativo ao baseline, sem média em segundos) por projeto e modo
+  tab_resumo.tex       Síntese: uma linha por métrica, nove modos agrupados por heurística (ranking | regsmart lado a lado),
+                       só valores relativos, percentuais e APFDc
   tab_perfil.tex       Síntese: projetos agrupados por perfil (TSR relativa, detecção do modo RTS, fator principal)
   tabelas_cap7.tex     todas as anteriores, na ordem do capítulo
   tabelas_eixos.csv    números sem formatação, para conferência
@@ -86,8 +89,10 @@ def subset_header(keys):
     return [r"\toprule", " & ".join(top) + r" \\", "".join(rules), " & ".join(sub) + r" \\", r"\midrule"], 1 + len(keys)
 
 
-def mode_table(blocks_by_col, spec, caption, label, fontsize, tabcolsep, nota=None, keys=None):
-    """spec: [(col, título, mostrar linhas por repo?)]; keys: subconjunto de modos (padrão: os nove)."""
+def mode_table(blocks_by_col, spec, caption, label, fontsize, tabcolsep, nota=None, keys=None, sem_media=()):
+    """spec: [(col, título, mostrar linhas por repo?)]; keys: subconjunto de modos (padrão: os nove).
+    sem_media: colunas em segundos cuja linha "Média" entre projetos é omitida (fica só a "Relativo ao baseline"),
+    porque a média de tempos absolutos é dominada pelos projetos com suítes longas."""
     keys = keys or MODE_KEYS
     if keys == MODE_KEYS:
         head, ncol = tex_header("Projeto")
@@ -112,6 +117,8 @@ def mode_table(blocks_by_col, spec, caption, label, fontsize, tabcolsep, nota=No
             for repo, vals in b["rows"]:
                 body.append(line(r"\quad " + tex_escape(repo), vals, b["dec"]))
         for lab, vals in b["summary"]:
+            if lab == "Média" and col in sem_media:
+                continue
             body.append(line(r"\quad " + lab, vals, 2 if lab.startswith("Relativo") else b["dec"],
                              "it" if lab.startswith("Relativo") else ("bf" if full else "")))
     return wrap(caption, label, "l" + "r" * len(keys), body, fontsize, tabcolsep, nota)
@@ -261,29 +268,57 @@ def selecao_compacta(byc, repos, caption, label, fontsize, tabcolsep, nota):
         tot += hn[rp][RTS_ONLY] or 0
         body.append(row([r"\textit{" + tex_escape(rp) + "}", fmt(b, 0), fmt(s, 0), fmt(pct, 1),
                          fmt(hn[rp][RTS_ONLY], 0)] + [_det(dp[rp][k]) for k in RTS_MODES]))
-    ntm, dpm = dict(byc["n_tests"]["summary"])["Média"], dict(byc["detected_pct"]["summary"])["Média"]
+    dpm = dict(byc["detected_pct"]["summary"])["Média"]
+    # contagens absolutas de testes não têm média: seriam dominadas pelos projetos com suítes grandes
     body += [r"\midrule", row([r"\textbf{Média / Total}"] + [rf"\textbf{{{c}}}" for c in
-             [fmt(ntm["baseline"], 0), fmt(ntm[RTS_ONLY], 0), fmt(mean(pcts), 1), fmt(tot, 0)]
+             ["--", "--", fmt(mean(pcts), 1), fmt(tot, 0)]
              + [_det(dpm[k]) for k in RTS_MODES]])]
     return wrap(caption, label, "lrrrrrrrr", body, fontsize, tabcolsep, nota)
 
 
-def resumo_modos(byc, ovc, caption, label, fontsize, tabcolsep, nota):
-    """Uma linha por métrica, nove modos; só valores relativos, percentuais e o número de testes."""
-    head, ncol = tex_header("Métrica")
+# Colunas da tab:resultados-resumo, agrupadas por heurística de priorização: cada modo do pytest-regsmart fica ao
+# lado do modo do pytest-ranking com a mesma ordenação (comparação entre modos iguais).
+RESUMO_GRUPOS = [
+    ("Baseline", [("baseline", "Padrão")]),
+    ("RecentFail", [("ranking:rkn_recentfail", "ranking"), ("regsmart:rgsm_recentfail", "regsmart")]),
+    ("QTF", [("ranking:rkn_qtf", "ranking"), ("regsmart:rgsm_qtf", "regsmart")]),
+    ("Hybrid", [("ranking:rkn_hybrid", "ranking"), ("regsmart:rgsm_hybrid", "regsmart")]),
+    ("SimChgPath", [("ranking:rkn_simchgpath", "ranking")]),
+    ("Sem RTP", [(RTS_ONLY, "regsmart")]),
+]
+
+
+def resumo_modos(byc, ovc, repos, caption, label, fontsize, tabcolsep, nota=None):
+    """Uma linha por métrica e os nove modos agrupados por heurística (RESUMO_GRUPOS).
+    Só valores comparáveis entre projetos: percentuais, valores relativos ao baseline e APFDc (0 a 1);
+    nenhuma média de valores absolutos (segundos ou número de testes)."""
+    keys = [k for _, cols in RESUMO_GRUPOS for k, _ in cols]
+    assert sorted(keys) == sorted(MODE_KEYS), "RESUMO_GRUPOS deve conter os nove modos"
     S = lambda b, lab: dict(b["summary"])[lab]
-    spec = [("Testes por mutante", S(byc["n_tests"], "Média"), 0, None),
-            ("Tempo da TSR (relativo)", S(byc["suite_s"], "Relativo ao baseline"), 2, None),
-            (r"Tempo do \textit{job} (relativo)", S(byc["job_s"], "Relativo ao baseline"), 2, None),
+    nt = dict(byc["n_tests"]["rows"])
+    pct_suite = {k: mean([100 * nt[rp][k] / nt[rp]["baseline"] if nt[rp][k] is not None and nt[rp]["baseline"] else None
+                          for rp in repos]) for k in keys}
+    rel = r"(relativo ao \textit{baseline})"
+    spec = [(r"Testes executados (\% da suíte)", pct_suite, 1, _det),
+            (f"Tempo da TSR {rel}", S(byc["suite_s"], "Relativo ao baseline"), 2, None),
+            (rf"Tempo do \textit{{job}} {rel}", S(byc["job_s"], "Relativo ao baseline"), 2, None),
             (r"Falhas detectadas (\%)", S(byc["detected_pct"], "Média"), 1, _det),
             ("APFDc", S(byc["apfdc"], "Média"), 2, None),
-            ("TTFF (relativo)", S(byc["ttff_s"], "Relativo ao baseline"), 2, None),
+            (f"TTFF {rel}", S(byc["ttff_s"], "Relativo ao baseline"), 2, None),
             (r"Custo da RTS (\% da TSR)", S(ovc["rts_pct"], "Média"), 1, None),
             (r"Custo da RTP (\% da TSR)", S(ovc["rtp_pct"], "Média"), 2, None)]
-    body = list(head)
+    top, rules, sub, col = [""], [], [r"\textbf{Métrica}"], 2
+    for g, cols in RESUMO_GRUPOS:
+        top.append(rf"\textbf{{{g}}}" if len(cols) == 1 else rf"\multicolumn{{{len(cols)}}}{{c}}{{\textbf{{{g}}}}}")
+        if g != "Baseline":
+            rules.append(rf"\cmidrule(lr){{{col}-{col + len(cols) - 1}}}")
+        sub += [rf"\textbf{{{n}}}" for _, n in cols]
+        col += len(cols)
+    body = [r"\toprule", row(top), "".join(rules), row(sub), r"\midrule"]
     for lab, vals, dec, f in spec:
-        body.append(row([lab] + [("--" if vals[m] is None else (f(vals[m]) if f else fmt(vals[m], dec))) for m in MODE_KEYS]))
-    return wrap(caption, label, "l" + "r" * len(MODE_KEYS), body, fontsize, tabcolsep, nota)
+        body.append(row([lab] + [("--" if vals[m] is None else (f(vals[m]) if f else fmt(vals[m], dec))) for m in keys]))
+    colspec = r">{\raggedright\arraybackslash}p{3.2cm}" + "r" * len(keys)
+    return wrap(caption, label, colspec, body, fontsize, tabcolsep, nota)
 
 
 # Perfis da 7.5: a classificação e o fator são análise qualitativa (casos discutidos nas Seções 7.2 a 7.4);
@@ -349,15 +384,15 @@ def main() -> int:
                              "tab:selecao-rts", a.fontsize, "3pt",
                              "o \\textit{pytest-ranking} não aparece porque executa a suíte completa. A seleção é a mesma nos quatro "
                              "modos; as pequenas diferenças na detecção vêm de testes \\textit{flaky}. As falhas não selecionadas são a "
-                             "soma dos cinco mutantes. A média da coluna \\% da suíte é a dos percentuais por projeto e, por isso, "
-                             "difere da razão entre as médias de testes, em que os projetos maiores pesam mais.")
+                             "soma dos cinco mutantes. A média da coluna \\% da suíte é a dos percentuais por projeto.")
     t_ins, c_ins = instaveis(base / "flaky_tests.json", repos)
     t_tmp = mode_table(byc, [("suite_s", "Tempo da TSR (s)", True)],
                        rf"Tempo da TSR por projeto e modo, em segundos ({agg})", "tab:analise-tempo-geral",
                        a.fontsize, a.tabcolsep,
                        "a linha \\textit{Relativo ao baseline} é a média, entre os projetos, do tempo do modo dividido pelo tempo do "
                        "\\textit{baseline} no mesmo projeto; valores abaixo de 1 indicam execução mais rápida que o \\textit{baseline}. "
-                       "O tempo do \\textit{job} por projeto consta da Tabela~\\ref{tab:resultados-completos}.")
+                       "O tempo do \\textit{job} por projeto consta da Tabela~\\ref{tab:resultados-completos}.",
+                       sem_media={"suite_s"})
     # overhead em % do tempo da suíte do próprio modo, calculado por execução e agregado como as demais métricas
     for r in rows:
         su = num(r.get("suite_s"))
@@ -378,13 +413,11 @@ def main() -> int:
     t_pri = mode_table(byc, [("apfdc", "APFDc", True), ("ttff_s", "Tempo até a primeira falha -- TTFF (s)", True)],
                        rf"APFDc e TTFF por projeto e modo ({agg})", "tab:priorizacao", a.fontsize, a.tabcolsep,
                        "nos modos do \\textit{pytest-regsmart}, o APFDc é calculado sobre os testes selecionados e "
-                       "o TTFF inclui os tempos de RTS e RTP.")
-    t_res = resumo_modos(byc, ovc,
-                         "Resumo da comparação dos nove modos de execução (mediana das repetições, média entre os mutantes e entre os projetos)",
-                         "tab:resultados-resumo", a.fontsize, a.tabcolsep,
-                         "os valores relativos são a média, entre os projetos, da razão entre o modo e o \\textit{baseline}; abaixo de 1, "
-                         "o modo foi mais rápido (no TTFF, a primeira falha surgiu antes). Os custos de RTS e RTP são o percentual do "
-                         "tempo da TSR do próprio modo.")
+                       "o TTFF inclui os tempos de RTS e RTP.",
+                       sem_media={"ttff_s"})
+    t_res = resumo_modos(byc, ovc, repos,
+                         "Resumo da comparação dos nove modos de execução, agrupados por heurística de priorização",
+                         "tab:resultados-resumo", a.fontsize, a.tabcolsep)
     t_perf = perfil_projetos(byc, repos, r"Resultado do \textit{pytest-regsmart} por projeto, agrupado por perfil",
                              "tab:perfil-projetos", a.fontsize, "3pt",
                              "a TSR relativa é a faixa, entre os quatro modos do \\textit{pytest-regsmart}, da razão entre o tempo do modo "

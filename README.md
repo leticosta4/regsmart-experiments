@@ -160,6 +160,7 @@ python3 tabelas_eixos.py                                                        
 - `aggregate` aceita `--rep-stat {median,mean}` (entre repetições, padrão mediana) e `--mut-stat {mean,median}` (entre mutantes, padrão média).
 - `tabela_final.py` e `tabelas_eixos.py` leem o `runs.csv` e usam a mesma agregação (mesmas opções `--rep-stat`/`--mut-stat`, além de `--repo`, `--out`, `--fontsize` e `--tabcolsep`). As faltas omitidas são somadas entre os mutantes, e a % de detectadas é Σ detectadas / Σ faltas do repo. O `tabelas_eixos.py` importa o `tabela_final.py`, então os dois precisam estar na mesma pasta; ambos usam só a biblioteca padrão.
 - Os `.tex` saem prontos para colar na monografia (números em formato brasileiro, legenda, fonte e nota). No preâmbulo: `booktabs`, `longtable`, `caption` e `array`.
+- Médias entre projetos no `tabelas_eixos.py`: só de valores comparáveis entre projetos (percentuais, APFDc e valores relativos ao *baseline*). Tempos em segundos e número de testes não têm linha de média, porque ela seria dominada pelos projetos com suítes longas; para tempo, use a linha *Relativo ao baseline* (média, entre os projetos, da razão modo / *baseline*). Na `tab_resumo.tex`, as colunas seguem a heurística de priorização (RecentFail, QTF, Hybrid, SimChgPath, sem RTP), para que cada modo do *pytest-regsmart* fique ao lado do modo do *pytest-ranking* com a mesma ordenação.
 
 Checagem do resultado:
 ```bash
@@ -196,12 +197,12 @@ Gerados pelos scripts das tabelas (não versionados; rode-os de novo depois de u
 | arquivo | conteúdo |
 |---|---|
 | `data/flaky_mut/metrics/tables/final/tabela_final.{tex,csv}` | tabela completa do apêndice (`tab:resultados-completos`): um bloco por métrica, na ordem do Cap. 7 |
-| `data/flaky_mut/metrics/tables/eixos/tab_selecao.tex` | segurança da RTS (`tab:selecao-rts`) |
+| `data/flaky_mut/metrics/tables/eixos/tab_selecao.tex` | segurança da RTS (`tab:selecao-rts`); na linha Média / Total, só a % da suíte tem média (testes absolutos ficam com `--`) |
 | `data/flaky_mut/metrics/tables/eixos/tab_instaveis.tex` | testes *flaky* por projeto e *plugin* (`tab:testes-flaky`) |
-| `data/flaky_mut/metrics/tables/eixos/tab_tempo.tex` | tempo da TSR por projeto e modo (`tab:analise-tempo-geral`) |
+| `data/flaky_mut/metrics/tables/eixos/tab_tempo.tex` | tempo da TSR por projeto e modo (`tab:analise-tempo-geral`), com a linha *Relativo ao baseline* e sem média em segundos |
 | `data/flaky_mut/metrics/tables/eixos/tab_overhead_rts.tex`, `tab_overhead_rtp.tex` | custo da RTS e da RTP em % do tempo da suíte (`tab:overhead-rts`, `tab:overhead-rtp`) |
-| `data/flaky_mut/metrics/tables/eixos/tab_priorizacao.tex` | APFDc e TTFF por projeto e modo (`tab:priorizacao`) |
-| `data/flaky_mut/metrics/tables/eixos/tab_resumo.tex`, `tab_perfil.tex` | síntese: nove modos (`tab:resultados-resumo`) e projetos por perfil (`tab:perfil-projetos`) |
+| `data/flaky_mut/metrics/tables/eixos/tab_priorizacao.tex` | APFDc (com média) e TTFF (só *Relativo ao baseline*, sem média em segundos) por projeto e modo (`tab:priorizacao`) |
+| `data/flaky_mut/metrics/tables/eixos/tab_resumo.tex`, `tab_perfil.tex` | síntese: nove modos agrupados por heurística, com *ranking* e *regsmart* lado a lado (`tab:resultados-resumo`), e projetos por perfil (`tab:perfil-projetos`) |
 | `data/flaky_mut/metrics/tables/eixos/tabelas_cap7.tex`, `tabelas_eixos.csv` | todas as tabelas do Cap. 7 na ordem do capítulo; números dos *flaky* sem formatação |
 
 Não versionados (`.gitignore`): clones locais (`work/`, `_regsmart_sync/`), logs brutos (`data/flaky_mut/raw/`), cache do coletor (`data/flaky_mut/metrics/cache/`) e cache do mutmut (`data/mutmut/mutcache/`).
@@ -215,7 +216,7 @@ Usados no experimento:
 | [flaky_runner.py](./flaky_runner.py) | `verify`, `run`, `status`, `flaky`, `report`: dispara os workflows por lane, registra tudo no `runs.json` e classifica testes flaky |
 | [metrics_collector.py](./metrics_collector.py) | `probe`, `collect`, `aggregate`: calcula as métricas por leg e gera as tabelas |
 | [tabela_final.py](./tabela_final.py) | gera a tabela completa dos nove modos (apêndice da monografia), em `.tex` e `.csv` |
-| [tabelas_eixos.py](./tabelas_eixos.py) | gera as tabelas do Cap. 7 (Validação Experimental), uma por eixo, prontas para a monografia |
+| [tabelas_eixos.py](./tabelas_eixos.py) | gera as tabelas do Cap. 7 (Avaliação Experimental), uma por eixo, prontas para a monografia |
 | [mutation_testing/mutation_gen.py](./mutation_testing/mutation_gen.py) | gera os patches de mutação (mutmut, sem rodar testes) |
 | [mutation_testing/insert_mutations.py](./mutation_testing/insert_mutations.py) | publica uma branch `mut-*` por mutante (e draft PR com `--pr`) |
 | [mutation_testing/fetch_mut_branches.py](./mutation_testing/fetch_mut_branches.py) | realinha `mutant_branches.json` com os forks |
