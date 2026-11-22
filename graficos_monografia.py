@@ -49,22 +49,25 @@ ORDEM = ["librosa", "dask", "aeon", "apscheduler", "trimesh", "ultralytics", "ne
 
 COR_BASE, COR_RK, COR_RG = "#333333", "#0072B2", "#D55E00"
 VERDE, VERMELHO = "#2E8B57", "#C0392B"
+# Tamanho final na página (largura útil da folha A4 com margens ABNT, ~16 cm): incluir na monografia com
+# \\includegraphics[width=\\textwidth]{...}, sem reduzir, para as fontes ficarem em 9-10 pt.
+FIGSIZE = (6.3, 4.6)
 SERIFA = ["Times New Roman", "Times", "Nimbus Roman", "DejaVu Serif"]
 
-# estilo das figuras 1 e 2 (fonte 9/8/7 pt, eixos abertos, ticks para fora, legenda sem moldura)
+# estilo das figuras 1 e 2 (fonte 10/9 pt no tamanho final, eixos abertos, ticks para fora, legenda sem moldura)
 ESTILO_BARRAS = {
     "font.family": "serif", "font.serif": SERIFA,
-    "font.size": 9, "axes.labelsize": 9, "axes.titlesize": 9, "legend.fontsize": 8,
-    "xtick.labelsize": 7, "ytick.labelsize": 7,
+    "font.size": 10, "axes.labelsize": 10, "axes.titlesize": 10, "legend.fontsize": 9,
+    "xtick.labelsize": 9, "ytick.labelsize": 9.5,
     "axes.linewidth": 0.6, "xtick.direction": "out", "ytick.direction": "out",
     "xtick.major.size": 3, "ytick.major.size": 3, "xtick.major.width": 0.6, "ytick.major.width": 0.6,
     "axes.spines.top": False, "axes.spines.right": False, "axes.grid": False,
     "legend.frameon": False, "savefig.dpi": 300, "axes.titlelocation": "left",
     "lines.linewidth": 1.2, "patch.linewidth": 0.6,
 }
-# estilo da figura 3 (fonte 9 pt em tudo, eixos abertos)
+# estilo da figura 3 (fonte 10 pt, ticks 9 pt, eixos abertos)
 ESTILO_DISPERSAO = {
-    "font.family": "serif", "font.serif": SERIFA, "font.size": 9,
+    "font.family": "serif", "font.serif": SERIFA, "font.size": 10, "xtick.labelsize": 9, "ytick.labelsize": 9,
     "axes.spines.top": False, "axes.spines.right": False,
     "savefig.dpi": 300,
 }
@@ -100,16 +103,16 @@ def salvar(fig, out: Path, nome: str):
 def fig_tempos_log(D: dict, out: Path):
     yy = list(range(len(ORDEM)))
     with mpl.rc_context(ESTILO_BARRAS):
-        fig, ax = plt.subplots(figsize=(6.3, 4.2))
+        fig, ax = plt.subplots(figsize=FIGSIZE)
         for i, r in enumerate(ORDEM):
             v = [D[r]["base_s"], D[r]["rk_s"], D[r]["rg_s"]]
             ax.plot([min(v), max(v)], [i, i], color="#cccccc", lw=1.2, zorder=1)
             ax.axhline(i, color="#f0f0f0", lw=0.6, zorder=0)
-        h_rk = ax.scatter([D[r]["rk_s"] for r in ORDEM], yy, marker="s", s=30, color=COR_RK, zorder=4,
+        h_rk = ax.scatter([D[r]["rk_s"] for r in ORDEM], yy, marker="s", s=40, color=COR_RK, zorder=4,
                           label="pytest-ranking (RecentFail)")
-        h_rg = ax.scatter([D[r]["rg_s"] for r in ORDEM], yy, marker="D", s=30, color=COR_RG, zorder=5,
+        h_rg = ax.scatter([D[r]["rg_s"] for r in ORDEM], yy, marker="D", s=40, color=COR_RG, zorder=5,
                           label="pytest-regsmart (RTS + RecentFail)")
-        h_b = ax.scatter([D[r]["base_s"] for r in ORDEM], yy, marker="o", s=36, facecolor="none",
+        h_b = ax.scatter([D[r]["base_s"] for r in ORDEM], yy, marker="o", s=48, facecolor="none",
                          edgecolor=COR_BASE, lw=1.3, zorder=6, label="Baseline (suíte completa)")
         ax.set_xscale("log")
         ax.set_xticks([40, 60, 100, 200, 400, 600, 1000, 1500])
@@ -122,7 +125,7 @@ def fig_tempos_log(D: dict, out: Path):
         ax.tick_params(axis="y", length=0)
         ax.set_xlabel("Tempo de execução da suíte (s, escala logarítmica)")
         ax.legend([h_b, h_rk, h_rg], [h.get_label() for h in (h_b, h_rk, h_rg)], loc="lower left",
-                  bbox_to_anchor=(0, 1.0), ncol=3, frameon=False, fontsize=7.5, handletextpad=0.3,
+                  bbox_to_anchor=(0, 1.0), ncol=3, frameon=False, fontsize=9, handletextpad=0.3,
                   columnspacing=1.0)
         salvar(fig, out, "fig_tempos_log")
 
@@ -130,7 +133,7 @@ def fig_tempos_log(D: dict, out: Path):
 def fig_falhas_detectadas(D: dict, out: Path):
     yy = list(range(len(ORDEM)))
     with mpl.rc_context(ESTILO_BARRAS):
-        fig, ax = plt.subplots(figsize=(6.3, 4.2))
+        fig, ax = plt.subplots(figsize=FIGSIZE)
         h = 0.62
         pdet = [D[r]["pct_det"] for r in ORDEM]
         pnd = [D[r]["pct_nd"] for r in ORDEM]
@@ -138,14 +141,14 @@ def fig_falhas_detectadas(D: dict, out: Path):
         ax.barh(yy, pnd, left=pdet, color=VERMELHO, height=h, zorder=2, label="Não detectadas")
         for i, r in enumerate(ORDEM):
             pd_, pn = D[r]["pct_det"], D[r]["pct_nd"]
-            ax.text(2, i, f"{br(pd_, 1) if pd_ < 99.95 else '100'}%", ha="left", va="center", fontsize=7,
+            ax.text(2, i, f"{br(pd_, 1) if pd_ < 99.95 else '100'}%", ha="left", va="center", fontsize=8.5,
                     color="white", fontweight="bold")
             if pn >= 6:
-                ax.text(pd_ + pn / 2, i, f"{br(pn, 1)}%", ha="center", va="center", fontsize=7, color="white",
+                ax.text(pd_ + pn / 2, i, f"{br(pn, 1)}%", ha="center", va="center", fontsize=8.5, color="white",
                         fontweight="bold")
             ax.text(102, i, f"{milhar(D[r]['detectadas'])} de {milhar(D[r]['faltas'])}", ha="left",
-                    va="center", fontsize=7, clip_on=False)
-        ax.text(102, -0.75, "falhas detectadas / total", ha="left", va="center", fontsize=7, fontstyle="italic",
+                    va="center", fontsize=8.5, clip_on=False)
+        ax.text(102, -0.75, "falhas detectadas / total", ha="left", va="center", fontsize=8.5, fontstyle="italic",
                 clip_on=False)
         ax.set_xlim(0, 100)
         ax.set_xticks([0, 25, 50, 75, 100])
@@ -156,7 +159,7 @@ def fig_falhas_detectadas(D: dict, out: Path):
         ax.tick_params(axis="y", length=0)
         ax.set_xlabel("Falhas esperadas dos mutantes (%) — pytest-regsmart (RTS + RecentFail)")
         ax.spines["right"].set_visible(False)
-        ax.legend(loc="lower left", bbox_to_anchor=(0, 1.02), ncol=2, frameon=False, fontsize=8)
+        ax.legend(loc="lower left", bbox_to_anchor=(0, 1.02), ncol=2, frameon=False, fontsize=9)
         salvar(fig, out, "fig_falhas_detectadas")
 
 
@@ -165,8 +168,8 @@ def fig_falhas_detectadas(D: dict, out: Path):
 #   "acima"  -> traço curto do ponto até logo abaixo do texto (rótulos acima do aglomerado)
 #   None     -> rótulo ao lado do ponto, sem linha
 ROTULOS = {
-    "librosa": (0.32, 104, "center", None), "aeon": (0.72, 104, "center", "acima"),
-    "apscheduler": (0.837, 104, "center", "acima"), "dvc": (1.045, 104, "left", None),
+    "librosa": (0.32, 104, "center", None), "aeon": (0.68, 104, "center", "acima"),
+    "apscheduler": (0.87, 104, "center", "acima"), "dvc": (1.045, 104, "left", None),
     "pytest-django": (1.373, 104, "center", None), "dask": (0.60, 90, "right", "ponto"),
     "networkx": (0.80, 88, "center", "ponto"), "pytorch-lightning": (0.95, 91.5, "center", "ponto"),
     "ipython": (1.05, 94.7, "left", None), "pytest-xdist": (1.305, 96.4, "left", None),
@@ -176,10 +179,10 @@ ROTULOS = {
 
 def fig_tempo_deteccao(D: dict, out: Path):
     with mpl.rc_context(ESTILO_DISPERSAO):
-        fig, ax = plt.subplots(figsize=(6.3, 4.2))
+        fig, ax = plt.subplots(figsize=FIGSIZE)
         ax.axvline(1, color="#555", lw=0.9, ls="--", zorder=0)
         ax.axhline(100, color="#bbb", lw=0.7, ls=":", zorder=0)
-        ax.scatter([D[r]["rg_rel"] for r in ORDEM], [D[r]["pct_det"] for r in ORDEM], s=34, color=COR_RG,
+        ax.scatter([D[r]["rg_rel"] for r in ORDEM], [D[r]["pct_det"] for r in ORDEM], s=44, color=COR_RG,
                    edgecolor="white", lw=0.6, zorder=3)
         for r in ORDEM:
             x, y = D[r]["rg_rel"], D[r]["pct_det"]
@@ -188,15 +191,15 @@ def fig_tempo_deteccao(D: dict, out: Path):
                 ax.plot([x, tx], [y, ty + 1.0], color="#999", lw=0.6, zorder=1)
             elif linha == "acima":
                 ax.plot([x, tx], [y + 0.6, ty - 1.2], color="#999", lw=0.6, zorder=1)
-            ax.text(tx, ty, r, ha=ha, va="center", fontsize=7.5, fontstyle="italic", zorder=5,
-                    bbox=dict(fc="white", ec="none", pad=0.4))
+            ax.text(tx, ty, r, ha=ha, va="center", fontsize=9, fontstyle="italic", zorder=5,
+                    bbox=dict(fc="white", ec="none", pad=0.3))
         ax.set_xlim(0.2, 1.5)
         ax.set_ylim(35, 107)
         ax.xaxis.set_major_formatter(FuncFormatter(lambda v, p: br(v, 2)))
         ax.set_xlabel("Tempo de execução relativo ao baseline (1 = baseline)")
         ax.set_ylabel("Falhas detectadas (%)")
-        ax.text(0.98, 36.5, "← mais rápido que o baseline", ha="right", fontsize=7, color="#555")
-        ax.set_title("pytest-regsmart (RTS + RecentFail)", fontsize=8.5, loc="left")
+        ax.text(0.98, 36.5, "← mais rápido que o baseline", ha="right", fontsize=8.5, color="#555")
+        ax.set_title("pytest-regsmart (RTS + RecentFail)", fontsize=10, loc="left")
         salvar(fig, out, "fig_tempo_deteccao")
 
 

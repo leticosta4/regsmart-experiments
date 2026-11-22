@@ -153,6 +153,7 @@ python3 metrics_collector.py aggregate --campaign flaky                         
 python3 tabela_final.py                                                              # tables/final/: tabela completa do apêndice
 python3 tabelas_eixos.py                                                             # tables/eixos/: tabelas do Cap. 7
 python3 graficos_monografia.py                                                       # figures/: figuras do Cap. 7 (requer matplotlib)
+python3 analise_projetos.py --clonar                                                 # analise_projetos/: como os testes chegam ao código (1x; antes do tabelas_eixos.py)
 ```
 
 - O `flaky` vem antes do `collect` porque atualiza no `runs.json` a conclusão de runs que terminaram sem o `run` ter visto; o `collect` só usa runs `success`/`failure`.
@@ -160,7 +161,8 @@ python3 graficos_monografia.py                                                  
 - Logs e artifacts ficam em cache local (`data/flaky_mut/raw/`, `data/flaky_mut/metrics/cache/`); repetir os comandos só baixa o que falta.
 - `aggregate` aceita `--rep-stat {median,mean}` (entre repetições, padrão mediana) e `--mut-stat {mean,median}` (entre mutantes, padrão média).
 - `tabela_final.py` e `tabelas_eixos.py` leem o `runs.csv` e usam a mesma agregação (mesmas opções `--rep-stat`/`--mut-stat`, além de `--repo`, `--out`, `--fontsize` e `--tabcolsep`). As faltas omitidas são somadas entre os mutantes, e a % de detectadas é Σ detectadas / Σ faltas do repo. O `tabelas_eixos.py` importa o `tabela_final.py`, então os dois precisam estar na mesma pasta; ambos usam só a biblioteca padrão.
-- `graficos_monografia.py` lê o mesmo `runs.csv`, com a mesma agregação (`--rep-stat`/`--mut-stat`), e gera as três figuras de resultado do Cap. 7 em PNG (300 dpi): tempo da suíte por projeto (*baseline*, *pytest-ranking* RecentFail e *pytest-regsmart* RTS + RecentFail, escala logarítmica), falhas detectadas / não detectadas por projeto (barras 100% empilhadas, com "x de y") e a dispersão tempo relativo × falhas detectadas. Os projetos seguem a ordem da lista `ORDEM` no script. Única dependência externa: `matplotlib`. Opção: `--out`.
+- `graficos_monografia.py` lê o mesmo `runs.csv`, com a mesma agregação (`--rep-stat`/`--mut-stat`), e gera as três figuras de resultado do Cap. 7 em PNG (300 dpi): tempo da suíte por projeto (*baseline*, *pytest-ranking* RecentFail e *pytest-regsmart* RTS + RecentFail, escala logarítmica), falhas detectadas / não detectadas por projeto (barras 100% empilhadas, com "x de y") e a dispersão tempo relativo × falhas detectadas. Os projetos seguem a ordem da lista `ORDEM` no script. As figuras são geradas no tamanho final da página (`FIGSIZE`, 6,3 × 4,6 pol., cerca de 16 cm de largura útil da folha A4 com margens ABNT), com fonte de 9–10 pt: na monografia, inclua com `\includegraphics[width=\textwidth]{...}`, sem reduzir. Única dependência externa: `matplotlib`. Opção: `--out`.
+- `analise_projetos.py` faz a análise estática dos 12 forks no commit do experimento (`data/fork_commits.csv`): com `--clonar`, clona cada fork em `data/analise_projetos/forks/` (raso, só o commit; não versionado) e grava `data/analise_projetos/caracteristicas_projetos.csv`. Mede, em todos os projetos, a fração dos arquivos de teste que usam cada padrão de "caminho compartilhado" até o código (subprocessos, sessões internas do *pytest*, módulo auxiliar `generic as g`, objeto `YOLO`, `Trainer`/`Fabric`, estado global do IPython, *fixtures* `tmp_dir`/`dvc`/`scm`), o número de funções com `@_dispatchable` e se os *doctests* rodam na mesma execução do *pytest* (`--doctest-modules`/`--ipdoctest-modules`; jobs separados só de *doctest* não contam). Os padrões vieram da inspeção dos casos do Cap. 7 e são medidos em todos os projetos, para conferir se aparecem nos de ganho sem perda. Só biblioteca padrão; não executa código dos projetos. O `tabelas_eixos.py` lê esse CSV para a coluna "Como os testes chegam ao código" da `tab_perfil.tex` (opção `--caracteristicas`).
 - Os `.tex` saem prontos para colar na monografia (números em formato brasileiro, legenda, fonte e nota). No preâmbulo: `booktabs`, `longtable`, `caption` e `array`.
 - Médias entre projetos no `tabelas_eixos.py`: só de valores comparáveis entre projetos (percentuais, APFDc e valores relativos ao *baseline*). Tempos em segundos e número de testes não têm linha de média, porque ela seria dominada pelos projetos com suítes longas; para tempo, use a linha *Relativo ao baseline* (média, entre os projetos, da razão modo / *baseline*). Na `tab_resumo.tex`, as colunas seguem a heurística de priorização (RecentFail, QTF, Hybrid, SimChgPath, sem RTP), para que cada modo do *pytest-regsmart* fique ao lado do modo do *pytest-ranking* com a mesma ordenação.
 
@@ -193,6 +195,7 @@ O `collect` deve informar 864 runs concluídos. Em ranking/regsmart, `ttff_pos` 
 | `data/flaky_mut/flaky_tests.json`, `report.md` | classificação de testes flaky e relatório da campanha |
 | `data/flaky_mut/metrics/runs.csv`, `faults.json` | métricas por leg e faltas/flaky por mutante |
 | `data/flaky_mut/metrics/tables/` | tabelas por métrica (`<métrica>.csv`, `_sd.csv`, `.tex`), linhas = repos, colunas = modos |
+| `data/analise_projetos/caracteristicas_projetos.csv` | análise estática dos forks no commit do experimento (`analise_projetos.py`): tamanho e % dos arquivos de teste com cada padrão de caminho compartilhado, decoradores `_dispatchable` e *doctests* |
 
 Gerados pelos scripts das tabelas e das figuras (não versionados; rode-os de novo depois de um `collect`):
 
@@ -204,13 +207,13 @@ Gerados pelos scripts das tabelas e das figuras (não versionados; rode-os de no
 | `data/flaky_mut/metrics/tables/eixos/tab_tempo.tex` | tempo da TSR por projeto e modo (`tab:analise-tempo-geral`), com a linha *Relativo ao baseline* e sem média em segundos |
 | `data/flaky_mut/metrics/tables/eixos/tab_overhead_rts.tex`, `tab_overhead_rtp.tex` | custo da RTS e da RTP em % do tempo da suíte (`tab:overhead-rts`, `tab:overhead-rtp`) |
 | `data/flaky_mut/metrics/tables/eixos/tab_priorizacao.tex` | APFDc (com média) e TTFF (só *Relativo ao baseline*, sem média em segundos) por projeto e modo (`tab:priorizacao`) |
-| `data/flaky_mut/metrics/tables/eixos/tab_resumo.tex`, `tab_perfil.tex` | síntese: nove modos agrupados por heurística, com *ranking* e *regsmart* lado a lado (`tab:resultados-resumo`), e projetos por perfil (`tab:perfil-projetos`) |
+| `data/flaky_mut/metrics/tables/eixos/tab_resumo.tex`, `tab_perfil.tex` | síntese: nove modos agrupados por heurística, com *ranking* e *regsmart* lado a lado (`tab:resultados-resumo`), e projetos por perfil, com a coluna "Como os testes chegam ao código" preenchida pelo `caracteristicas_projetos.csv` (`tab:perfil-projetos`) |
 | `data/flaky_mut/metrics/tables/eixos/tabelas_cap7.tex`, `tabelas_eixos.csv` | todas as tabelas do Cap. 7 na ordem do capítulo; números dos *flaky* sem formatação |
 | `data/flaky_mut/metrics/figures/fig_tempos_log.png` | tempo de execução da suíte (s) por projeto: *baseline*, *pytest-ranking* (RecentFail) e *pytest-regsmart* (RTS + RecentFail), escala logarítmica |
 | `data/flaky_mut/metrics/figures/fig_falhas_detectadas.png` | falhas detectadas e não detectadas por projeto, em % do total de cada projeto, com "x de y" (*pytest-regsmart*, RTS + RecentFail) |
 | `data/flaky_mut/metrics/figures/fig_tempo_deteccao.png` | dispersão: tempo relativo ao *baseline* × % de falhas detectadas (*pytest-regsmart*, RTS + RecentFail) |
 
-Não versionados (`.gitignore`): clones locais (`work/`, `_regsmart_sync/`), logs brutos (`data/flaky_mut/raw/`), cache do coletor (`data/flaky_mut/metrics/cache/`) e cache do mutmut (`data/mutmut/mutcache/`).
+Não versionados (`.gitignore`): clones locais (`work/`, `_regsmart_sync/`), logs brutos (`data/flaky_mut/raw/`), cache do coletor (`data/flaky_mut/metrics/cache/`), cache do mutmut (`data/mutmut/mutcache/`) e clones da análise estática (`data/analise_projetos/forks/`).
 
 ## 8. Scripts
 
@@ -222,7 +225,8 @@ Usados no experimento:
 | [metrics_collector.py](./metrics_collector.py) | `probe`, `collect`, `aggregate`: calcula as métricas por leg e gera as tabelas |
 | [tabela_final.py](./tabela_final.py) | gera a tabela completa dos nove modos (apêndice da monografia), em `.tex` e `.csv` |
 | [tabelas_eixos.py](./tabelas_eixos.py) | gera as tabelas do Cap. 7 (Avaliação Experimental), uma por eixo, prontas para a monografia |
-| [graficos_monografia.py](./graficos_monografia.py) | gera as três figuras de resultado do Cap. 7 (tempos por projeto, falhas detectadas e tempo × detecção), em PNG |
+| [graficos_monografia.py](./graficos_monografia.py) | gera as três figuras de resultado do Cap. 7 (tempos por projeto, falhas detectadas e tempo × detecção), em PNG, no tamanho final da página |
+| [analise_projetos.py](./analise_projetos.py) | análise estática dos forks: como os testes de cada projeto chegam ao código (coluna da `tab:perfil-projetos`) |
 | [mutation_testing/mutation_gen.py](./mutation_testing/mutation_gen.py) | gera os patches de mutação (mutmut, sem rodar testes) |
 | [mutation_testing/insert_mutations.py](./mutation_testing/insert_mutations.py) | publica uma branch `mut-*` por mutante (e draft PR com `--pr`) |
 | [mutation_testing/fetch_mut_branches.py](./mutation_testing/fetch_mut_branches.py) | realinha `mutant_branches.json` com os forks |

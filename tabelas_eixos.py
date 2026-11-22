@@ -13,7 +13,8 @@ Tabelas (padrão em data/<campanha>/metrics/tables/eixos/):
   tab_priorizacao.tex  APFDc (com média) e TTFF (só Relativo ao baseline, sem média em segundos) por projeto e modo
   tab_resumo.tex       Síntese: uma linha por métrica, nove modos agrupados por heurística (ranking | regsmart lado a lado),
                        só valores relativos, percentuais e APFDc
-  tab_perfil.tex       Síntese: projetos agrupados por perfil (TSR relativa, detecção do modo RTS, fator principal)
+  tab_perfil.tex       Síntese: projetos agrupados por perfil (TSR relativa, detecção do modo RTS e como os testes
+                       chegam ao código, a partir de data/analise_projetos/caracteristicas_projetos.csv)
   tabelas_cap7.tex     todas as anteriores, na ordem do capítulo
   tabelas_eixos.csv    números sem formatação, para conferência
 
@@ -29,6 +30,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import re
 import statistics
 import sys
 from collections import defaultdict
@@ -321,40 +323,67 @@ def resumo_modos(byc, ovc, repos, caption, label, fontsize, tabcolsep, nota=None
     return wrap(caption, label, colspec, body, fontsize, tabcolsep, nota)
 
 
-# Perfis da 7.5: a classificação e o fator são análise qualitativa (casos discutidos nas Seções 7.2 a 7.4);
-# os números vêm dos dados. Projetos fora deste dicionário não entram na tabela.
+# Perfis da 7.5. A classificação é a dos resultados (TSR e detecção, Seções 7.2 a 7.4). A última coluna descreve
+# como os testes de cada projeto chegam ao código testado, com os números da análise estática dos forks
+# (analise_projetos.py -> data/analise_projetos/caracteristicas_projetos.csv). Nos textos, <coluna> é trocado pelo
+# valor da coluna do CSV (frações viram %); "; doctests" é acrescentado quando a coluna doctest é True.
+# Projetos fora deste dicionário não entram na tabela.
 PERFIS = [
-    ("Ganho sem perda", [("librosa", r"Seleção reduz a suíte a cerca de 9\%"),
-                         ("dask", r"Seleção reduz a suíte a cerca de 60\% em uma suíte longa"),
-                         ("aeon", r"Seleção reduz a suíte a cerca de 60\%; custo da RTS baixo"),
-                         ("apscheduler", "Custo da RTS baixo")]),
-    ("Ganho com perda", [("trimesh", "Importação de módulo auxiliar por nome simples"),
-                         ("ultralytics", "Testes executam o código em subprocessos"),
-                         ("networkx", r"Grafo ocupa cerca de 70\% da TSR e o \textit{job} leva o mesmo tempo do "
-                                      r"\textit{baseline}; \textit{doctests}")]),
-    ("Sem ganho de tempo", [("dvc", "Mudanças alcançam quase toda a suíte"),
-                            ("ipython", r"Mudanças alcançam quase toda a suíte; \textit{doctests} não selecionados"),
-                            ("pytorch-lightning", r"Seleção manteve 100\% da suíte")]),
-    ("Mais lento", [("pytest-django", r"Carregamento do \textit{plugin} em cada sessão interna do \textit{pytest}"),
-                    ("pytest-xdist", r"Carregamento do \textit{plugin}; testes via \textit{pytester} não selecionados")]),
+    ("Ganho sem perda", [("librosa", "Chamada direta às funções da API pública"),
+                         ("dask", "Chamada direta às coleções e funções da API pública"),
+                         ("aeon", "Chamada direta aos estimadores da API pública"),
+                         ("apscheduler", "Chamada direta à API pública")]),
+    ("Ganho com perda", [("trimesh", r"Módulo auxiliar importado por nome simples (\texttt{import generic as g}) "
+                                     r"em <generic_g> dos arquivos"),
+                         ("ultralytics", r"Objeto \texttt{YOLO} em <yolo_model> e subprocessos em <subproc> dos arquivos"),
+                         ("networkx", r"Camada de despacho (<dispatchable_decorations> funções com \texttt{@\_dispatchable})")]),
+    ("Sem ganho de tempo", [("dvc", r"\textit{Fixtures} orquestradoras (\texttt{tmp\_dir}, \texttt{dvc}, \texttt{scm}) "
+                                    r"em <dvc_fixt> dos arquivos"),
+                            ("ipython", r"Estado global (\texttt{\_ip}, \texttt{get\_ipython}) em <ip_global> dos arquivos"),
+                            ("pytorch-lightning", r"Orquestrador \texttt{Trainer}/\texttt{Fabric} em <trainer> dos arquivos")]),
+    ("Mais lento", [("pytest-django", r"Sessões internas do \textit{pytest} (\texttt{pytester}) em <pytester> e "
+                                      r"subprocessos em <subproc> dos arquivos"),
+                    ("pytest-xdist", r"Sessões internas do \textit{pytest} (\texttt{pytester}) em <pytester> e "
+                                     r"subprocessos em <subproc> dos arquivos")]),
 ]
+CARACTERISTICAS = ROOT / "data" / "analise_projetos" / "caracteristicas_projetos.csv"
 
 
-def perfil_projetos(byc, repos, caption, label, fontsize, tabcolsep, nota):
-    """TSR relativa (faixa nos 4 modos do regsmart) e detecção do modo RTS, agrupadas por perfil."""
+def caracteristicas(path: Path) -> dict:
+    if not path.is_file():
+        sys.exit(f"falta {path}: rode antes python3 analise_projetos.py --clonar")
+    return {r["repo"]: r for r in csv.DictReader(path.open(encoding="utf-8"))}
+
+
+def _como_chega(texto: str, c: dict) -> str:
+    def val(m):
+        k = m.group(1)
+        v = c[k]
+        if k == "dispatchable_decorations":
+            return fmt(float(v), 0)
+        return fmt(100 * float(v), 0) + r"\%"
+    out = re.sub(r"<(\w+)>", val, texto)
+    if c.get("doctest") == "True":
+        out += r"; \textit{doctests}"
+    return out
+
+
+def perfil_projetos(byc, repos, car, caption, label, fontsize, tabcolsep, nota=None):
+    """TSR relativa (faixa nos 4 modos do regsmart), detecção do modo RTS e como os testes chegam ao código."""
     su, dp = dict(byc["suite_s"]["rows"]), dict(byc["detected_pct"]["rows"])
     body = [r"\toprule", row([r"\textbf{Perfil}", r"\textbf{Projeto}", r"\textbf{\shortstack[r]{TSR\\(relativa)}}",
-                              r"\textbf{\shortstack[r]{Detecção\\(\%)}}", r"\textbf{Fator principal}"]), r"\midrule"]
+                              r"\textbf{\shortstack[r]{Detecção\\(\%)}}", r"\textbf{Como os testes chegam ao código}"]),
+            r"\midrule"]
     for gi, (g, items) in enumerate(PERFIS):
         items = [(rp, f) for rp, f in items if rp in su]
         if gi:
             body.append(r"\midrule")
-        for i, (rp, fac) in enumerate(items):
+        for i, (rp, txt) in enumerate(items):
             r_ = [su[rp][k] / su[rp]["baseline"] for k in RTS_MODES]
             a, b = fmt(min(r_), 2), fmt(max(r_), 2)
             body.append(row([g if i == 0 else "", r"\textit{" + tex_escape(rp) + "}", a if a == b else f"{a}--{b}",
-                             _det(dp[rp][RTS_ONLY]), fac]))
-    spec = r">{\raggedright\arraybackslash}p{1.6cm}lrr>{\raggedright\arraybackslash}p{5.3cm}"
+                             _det(dp[rp][RTS_ONLY]), _como_chega(txt, car[rp])]))
+    spec = r">{\raggedright\arraybackslash}p{1.6cm}lrr>{\raggedright\arraybackslash}p{6.2cm}"
     return wrap(caption, label, spec, body, fontsize, "3pt", nota)
 
 
@@ -367,6 +396,8 @@ def main() -> int:
     ap.add_argument("--mut-stat", choices=["mean", "median"], default="mean")
     ap.add_argument("--fontsize", default=r"\scriptsize")
     ap.add_argument("--tabcolsep", default="2pt")
+    ap.add_argument("--caracteristicas", type=Path, default=CARACTERISTICAS,
+                    help="CSV do analise_projetos.py (coluna 'Como os testes chegam ao código' da tab_perfil)")
     a = ap.parse_args()
     base = ROOT / "data" / CAMPAIGN_DIRS[a.campaign]
     rows = list(csv.DictReader((base / "metrics" / "runs.csv").open(encoding="utf-8")))
@@ -418,11 +449,10 @@ def main() -> int:
     t_res = resumo_modos(byc, ovc, repos,
                          "Resumo da comparação dos nove modos de execução, agrupados por heurística de priorização",
                          "tab:resultados-resumo", a.fontsize, a.tabcolsep)
-    t_perf = perfil_projetos(byc, repos, r"Resultado do \textit{pytest-regsmart} por projeto, agrupado por perfil",
-                             "tab:perfil-projetos", a.fontsize, "3pt",
-                             "a TSR relativa é a faixa, entre os quatro modos do \\textit{pytest-regsmart}, da razão entre o tempo do modo "
-                             "e o do \\textit{baseline}. A detecção é a do modo RTS, sem reordenação, que reflete apenas a seleção; no "
-                             "\\textit{aeon}, a diferença para 100\\% vem de testes \\textit{flaky} intermitentes.")
+    t_perf = perfil_projetos(byc, repos, caracteristicas(a.caracteristicas),
+                             r"Resultado do \textit{pytest-regsmart} por projeto, agrupado por perfil, e forma como os "
+                             r"testes de cada projeto chegam ao código",
+                             "tab:perfil-projetos", a.fontsize, "3pt")
     files = [("tab_selecao.tex", t_sel, "Segurança da RTS"),
              ("tab_instaveis.tex", t_ins, "Segurança da RTS > Testes flaky"),
              ("tab_tempo.tex", t_tmp, "Impacto no tempo de execução"),
