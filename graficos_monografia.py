@@ -178,14 +178,12 @@ ROTULOS = {
 }
 
 
-# cor (Okabe-Ito) e forma de cada perfil na dispersão. As formas não repetem as dos plugins na fig_tempos_log
-# (círculo vazado = baseline, quadrado = pytest-ranking, losango = pytest-regsmart): triângulo para cima = ganho
-# sem perda, para baixo = ganho com perda, pentágono = sem ganho de tempo, X = mais lento.
-ESTILO_PERFIL = {
-    "Ganho sem perda": ("#009E73", "^"),
-    "Ganho com perda": ("#E69F00", "v"),
-    "Sem ganho de tempo": ("#56B4E9", "p"),
-    "Mais lento": ("#CC79A7", "X"),
+# cor (Okabe-Ito) de cada perfil na dispersão; todos os pontos são círculos (um único modo, RTS + RecentFail)
+COR_PERFIL = {
+    "Ganho sem perda": "#009E73",
+    "Ganho com perda": "#E69F00",
+    "Sem ganho de tempo": "#56B4E9",
+    "Mais lento": "#CC79A7",
 }
 
 
@@ -194,11 +192,10 @@ def fig_tempo_deteccao(D: dict, out: Path):
         fig, ax = plt.subplots(figsize=FIGSIZE)
         ax.axvline(1, color="#555", lw=0.9, ls="--", zorder=0)
         ax.axhline(100, color="#bbb", lw=0.7, ls=":", zorder=0)
-        # um único modo (RTS + RecentFail): cor e forma indicam o perfil do projeto na Tabela 11
+        # um único modo (RTS + RecentFail): a cor indica o perfil do projeto na Tabela 11
         for perfil, itens in PERFIS:
             rs = [r for r, _ in itens if r in D]
-            cor, marca = ESTILO_PERFIL[perfil]
-            ax.scatter([D[r]["rg_rel"] for r in rs], [D[r]["pct_det"] for r in rs], s=58, marker=marca, color=cor,
+            ax.scatter([D[r]["rg_rel"] for r in rs], [D[r]["pct_det"] for r in rs], s=52, color=COR_PERFIL[perfil],
                        edgecolor="white", lw=0.6, zorder=3, label=perfil)
         for r in ORDEM:
             x, y = D[r]["rg_rel"], D[r]["pct_det"]
@@ -217,7 +214,7 @@ def fig_tempo_deteccao(D: dict, out: Path):
         ax.text(0.98, 36.5, "← mais rápido que o baseline", ha="right", fontsize=8.5, color="#555")
         ax.set_title("pytest-regsmart (RTS + RecentFail)", fontsize=10, loc="left")
         ax.legend(title="Perfil (Tabela 11)", loc="lower right", bbox_to_anchor=(1.0, 0.06), frameon=False,
-                  fontsize=9, title_fontsize=9, handletextpad=0.4, borderaxespad=0.2, alignment="left")
+                  fontsize=9, title_fontsize=9, handletextpad=0.4, alignment="left")
         salvar(fig, out, "fig_tempo_deteccao")
 
 
