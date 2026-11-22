@@ -38,6 +38,7 @@ from matplotlib.ticker import FuncFormatter  # noqa: E402
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from tabela_final import CAMPAIGN_DIRS, ROOT, build  # noqa: E402
+from tabelas_eixos import PERFIS  # noqa: E402  (perfis da tab:perfil-projetos)
 
 BASE = "baseline"
 RK = "ranking:rkn_recentfail"        # pytest-ranking (RecentFail)
@@ -177,13 +178,28 @@ ROTULOS = {
 }
 
 
+# cor (Okabe-Ito) e forma de cada perfil na dispersão. As formas não repetem as dos plugins na fig_tempos_log
+# (círculo vazado = baseline, quadrado = pytest-ranking, losango = pytest-regsmart): triângulo para cima = ganho
+# sem perda, para baixo = ganho com perda, pentágono = sem ganho de tempo, X = mais lento.
+ESTILO_PERFIL = {
+    "Ganho sem perda": ("#009E73", "^"),
+    "Ganho com perda": ("#E69F00", "v"),
+    "Sem ganho de tempo": ("#56B4E9", "p"),
+    "Mais lento": ("#CC79A7", "X"),
+}
+
+
 def fig_tempo_deteccao(D: dict, out: Path):
     with mpl.rc_context(ESTILO_DISPERSAO):
         fig, ax = plt.subplots(figsize=FIGSIZE)
         ax.axvline(1, color="#555", lw=0.9, ls="--", zorder=0)
         ax.axhline(100, color="#bbb", lw=0.7, ls=":", zorder=0)
-        ax.scatter([D[r]["rg_rel"] for r in ORDEM], [D[r]["pct_det"] for r in ORDEM], s=44, color=COR_RG,
-                   edgecolor="white", lw=0.6, zorder=3)
+        # um único modo (RTS + RecentFail): cor e forma indicam o perfil do projeto na Tabela 11
+        for perfil, itens in PERFIS:
+            rs = [r for r, _ in itens if r in D]
+            cor, marca = ESTILO_PERFIL[perfil]
+            ax.scatter([D[r]["rg_rel"] for r in rs], [D[r]["pct_det"] for r in rs], s=58, marker=marca, color=cor,
+                       edgecolor="white", lw=0.6, zorder=3, label=perfil)
         for r in ORDEM:
             x, y = D[r]["rg_rel"], D[r]["pct_det"]
             tx, ty, ha, linha = ROTULOS.get(r, (x + 0.02, y, "left", None))
@@ -200,6 +216,8 @@ def fig_tempo_deteccao(D: dict, out: Path):
         ax.set_ylabel("Falhas detectadas (%)")
         ax.text(0.98, 36.5, "← mais rápido que o baseline", ha="right", fontsize=8.5, color="#555")
         ax.set_title("pytest-regsmart (RTS + RecentFail)", fontsize=10, loc="left")
+        ax.legend(title="Perfil (Tabela 11)", loc="lower right", bbox_to_anchor=(1.0, 0.06), frameon=False,
+                  fontsize=9, title_fontsize=9, handletextpad=0.4, borderaxespad=0.2, alignment="left")
         salvar(fig, out, "fig_tempo_deteccao")
 
 

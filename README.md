@@ -211,7 +211,7 @@ Gerados pelos scripts das tabelas e das figuras (não versionados; rode-os de no
 | `data/flaky_mut/metrics/tables/eixos/tabelas_cap7.tex`, `tabelas_eixos.csv` | todas as tabelas do Cap. 7 na ordem do capítulo; números dos *flaky* sem formatação |
 | `data/flaky_mut/metrics/figures/fig_tempos_log.png` | tempo de execução da suíte (s) por projeto: *baseline*, *pytest-ranking* (RecentFail) e *pytest-regsmart* (RTS + RecentFail), escala logarítmica |
 | `data/flaky_mut/metrics/figures/fig_falhas_detectadas.png` | falhas detectadas e não detectadas por projeto, em % do total de cada projeto, com "x de y" (*pytest-regsmart*, RTS + RecentFail) |
-| `data/flaky_mut/metrics/figures/fig_tempo_deteccao.png` | dispersão: tempo relativo ao *baseline* × % de falhas detectadas (*pytest-regsmart*, RTS + RecentFail) |
+| `data/flaky_mut/metrics/figures/fig_tempo_deteccao.png` | dispersão: tempo relativo ao *baseline* × % de falhas detectadas (*pytest-regsmart*, RTS + RecentFail), com cor e forma pelo perfil da `tab:perfil-projetos` (lidos de `PERFIS` no `tabelas_eixos.py`) |
 
 Não versionados (`.gitignore`): clones locais (`work/`, `_regsmart_sync/`), logs brutos (`data/flaky_mut/raw/`), cache do coletor (`data/flaky_mut/metrics/cache/`), cache do mutmut (`data/mutmut/mutcache/`) e clones da análise estática (`data/analise_projetos/forks/`).
 
