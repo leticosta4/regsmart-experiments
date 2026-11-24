@@ -223,3 +223,5 @@ work/
 data/mutmut/mutcache/
 data/flaky_mut/raw/
 data/flaky_mut/metrics/cache/
+# clones dos forks usados pelo analise_projetos.py
+data/analise_projetos/forks/
